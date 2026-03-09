@@ -3,238 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Initialize Identity | FSP Talent Intake</title>
+    <title>Secure Checkout | FSP Obsidian Directorate</title>
     <style>
         :root {
-            --fsp-black: #050505;
-            --fsp-pitch: #000000;
-            --fsp-fire: #ff3300;
-            --fsp-gold: #c5a059;
-            --fsp-white: #ffffff;
-            --fsp-grey: #111111;
+            --fsp-black: #050505; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #ffffff;
         }
-
-        /* RESET FOR STABILITY */
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
 
-        body {
-            background-color: var(--fsp-pitch);
-            color: var(--fsp-white);
-            font-family: 'Outfit', sans-serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            min-height: 100vh;
+        .checkout-box {
+            width: 100%; max-width: 500px; background: #0a0a0a; border: 1px solid #1a1a1a;
+            padding: 50px; text-align: center; box-shadow: 0 0 60px rgba(0,0,0,1);
         }
 
-        /* MASTER COMMAND HEADER - 180px */
-        header.fsp-nav-command {
-            position: fixed; top: 0; left: 0; width: 100%; height: 180px; 
-            background: rgba(0, 0, 0, 0.98); display: flex; align-items: center;
-            justify-content: space-between; padding: 0 50px; border-bottom: 2px solid #1a1a1a;
-            z-index: 10000; backdrop-filter: blur(30px);
+        .bebas { font-family: 'Bebas Neue', cursive; font-size: 3rem; letter-spacing: 5px; margin-bottom: 10px; }
+        
+        .order-summary {
+            background: #000; border: 1px solid #222; padding: 30px; margin: 30px 0;
+            text-align: left; position: relative;
         }
 
-        .fsp-logo-main { height: 150px; width: auto; display: block; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.8rem; letter-spacing: 1px; }
+        .summary-total { border-top: 1px solid #333; padding-top: 15px; margin-top: 15px; font-weight: 900; font-size: 1.2rem; color: var(--fsp-fire); }
 
-        /* MAIN LAYOUT */
-        .join-container {
-            margin-top: 180px; padding: 60px 5%;
-            display: grid; grid-template-columns: 1fr 1.3fr; gap: 50px;
-            background: radial-gradient(circle at top right, #111 0%, #000 100%);
+        .commitment-badge {
+            background: var(--fsp-fire); color: white; font-size: 0.6rem; font-weight: 900;
+            padding: 5px 10px; position: absolute; top: -10px; right: 20px; letter-spacing: 2px;
         }
 
-        /* LEFT: THE LIVE IDENTITY PREVIEW */
-        .preview-pane {
-            position: sticky; top: 220px; height: fit-content;
-            background: #080808; border: 1px solid #1a1a1a; padding: 40px;
-            text-align: center; box-shadow: 0 0 50px rgba(0,0,0,1);
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; font-size: 0.6rem; color: #555; margin-bottom: 8px; letter-spacing: 2px; }
+        input { width: 100%; background: #050505; border: 1px solid #222; padding: 15px; color: white; outline: none; }
+        input:focus { border-color: var(--fsp-gold); }
+
+        .secure-btn {
+            width: 100%; padding: 25px; background: var(--fsp-fire); border: none; color: white;
+            font-weight: 900; letter-spacing: 5px; cursor: pointer; text-transform: uppercase;
+            transition: 0.5s;
         }
+        .secure-btn:hover { background: var(--fsp-white); color: #000; box-shadow: 0 0 30px #fff; }
 
-        .id-card-frame {
-            width: 100%; aspect-ratio: 3/4; background: #000;
-            border: 1px solid #222; margin-top: 25px;
-            position: relative; overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        #ghost-silhouette {
-            position: absolute; width: 100%; height: 100%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: radial-gradient(#151515, #000); z-index: 2;
-        }
-        .s-head { width: 70px; height: 70px; border: 2px solid #333; border-radius: 50%; margin-bottom: 10px; }
-        .s-body { width: 130px; height: 110px; border: 2px solid #333; border-radius: 50% 50% 0 0; }
-
-        #preview-img { width: 100%; height: 100%; object-fit: cover; display: none; z-index: 5; position: relative; }
-
-        .preview-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px 20px;
-            background: linear-gradient(transparent, #000 90%); text-align: left; z-index: 10;
-        }
-
-        /* RIGHT: THE SMART INTAKE FORM */
-        .form-box { background: #0a0a0a; padding: 60px; border: 1px solid #111; }
-
-        h2 { font-family: 'Bebas Neue', cursive; font-size: 2.2rem; letter-spacing: 4px; color: var(--fsp-fire); margin-bottom: 25px; border-left: 4px solid var(--fsp-fire); padding-left: 15px; }
-
-        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-
-        input, select, textarea {
-            width: 100%; background: #000; border: 1px solid #222; padding: 20px;
-            color: white; outline: none; transition: 0.3s; font-family: 'Outfit', sans-serif;
-        }
-
-        input:focus { border-color: var(--fsp-fire); }
-
-        /* UPLOAD SLOTS */
-        .upload-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
-        .file-label {
-            background: #050505; border: 1px dashed #333; padding: 20px 5px;
-            text-align: center; cursor: pointer; transition: 0.3s; color: #555;
-            font-size: 0.6rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase;
-        }
-        .file-label:hover { border-color: var(--fsp-gold); color: white; }
-
-        /* PRODUCTION NOTICE */
-        .notice-box {
-            background: rgba(255, 51, 0, 0.05); border: 1px solid #310; padding: 20px;
-            margin: 30px 0; font-size: 0.8rem; line-height: 1.6; color: #aaa;
-        }
-        .notice-box b { color: var(--fsp-fire); }
-
-        /* PROGRESS BAR */
-        #p-bar { width: 100%; height: 4px; background: #111; margin-bottom: 20px; display: none; }
-        #p-fill { width: 0%; height: 100%; background: var(--fsp-fire); transition: 0.1s; }
-
-        .initialize-btn {
-            width: 100%; padding: 30px; background: var(--fsp-fire); border: none;
-            color: white; font-weight: 900; font-size: 1.4rem; letter-spacing: 5px;
-            cursor: pointer; transition: 0.5s; text-transform: uppercase;
-        }
-        .initialize-btn:hover { background: white; color: black; box-shadow: 0 0 50px white; }
-
-        @media (max-width: 1100px) { .join-container { grid-template-columns: 1fr; } .preview-pane { position: relative; top: 0; } }
+        .terms { font-size: 0.6rem; color: #444; margin-top: 20px; line-height: 1.6; }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="fsp-nav-command">
-        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="fsp-logo-main"></a>
-        <div style="text-align: right; border-right: 4px solid var(--fsp-fire); padding-right: 20px;">
-            <span style="color: var(--fsp-fire); font-weight: 900; font-size: 0.8rem; letter-spacing: 3px;">INITIALIZING IDENTITY</span><br>
-            <span style="color: var(--fsp-gold); font-size: 0.6rem; letter-spacing: 2px;">$100+ PER HOUR BASELINE</span>
-        </div>
-    </header>
+    <div class="checkout-box">
+        <h1 class="bebas">COMMITMENT <span style="color:var(--fsp-fire)">GATEWAY</span></h1>
+        <p style="font-size: 0.7rem; color: #666; letter-spacing: 2px;">SECURE PRODUCTION DEPOSIT</p>
 
-    <main class="join-container">
-        
-        <section class="preview-pane">
-            <h3 style="letter-spacing: 4px; font-size: 0.8rem; color: #444;">LEDGER IDENTITY PREVIEW</h3>
-            <div class="id-card-frame">
-                <div id="ghost-silhouette">
-                    <div class="s-head"></div>
-                    <div class="s-body"></div>
-                    <p style="font-size: 0.6rem; color: #444; letter-spacing: 3px; margin-top: 15px;">CAPTURE PENDING</p>
+        <div class="order-summary">
+            <div id="badge-area"></div>
+            <div class="summary-row"><span>SELECTED STATUS:</span> <b id="out-tier">ICON</b></div>
+            <div class="summary-row"><span>BILLING CYCLE:</span> <b id="out-cycle">12 MONTHS ADVANCE</b></div>
+            <div class="summary-row"><span>BASE RATE:</span> <b id="out-rate">$249/MO</b></div>
+            <div class="summary-total"><span>TOTAL DUE NOW:</span> <span id="out-total">$2,988.00</span></div>
+        </div>
+
+        <form onsubmit="processPayment(event)">
+            <div class="input-group">
+                <label>CARDHOLDER NAME</label>
+                <input type="text" required placeholder="AS IT APPEARS ON CARD">
+            </div>
+            <div class="input-group">
+                <label>CARD NUMBER</label>
+                <input type="text" required placeholder="XXXX XXXX XXXX XXXX">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="input-group">
+                    <label>EXPIRY</label>
+                    <input type="text" required placeholder="MM/YY">
                 </div>
-                <img id="preview-img" src="" alt="">
-                <div class="preview-overlay">
-                    <span id="p-name" style="font-weight: 900; font-size: 1.8rem; text-transform: uppercase;">STAGE NAME</span><br>
-                    <span id="p-status" style="color: var(--fsp-gold); font-size: 0.7rem; letter-spacing: 3px; font-weight: 700;">STATUS: UNVERIFIED</span>
+                <div class="input-group">
+                    <label>CVC</label>
+                    <input type="password" required placeholder="***">
                 </div>
             </div>
-        </section>
 
-        <section class="form-box">
-            <form id="intakeForm">
-                <h2>01. IDENTITY & METADATA</h2>
-                <div class="input-row">
-                    <input type="text" placeholder="LEGAL FIRST NAME" required>
-                    <input type="text" placeholder="LEGAL LAST NAME" required>
-                </div>
-                <div class="input-row">
-                    <input type="text" id="sName" placeholder="DESIRED STAGE NAME" onkeyup="syncName()" required>
-                    <input type="email" placeholder="SECURE EMAIL" required>
-                </div>
+            <button type="submit" class="secure-btn">AUTHORIZE DEPOSIT</button>
+        </form>
 
-                <h2>02. ATTRIBUTES</h2>
-                <div class="input-row">
-                    <select><option>HEIGHT</option><option>5'0-5'4</option><option>5'5-5'8</option><option>5'9+</option></select>
-                    <select><option>EYES</option><option>BLUE</option><option>BROWN</option><option>GREEN</option></select>
-                </div>
-                <textarea placeholder="INTERESTS, PERFORMANCE STYLE, AND BODY NOTES..." rows="3"></textarea>
-
-                <div class="notice-box">
-                    <b>PRODUCTION REQUIREMENT:</b> To close a job and trigger the <b>$100+ payment</b>, your video must be exactly <b>60 minutes (1 hour)</b> and follow all scripted instructions perfectly. Approved submissions are paid instantly.
-                </div>
-
-                <h2>03. THE EVIDENCE (MANDATORY)</h2>
-                <div class="upload-grid">
-                    <label class="file-label">FACE PHOTO<input type="file" accept="image/*" hidden onchange="updateView(this, 'FACE')"></label>
-                    <label class="file-label">FRONT FULL<input type="file" accept="image/*" hidden onchange="updateView(this, 'FRONT')"></label>
-                    <label class="file-label">BACK FULL<input type="file" accept="image/*" hidden onchange="updateView(this, 'BACK')"></label>
-                    <label class="file-label">UPPER BODY<input type="file" accept="image/*" hidden onchange="updateView(this, 'UPPER')"></label>
-                    <label class="file-label">LOWER BODY<input type="file" accept="image/*" hidden onchange="updateView(this, 'LOWER')"></label>
-                    <label class="file-label" style="border: 1px solid var(--fsp-fire); color:white;">VIDEO INTRO<input type="file" accept="video/*" hidden onchange="updateView(this, 'VIDEO')"></label>
-                </div>
-
-                <div style="margin-top:40px;">
-                    <div id="p-bar"><div id="p-fill"></div></div>
-                    <button type="submit" class="initialize-btn" id="sub-btn">INITIALIZE STAR STATUS</button>
-                </div>
-            </form>
-        </section>
-    </main>
+        <p class="terms">
+            By authorizing this payment, you agree to the Obsidian Directorate Terms. 
+            <b>Icon</b> and <b>Elite</b> status require advanced commitment. 
+            Payments are non-refundable upon identity initialization.
+        </p>
+    </div>
 
     <script>
-        function syncName() {
-            const val = document.getElementById('sName').value;
-            document.getElementById('p-name').innerText = val || "STAGE NAME";
-            sessionStorage.setItem('userName', val);
-        }
+        // Logic to catch the tier from the URL (e.g., checkout.html?tier=icon)
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const tier = params.get('tier') || 'icon';
+            const badge = document.getElementById('badge-area');
 
-        function updateView(input, type) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.getElementById('preview-img');
-                    const ghost = document.getElementById('ghost-silhouette');
-                    const status = document.getElementById('p-status');
-                    
-                    if(type !== 'VIDEO') {
-                        img.src = e.target.result;
-                        img.style.display = "block";
-                        ghost.style.display = "none";
-                        if(type === 'FACE') sessionStorage.setItem('userPhoto', e.target.result);
-                    }
-                    status.innerText = "CAPTURED: " + type;
-                    status.style.color = "var(--fsp-fire)";
-                }
-                reader.readAsDataURL(input.files[0]);
+            if(tier === 'icon') {
+                document.getElementById('out-tier').innerText = "ICON STATUS";
+                document.getElementById('out-cycle').innerText = "12 MONTHS (LOCKED)";
+                document.getElementById('out-rate').innerText = "$249/MO";
+                document.getElementById('out-total').innerText = "$2,988.00";
+                badge.innerHTML = '<div class="commitment-badge">REQUIRED: 1 YEAR COMMITMENT</div>';
+            } else if(tier === 'elite') {
+                document.getElementById('out-tier').innerText = "ELITE STATUS";
+                document.getElementById('out-cycle').innerText = "6 MONTHS (LOCKED)";
+                document.getElementById('out-rate').innerText = "$99/MO";
+                document.getElementById('out-total').innerText = "$594.00";
+                badge.innerHTML = '<div class="commitment-badge">REQUIRED: 6 MONTH COMMITMENT</div>';
+            } else if(tier === 'pro') {
+                document.getElementById('out-tier').innerText = "PRO STATUS";
+                document.getElementById('out-cycle').innerText = "MONTHLY (RECURRING)";
+                document.getElementById('out-rate').innerText = "$29/MO";
+                document.getElementById('out-total').innerText = "$29.00";
+                badge.innerHTML = '<div class="commitment-badge" style="background:#444">FLEXIBLE BILLING</div>';
             }
-        }
-
-        document.getElementById('intakeForm').onsubmit = function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('sub-btn');
-            const bar = document.getElementById('p-bar');
-            const fill = document.getElementById('p-fill');
-            
-            btn.innerText = "ENCRYPTING DATA...";
-            btn.disabled = true;
-            bar.style.display = "block";
-
-            let width = 0;
-            let interval = setInterval(() => {
-                if (width >= 100) {
-                    clearInterval(interval);
-                    window.location.href = "portal.html";
-                } else {
-                    width++;
-                    fill.style.width = width + "%";
-                }
-            }, 25);
         };
+
+        function processPayment(e) {
+            e.preventDefault();
+            alert("PAYMENT AUTHORIZED. INITIALIZING IDENTITY LEDGER...");
+            window.location.href = "join.html"; // Move to the intake form after pay
+        }
     </script>
+
 </body>
 </html>
