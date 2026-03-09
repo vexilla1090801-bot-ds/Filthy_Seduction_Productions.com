@@ -3,190 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLAMMABLE FILTH | Cinema of Seduction</title>
+    <title>Showroom | Flammable Filth</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;900&family=Source+Code+Pro:wght@700&display=swap" rel="stylesheet">
-    
-.handshake-toast {
-    position: fixed;
-    bottom: 100px;
-    left: 30px;
-    background: rgba(0, 0, 0, 0.95);
-    border-left: 3px solid #ff3300;
-    padding: 15px 25px;
-    color: #fff;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 1px;
-    z-index: 9999;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    transition: opacity 1s ease;
-    display: flex;
-    align-items: center;
-}
-
-.handshake-content {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.status-indicator {
-    width: 6px;
-    height: 6px;
-    background: #0f0;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #0f0;
-}
-
-.handshake-toast strong {
-    color: #ff3300;
-}
-
-.handshake-toast em {
-    color: #c5a059;
-    font-style: normal;
-    text-decoration: underline;
-}
-<style>
-        :root { --ff-crimson: #ff1a1a; --ff-black: #050505; --ff-gold: #c5a059; }
+    <style>
+        :root { --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-pitch: #050505; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--ff-black); color: #fff; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
 
-        /* CINEMATIC HEADER */
-        header { height: 100px; display: flex; align-items: center; justify-content: space-between; padding: 0 4%; background: linear-gradient(to bottom, #000, transparent); position: fixed; width: 100%; z-index: 1000; }
-        .brand { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 4px; color: var(--ff-crimson); text-shadow: 0 0 15px var(--ff-crimson); }
-        .nav-links { display: flex; gap: 30px; font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; }
-        .nav-links a { color: #fff; text-decoration: none; transition: 0.3s; }
-        .nav-links a:hover { color: var(--ff-crimson); }
+        /* THEATRE HEADER */
+        .showroom-header {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), #000), url('https://via.placeholder.com/1920x1080/0a0a0a/333333?text=CINEMATIC_MASTER_BG');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            border-bottom: 1px solid #111;
+        }
 
-        /* HERO SPOTLIGHT */
-        .hero-spotlight { height: 85vh; width: 100%; position: relative; display: flex; align-items: center; padding: 0 5%; background: #111; /* Background image would be a high-end movie still */ }
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, #000 20%, transparent 60%), linear-gradient(to top, #050505, transparent); }
-        .hero-content { position: relative; z-index: 10; max-width: 600px; }
-        .feature-tag { color: var(--ff-gold); font-family: 'Source Code Pro'; font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 20px; display: block; }
-        .hero-title { font-family: 'Bebas Neue'; font-size: 6rem; line-height: 0.9; margin-bottom: 20px; }
-        .hero-meta { font-size: 0.9rem; color: #888; margin-bottom: 30px; letter-spacing: 1px; }
+        .showroom-header h1 { font-family: 'Bebas Neue'; font-size: 8rem; letter-spacing: 25px; line-height: 0.9; margin-bottom: 20px; text-shadow: 0 0 30px rgba(0,0,0,0.8); }
+        .showroom-header p { font-family: 'Source Code Pro'; color: var(--fsp-fire); letter-spacing: 8px; font-size: 0.8rem; text-transform: uppercase; }
 
-        .btn-watch { padding: 18px 45px; background: var(--ff-crimson); color: #fff; font-weight: 900; letter-spacing: 3px; border: none; text-transform: uppercase; cursor: pointer; transition: 0.4s; }
-        .btn-watch:hover { background: #fff; color: #000; transform: scale(1.05); }
+        /* FILTER BAR */
+        .filter-nav {
+            background: var(--fsp-pitch);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            border-bottom: 1px solid #111;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .filter-link { font-family: 'Bebas Neue'; color: #444; text-decoration: none; letter-spacing: 3px; font-size: 1.1rem; transition: 0.3s; }
+        .filter-link:hover, .filter-link.active { color: #fff; }
 
-        /* THE MOVIE GRID */
-        .production-section { padding: 60px 5%; }
-        .section-label { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 3px; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
-        .section-label::after { content: ""; height: 2px; flex-grow: 1; background: #1a1a1a; }
+        /* THE GRID */
+        .gallery-container { padding: 60px 5%; }
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 15px;
+        }
 
-        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .movie-card { aspect-ratio: 16/9; background: #111; position: relative; overflow: hidden; cursor: pointer; transition: 0.3s; border: 1px solid #111; }
-        .movie-card:hover { transform: scale(1.05); border-color: var(--ff-crimson); z-index: 50; }
-        .movie-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        
-        .card-details { position: absolute; bottom: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, #000); opacity: 0; transition: 0.3s; }
-        .movie-card:hover .card-details { opacity: 1; }
-        .card-title { font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 1px; }
+        .asset-card {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: #080808;
+            overflow: hidden;
+            border: 1px solid #111;
+            cursor: pointer;
+        }
+        .asset-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
+        .asset-card:hover img { opacity: 1; transform: scale(1.05); }
 
-        /* REVENUE PROOF OVERLAY (FOR PERFORMERS) */
-        .performer-view-only { position: fixed; bottom: 30px; right: 30px; background: rgba(0,0,0,0.9); border: 1px solid var(--ff-gold); padding: 15px; z-index: 2000; border-radius: 5px; }
+        .asset-meta {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,1), transparent);
+            transform: translateY(10px);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .asset-card:hover .asset-meta { transform: translateY(0); opacity: 1; }
+
+        .meta-tag { font-family: 'Source Code Pro'; font-size: 0.6rem; color: var(--fsp-gold); letter-spacing: 2px; }
+        .meta-title { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 2px; margin-top: 5px; }
+
+        .quality-badge {
+            position: absolute; top: 20px; right: 20px;
+            background: rgba(0,0,0,0.8); border: 1px solid var(--fsp-fire);
+            color: var(--fsp-fire); padding: 5px 10px; font-size: 0.6rem; font-weight: 900;
+        }
+
     </style>
 </head>
 <body>
 
-<header>
-    <div class="brand">FLAMMABLE FILTH</div>
-    <nav class="nav-links">
-        <a href="#">New Releases</a>
-        <a href="#">Top Rated</a>
-        <a href="#">Categories</a>
-        <a href="#" style="color:var(--ff-gold)">Directorate Login</a>
+    <header class="showroom-header">
+        <p>A1_ELITE_PRODUCTION_HOUSE</p>
+        <h1>FLAMMABLE<br>FILTH</h1>
+        <div style="margin-top: 40px;">
+            <a href="portal.html" style="color: #fff; text-decoration: none; font-family: 'Source Code Pro'; font-size: 0.7rem; border: 1px solid #333; padding: 15px 30px; letter-spacing: 3px;">RETURN_TO_DIRECTORATE</a>
+        </div>
+    </header>
+
+    <nav class="filter-nav">
+        <a href="#" class="filter-link active">ALL_ASSETS</a>
+        <a href="#" class="filter-link">NEO_NOIR</a>
+        <a href="#" class="filter-link">SILK_LIFESTYLE</a>
+        <a href="#" class="filter-link">RAW_DIRECTORATE</a>
     </nav>
-</header>
 
-<section class="hero-spotlight">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <span class="feature-tag">NOW STREAMING // 8K RAW</span>
-        <h1 class="hero-title">MIDNIGHT<br>VELVET</h1>
-        <p class="hero-meta">STARRING: <b>SOPHIA</b> & <b>LEO</b> • DIR: <b>BLACKWOOD</b> • 42 MINS</p>
-        <button class="btn-watch">START PRODUCTION</button>
-    </div>
-</section>
+    <main class="gallery-container">
+        <div class="asset-grid">
+            <div class="asset-card">
+                <div class="quality-badge">8K_UHD</div>
+                <img src="https://via.placeholder.com/800x450/0f0f0f/444444?text=SOPHIA_EXECUTIVE_HEAT" alt="Production">
+                <div class="asset-meta">
+                    <span class="meta-tag">NODE_SOPHIA // SEASON_01</span>
+                    <h3 class="meta-title">EXECUTIVE_HEAT_VOL_01</h3>
+                </div>
+            </div>
 
-<main class="production-section">
-    <div class="section-label">TRENDING_PRODUCTIONS</div>
-    <div class="movie-grid">
-        <div class="movie-card">
-            <div style="height:100%; display:flex; align-items:center; justify-content:center; color:#222; font-family:'Bebas Neue'; font-size:2rem;">NEON_DRIFT</div>
-            <div class="card-details">
-                <p class="card-title">NEON DRIFT</p>
-                <p style="font-size:0.6rem; color:var(--ff-crimson);">Featuring: Alexa (Elite Node)</p>
+            <div class="asset-card">
+                <div class="quality-badge">8K_UHD</div>
+                <img src="https://via.placeholder.com/800x450/0f0f0f/444444?text=JORDAN_SILK_LIFESTYLE" alt="Production">
+                <div class="asset-meta">
+                    <span class="meta-tag">NODE_JORDAN // SEASON_01</span>
+                    <h3 class="meta-title">SILK_LIFESTYLE_MORN</h3>
+                </div>
+            </div>
+
+            <div class="asset-card" style="border-color: var(--fsp-gold);">
+                <div class="quality-badge" style="border-color: var(--fsp-gold); color: var(--fsp-gold);">ELITE_SYNC</div>
+                <img src="https://via.placeholder.com/800x450/0f0f0f/444444?text=ZARA_DIRECTORATE_RAW" alt="Production">
+                <div class="asset-meta">
+                    <span class="meta-tag">NODE_ZARA // ROYAL_STATUS</span>
+                    <h3 class="meta-title">DIRECTORATE_RAW_FEATURE</h3>
+                </div>
             </div>
         </div>
-        <div class="movie-card">
-            <div style="height:100%; display:flex; align-items:center; justify-content:center; color:#222; font-family:'Bebas Neue'; font-size:2rem;">DESERT_HEAT</div>
-            <div class="card-details">
-                <p class="card-title">DESERT HEAT</p>
-                <p style="font-size:0.6rem; color:var(--ff-crimson);">Featuring: Isabella (Elite Node)</p>
-            </div>
-        </div>
-        <div class="movie-card">
-            <div style="height:100%; display:flex; align-items:center; justify-content:center; color:#222; font-family:'Bebas Neue'; font-size:2rem;">SUITE_77</div>
-            <div class="card-details">
-                <p class="card-title">SUITE 77</p>
-                <p style="font-size:0.6rem; color:var(--ff-crimson);">Featuring: Naomi (Icon Node)</p>
-            </div>
-        </div>
-    </div>
-</main>
-
-<div class="performer-view-only">
-    <p style="font-size: 0.5rem; color: var(--ff-gold); font-weight: 900; letter-spacing: 1px;">DIRECTORATE_OVERLAY_ACTIVE</p>
-    <p style="font-size: 0.8rem; font-family: 'Source Code Pro';">LIVE_VIEWS: 1,402</p>
-    <p style="font-size: 0.8rem; font-family: 'Source Code Pro'; color: #0f0;">EST_ROYALTIES: $214.50</p>
-</div>
+    </main>
 
 </body>
 </html>
-
-
-
-
-/**
- * FSP DIRECTORATE - SURROGATE HANDSHAKE PROTOCOL v1.0
- * Purpose: Simulates live engagement from the 300-Node Surrogate Network
- */
-
-const surrogateNames = ["SOPHIA", "JORDAN", "VALENTINA", "ALEXA", "NAOMI", "ELENA", "ZARA", "JADE", "AMARA", "Kaitlyn"];
-const activityTypes = ["is watching", "just authorized", "is streaming", "is active in", "just tipped"];
-const productions = ["MIDNIGHT VELVET", "NEON DRIFT", "SUITE 77", "DESERT HEAT", "THE DIRECTORATE RAW"];
-
-function generateLiveHandshake() {
-    const name = surrogateNames[Math.floor(Math.random() * surrogateNames.length)];
-    const activity = activityTypes[Math.floor(Math.random() * activityTypes.length)];
-    const movie = productions[Math.floor(Math.random() * productions.length)];
-    
-    // Create the notification element
-    const handshakeToast = document.createElement('div');
-    handshakeToast.className = 'handshake-toast';
-    handshakeToast.innerHTML = `
-        <div class="handshake-content">
-            <span class="status-indicator"></span>
-            <p><strong>NODE_${name}</strong> ${activity} <em>${movie}</em></p>
-        </div>
-    `;
-
-    document.body.appendChild(handshakeToast);
-
-    // Remove the notification after 4 seconds
-    setTimeout(() => {
-        handshakeToast.style.opacity = '0';
-        setTimeout(() => handshakeToast.remove(), 1000);
-    }, 4000);
-}
-
-// Trigger a new surrogate action every 8 to 15 seconds
-const randomInterval = () => Math.floor(Math.random() * (15000 - 8000 + 1) + 8000);
-
-function startEcosystem() {
-    setInterval(generateLiveHandshake, randomInterval());
-}
-
-window.onload = startEcosystem;
