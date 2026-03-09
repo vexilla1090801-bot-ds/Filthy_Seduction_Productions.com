@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalize Enrollment | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        /* UNIVERSAL HEADER */
+        header { 
+            height: 180px; display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
+            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
+        }
+        .logo { height: 150px; }
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { color: #444; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
+
+        .order-container { max-width: 800px; margin: 240px auto 100px; padding: 0 5%; text-align: center; }
+        
+        /* INVOICE CARD */
+        .invoice-vault { background: #080808; border: 1px solid #1a1a1a; padding: 60px; position: relative; overflow: hidden; }
+        .invoice-vault::after { content: 'OFFICIAL INVOICE'; position: absolute; top: 20px; right: -40px; background: var(--fsp-gold); color: #000; padding: 5px 50px; transform: rotate(45deg); font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; }
+
+        h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 10px; margin-bottom: 10px; }
+        .summary-line { color: #555; font-size: 0.7rem; letter-spacing: 4px; margin-bottom: 50px; border-bottom: 1px solid #111; padding-bottom: 20px; }
+
+        .detail-box { text-align: left; background: #000; border: 1px solid #111; padding: 30px; margin-bottom: 40px; }
+        .row { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #0a0a0a; padding-bottom: 10px; }
+        .row .label { font-size: 0.6rem; color: #444; letter-spacing: 2px; font-weight: 900; }
+        .row .val { font-size: 0.8rem; color: #fff; font-weight: 700; }
+
+        .total-lock { margin: 40px 0; }
+        .total-lock p { font-size: 0.6rem; color: var(--fsp-fire); letter-spacing: 4px; font-weight: 900; margin-bottom: 10px; }
+        .final-price { font-size: 5rem; font-weight: 900; line-height: 1; font-family: 'Bebas Neue'; }
+
+        /* PAYMENT BUTTON */
+        .btn-payment { 
+            display: block; width: 100%; padding: 30px; background: var(--fsp-white); color: #000; 
+            text-decoration: none; font-weight: 900; letter-spacing: 10px; font-size: 1rem; 
+            text-transform: uppercase; transition: 0.5s; border: none; cursor: pointer;
+        }
+        .btn-payment:hover { background: var(--fsp-fire); color: #fff; transform: translateY(-5px); box-shadow: 0 10px 40px rgba(255, 51, 0, 0.2); }
+
+        .security-footer { margin-top: 40px; display: flex; justify-content: center; gap: 30px; opacity: 0.3; }
+        .security-footer span { font-size: 0.5rem; letter-spacing: 2px; font-weight: 900; border: 1px solid #333; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+    <nav class="main-nav">
+        <a href="index.html">COMMAND</a>
+        <a href="briefing-basic.html">ENROLL</a>
+        <a href="briefing-pro.html">PRO</a>
+        <a href="briefing-elite.html">ELITE</a>
+        <a href="briefing-icon.html">ICON</a>
+    </nav>
+</header>
+
+<main class="order-container">
+    <div class="invoice-vault">
+        <h1>COMMITMENT LOCK</h1>
+        <p class="summary-line">AUTHORIZING ADVANCE PRODUCTION DEPOSIT</p>
+
+        <div class="detail-box">
+            <div class="row"><span class="label">PERFORMER ALIAS</span> <span class="val" id="out-name">---</span></div>
+            <div class="row"><span class="label">ASSIGNED DIRECTORATE ID</span> <span class="val" id="out-id">---</span></div>
+            <div class="row"><span class="label">TIER AUTHORIZATION</span> <span class="val" id="out-tier">---</span></div>
+            <div class="row"><span class="label">COMMITMENT TERM</span> <span class="val" id="out-term">---</span></div>
+        </div>
+
+        <div class="total-lock">
+            <p>TOTAL DUE IN ADVANCE</p>
+            <div class="final-price" id="out-price">$0.00</div>
+        </div>
+
+        <a href="#" class="btn-payment" id="payment-link">SECURE COMPLETE ORDER</a>
+
+        <div class="security-footer">
+            <span>SSL SECURE</span>
+            <span>2257 COMPLIANT</span>
+            <span>ENCRYPTED NODE</span>
+        </div>
+    </div>
+
+    <p style="color:#222; font-size: 0.6rem; margin-top: 40px; letter-spacing: 2px;">
+        BY COMPLETING THIS ORDER, YOU AUTHORIZE FILTHY SEDUCTION PRODUCTIONS TO INITIALIZE YOUR PROFESSIONAL IDENTITY LEDGER. NO REFUNDS ARE ISSUED FOR ADVANCE COMMITMENTS DUE TO THE SPECIALIZED NATURE OF DIRECTORATE ENROLLMENT.
+    </p>
+</main>
+
+<script>
+    window.onload = function() {
+        const data = JSON.parse(localStorage.getItem('fsp_profile'));
+        if(!data) {
+            window.location.href = "index.html"; // Safety bounce
+            return;
+        }
+
+        // Set Display Values
+        document.getElementById('out-name').innerText = data.name;
+        document.getElementById('out-id').innerText = data.fspID;
+        document.getElementById('out-tier').innerText = data.tier;
+
+        // Determine Price and Term based on Tier
+        let price = "$0.00";
+        let term = "NO COMMITMENT";
+        let stripeLink = "#"; // Default
+
+        if(data.tier === 'PRO') {
+            price = "$87.00";
+            term = "3 MONTHS (ADVANCE)";
+            stripeLink = "YOUR_STRIPE_PRO_LINK_HERE"; 
+        } else if(data.tier === 'ELITE') {
+            price = "$594.00";
+            term = "6 MONTHS (ADVANCE)";
+            stripeLink = "YOUR_STRIPE_ELITE_LINK_HERE";
+        } else if(data.tier === 'ICON') {
+            price = "$2,988.00";
+            term = "12 MONTHS (ADVANCE)";
+            stripeLink = "YOUR_STRIPE_ICON_LINK_HERE";
+        }
+
+        document.getElementById('out-price').innerText = price;
+        document.getElementById('out-term').innerText = term;
+        document.getElementById('payment-link').href = stripeLink;
+    }
+</script>
+
+</body>
+</html>
