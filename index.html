@@ -4,100 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <title>FSP | The Obsidian Directorate</title>
+    <title>FSP | The Obsidian Directorate Command</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --fsp-pitch: #000000; --fsp-card: #080808; --fsp-fire: #ff3300; 
-            --fsp-gold: #c5a059; --fsp-white: #ffffff; --fsp-gray: #666;
+            --fsp-gold: #c5a059; --fsp-white: #ffffff; --fsp-gray: #444;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: var(--fsp-pitch); color: var(--fsp-white); 
-            font-family: 'Outfit', sans-serif; overflow-x: hidden;
-        }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
 
-        /* 180px COMMAND HEADER & GLOW LOGO */
+        /* 180px BIG DOG HEADER & NAVIGATION */
         header { 
             height: 180px; display: flex; align-items: center; justify-content: space-between; 
-            padding: 0 60px; border-bottom: 1px solid #111; background: rgba(0,0,0,0.9); 
-            backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; 
+            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
+            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
         }
-        .logo { height: 150px; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); filter: drop-shadow(0 0 0px transparent); }
-        .logo:hover { filter: drop-shadow(0 0 25px var(--fsp-fire)); transform: scale(1.03); }
+        
+        .logo-link { display: flex; align-items: center; text-decoration: none; }
+        .logo { height: 150px; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .logo:hover { filter: drop-shadow(0 0 25px var(--fsp-fire)); transform: scale(1.02); }
 
-        /* HERO SECTION */
+        /* CENTERED NAVIGATION SYSTEM */
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { 
+            color: #666; text-decoration: none; font-weight: 900; font-size: 0.75rem; 
+            letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; 
+        }
+        .main-nav a:hover, .main-nav a.active { color: var(--fsp-fire); text-shadow: 0 0 10px rgba(255,51,0,0.5); }
+
+        .system-status { display: flex; align-items: center; gap: 12px; border-right: 3px solid var(--fsp-fire); padding-right: 20px; }
+        .pulse { width: 10px; height: 10px; background: var(--fsp-fire); border-radius: 50%; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+        .status-text { color: var(--fsp-fire); font-size: 0.65rem; font-weight: 900; letter-spacing: 4px; }
+
+        /* HERO & MARKETING */
         .hero { 
             height: 90vh; display: flex; flex-direction: column; justify-content: center; 
             align-items: center; text-align: center; padding-top: 180px;
-            background: radial-gradient(circle at center, #0f0f0f 0%, #000 100%);
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
         }
         .hero h1 { font-family: 'Bebas Neue'; font-size: clamp(4rem, 12vw, 9rem); letter-spacing: 25px; line-height: 0.85; margin-bottom: 20px; }
-        .hero p { letter-spacing: 10px; color: var(--fsp-gray); font-weight: 900; text-transform: uppercase; font-size: 0.8rem; }
+        .tagline { color: var(--fsp-gold); letter-spacing: 12px; font-weight: 900; text-transform: uppercase; font-size: 0.85rem; }
 
-        /* REVENUE AUTHORITY SECTION */
-        .revenue-ticker {
-            background: #050505; border-top: 1px solid #111; border-bottom: 1px solid #111;
-            padding: 40px 0; display: flex; justify-content: center; gap: 80px;
-        }
-        .stat-box { text-align: center; }
-        .stat-box h4 { font-size: 0.6rem; color: var(--fsp-gray); letter-spacing: 4px; margin-bottom: 10px; }
-        .stat-box p { font-size: 2rem; font-weight: 900; color: var(--fsp-gold); font-family: 'Bebas Neue'; }
+        /* REVENUE & CAPABILITY TICKER */
+        .ticker { background: #050505; border-top: 1px solid #111; border-bottom: 1px solid #111; padding: 50px 0; display: flex; justify-content: center; gap: 100px; }
+        .stat { text-align: center; }
+        .stat h4 { font-size: 0.6rem; color: #444; letter-spacing: 4px; margin-bottom: 10px; text-transform: uppercase; }
+        .stat p { font-size: 2.2rem; font-weight: 900; color: var(--fsp-gold); font-family: 'Bebas Neue'; }
 
         /* TIER GRID */
-        .tier-section { padding: 100px 5%; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .tier-section { padding: 120px 5%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         
         .card { 
-            background: var(--fsp-card); border: 1px solid #1a1a1a; padding: 60px 40px; 
-            transition: 0.5s; position: relative;
+            background: var(--fsp-card); border: 1px solid #1a1a1a; padding: 60px 35px; 
+            transition: 0.5s; text-align: center; position: relative; overflow: hidden;
         }
         .card:hover { border-color: var(--fsp-white); transform: translateY(-10px); background: #0c0c0c; }
-        .card.featured { border-top: 4px solid var(--fsp-fire); }
-        .card.iconic { border-top: 4px solid var(--fsp-gold); }
+        .card.hot { border-top: 4px solid var(--fsp-fire); }
+        .card.top { border-top: 4px solid var(--fsp-gold); }
 
-        .card h3 { font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 6px; margin-bottom: 15px; }
+        .card h3 { font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 5px; margin-bottom: 10px; }
         .price { font-size: 3.5rem; font-weight: 900; line-height: 1; }
-        .billing { font-size: 0.65rem; color: #444; letter-spacing: 3px; font-weight: 900; display: block; margin-top: 10px; margin-bottom: 40px; }
+        .commitment { font-size: 0.6rem; color: var(--fsp-fire); letter-spacing: 3px; font-weight: 900; display: block; margin: 15px 0 35px; }
         
         .feats { list-style: none; text-align: left; margin-bottom: 40px; border-top: 1px solid #151515; padding-top: 30px; }
-        .feats li { font-size: 0.85rem; color: #888; margin-bottom: 15px; letter-spacing: 1px; display: flex; align-items: center; }
-        .feats li::before { content: '→'; color: var(--fsp-fire); margin-right: 15px; font-weight: 900; }
+        .feats li { font-size: 0.8rem; color: #777; margin-bottom: 12px; letter-spacing: 1px; display: flex; align-items: center; }
+        .feats li::before { content: '◈'; color: var(--fsp-fire); margin-right: 12px; }
 
         .btn { 
             display: block; width: 100%; padding: 22px; background: #111; color: #fff; 
-            text-decoration: none; font-weight: 900; letter-spacing: 5px; font-size: 0.75rem; 
-            text-transform: uppercase; transition: 0.3s; text-align: center;
+            text-decoration: none; font-weight: 900; letter-spacing: 5px; font-size: 0.7rem; 
+            text-transform: uppercase; transition: 0.3s; border: 1px solid transparent;
         }
         .card:hover .btn { background: var(--fsp-white); color: #000; }
-        .iconic:hover .btn { background: var(--fsp-gold); color: #000; }
 
-        footer { padding: 80px; text-align: center; border-top: 1px solid #111; color: #222; font-size: 0.6rem; letter-spacing: 6px; }
+        /* LEGAL COMPLIANCE FOOTER */
+        footer { padding: 100px 15%; background: #000; border-top: 1px solid #111; color: #333; font-size: 0.65rem; line-height: 2.2; text-align: center; letter-spacing: 1px; }
+        .legal-warning { color: #555; margin-bottom: 30px; border: 1px solid #111; padding: 20px; }
 
-        @media (max-width: 900px) { header { height: 140px; padding: 0 20px; } .logo { height: 100px; } }
+        @media (max-width: 1000px) {
+            header { height: 140px; }
+            .main-nav { display: none; } /* Mobile Menu would go here */
+            .logo { height: 100px; }
+            .ticker { gap: 30px; flex-wrap: wrap; }
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
-        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
-        <div style="text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
-            <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:5px; font-size: 0.7rem;">SYSTEM: ONLINE</span>
+        <a href="index.html" class="logo-link">
+            <img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP OBSIDIAN">
+        </a>
+        
+        <nav class="main-nav">
+            <a href="index.html" class="active">COMMAND</a>
+            <a href="briefing-basic.html">ENROLL</a>
+            <a href="briefing-pro.html">PRO</a>
+            <a href="briefing-elite.html">ELITE</a>
+            <a href="briefing-icon.html">ICON</a>
+        </nav>
+
+        <div class="system-status">
+            <span class="pulse"></span>
+            <span class="status-text">NODE: ACTIVE</span>
         </div>
     </header>
 
     <main class="hero">
-        <p>Filthy Seduction Productions // The Obsidian Directorate</p>
-        <h1>DIRECTORATE<br><span style="color:var(--fsp-gold)">RESOURCES</span></h1>
-        <p>Securing Talent Equity & Metadata Authority</p>
+        <p class="tagline">Official Adult Entertainer Identity Portal</p>
+        <h1>OBSIDIAN<br><span style="color:var(--fsp-gold)">DIRECTORATE</span></h1>
+        <p style="letter-spacing:5px; color:#333; font-weight:900;">REMOTE NODES // STUDIO PLACEMENT // REVENUE EQUITY</p>
     </main>
 
-    <section class="revenue-ticker">
-        <div class="stat-box"><h4>BASIC REVENUE</h4><p>$0/HR</p></div>
-        <div class="stat-box"><h4>PRO REVENUE</h4><p>$100/HR</p></div>
-        <div class="stat-box"><h4>ELITE REVENUE</h4><p>$150/HR</p></div>
-        <div class="stat-box" style="border-left: 1px solid #222; padding-left: 80px;"><h4>ICON REVENUE</h4><p style="color:var(--fsp-white)">$250/HR</p></div>
+    <section class="ticker">
+        <div class="stat"><h4>REMOTE CAPABLE</h4><p>AUTHORIZED</p></div>
+        <div class="stat"><h4>STUDIO ACCESS</h4><p>AVAILABLE</p></div>
+        <div class="stat"><h4>PRO REVENUE</h4><p>$100/HR</p></div>
+        <div class="stat"><h4>ICON REVENUE</h4><p>$250/HR</p></div>
     </section>
 
     <section class="tier-section">
@@ -105,59 +132,63 @@
             <div class="card">
                 <h3>BASIC</h3>
                 <div class="price">FREE</div>
-                <span class="billing">IDENTITY ENROLLMENT</span>
+                <span class="commitment" style="color:#444;">ID VERIFICATION ONLY</span>
                 <ul class="feats">
-                    <li>Secured Legal Identity</li>
-                    <li>Obsidion Ledger Entry</li>
+                    <li>Identity Ledger Entry</li>
+                    <li>Secure Adult Screen Name</li>
+                    <li>Remote Work Eligibility</li>
                     <li>5 Photo / 1 Video Slots</li>
-                    <li>Public Directory Listing</li>
                 </ul>
-                <a href="briefing-basic.html" class="btn">START ENROLLMENT</a>
+                <a href="briefing-basic.html" class="btn">INITIALIZE ENROLLMENT</a>
+            </div>
+
+            <div class="card hot">
+                <h3>PRO</h3>
+                <div class="price">$29</div>
+                <span class="commitment">03-MONTH COMMITMENT</span>
+                <ul class="feats">
+                    <li><b>$100/HR</b> Production Scale</li>
+                    <li>15 Photo / 3 Video Slots</li>
+                    <li>Studio Casting Eligibility</li>
+                    <li>Professional Industry Profile</li>
+                </ul>
+                <a href="briefing-pro.html" class="btn">INITIALIZE PRO</a>
             </div>
 
             <div class="card">
-                <h3>PRO</h3>
-                <div class="price">$29</div>
-                <span class="billing">MONTHLY AUTHORIZATION</span>
-                <ul class="feats">
-                    <li>15 Photo / 3 Video Slots</li>
-                    <li><b>$100/HR</b> Production Scale</li>
-                    <li>Direct Script Blog Access</li>
-                    <li>Talent Queue Priority</li>
-                </ul>
-                <a href="briefing-pro.html" class="btn">SELECT PRO</a>
-            </div>
-
-            <div class="card featured">
-                <h3 style="color:var(--fsp-fire)">ELITE</h3>
+                <h3>ELITE</h3>
                 <div class="price">$99</div>
-                <span class="billing">6-MONTH COMMITMENT</span>
+                <span class="commitment">06-MONTH COMMITMENT</span>
                 <ul class="feats">
-                    <li>40 Photo / 10 Video Slots</li>
                     <li><b>$150/HR</b> Production Scale</li>
-                    <li>24HR Priority Script Alerts</li>
-                    <li>Search Algorithm Optimization</li>
+                    <li>40 Photo / 10 Video Slots</li>
+                    <li>Priority Script Alerts</li>
+                    <li>Advanced Metadata Ranking</li>
                 </ul>
-                <a href="briefing-elite.html" class="btn">SELECT ELITE</a>
+                <a href="briefing-elite.html" class="btn">INITIALIZE ELITE</a>
             </div>
 
-            <div class="card iconic">
-                <h3 style="color:var(--fsp-gold)">ICON</h3>
+            <div class="card top">
+                <h3>ICON</h3>
                 <div class="price">$249</div>
-                <span class="billing">12-MONTH COMMITMENT</span>
+                <span class="commitment" style="color:var(--fsp-gold)">12-MONTH COMMITMENT</span>
                 <ul class="feats">
-                    <li><b>UNLIMITED</b> Repository Slots</li>
                     <li><b>$250/HR</b> Production Scale</li>
+                    <li><b>UNLIMITED</b> Media Assets</li>
                     <li>Global Lust-Loop Feature</li>
-                    <li>Staff Strategy Consultation</li>
+                    <li>Direct Staff Consultation</li>
                 </ul>
-                <a href="briefing-icon.html" class="btn">SELECT ICON</a>
+                <a href="briefing-icon.html" class="btn">INITIALIZE ICON</a>
             </div>
         </div>
     </section>
 
     <footer>
-        &copy; 2026 FILTHY SEDUCTION PRODUCTIONS | ALL METADATA ENCRYPTED | THE OBSIDIAN DIRECTORATE 1.0
+        <div class="legal-warning">
+            <b>18 U.S.C. § 2257 RECORD-KEEPING COMPLIANCE:</b> ALL MODELS, PERFORMERS, AND CONTENT CREATORS REGISTERING WITH THE OBSIDIAN DIRECTORATE MUST BE AT LEAST 18 YEARS OF AGE. ALL CONTENT PRODUCED OR INDEXED BY FILTHY SEDUCTION PRODUCTIONS COMPLIES WITH FEDERAL RECORD-KEEPING REQUIREMENTS. BY ENTERING THIS SITE, YOU CERTIFY LEGAL AGE AND ADHERENCE TO ALL ADULT ENTERTAINMENT LAWS WITHIN YOUR JURISDICTION.
+        </div>
+        <p>THE OBSIDIAN DIRECTORATE IS A SPECIALIZED DIVISION OF FILTHY SEDUCTION PRODUCTIONS. OUR MISSION IS TO DEVELOP, CREDENTIAL, AND MANAGE THE PROFESSIONAL IDENTITIES OF ADULT ENTERTAINERS FOR BOTH REMOTE AND STUDIO-BASED PRODUCTIONS. ALL PAY RATES ARE BASED ON PROFESSIONAL PRODUCTION STANDARDS AND DIRECTOR-TIER APPROVAL.</p>
+        <p style="margin-top:20px; color:#111;">&copy; 2026 FSP DIRECTORATE | SYSTEM ENCRYPTION: ACTIVE | NODE 1.0</p>
     </footer>
 
 </body>
