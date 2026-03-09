@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Node | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-card: #080808; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        /* UNIVERSAL HEADER */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
+
+        .settings-wrap { max-width: 1200px; margin: 240px auto 100px; padding: 0 5%; display: grid; grid-template-columns: 300px 1fr; gap: 50px; }
+
+        /* SIDE NAV */
+        .settings-nav h2 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 5px; margin-bottom: 30px; }
+        .nav-item { display: block; padding: 15px 0; color: #444; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid #111; transition: 0.3s; }
+        .nav-item:hover, .nav-item.active { color: var(--fsp-fire); border-bottom-color: var(--fsp-fire); }
+
+        /* CONTENT AREAS */
+        .settings-content { background: var(--fsp-card); border: 1px solid #151515; padding: 60px; }
+        .section-header { margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+        .section-header h3 { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 4px; }
+        
+        .toggle-row { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; border-bottom: 1px solid #111; }
+        .toggle-info b { display: block; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 5px; }
+        .toggle-info span { font-size: 0.65rem; color: #555; text-transform: uppercase; }
+
+        /* CUSTOM TOGGLE SWITCH */
+        .switch { position: relative; display: inline-block; width: 50px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #222; transition: .4s; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; }
+        input:checked + .slider { background-color: var(--fsp-fire); }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+        .btn-save { display: inline-block; margin-top: 40px; padding: 20px 50px; background: var(--fsp-white); color: #000; font-weight: 900; letter-spacing: 4px; border: none; cursor: pointer; text-transform: uppercase; transition: 0.4s; }
+        .btn-save:hover { background: var(--fsp-gold); }
+
+        .danger-zone { margin-top: 60px; border-top: 1px solid #222; padding-top: 40px; }
+        .danger-zone h4 { color: var(--fsp-fire); font-size: 0.7rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+    <nav class="main-nav">
+        <a href="index.html">COMMAND</a>
+        <a href="portal.html">PORTAL</a>
+        <a href="settings.html" style="color:var(--fsp-gold)">SETTINGS</a>
+        <a href="vexillaaits.com_account_support.html" style="color:var(--fsp-fire)">SUPPORT</a>
+    </nav>
+</header>
+
+<main class="settings-wrap">
+    <aside class="settings-nav">
+        <h2>NODE CONFIG</h2>
+        <a href="#" class="nav-item active">Privacy & Security</a>
+        <a href="#" class="nav-item">Revenue Routing</a>
+        <a href="#" class="nav-item">Identity & 2257</a>
+        <a href="#" class="nav-item">Notification Matrix</a>
+    </aside>
+
+    <section class="settings-content">
+        <div class="section-header">
+            <h3>PRIVACY SHIELDS</h3>
+        </div>
+
+        <div class="toggle-row">
+            <div class="toggle-info">
+                <b>OBSIDIAN CLOAK MODE</b>
+                <span>Hide profile from non-verified community members</span>
+            </div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+        </div>
+
+        <div class="toggle-row">
+            <div class="toggle-info">
+                <b>GEO-FENCING PROTECTION</b>
+                <span>Restrict casting call visibility to current region</span>
+            </div>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+
+        <div class="toggle-row">
+            <div class="toggle-info">
+                <b>DIRECTORATE WATERMARKING</b>
+                <span>Auto-apply 2257 metadata to all Vault uploads</span>
+            </div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+        </div>
+
+        <div class="section-header" style="margin-top: 60px;">
+            <h3>REVENUE SETTLEMENT</h3>
+        </div>
+        
+        <p style="font-size: 0.7rem; color: #444; margin-bottom: 20px; letter-spacing: 1px;">Current Payout Method: **DIRECT_DEPOSIT_ENCRYPTED**</p>
+        <a href="vexillaaits.com_account_support.html" style="color:var(--fsp-gold); font-size: 0.6rem; font-weight: 900; text-decoration: none; letter-spacing: 2px;">CHANGE ROUTING VIA LIAISON →</a>
+
+        <div class="danger-zone">
+            <h4>DANGER ZONE</h4>
+            <button style="background: transparent; border: 1px solid #333; color: #333; padding: 10px 20px; font-size: 0.6rem; font-weight: 900; letter-spacing: 2px;">DEACTIVATE NODE</button>
+        </div>
+
+        <button class="btn-save">COMMIT CHANGES</button>
+    </section>
+</main>
+
+<footer style="background: #050505; border-top: 1px solid #111; padding: 60px 5%; margin-top: 100px; text-align: center;">
+    <p style="font-size: 0.6rem; color: #222; letter-spacing: 2px;">© 2026 FSP DIRECTORATE | SECURE_NODE_SETTINGS_v4.2</p>
+</footer>
+
+</body>
+</html>
