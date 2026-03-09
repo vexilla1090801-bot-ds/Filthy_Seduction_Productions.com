@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tier Elevation | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-silver: #a8a8a8; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        /* UNIVERSAL HEADER */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+
+        .tier-layout { max-width: 1300px; margin: 240px auto 100px; padding: 0 5%; }
+        
+        .tier-header { text-align: center; margin-bottom: 80px; }
+        .tier-header h1 { font-family: 'Bebas Neue'; font-size: 4.5rem; letter-spacing: 15px; line-height: 1; }
+        .tier-header p { color: var(--fsp-gold); font-weight: 900; letter-spacing: 5px; font-size: 0.8rem; margin-top: 10px; text-transform: uppercase; }
+
+        .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: start; }
+        
+        /* TIER CARDS */
+        .tier-card { background: #080808; border: 1px solid #1a1a1a; padding: 50px 30px; text-align: center; position: relative; transition: 0.5s; }
+        .tier-card:hover { transform: translateY(-15px); border-color: #333; }
+        .tier-card.featured { border: 1px solid var(--fsp-fire); background: linear-gradient(180deg, #0f0000 0%, #080808 100%); }
+        .tier-card.featured::after { content: "MOST_ACTIVE_NODE"; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--fsp-fire); color: #fff; padding: 5px 20px; font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; }
+
+        .tier-icon { font-size: 3rem; margin-bottom: 20px; display: block; color: var(--fsp-silver); }
+        .tier-card.featured .tier-icon { color: var(--fsp-fire); }
+        .tier-card.icon-tier .tier-icon { color: var(--fsp-gold); }
+
+        .tier-name { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 5px; margin-bottom: 10px; }
+        .tier-price { font-size: 1.2rem; font-weight: 300; color: #555; margin-bottom: 30px; }
+        .tier-price b { color: #fff; font-size: 2rem; }
+
+        .benefit-list { list-style: none; text-align: left; margin-bottom: 40px; }
+        .benefit-list li { font-size: 0.75rem; color: #888; padding: 12px 0; border-bottom: 1px solid #111; display: flex; align-items: center; gap: 10px; }
+        .benefit-list li::before { content: "◈"; color: var(--fsp-fire); font-size: 0.8rem; }
+
+        .btn-upgrade { display: block; width: 100%; padding: 20px; background: #fff; color: #000; text-decoration: none; font-weight: 900; letter-spacing: 3px; font-size: 0.75rem; text-transform: uppercase; transition: 0.4s; }
+        .btn-upgrade:hover { background: var(--fsp-fire); color: #fff; }
+        .icon-tier .btn-upgrade { background: var(--fsp-gold); color: #000; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+</header>
+
+<main class="tier-layout">
+    <div class="tier-header">
+        <h1>PROTOCOL ELEVATION</h1>
+        <p>Advance Your Node Clearance & Revenue Potential</p>
+    </div>
+
+    <div class="tier-grid">
+        <div class="tier-card">
+            <span class="tier-icon">◈</span>
+            <h2 class="tier-name">BASIC</h2>
+            <div class="tier-price"><b>$24.99</b> / mo</div>
+            <ul class="benefit-list">
+                <li>Access to Public Ledger</li>
+                <li>Standard Support Terminal</li>
+                <li>Basic Metadata Vault</li>
+                <li>Single 2257 Sync</li>
+            </ul>
+            <a href="#" class="btn-upgrade">CURRENT LEVEL</a>
+        </div>
+
+        <div class="tier-card featured">
+            <span class="tier-icon">◈◈</span>
+            <h2 class="tier-name">ELITE</h2>
+            <div class="tier-price"><b>$99.00</b> / mo</div>
+            <ul class="benefit-list">
+                <li>Priority Casting Calls</li>
+                <li>Direct Liaison Access (Sloane)</li>
+                <li>1.2x Revenue Multiplier</li>
+                <li>Advanced Security Blanket</li>
+                <li>8K Asset Capability</li>
+            </ul>
+            <a href="vexillaaits.com_account_support.html" class="btn-upgrade">UPGRADE NODE</a>
+        </div>
+
+        <div class="tier-card icon-tier">
+            <span class="tier-icon">◈◈◈</span>
+            <h2 class="tier-name">ICON</h2>
+            <div class="tier-price"><b>$499.00</b> / mo</div>
+            <ul class="benefit-list">
+                <li>Global Shoot Eligibility</li>
+                <li>Executive Directorate Comms</li>
+                <li>1.5x Revenue Multiplier</li>
+                <li>Dedicated Career Concierge</li>
+                <li>Front-Page Profile Feature</li>
+            </ul>
+            <a href="vexillaaits.com_account_support.html" class="btn-upgrade">REQUEST ELEVATION</a>
+        </div>
+    </div>
+
+    <div style="margin-top: 80px; text-align: center; border-top: 1px solid #111; padding-top: 50px;">
+        <h3 style="font-family:'Bebas Neue'; letter-spacing: 4px; font-size: 1.5rem; margin-bottom: 15px;">THE DIRECTORATE DOCTRINE</h3>
+        <p style="font-size: 0.8rem; color: #444; max-width: 800px; margin: 0 auto;">
+            Elevating your tier is a commitment to professional growth. Higher tiers receive increased security protocols, higher-fidelity production resources, and accelerated settlement schedules.
+        </p>
+    </div>
+</main>
+
+<footer style="background: #050505; border-top: 1px solid #111; padding: 60px 5%; margin-top: 100px; text-align: center;">
+    <p style="font-size: 0.6rem; color: #222; letter-spacing: 2px;">© 2026 FILTHY SEDUCTION PRODUCTIONS | PROTOCOL_ELEVATION_v3.0</p>
+</footer>
+
+</body>
+</html>
