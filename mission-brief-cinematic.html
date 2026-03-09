@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Production Brief: Neo-Noir | FSP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;900&family=Source+Code+Pro:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-gold: #c5a059; --fsp-pitch: #0a0a0a; --fsp-red: #ff3300; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; line-height: 1.6; }
+        
+        .brief-wrapper { max-width: 900px; margin: 0 auto; padding: 100px 50px; border-left: 1px solid #111; border-right: 1px solid #111; }
+        .confidential-stamp { border: 2px solid var(--fsp-red); color: var(--fsp-red); display: inline-block; padding: 5px 15px; font-weight: 900; letter-spacing: 5px; margin-bottom: 30px; }
+        
+        h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 15px; margin-bottom: 10px; }
+        .tagline { font-family: 'Source Code Pro'; color: var(--fsp-gold); font-size: 0.7rem; letter-spacing: 5px; margin-bottom: 60px; }
+
+        .section-header { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 3px; border-bottom: 1px solid #222; margin: 40px 0 20px; padding-bottom: 10px; color: var(--fsp-gold); }
+        
+        .lighting-spec { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: #050505; padding: 30px; border: 1px solid #111; }
+        .spec-item b { display: block; color: #fff; font-size: 0.8rem; margin-bottom: 5px; text-transform: uppercase; }
+        .spec-item span { font-size: 0.75rem; color: #666; }
+
+        .wardrobe-palette { display: flex; gap: 10px; margin-top: 10px; }
+        .color-chip { width: 40px; height: 40px; border: 1px solid #333; }
+
+        .btn-upload { 
+            display: block; width: 100%; padding: 25px; background: var(--fsp-red); 
+            color: #fff; text-align: center; text-decoration: none; font-weight: 900; 
+            letter-spacing: 5px; margin-top: 60px; transition: 0.4s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="brief-wrapper">
+    <div class="confidential-stamp">EYES_ONLY</div>
+    <h1>NEO-NOIR_EXEC</h1>
+    <p class="tagline">PRODUCTION_ID: FF_2026_01 // TARGET: POWER_DYNAMICS</p>
+
+    <div class="section-header">01 // THE AESTHETIC DOCTRINE</div>
+    <p>This production is built on the <b>"High-Contrast Shadow"</b> principle. We are moving away from flat, bright lighting. We want deep blacks, sharp highlights on the skin, and a sense of cold, corporate dominance. You are a high-level executive in a glass-and-steel office. The power is yours; the viewer is the subordinate.</p>
+
+    <div class="section-header">02 // LIGHTING & CAMERA SPECS</div>
+    <div class="lighting-spec">
+        <div class="spec-item">
+            <b>Key Lighting:</b>
+            <span>45-degree Rembrandt lighting. High shadows on the non-lit side of the face.</span>
+        </div>
+        <div class="spec-item">
+            <b>Rim Light:</b>
+            <span>Cool blue or stark white backlight to separate silhouette from the dark background.</span>
+        </div>
+        <div class="spec-item">
+            <b>Framing:</b>
+            <span>Low-angle shots to increase perceived status. 8K resolution mandatory.</span>
+        </div>
+        <div class="spec-item">
+            <b>Dynamic Range:</b>
+            <span>Focus on 10-bit color. Black levels must be pure #000.</span>
+        </div>
+    </div>
+
+    <div class="section-header">03 // WARDROBE REQUIREMENT</div>
+    <p>Strict adherence to the <b>Obsidian Palette</b>. No bright colors or distracting patterns.</p>
+    <div class="wardrobe-palette">
+        <div class="color-chip" style="background: #000;"></div>
+        <div class="color-chip" style="background: #1a1a1a;"></div>
+        <div class="color-chip" style="background: #ffffff;"></div>
+        <div class="color-chip" style="background: #2b1d0e;"></div>
+    </div>
+    <p style="font-size: 0.7rem; color: #444; margin-top: 10px;">CHARCOAL / MIDNIGHT / STARK WHITE / DEEP ESPRESSO</p>
+
+    <div class="section-header">04 // SCRIPT_FRAGMENT (OPTIONAL_AUDIO)</div>
+    <blockquote style="font-family: 'Source Code Pro'; font-size: 0.8rem; color: #888; border-left: 2px solid var(--fsp-gold); padding-left: 20px;">
+        "Sit down. I didn't give you permission to speak yet. We have a lot of numbers to go over... and I want to see how much you're willing to work for that bonus."
+    </blockquote>
+
+    <a href="director-console.html" class="btn-upload">DISPATCH_MASTER_FOOTAGE</a>
+</div>
+
+</body>
+</html>
