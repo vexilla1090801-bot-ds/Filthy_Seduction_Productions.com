@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Obsidian Ledger | FSP Talent Portal</title>
+    <title>Executive Portal | FSP Obsidian Directorate</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
+        :root { --fsp-pitch: #000; --fsp-gold: #c5a059; --fsp-fire: #ff3300; --fsp-white: #fff; --fsp-glass: rgba(255,255,255,0.03); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
 
-        /* UNIVERSAL CENTERED HEADER */
+        /* UNIVERSAL HEADER */
         header { 
             height: 180px; display: flex; align-items: center; justify-content: space-between; 
             padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
@@ -19,43 +19,45 @@
         .logo { height: 150px; }
         .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
         .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; }
-        .main-nav a:hover { color: var(--fsp-fire); }
+        .main-nav a.active { color: var(--fsp-gold); }
 
-        .portal-main { max-width: 1400px; margin: 240px auto 100px; padding: 0 5%; }
-
-        /* PROFILE CARD DISPLAY */
-        #profile-hub { display: none; text-align: center; }
-        .ledger-card { 
-            background: #080808; border: 1px solid #1a1a1a; max-width: 500px; margin: 0 auto;
-            padding: 50px; border-top: 5px solid var(--fsp-gold); position: relative;
-            cursor: pointer; transition: 0.4s;
+        .dashboard-layout { 
+            display: grid; grid-template-columns: 350px 1fr 350px; gap: 30px; 
+            max-width: 1800px; margin: 240px auto 100px; padding: 0 40px; 
         }
-        .ledger-card:hover { transform: scale(1.02); box-shadow: 0 0 40px rgba(197,160,89,0.1); }
-        .profile-img-frame { width: 180px; height: 180px; border: 2px solid #222; margin: 0 auto 30px; overflow: hidden; background: #111; }
-        .profile-img-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* LEFT: IDENTITY & REVENUE */
+        .panel { background: #080808; border: 1px solid #151515; padding: 30px; height: fit-content; }
+        .profile-section { text-align: center; margin-bottom: 40px; }
+        .profile-hex { width: 120px; height: 120px; margin: 0 auto 20px; border: 2px solid var(--fsp-gold); overflow: hidden; }
+        .profile-hex img { width: 100%; height: 100%; object-fit: cover; }
+        .id-label { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 4px; }
         
-        .name-tag { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 8px; color: #fff; margin-bottom: 5px; }
-        .tier-tag { color: var(--fsp-gold); font-size: 0.7rem; font-weight: 900; letter-spacing: 5px; margin-bottom: 30px; display: block; }
-        
-        .stats-table { text-align: left; background: #000; padding: 20px; border: 1px solid #111; }
-        .stat-line { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #0a0a0a; padding-bottom: 5px; }
-        .stat-line span:first-child { font-size: 0.55rem; color: #444; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
-        .stat-line span:last-child { font-size: 0.8rem; color: #999; font-weight: 700; }
+        .rev-counter { background: #000; border: 1px solid #222; padding: 20px; margin-top: 20px; text-align: center; }
+        .rev-counter p { font-size: 0.5rem; letter-spacing: 3px; color: #444; font-weight: 900; margin-bottom: 5px; }
+        .rev-val { font-family: 'Bebas Neue'; font-size: 2.5rem; color: var(--fsp-gold); }
 
-        .btn-action { margin-top: 30px; width: 100%; padding: 20px; font-weight: 900; letter-spacing: 5px; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; border: none; }
-        .btn-edit { background: transparent; border: 1px solid #222; color: #444; }
-        .btn-edit:hover { border-color: #fff; color: #fff; }
-        .btn-order { background: var(--fsp-fire); color: #fff; margin-top: 15px; text-decoration: none; display: block; }
+        /* CENTER: ACTIVE OPS & LEDGER */
+        .ops-center h2 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 8px; margin-bottom: 30px; border-left: 4px solid var(--fsp-fire); padding-left: 20px; }
+        .ops-card { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 25px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--fsp-fire); display: inline-block; margin-right: 10px; }
+        .card-text h4 { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
+        .card-text p { font-size: 0.75rem; color: #555; margin-top: 5px; }
+        .btn-view { padding: 10px 20px; background: transparent; border: 1px solid #333; color: #666; font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; cursor: pointer; }
 
-        /* INTAKE FORM */
-        #intake-form { background: #080808; border: 1px solid #111; padding: 60px; max-width: 900px; margin: 0 auto; }
-        h2 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 8px; color: var(--fsp-gold); margin-bottom: 40px; }
-        .field-group { margin-bottom: 25px; }
-        label { display: block; font-size: 0.6rem; color: #444; font-weight: 900; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
-        input, select, textarea { width: 100%; background: #000; border: 1px solid #222; padding: 18px; color: #fff; font-family: 'Outfit'; font-size: 0.95rem; }
-        input:focus { border-color: var(--fsp-fire); outline: none; }
+        /* RIGHT: COMPLIANCE & REPOSITORY */
+        .compliance-list { list-style: none; margin-top: 20px; }
+        .compliance-list li { padding: 15px 0; border-bottom: 1px solid #151515; display: flex; justify-content: space-between; font-size: 0.7rem; }
+        .status-ok { color: #00ff66; font-weight: 900; }
+        .status-warn { color: var(--fsp-fire); font-weight: 900; }
 
-        .btn-init { width: 100%; padding: 30px; background: var(--fsp-fire); color: #fff; font-weight: 900; letter-spacing: 10px; border: none; cursor: pointer; margin-top: 30px; text-transform: uppercase; }
+        .upload-trigger { 
+            width: 100%; padding: 20px; border: 2px dashed #222; text-align: center; 
+            margin-top: 30px; cursor: pointer; transition: 0.3s; color: #444; font-size: 0.6rem; font-weight: 900;
+        }
+        .upload-trigger:hover { border-color: var(--fsp-gold); color: #fff; }
+
+        @media (max-width: 1200px) { .dashboard-layout { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -64,121 +66,101 @@
     <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
     <nav class="main-nav">
         <a href="index.html">COMMAND</a>
-        <a href="briefing-basic.html">ENROLL</a>
-        <a href="briefing-pro.html">PRO</a>
-        <a href="briefing-elite.html">ELITE</a>
-        <a href="briefing-icon.html">ICON</a>
+        <a href="ledger.html">LEDGER</a>
+        <a href="portal.html" class="active">EXECUTIVE PORTAL</a>
     </nav>
 </header>
 
-<main class="portal-main">
-
-    <div id="profile-hub">
-        <div class="ledger-card">
-            <div class="profile-img-frame">
-                <img id="view-img" src="" alt="FSP TALENT">
+<main class="dashboard-layout">
+    
+    <aside class="panel">
+        <div class="profile-section">
+            <div class="profile-hex">
+                <img id="port-img" src="" alt="NODE">
             </div>
-            <div id="view-name" class="name-tag">---</div>
-            <span id="view-tier" class="tier-tag">---</span>
-            
-            <div class="stats-table">
-                <div class="stat-line"><span>Directorate ID</span> <span id="view-id">--</span></div>
-                <div class="stat-line"><span>Industry SSN</span> <span id="view-ssn">--</span></div>
-                <div class="stat-line"><span>Revenue Scale</span> <span id="view-rev">--</span></div>
-                <div class="stat-line"><span>Node Status</span> <span style="color:var(--fsp-fire)">PENDING PAYMENT</span></div>
-            </div>
-
-            <button class="btn-action btn-edit" id="owner-edit" onclick="toggleEdit()">EDIT IDENTITY</button>
-            <a href="order-complete.html" class="btn-action btn-order">FINALIZE & LOCK LEDGER</a>
+            <h3 id="port-name" class="id-label">---</h3>
+            <p id="port-id" style="font-size: 0.6rem; letter-spacing: 3px; color: #444; font-weight: 900;"></p>
         </div>
-    </div>
 
-    <div id="intake-form">
-        <h2>LEDGER INITIALIZATION</h2>
-        <form onsubmit="saveProfile(event)">
-            <div class="field-group">
-                <label>ADULT SCREEN NAME (PUBLIC ALIAS)</label>
-                <input type="text" id="in-name" required placeholder="ENTER ALIAS">
-            </div>
-            
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div class="field-group">
-                    <label>IDENTIFIED GENDER</label>
-                    <select id="in-gender" required>
-                        <option value="FEMALE">FEMALE</option>
-                        <option value="MALE">MALE</option>
-                        <option value="NON-BI">NON-BINARY</option>
-                    </select>
-                </div>
-                <div class="field-group">
-                    <label>PRIMARY HEADSHOT</label>
-                    <input type="file" id="in-file" accept="image/*" onchange="previewImage(event)">
-                </div>
-            </div>
+        <div class="rev-counter">
+            <p>TOTAL ACCRUED REVENUE</p>
+            <div class="rev-val" id="port-accrued">$0,000.00</div>
+        </div>
 
-            <div class="field-group">
-                <label>CORE INTERESTS & PERFORMANCE BOUNDARIES</label>
-                <textarea rows="4" id="in-bio" placeholder="LIST PRODUCTION CAPABILITIES..."></textarea>
+        <div style="margin-top: 30px;">
+            <p style="font-size: 0.55rem; letter-spacing: 2px; color: #333; font-weight: 900; margin-bottom: 15px;">TIER PRIVILEGE</p>
+            <div id="port-tier-badge" style="padding: 10px; border: 1px solid var(--fsp-gold); color: var(--fsp-gold); font-size: 0.6rem; text-align: center; font-weight: 900; letter-spacing: 3px;">
+                PENDING
             </div>
+        </div>
+    </aside>
 
-            <button type="submit" class="btn-init">INITIALIZE IDENTITY NODE</button>
-        </form>
-    </div>
+    <section class="ops-center">
+        <h2>ACTIVE OPERATIONS</h2>
+        
+        <div class="ops-card">
+            <div class="card-text">
+                <h4><span class="status-dot"></span> IDENTITY VERIFICATION 2257</h4>
+                <p>Pending manual review by Directorate compliance officer.</p>
+            </div>
+            <button class="btn-view">STATUS</button>
+        </div>
+
+        <div class="ops-card">
+            <div class="card-text">
+                <h4><span class="status-dot" style="background: #00ff66;"></span> SYSTEM INITIALIZATION</h4>
+                <p>Obsidian Ledger node successfully created and paid.</p>
+            </div>
+            <button class="btn-view" style="color:#00ff66; border-color:#00ff66;">COMPLETED</button>
+        </div>
+
+        <h2 style="margin-top: 50px;">MY SUBMITTALS</h2>
+        <p style="color: #333; font-size: 0.8rem; text-align: center; padding: 40px; border: 1px dashed #111;">
+            NO ACTIVE PROJECT SUBMITTALS DETECTED. VISIT THE PRODUCTION LEDGER TO APPLY.
+        </p>
+    </section>
+
+    <aside class="panel">
+        <h3 style="font-family: 'Bebas Neue'; letter-spacing: 3px; font-size: 1.2rem; margin-bottom: 20px;">COMPLIANCE CHECKLIST</h3>
+        <ul class="compliance-list">
+            <li><span>PHOTO ID SYNC</span> <span class="status-warn">REQUIRED</span></li>
+            <li><span>AGE VERIFICATION</span> <span class="status-ok">VERIFIED</span></li>
+            <li><span>TAX DOCUMENTATION</span> <span class="status-warn">PENDING</span></li>
+            <li><span>REVENUE NODE</span> <span class="status-ok">ACTIVE</span></li>
+        </ul>
+
+        <div class="upload-trigger">
+            DROP METADATA ASSETS HERE<br>
+            <span style="font-size: 10px; opacity: 0.5;">(4K VIDEO / RAW PHOTO ONLY)</span>
+        </div>
+
+        <div style="margin-top: 40px; border-top: 1px solid #111; padding-top: 20px;">
+            <p style="font-size: 0.6rem; color: #444; line-height: 1.6;">
+                <b>SUPPORT:</b> Contact your assigned Directorate Brand Manager for technical assistance with the Obsidian Vault.
+            </p>
+        </div>
+    </aside>
 
 </main>
 
 <script>
-    let profileImage = "";
-
-    function previewImage(e) {
-        const reader = new FileReader();
-        reader.onload = () => { profileImage = reader.result; };
-        reader.readAsDataURL(e.target.files[0]);
-    }
-
-    function saveProfile(e) {
-        e.preventDefault();
-        
-        const tier = (sessionStorage.getItem('selectedTier') || 'BASIC').toUpperCase();
-        const profileData = {
-            name: document.getElementById('in-name').value,
-            gender: document.getElementById('in-gender').value,
-            tier: tier,
-            id: `${tier}-${Math.floor(1000 + Math.random() * 9000)}-2026`,
-            ssn: `${Math.floor(100 + Math.random() * 900)}-FS-${Math.floor(1000 + Math.random() * 9000)}`,
-            image: profileImage || "default.png"
-        };
-
-        localStorage.setItem('fsp_active_profile', JSON.stringify(profileData));
-        localStorage.setItem('is_owner', 'true');
-        loadHub();
-    }
-
-    function loadHub() {
+    window.onload = function() {
         const data = JSON.parse(localStorage.getItem('fsp_active_profile'));
-        if(!data) return;
+        if(!data) {
+            window.location.href = "join.html";
+            return;
+        }
 
-        document.getElementById('view-name').innerText = data.name;
-        document.getElementById('view-tier').innerText = data.tier + " AUTHORIZED";
-        document.getElementById('view-id').innerText = data.id;
-        document.getElementById('view-ssn').innerText = data.ssn;
-        document.getElementById('view-img').src = data.image;
-        
-        // Rev Map
-        const revMap = { 'BASIC': '$0/HR', 'PRO': '$100/HR', 'ELITE': '$150/HR', 'ICON': '$250/HR' };
-        document.getElementById('view-rev').innerText = revMap[data.tier] || '$0/HR';
+        document.getElementById('port-name').innerText = data.name;
+        document.getElementById('port-id').innerText = data.id;
+        document.getElementById('port-img').src = data.image;
+        document.getElementById('port-tier-badge').innerText = data.tier + " AUTHORIZED";
 
-        document.getElementById('intake-form').style.display = 'none';
-        document.getElementById('profile-hub').style.display = 'block';
+        // Logic for accrued revenue (demo value)
+        if(data.tier === 'ICON') document.getElementById('port-accrued').innerText = "$2,988.00";
+        else if(data.tier === 'ELITE') document.getElementById('port-accrued').innerText = "$594.00";
+        else if(data.tier === 'PRO') document.getElementById('port-accrued').innerText = "$87.00";
     }
-
-    function toggleEdit() {
-        document.getElementById('intake-form').style.display = 'block';
-        document.getElementById('profile-hub').style.display = 'none';
-    }
-
-    // Auto-Run on Load
-    window.onload = loadHub;
 </script>
 
 </body>
