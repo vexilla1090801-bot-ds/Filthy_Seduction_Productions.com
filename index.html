@@ -3,228 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FSP | Filthy Seduction Productions - The Obsidian Directorate</title>
+    <title>Tier Strategy Briefing | FSP Obsidian Directorate</title>
     <style>
         :root {
-            --fsp-black: #050505;
-            --fsp-pitch: #000000;
-            --fsp-fire: #ff3300;
-            --fsp-gold: #c5a059;
-            --fsp-white: #ffffff;
+            --fsp-black: #050505; --fsp-pitch: #000000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #ffffff;
         }
-
-        /* RESET & STABILITY */
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; line-height: 1.6; }
 
-        body {
-            background-color: var(--fsp-pitch);
-            color: var(--fsp-white);
-            font-family: 'Outfit', sans-serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+        /* COMMAND HEADER SYNC */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 50px; border-bottom: 1px solid #111; background: #000; }
+        .logo { height: 150px; }
 
-        /* MASTER COMMAND HEADER - FIXED 180px */
-        header.fsp-nav-command {
-            position: fixed; top: 0; left: 0; width: 100%; height: 180px; 
-            background: rgba(0, 0, 0, 0.98); display: flex; align-items: center;
-            justify-content: space-between; padding: 0 50px; border-bottom: 2px solid #1a1a1a;
-            z-index: 10000; backdrop-filter: blur(30px);
-        }
+        .briefing-container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; padding: 80px 5%; max-width: 1600px; margin: 0 auto; }
 
-        .fsp-logo-main { height: 150px; width: auto; transition: 0.5s; }
-        .fsp-logo-main:hover { filter: drop-shadow(0 0 20px var(--fsp-fire)); }
-
-        nav.fsp-sub-nav { display: flex; gap: 30px; }
-        .nav-link { 
-            color: #555; text-decoration: none; font-weight: 900; 
-            font-size: 0.7rem; letter-spacing: 3px; transition: 0.3s; 
-            text-transform: uppercase;
-        }
-        .nav-link:hover { color: var(--fsp-gold); }
-
-        /* HERO CANVAS */
-        .hero {
-            margin-top: 180px; padding: 120px 5%; min-height: 80vh;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
-            text-align: center;
-        }
-
-        .bebas { font-family: 'Bebas Neue', cursive; font-size: clamp(3rem, 12vw, 8rem); letter-spacing: 15px; line-height: 0.9; }
-        .gold-glow { color: var(--fsp-gold); text-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
-
-        /* SECTION ARCHITECTURE */
-        section { padding: 100px 8%; border-bottom: 1px solid #111; position: relative; }
-        .sec-title { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 10px; margin-bottom: 60px; text-align: center; }
-
-        /* THE SUBSCRIPTION TIERS (The commitment gateway) */
-        .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .tier-card { 
-            background: #080808; border: 1px solid #1a1a1a; padding: 50px 30px; 
-            text-align: center; transition: 0.4s; position: relative;
-        }
-        .tier-card:hover { border-color: var(--fsp-gold); transform: translateY(-10px); }
-        .tier-card.featured { border: 2px solid var(--fsp-fire); }
+        /* LEFT: STRATEGY CONTENT */
+        .strategy-content h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 10px; margin-bottom: 20px; color: var(--fsp-fire); }
+        .commitment-tag { display: inline-block; padding: 10px 20px; background: #111; border: 1px solid var(--fsp-gold); color: var(--fsp-gold); font-weight: 900; font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 40px; }
         
-        .tier-card h3 { letter-spacing: 5px; margin-bottom: 15px; font-size: 1.5rem; }
-        .price { font-size: 2.8rem; font-weight: 900; margin-bottom: 5px; }
-        .billing-note { font-size: 0.65rem; color: var(--fsp-gold); font-weight: 900; letter-spacing: 2px; margin-bottom: 30px; display: block; height: 20px;}
-        
-        .feat { list-style: none; text-align: left; font-size: 0.8rem; color: #555; line-height: 2.5; margin-bottom: 40px; }
-        .feat b { color: white; }
+        .benefit-block { margin-bottom: 40px; border-left: 2px solid #222; padding-left: 30px; }
+        .benefit-block h3 { color: var(--fsp-gold); letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px; text-transform: uppercase; }
+        .benefit-block p { color: #888; font-size: 1.1rem; }
 
-        .btn-tier {
-            display: block; width: 100%; padding: 20px; background: #111; color: #fff;
-            text-decoration: none; font-weight: 900; letter-spacing: 3px; font-size: 0.8rem;
-            transition: 0.3s;
-        }
-        .tier-card:hover .btn-tier { background: var(--fsp-fire); }
+        /* RIGHT: ENROLLMENT FORM */
+        .enrollment-box { background: #080808; border: 1px solid #1a1a1a; padding: 60px; position: sticky; top: 40px; }
+        .enrollment-box h2 { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 4px; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 10px; }
 
-        /* THE REVENUE LADDER */
-        .revenue-section { background: #050505; }
-        .revenue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .rev-card { border-left: 4px solid var(--fsp-fire); padding: 40px; background: #000; }
-        .rev-card h4 { color: var(--fsp-fire); letter-spacing: 4px; margin-bottom: 15px; font-family: 'Bebas Neue'; font-size: 1.8rem; }
-        .rev-card p { font-size: 0.95rem; color: #888; line-height: 1.8; }
-        .rev-card .potential { display: block; margin-top: 20px; font-weight: 900; color: var(--fsp-gold); font-size: 1.4rem; letter-spacing: 1px; }
+        .input-group { margin-bottom: 25px; }
+        .input-group label { display: block; font-size: 0.65rem; color: #555; letter-spacing: 2px; margin-bottom: 8px; font-weight: 900; }
+        input { width: 100%; background: #000; border: 1px solid #222; padding: 18px; color: white; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--fsp-fire); }
 
-        /* THE ECOSYSTEM (COMMUNITY & BLOG) */
-        .eco-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .eco-box { background: #080808; border: 1px solid #111; padding: 60px; transition: 0.4s; }
-        .eco-box:hover { border-color: var(--fsp-fire); }
-        .eco-box h3 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 5px; margin-bottom: 20px; }
-        .eco-box p { color: #666; font-size: 1rem; line-height: 1.8; margin-bottom: 30px; }
+        .total-display { background: #000; padding: 30px; margin: 30px 0; border: 1px solid #222; text-align: center; }
+        .total-display span { font-size: 0.7rem; color: #444; letter-spacing: 3px; display: block; }
+        .total-display b { font-size: 2.5rem; color: var(--fsp-gold); letter-spacing: 2px; }
 
-        footer { padding: 100px; text-align: center; border-top: 1px solid #111; color: #222; font-size: 0.7rem; letter-spacing: 5px; }
+        .submit-btn { width: 100%; padding: 25px; background: var(--fsp-fire); color: white; border: none; font-weight: 900; letter-spacing: 5px; cursor: pointer; text-transform: uppercase; }
+        .submit-btn:hover { background: white; color: black; }
 
-        @media (max-width: 1024px) {
-            header.fsp-nav-command { height: 140px; padding: 0 20px; }
-            .fsp-logo-main { height: 110px; }
-            .hero { margin-top: 140px; }
-            .eco-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 1000px) { .briefing-container { grid-template-columns: 1fr; } }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="fsp-nav-command">
-        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="fsp-logo-main"></a>
-        <nav class="fsp-sub-nav">
-            <a href="portal.html" class="nav-link">PORTAL</a>
-            <a href="#community" class="nav-link">COMMUNITY</a>
-            <a href="#blog" class="nav-link">JOBS BLOG</a>
-        </nav>
-    </header>
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo"></a>
+    <div style="text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
+        <span id="tier-header" style="color:var(--fsp-fire); font-weight:900; letter-spacing:3px;">STRATEGY BRIEFING</span>
+    </div>
+</header>
 
-    <main class="hero">
-        <h1 class="bebas">OBSIDIAN <span class="gold-glow">DIRECTORATE</span></h1>
-        <p style="letter-spacing: 8px; color: #555; font-weight: 900; text-transform: uppercase; margin-top: 15px;">
-            Identity Initialization // Metadata Authority // $100+ Hourly
-        </p>
-        <div style="margin-top: 50px;">
-            <a href="#subscriptions" style="padding: 25px 60px; background: var(--fsp-fire); color: white; text-decoration: none; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; border: none;">INITIALIZE ACCESS</a>
+<main class="briefing-container">
+    <section class="strategy-content">
+        <h1 id="b-title">ICON STATUS</h1>
+        <div class="commitment-tag" id="b-commitment">12 MONTH COMMITMENT REQUIRED</div>
+        
+        <div class="benefit-block">
+            <h3>Metadata Foundation</h3>
+            <p id="b-p1">The Icon tier establishes your brand as a permanent pillar in the Obsidian Ledger. We synchronize your metadata across global production nodes to ensure long-term celebrity equity.</p>
         </div>
-    </main>
 
-    <section id="subscriptions">
-        <h2 class="sec-title">MEMBERSHIP <span style="color:var(--fsp-fire)">TIERS</span></h2>
-        <div class="tier-grid">
-            <div class="tier-card">
-                <h3>BASIC</h3>
-                <div class="price">FREE</div>
-                <span class="billing-note">LIFETIME ACCESS</span>
-                <ul class="feat">
-                    <li>✓ 5 PHOTO SLOTS / 1 VIDEO</li>
-                    <li>✓ STANDARD METADATA IDENTITY</li>
-                    <li>✓ COMMUNITY CHAT ACCESS</li>
-                    <li>✓ <b> worth $1000s in direction</b></li>
-                </ul>
-                <a href="join.html" class="btn-tier">START FREE</a>
-            </div>
+        <div class="benefit-block">
+            <h3>Production Priority</h3>
+            <p id="b-p2">Icons receive "First-Look" access to all 60-minute scripted requirements. Your submittals bypass standard queues for instant Directorate approval.</p>
+        </div>
 
-            <div class="tier-card">
-                <h3>PRO</h3>
-                <div class="price">$29<span>/MO</span></div>
-                <span class="billing-note">START/STOP ANYTIME</span>
-                <ul class="feat">
-                    <li>✓ 15 PHOTO SLOTS / 3 VIDEOS</li>
-                    <li>✓ PRODUCTION BLOG ACCESS</li>
-                    <li>✓ START/STOP SUBSCRIPTION</li>
-                    <li>✓ PROFILE REMAINS PERMANENT</li>
-                </ul>
-                <a href="checkout.html?tier=pro" class="btn-tier">SELECT PRO</a>
-            </div>
-
-            <div class="tier-card featured">
-                <h3 style="color:var(--fsp-fire)">ELITE</h3>
-                <div class="price">$99<span>/MO</span></div>
-                <span class="billing-note">6 MONTHS ADVANCE REQUIRED</span>
-                <ul class="feat">
-                    <li>✓ 40 PHOTO SLOTS / 10 VIDEOS</li>
-                    <li>✓ PRIORITY JOB BOARD ACCESS</li>
-                    <li>✓ ENHANCED SEARCH RANKING</li>
-                    <li>✓ INSTANT SCRIPT APPROVAL</li>
-                </ul>
-                <a href="checkout.html?tier=elite" class="btn-tier">SELECT ELITE</a>
-            </div>
-
-            <div class="tier-card">
-                <h3 style="color:var(--fsp-gold)">ICON</h3>
-                <div class="price">$249<span>/MO</span></div>
-                <span class="billing-note">12 MONTHS ADVANCE REQUIRED</span>
-                <ul class="feat">
-                    <li>✓ <b>UNLIMITED</b> MEDIA REPOSITORY</li>
-                    <li>✓ FRONT-PAGE LUST-LOOP FEATURE</li>
-                    <li>✓ 1-ON-1 STAFF CONSULTATION</li>
-                    <li>✓ GLOBAL METADATA AUTHORITY</li>
-                </ul>
-                <a href="checkout.html?tier=icon" class="btn-tier">SELECT ICON</a>
-            </div>
+        <div class="benefit-block">
+            <h3>The 60-Minute Standard</h3>
+            <p>Every job closed at this level triggers a baseline of $100-$250. Perfect execution of the one-hour requirement is expected as a professional standard.</p>
         </div>
     </section>
 
-    <section class="revenue-section">
-        <h2 class="sec-title">REVENUE <span style="color:var(--fsp-gold)">POTENTIAL</span></h2>
-        <div class="revenue-grid">
-            <div class="rev-card">
-                <h4>PRODUCTION SCRIPT</h4>
-                <p>Submit <b>exactly 60 minutes</b> of instructed video content. Follow the requirement perfectly to close the job instantly.</p>
-                <span class="potential">$100 - $150 / HOUR</span>
+    <section class="enrollment-box">
+        <h2>SECURE ENROLLMENT</h2>
+        <form onsubmit="handlePayment(event)">
+            <div class="input-group">
+                <label>LEGAL IDENTITY (CARDHOLDER)</label>
+                <input type="text" required placeholder="FULL NAME">
             </div>
-            <div class="rev-card">
-                <h4>PHOTOGRAPHY SYNC</h4>
-                <p>Submit photography based on director requirements for placement in global ads and FSP publications.</p>
-                <span class="potential">$50 - $100 / JOB</span>
+            <div class="input-group">
+                <label>CREDIT CARD NUMBER</label>
+                <input type="text" required placeholder="XXXX XXXX XXXX XXXX">
             </div>
-            <div class="rev-card">
-                <h4>CELEBRITY GROWTH</h4>
-                <p>As your metadata presence expands, your job access increases. Top tiers receive elite production scripts.</p>
-                <span class="potential">UNCAPPED RATE</span>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="input-group">
+                    <label>EXPIRY</label>
+                    <input type="text" required placeholder="MM/YY">
+                </div>
+                <div class="input-group">
+                    <label>CVC</label>
+                    <input type="password" required placeholder="***">
+                </div>
             </div>
-        </div>
+
+            <div class="total-display">
+                <span>TOTAL COMMITMENT DUE:</span>
+                <b id="b-total">$2,988.00</b>
+            </div>
+
+            <button type="submit" class="submit-btn">AUTHORIZE & INITIALIZE</button>
+        </form>
     </section>
+</main>
 
-    <section id="community">
-        <h2 class="sec-title">THE <span style="color:var(--fsp-fire)">ECOSYSTEM</span></h2>
-        <div class="eco-grid">
-            <div class="eco-box">
-                <h3>COMMUNITY CHAT</h3>
-                <p>Connect with FSP Staff and peer performers. Share brand strategy, clarify requirements, and stay in sync with the Directorate.</p>
-                <a href="chat.html" class="nav-link" style="color:var(--fsp-gold)">OPEN CHAT →</a>
-            </div>
-            <div id="blog" class="eco-box">
-                <h3>PRODUCTION BLOG</h3>
-                <p>The central ledger of upcoming jobs and new requirements. Follow the feed to secure high-paying video tasks.</p>
-                <a href="blog.html" class="nav-link" style="color:var(--fsp-gold)">VIEW JOBS →</a>
-            </div>
-        </div>
-    </section>
+<script>
+    const tierData = {
+        icon: {
+            title: "ICON STATUS",
+            commitment: "12 MONTH COMMITMENT REQUIRED",
+            p1: "Unlimited real estate availability. Add infinite photos and videos as your brand expands globally.",
+            p2: "Executive Brand Authority. You run the show, with front-page 'Lust-Loop' priority and direct staff consultation.",
+            total: "$2,988.00"
+        },
+        elite: {
+            title: "ELITE STATUS",
+            commitment: "6 MONTH COMMITMENT REQUIRED",
+            p1: "40 Photo Slots and 10 Managed Videos. Enhanced search ranking ensures casting directors find you first.",
+            p2: "Priority Script Queue. Receive $100+ production requirements before Pro and Basic members.",
+            total: "$594.00"
+        },
+        pro: {
+            title: "PRO STATUS",
+            commitment: "MONTHLY RECURRING (STOP/START ANYTIME)",
+            p1: "15 Photo Slots and 3 Videos. The flexible entry point for professional production work.",
+            p2: "Standard Production Access. Close 60-minute jobs at the $100 baseline rate.",
+            total: "$29.00"
+        }
+    };
 
-    <footer>
-        FILTHY SEDUCTION PRODUCTIONS &copy; 2026 | THE OBSIDIAN LEDGER | PERMANENT IDENTITY
-    </footer>
-
-</body>
-</html>
+    window.onload = function() {
+        const params =
