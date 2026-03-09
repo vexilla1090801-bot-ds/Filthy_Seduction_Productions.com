@@ -3,112 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <title>FSP | The Obsidian Directorate Command</title>
+    <title>COMMAND | Obsidian Directorate Powerhouse</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --fsp-pitch: #000000; --fsp-card: #080808; --fsp-fire: #ff3300; 
-            --fsp-gold: #c5a059; --fsp-white: #ffffff;
+            --fsp-pitch: #000000; --fsp-card: #0a0a0a; --fsp-fire: #ff3300; 
+            --fsp-gold: #c5a059; --fsp-white: #ffffff; --fsp-border: #1a1a1a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
 
-        /* FIXED MASTER HEADER */
+        /* --- THE MASTER HEADER (180PX ANCHOR) --- */
         header { 
             height: 180px; display: flex; align-items: center; justify-content: space-between; 
-            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
+            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(25px); 
             position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
         }
-        
         .logo-link { display: flex; align-items: center; text-decoration: none; }
         .logo { height: 150px; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-        .logo:hover { filter: drop-shadow(0 0 25px var(--fsp-fire)); transform: scale(1.02); }
+        .logo:hover { filter: drop-shadow(0 0 30px var(--fsp-fire)); transform: scale(1.03); }
 
-        /* PRIMARY NAVIGATION (Core Pages Only) */
         .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
         .main-nav a { 
-            color: #666; text-decoration: none; font-weight: 900; font-size: 0.75rem; 
-            letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; padding-bottom: 5px;
+            color: #444; text-decoration: none; font-weight: 900; font-size: 0.75rem; 
+            letter-spacing: 5px; text-transform: uppercase; transition: 0.3s; padding: 10px 0;
             border-bottom: 2px solid transparent;
         }
         .main-nav a:hover, .main-nav a.active { color: var(--fsp-fire); border-bottom: 2px solid var(--fsp-fire); }
 
-        .system-status { display: flex; align-items: center; gap: 12px; border-right: 3px solid var(--fsp-fire); padding-right: 20px; }
-        .pulse { width: 10px; height: 10px; background: var(--fsp-fire); border-radius: 50%; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+        .system-status { display: flex; align-items: center; gap: 15px; border-right: 3px solid var(--fsp-fire); padding-right: 25px; }
+        .pulse { width: 12px; height: 12px; background: var(--fsp-fire); border-radius: 50%; animation: blink 1.2s infinite; box-shadow: 0 0 10px var(--fsp-fire); }
+        @keyframes blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.8); } }
 
-        /* ADVANCED HERO SECTION */
+        /* --- POWERHOUSE HERO --- */
         .hero { 
             height: 100vh; display: flex; flex-direction: column; justify-content: center; 
             align-items: center; text-align: center; padding-top: 180px;
-            background: radial-gradient(circle at center, #151515 0%, #000 100%);
+            background: linear-gradient(to bottom, #111 0%, #000 100%);
         }
-        .hero h1 { font-family: 'Bebas Neue'; font-size: clamp(4rem, 12vw, 9rem); letter-spacing: 25px; line-height: 0.85; margin-bottom: 20px; }
-        .hero .terminal-text { font-family: 'Source Code Pro'; color: var(--fsp-gold); font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 40px; }
+        .hero h1 { font-family: 'Bebas Neue'; font-size: clamp(5rem, 15vw, 12rem); letter-spacing: 35px; line-height: 0.8; margin-bottom: 5px; filter: drop-shadow(0 0 20px rgba(255,51,0,0.2)); }
+        .hero .gold-tag { color: var(--fsp-gold); letter-spacing: 18px; font-weight: 900; text-transform: uppercase; font-size: 1.1rem; margin-bottom: 50px; }
 
-        /* REVENUE TICKER */
-        .ticker { background: #050505; border-top: 1px solid #111; border-bottom: 1px solid #111; padding: 60px 0; display: flex; justify-content: center; gap: 80px; }
-        .stat { text-align: center; }
-        .stat h4 { font-size: 0.6rem; color: #444; letter-spacing: 4px; margin-bottom: 10px; text-transform: uppercase; }
-        .stat p { font-size: 2.5rem; font-weight: 900; color: var(--fsp-gold); font-family: 'Bebas Neue'; }
+        /* --- GLOBAL CONNECTIVITY BOX --- */
+        .connection-bar { background: #050505; border-y: 1px solid #111; padding: 40px 10%; display: flex; justify-content: space-around; }
+        .node { text-align: center; }
+        .node h6 { font-size: 0.55rem; color: #444; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+        .node p { font-family: 'Source Code Pro'; font-size: 0.8rem; color: var(--fsp-fire); font-weight: 900; }
 
-        /* TIER CARDS */
-        .tier-section { padding: 120px 5%; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .card { background: var(--fsp-card); border: 1px solid #1a1a1a; padding: 60px 35px; text-align: center; transition: 0.5s; position: relative; }
-        .card:hover { border-color: var(--fsp-white); transform: translateY(-10px); }
-        .card.hot { border-top: 4px solid var(--fsp-fire); }
-        .card.top { border-top: 4px solid var(--fsp-gold); }
-        .price { font-size: 3.5rem; font-weight: 900; margin: 20px 0; }
-        .commitment { font-size: 0.6rem; color: var(--fsp-fire); letter-spacing: 3px; font-weight: 900; margin-bottom: 30px; display: block; }
-        .btn { display: block; width: 100%; padding: 20px; background: #111; color: #fff; text-decoration: none; font-weight: 900; letter-spacing: 5px; font-size: 0.7rem; border: 1px solid #222; transition: 0.3s; }
-        .card:hover .btn { background: var(--fsp-white); color: #000; }
-
-        /* MASTER FOOTER (Utility Links) */
-        footer { padding: 80px 10%; background: #000; border-top: 1px solid #111; }
-        .footer-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: start; gap: 50px; }
-        .footer-logo { height: 100px; opacity: 0.5; transition: 0.3s; }
-        .footer-logo:hover { opacity: 1; }
+        /* --- THE 4-TIER REVENUE SYSTEM --- */
+        .tier-section { padding: 150px 5%; background: #000; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         
-        .footer-nav { display: flex; flex-direction: column; gap: 15px; }
-        .footer-nav h5 { color: var(--fsp-gold); font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; }
-        .footer-nav a { color: #444; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; transition: 0.3s; }
-        .footer-nav a:hover { color: var(--fsp-fire); }
+        .card { 
+            background: var(--fsp-card); border: 1px solid var(--fsp-border); padding: 70px 40px; 
+            transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); position: relative;
+        }
+        .card:hover { border-color: var(--fsp-white); transform: translateY(-15px); background: #080808; }
+        .card.power-tier { border: 2px solid var(--fsp-fire); }
+        
+        .card h3 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 8px; margin-bottom: 10px; }
+        .price { font-size: 4.5rem; font-weight: 900; font-family: 'Bebas Neue'; color: var(--fsp-white); }
+        .rate-return { color: var(--fsp-gold); font-size: 0.7rem; font-weight: 900; letter-spacing: 4px; margin-bottom: 40px; display: block; }
+        
+        .card ul { list-style: none; text-align: left; margin-bottom: 50px; border-top: 1px solid #151515; padding-top: 40px; }
+        .card ul li { font-size: 0.85rem; color: #888; margin-bottom: 18px; letter-spacing: 1px; }
+        .card ul li b { color: var(--fsp-white); }
 
-        .legal-box { border: 1px solid #111; padding: 30px; color: #333; font-size: 0.6rem; line-height: 2; text-align: justify; }
+        .btn { 
+            display: block; width: 100%; padding: 25px; background: #000; color: #fff; text-decoration: none; 
+            font-weight: 900; letter-spacing: 6px; font-size: 0.8rem; text-transform: uppercase; border: 1px solid #333; transition: 0.4s;
+        }
+        .card:hover .btn { background: var(--fsp-white); color: #000; border-color: var(--fsp-white); }
+        .card.power-tier .btn { background: var(--fsp-fire); border: none; }
+
+        /* --- THE MASTER FOOTER (FIXED LINKS) --- */
+        footer { padding: 120px 10% 80px; background: #000; border-top: 1px solid #111; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 1.2fr 2fr 1fr; gap: 100px; }
+        .legal-box { border: 1px solid #111; padding: 40px; color: #444; font-size: 0.7rem; line-height: 2.4; text-align: justify; }
+        .f-links { display: flex; flex-direction: column; gap: 20px; }
+        .f-links h5 { color: var(--fsp-gold); font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 15px; }
+        .f-links a { color: #555; text-decoration: none; font-size: 0.8rem; letter-spacing: 3px; transition: 0.3s; }
+        .f-links a:hover { color: var(--fsp-fire); transform: translateX(10px); }
     </style>
 </head>
 <body>
 
     <header>
         <a href="index.html" class="logo-link">
-            <img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP COMMAND">
+            <img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP POWERHOUSE">
         </a>
         <nav class="main-nav">
             <a href="index.html" class="active">COMMAND</a>
             <a href="portal.html">PORTAL</a>
             <a href="registry.html">REGISTRY</a>
-            <a href="briefing-pro.html">BRIEFING</a>
+            <a href="briefing.html">BRIEFING</a>
         </nav>
         <div class="system-status">
             <span class="pulse"></span>
-            <span class="status-text" style="color:var(--fsp-fire); font-size:0.65rem; font-weight:900; letter-spacing:4px;">STATUS: ACTIVE</span>
+            <span style="color:var(--fsp-fire); font-size:0.7rem; font-weight:900; letter-spacing:5px;">SYSTEM: ENCRYPTED</span>
         </div>
     </header>
 
     <main class="hero">
-        <p class="terminal-text">> SYSTEM INITIALIZED // DIRECT_LINK_ESTABLISHED</p>
-        <h1>OBSIDIAN<br><span style="color:var(--fsp-gold)">DIRECTORATE</span></h1>
-        <p style="letter-spacing:10px; color:#444; font-weight:900; text-transform:uppercase; font-size:0.75rem; margin-top:20px;">Identity // Placement // Revenue Equity</p>
+        <h1>OBSIDIAN</h1>
+        <div class="gold-tag">DIRECTORATE COMMAND</div>
+        <p style="letter-spacing:8px; color:#333; font-weight:900;">POWER // REVENUE // IDENTITY</p>
     </main>
 
-    <section class="ticker">
-        <div class="stat"><h4>REMOTE NODES</h4><p>ACTIVE</p></div>
-        <div class="stat"><h4>STUDIO ACCESS</h4><p>AUTHORIZED</p></div>
-        <div class="stat"><h4>BASE PRODUCTION</h4><p>$100/HR</p></div>
-        <div class="stat"><h4>ICON PRODUCTION</h4><p>$250/HR</p></div>
+    <section class="connection-bar">
+        <div class="node"><h6>GLOBAL UPLINK</h6><p>STABLE</p></div>
+        <div class="node"><h6>VIDEO REVENUE</h6><p>LIVE_SYNC</p></div>
+        <div class="node"><h6>PRIVATE TASKS</h6><p>QUEUED</p></div>
+        <div class="node"><h6>STUDIO NODES</h6><p>CONNECTED</p></div>
     </section>
 
     <section class="tier-section">
@@ -116,26 +123,53 @@
             <div class="card">
                 <h3>BASIC</h3>
                 <div class="price">FREE</div>
-                <span class="commitment" style="color:#444;">VERIFICATION ONLY</span>
-                <a href="briefing-basic.html" class="btn">VIEW BRIEFING</a>
+                <span class="rate-return">ENTRY LEVEL REGISTRY</span>
+                <ul>
+                    <li>Mandatory Profile Analysis</li>
+                    <li>Skill & Sexuality Indexing</li>
+                    <li><b>Internal Casting</b> Visibility</li>
+                    <li>Director Feedback System</li>
+                </ul>
+                <a href="registry.html" class="btn">INITIALIZE REGISTRY</a>
             </div>
-            <div class="card hot">
+
+            <div class="card power-tier">
                 <h3>PRO</h3>
-                <div class="price">$29/mo</div>
-                <span class="commitment">03-MONTH COMMITMENT</span>
-                <a href="briefing-pro.html" class="btn" style="background:var(--fsp-fire); border:none;">VIEW BRIEFING</a>
+                <div class="price">$29</div>
+                <span class="rate-return">$100/HR REVENUE SCALE</span>
+                <ul>
+                    <li><b>Video Acceptance</b> Notifications</li>
+                    <li>Instructional Booking Access</li>
+                    <li>Verified Portfolio Ledger</li>
+                    <li>Pro Production Management</li>
+                </ul>
+                <a href="briefing-pro.html" class="btn">ACTIVATE PRO</a>
             </div>
+
             <div class="card">
                 <h3>ELITE</h3>
-                <div class="price">$99/mo</div>
-                <span class="commitment">06-MONTH COMMITMENT</span>
-                <a href="briefing-elite.html" class="btn">VIEW BRIEFING</a>
+                <div class="price">$99</div>
+                <span class="rate-return">$150/HR REVENUE SCALE</span>
+                <ul>
+                    <li>Priority Script Notifications</li>
+                    <li>Extended Media Vault Access</li>
+                    <li>Global Placement Distribution</li>
+                    <li>Dedicated Casting Liaison</li>
+                </ul>
+                <a href="briefing-elite.html" class="btn">ACTIVATE ELITE</a>
             </div>
-            <div class="card top">
+
+            <div class="card">
                 <h3>ICON</h3>
-                <div class="price">$249/mo</div>
-                <span class="commitment" style="color:var(--fsp-gold)">12-MONTH COMMITMENT</span>
-                <a href="briefing-icon.html" class="btn">VIEW BRIEFING</a>
+                <div class="price">$249</div>
+                <span class="rate-return">$250/HR REVENUE SCALE</span>
+                <ul>
+                    <li><b>Unlimited</b> Media Hosting</li>
+                    <li>Guest Producer Integration</li>
+                    <li>Full Studio-Backed Features</li>
+                    <li>Directorate Priority Lead</li>
+                </ul>
+                <a href="briefing-icon.html" class="btn">ACTIVATE ICON</a>
             </div>
         </div>
     </section>
@@ -143,15 +177,15 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <img src="VEXILLIALSDP_FSP.png" class="footer-logo" alt="FSP">
-                <p style="color:#222; font-size:0.55rem; margin-top:20px; letter-spacing:2px;">&copy; 2026 FSP DIRECTORATE<br>ENCRYPTION: ACTIVE</p>
+                <img src="VEXILLIALSDP_FSP.png" style="height:120px; opacity:0.3;" alt="FSP">
+                <p style="color:#222; font-size:0.6rem; margin-top:30px; letter-spacing:4px;">OBSIDIAN COMMAND CENTER<br>POWERED BY FSP<br>&copy; 2026</p>
             </div>
             <div class="legal-box">
-                <b>18 U.S.C. § 2257 COMPLIANCE:</b> THE OBSIDIAN DIRECTORATE IS A PROFESSIONAL IDENTITY MANAGEMENT HUB. ALL MODELS AND CONTENT CREATORS MUST BE 18+. ALL RECORDS ARE MAINTAINED BY FILTHY SEDUCTION PRODUCTIONS.
+                <b>18 U.S.C. § 2257 COMPLIANCE & TERMS:</b> ALL INDIVIDUALS APPEARING IN THE DIRECTORATE REGISTRY ARE 18+. FILTHY SEDUCTION PRODUCTIONS MAINTAINS ALL FEDERAL RECORD-KEEPING DATA. BY ACCESSING THIS PORTAL, YOU AGREE TO THE MASTER TERMS OF SERVICE AND PRODUCTION PROTOCOLS.
             </div>
-            <div class="footer-nav">
-                <h5>Information</h5>
-                <a href="about.html">ABOUT AGENCY</a>
+            <div class="f-links">
+                <h5>SYSTEM LINKS</h5>
+                <a href="about.html">ABOUT DIRECTORATE</a>
                 <a href="terms.html">TERMS OF SERVICE</a>
                 <a href="support.html">SYSTEM SUPPORT</a>
                 <a href="portal.html">TALENT PORTAL</a>
