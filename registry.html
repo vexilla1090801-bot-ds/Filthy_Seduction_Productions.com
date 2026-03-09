@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRY | Obsidian Directorate Intake</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --fsp-pitch: #000000; --fsp-card: #0a0a0a; --fsp-fire: #ff3300; 
+            --fsp-gold: #c5a059; --fsp-white: #ffffff; --fsp-border: #1a1a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; overflow-x: hidden; padding-top: 180px; }
+
+        /* --- MASTER HEADER (CONSISTENT) --- */
+        header { 
+            height: 180px; display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(25px); 
+            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
+        }
+        .logo { height: 150px; transition: 0.6s; }
+        .logo:hover { filter: drop-shadow(0 0 30px var(--fsp-fire)); }
+
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { color: #444; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 5px; text-transform: uppercase; transition: 0.3s; }
+        .main-nav a:hover, .main-nav a.active { color: var(--fsp-fire); }
+
+        /* --- REGISTRY FORM --- */
+        .registry-container { max-width: 1000px; margin: 80px auto; padding: 0 5%; }
+        .terminal-intro { text-align: center; margin-bottom: 60px; }
+        .terminal-intro h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 20px; color: var(--fsp-white); }
+        .terminal-intro p { font-family: 'Source Code Pro'; color: var(--fsp-gold); font-size: 0.75rem; letter-spacing: 5px; text-transform: uppercase; }
+
+        .onboarding-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .form-section { background: var(--fsp-card); border: 1px solid var(--fsp-border); padding: 50px; }
+        .form-section h3 { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 4px; color: var(--fsp-fire); margin-bottom: 30px; border-bottom: 1px solid #1a1a1a; padding-bottom: 10px; }
+
+        .input-group { margin-bottom: 25px; }
+        label { display: block; font-size: 0.65rem; color: #555; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; font-weight: 900; }
+        .fsp-input { width: 100%; background: #000; border: 1px solid #222; padding: 18px; color: #fff; font-family: 'Outfit'; outline: none; transition: 0.3s; }
+        .fsp-input:focus { border-color: var(--fsp-gold); box-shadow: 0 0 15px rgba(197, 160, 89, 0.1); }
+
+        .logic-box { background: #050505; border-left: 3px solid var(--fsp-fire); padding: 30px; margin-bottom: 30px; }
+        .logic-box h4 { font-size: 0.75rem; color: var(--fsp-gold); letter-spacing: 3px; margin-bottom: 10px; }
+        .logic-box p { font-size: 0.8rem; color: #666; line-height: 1.6; }
+
+        .submit-trigger { width: 100%; padding: 25px; background: var(--fsp-fire); color: #fff; border: none; font-weight: 900; letter-spacing: 8px; text-transform: uppercase; cursor: pointer; transition: 0.4s; }
+        .submit-trigger:hover { background: #fff; color: #000; box-shadow: 0 0 30px var(--fsp-white); }
+
+        /* --- MASTER FOOTER (CONSISTENT) --- */
+        footer { padding: 100px 10%; background: #000; border-top: 1px solid #111; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 80px; }
+        .legal-box { border: 1px solid #111; padding: 30px; color: #333; font-size: 0.65rem; line-height: 2.2; text-align: justify; }
+        .f-links { display: flex; flex-direction: column; gap: 15px; }
+        .f-links a { color: #444; text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; }
+        .f-links a:hover { color: var(--fsp-fire); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html">
+            <img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP COMMAND">
+        </a>
+        <nav class="main-nav">
+            <a href="index.html">COMMAND</a>
+            <a href="portal.html">PORTAL</a>
+            <a href="registry.html" class="active">REGISTRY</a>
+            <a href="briefing.html">BRIEFING</a>
+        </nav>
+    </header>
+
+    <div class="registry-container">
+        <div class="terminal-intro">
+            <p>> SYSTEM_INTAKE_PROTOCOL_4.1</p>
+            <h1>MODEL REGISTRY</h1>
+            <div style="height: 2px; width: 80px; background: var(--fsp-fire); margin: 20px auto;"></div>
+        </div>
+
+        <div class="onboarding-grid">
+            <div class="form-section">
+                <h3>IDENTITY & SKILLS</h3>
+                <div class="logic-box">
+                    <h4>DIRECTOR'S NOTE</h4>
+                    <p>Provide your "Sense of Sexuality" and performance skills. Our casting directors use this data to match you with studio jobs.</p>
+                </div>
+                <form>
+                    <div class="input-group">
+                        <label>Legal Identity (Private)</label>
+                        <input type="text" class="fsp-input" placeholder="FULL NAME">
+                    </div>
+                    <div class="input-group">
+                        <label>Screen Name / Alias</label>
+                        <input type="text" class="fsp-input" placeholder="STAGE NAME">
+                    </div>
+                    <div class="input-group">
+                        <label>Primary Skills</label>
+                        <input type="text" class="fsp-input" placeholder="e.g. Dialogue, Fetish, Professional Instruction">
+                    </div>
+                    <div class="input-group">
+                        <label>Sense of Sexuality</label>
+                        <textarea class="fsp-input" rows="4" placeholder="Describe your performance energy..."></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-section">
+                <h3>VERIFICATION</h3>
+                <div class="logic-box">
+                    <h4>2257 COMPLIANCE</h4>
+                    <p>Basic registry is free. You must submit valid ID for 18 U.S.C. § 2257 record-keeping before your profile is visible.</p>
+                </div>
+                <div class="input-group">
+                    <label>Registration Email</label>
+                    <input type="email" class="fsp-input" placeholder="SECURE EMAIL">
+                </div>
+                <div class="input-group">
+                    <label>Social / Portfolio Link</label>
+                    <input type="text" class="fsp-input" placeholder="https://...">
+                </div>
+                <button class="submit-trigger">SUBMIT TO DIRECTORATE</button>
+                <p style="font-size: 0.6rem; color: #333; margin-top: 20px; text-transform: uppercase; letter-spacing: 2px;">Upon submission, you will receive a notification regarding video acceptance and initial tier placement.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <img src="VEXILLIALSDP_FSP.png" style="height:100px; opacity:0.3;">
+                <p style="color:#222; font-size:0.6rem; margin-top:20px; letter-spacing:4px;">OBSIDIAN COMMAND<br>&copy; 2026</p>
+            </div>
+            <div class="legal-box">
+                <b>FEDERAL COMPLIANCE (18 U.S.C. § 2257):</b> THE OBSIDIAN DIRECTORATE IS AN IDENTITY MANAGEMENT HUB. ALL REGISTRANTS MUST BE 18+. RECORDS ARE MAINTAINED BY FILTHY SEDUCTION PRODUCTIONS.
+            </div>
+            <div class="f-links">
+                <a href="about.html">ABOUT</a>
+                <a href="terms.html">TERMS</a>
+                <a href="support.html">SUPPORT</a>
+                <a href="portal.html">PORTAL</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
