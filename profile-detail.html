@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Profile | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-card: #0c0c0c; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+
+        .profile-container { max-width: 1400px; margin: 240px auto 100px; padding: 0 5%; display: grid; grid-template-columns: 1fr 450px; gap: 50px; }
+
+        /* LEFT SIDE: VISUAL & ATTRIBUTES */
+        .profile-visuals { background: var(--fsp-card); border: 1px solid #151515; padding: 40px; }
+        .hero-image { width: 100%; height: 700px; background: #050505; margin-bottom: 30px; position: relative; overflow: hidden; border: 1px solid #222; }
+        .hero-image::after { content: "LIFESTYLE_SET_01"; position: absolute; bottom: 10px; left: 20px; font-family: 'Source Code Pro'; font-size: 0.55rem; color: #444; }
+
+        .attribute-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 40px; }
+        .attr-item { border-left: 2px solid var(--fsp-fire); padding-left: 15px; }
+        .attr-item span { display: block; font-size: 0.55rem; color: #444; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+        .attr-item b { font-family: 'Bebas Neue'; font-size: 1.4rem; letter-spacing: 2px; color: var(--fsp-white); }
+
+        /* RIGHT SIDE: ENGAGEMENT LEDGER */
+        .engagement-ledger { background: #080808; border: 1px solid #111; padding: 40px; height: fit-content; position: sticky; top: 240px; }
+        .engagement-header { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 4px; border-bottom: 1px solid #151515; padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
+        .comment-count { font-size: 0.6rem; color: var(--fsp-gold); border: 1px solid var(--fsp-gold); padding: 2px 8px; }
+
+        .comment-thread { max-height: 500px; overflow-y: auto; margin-bottom: 30px; padding-right: 10px; }
+        .comment-node { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #111; }
+        .comment-user { font-size: 0.65rem; font-weight: 900; color: var(--fsp-fire); margin-bottom: 5px; display: block; }
+        .comment-text { font-size: 0.75rem; color: #888; line-height: 1.5; }
+
+        .comment-input { width: 100%; background: #000; border: 1px solid #222; padding: 15px; color: #fff; font-family: 'Outfit'; font-size: 0.8rem; margin-bottom: 15px; outline: none; transition: 0.3s; }
+        .comment-input:focus { border-color: var(--fsp-fire); }
+        .btn-post { width: 100%; padding: 15px; background: #fff; color: #000; border: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        .btn-post:hover { background: var(--fsp-fire); color: #fff; }
+
+        /* QUICK VIEW UPDATE BAR */
+        .quick-update-bar { background: #110000; border: 1px solid #330000; padding: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .status-dot { width: 8px; height: 8px; background: #0f0; border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px #0f0; }
+        .status-text { font-family: 'Source Code Pro'; font-size: 0.6rem; color: #0f0; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+</header>
+
+<main class="profile-container">
+    <section>
+        <div class="quick-update-bar">
+            <div>
+                <span class="status-dot"></span>
+                <span class="status-text">NODE_ONLINE // BROADCASTING_FROM_MIAMI_HUB</span>
+            </div>
+            <div style="font-size: 0.55rem; color: #444; font-weight: 900; letter-spacing: 2px;">LAST_CONTENT_SYNC: 42_MIN_AGO</div>
+        </div>
+
+        <div class="profile-visuals">
+            <div class="hero-image">
+                <div style="display:flex; align-items:center; justify-content:center; height:100%; font-family:'Bebas Neue'; color:#111; font-size:5rem;">SURROGATE_NODE_001</div>
+            </div>
+
+            <div class="attribute-strip">
+                <div class="attr-item"><span>Complexion</span><b>Fair / Golden</b></div>
+                <div class="attr-item"><span>Height</span><b>5'9" (175cm)</b></div>
+                <div class="attr-item"><span>Build</span><b>Athletic / Tone</b></div>
+                <div class="attr-item"><span>Wardrobe</span><b>Luxury Lounge</b></div>
+            </div>
+
+            <h2 style="font-family:'Bebas Neue'; font-size: 2.5rem; letter-spacing: 5px; margin-bottom: 20px;">NODE_SOPHIA // LIFESTYLE PHILOSOPHY</h2>
+            <p style="color: #888; line-height: 1.8; margin-bottom: 40px;">
+                "Being part of the Obsidian Directorate isn't just about content; it's about the standard. My profile reflects the around-the-home luxury that FSP defines. Every asset syncs directly to FlammableFilth.com, ensuring my audience sees the high-fidelity production value I bring to the table."
+            </p>
+
+            <a href="flammablefilth_gateway.html" style="display:inline-block; padding: 20px 40px; background: var(--fsp-fire); color: #fff; text-decoration: none; font-weight: 900; letter-spacing: 4px; font-size: 0.8rem;">ACCESS X-RATED PRODUCTION REEL</a>
+        </div>
+    </section>
+
+    <aside class="engagement-ledger">
+        <div class="engagement-header">
+            ENGAGEMENT_LEDGER
+            <span class="comment-count">128_NODES</span>
+        </div>
+
+        <div class="comment-thread">
+            <div class="comment-node">
+                <span class="comment-user">NODE_ADMIN_SLOANE</span>
+                <p class="comment-text">The lighting in your latest 'Around the Home' set is impeccable. Production multiplier applied.</p>
+            </div>
+            <div class="comment-node">
+                <span class="comment-user">NODE_MEMBER_992</span>
+                <p class="comment-text">This is exactly the aesthetic I'm aiming for. How did you handle the 2257 sync for this specific shoot?</p>
+            </div>
+            <div class="comment-node">
+                <span class="comment-user">NODE_ICON_LEO</span>
+                <p class="comment-text">Sophisticated. The transition to FlammableFilth was seamless.</p>
+            </div>
+        </div>
+
+        <textarea class="comment-input" placeholder="Initiate connectivity handshake..."></textarea>
+        <button class="btn-post">POST TO LEDGER</button>
+        
+        <p style="font-size: 0.55rem; color: #222; text-align: center; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px;">
+            Communications are logged via Directorate Security Blanket.
+        </p>
+    </aside>
+</main>
+
+</body>
+</html>
