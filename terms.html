@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERMS | Obsidian Directorate Legal & Compliance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --fsp-pitch: #000000; --fsp-card: #0a0a0a; --fsp-fire: #ff3300; 
+            --fsp-gold: #c5a059; --fsp-white: #ffffff; --fsp-border: #1a1a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; padding-top: 180px; line-height: 1.8; }
+
+        /* --- MASTER HEADER (SYNCED) --- */
+        header { 
+            height: 180px; display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(25px); 
+            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
+        }
+        .logo { height: 150px; transition: 0.6s; }
+        .logo:hover { filter: drop-shadow(0 0 30px var(--fsp-fire)); }
+
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 30px; }
+        .main-nav a { color: #444; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; }
+        .main-nav a:hover { color: var(--fsp-fire); }
+
+        /* --- LEGAL CONTENT --- */
+        .legal-container { max-width: 900px; margin: 80px auto; padding: 0 5%; }
+        .legal-header { text-align: center; margin-bottom: 80px; }
+        .legal-header h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 20px; color: var(--fsp-white); }
+        .legal-header p { font-family: 'Source Code Pro'; color: var(--fsp-gold); font-size: 0.75rem; letter-spacing: 5px; text-transform: uppercase; }
+
+        .legal-section { background: var(--fsp-card); border: 1px solid var(--fsp-border); padding: 50px; margin-bottom: 40px; }
+        .legal-section h3 { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 4px; color: var(--fsp-fire); margin-bottom: 25px; border-bottom: 1px solid #1a1a1a; padding-bottom: 10px; }
+        
+        .legal-text { color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: justify; }
+        .legal-text b { color: var(--fsp-white); letter-spacing: 1px; }
+
+        .compliance-box { border-left: 4px solid var(--fsp-gold); background: #050505; padding: 30px; margin: 40px 0; }
+        .compliance-box h4 { font-family: 'Bebas Neue'; font-size: 1.2rem; color: var(--fsp-gold); letter-spacing: 2px; margin-bottom: 10px; }
+
+        /* --- MASTER FOOTER (SYNCED) --- */
+        footer { padding: 100px 10%; background: #000; border-top: 1px solid #111; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 80px; }
+        .f-links { display: flex; flex-direction: column; gap: 15px; }
+        .f-links a { color: #444; text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; }
+        .f-links a:hover { color: var(--fsp-fire); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html">
+            <img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP COMMAND">
+        </a>
+        <nav class="main-nav">
+            <a href="index.html">COMMAND</a>
+            <a href="portal.html">PORTAL</a>
+            <a href="registry.html">REGISTRY</a>
+            <a href="community.html">NETWORK</a>
+            <a href="briefing.html">BRIEFING</a>
+        </nav>
+    </header>
+
+    <div class="legal-container">
+        <div class="legal-header">
+            <p>> DIRECT_COMPLIANCE_ENFORCED</p>
+            <h1>TERMS OF SERVICE</h1>
+            <div style="height: 2px; width: 80px; background: var(--fsp-fire); margin: 20px auto;"></div>
+        </div>
+
+        <div class="legal-section">
+            <h3>1. MANDATORY COMPLIANCE (18 U.S.C. § 2257)</h3>
+            <p class="legal-text">
+                The <b>Obsidian Directorate</b> (a Filthy Seduction Productions entity) operates under strict adherence to Federal Law. All talent appearing in any media managed or hosted by the Directorate must be at least 18 years of age. All performers must submit valid primary identification prior to registry approval.
+            </p>
+            <div class="compliance-box">
+                <h4>CUSTODIAN OF RECORDS</h4>
+                <p class="legal-text" style="margin-bottom:0;">All records required by law are maintained at the official headquarters of <b>Filthy Seduction Productions</b>. Inquiries regarding compliance data must be routed through the System Support portal.</p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h3>2. SUBSCRIPTION & REVENUE EQUITY</h3>
+            <p class="legal-text">
+                Access to the Directorate’s production scales (Pro, Elite, Icon) is provided on a <b>Subscription for Service</b> basis. Subscriptions grant access to the identity management hub, distribution loops, and production booking tools. 
+            </p>
+            <p class="legal-text">
+                <b>Revenue Scales:</b> Revenue for video acceptance and private instruction is calculated based on current tier status ($100/hr - $250/hr). All submissions are subject to Directorate approval. Acceptance notifications are delivered via the Network Feed.
+            </p>
+        </div>
+
+        <div class="legal-section">
+            <h3>3. TERMINATION OF NODES</h3>
+            <p class="legal-text">
+                The Directorate reserves the right to terminate any profile or registry entry that violates the "Sense of Sexuality" professional standards or fails to provide updated legal verification. 
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <img src="VEXILLIALSDP_FSP.png" style="height:100px; opacity:0.3;">
+                <p style="color:#222; font-size:0.6rem; margin-top:20px;">DIRECTORATE LEGAL &copy; 2026</p>
+            </div>
+            <div style="border: 1px solid #111; padding: 25px; color: #333; font-size: 0.65rem; text-align: justify;">
+                <b>NOTICE:</b> Use of this site constitutes acceptance of the Obsidian Directorate protocols. All communications within this network are subject to encryption and professional management.
+            </div>
+            <div class="f-links">
+                <a href="about.html">ABOUT</a>
+                <a href="terms.html" style="color:var(--fsp-fire);">TERMS</a>
+                <a href="support.html">SUPPORT</a>
+                <a href="registry.html">REGISTRY</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
