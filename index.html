@@ -2,35 +2,160 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <title>FSP | The Obsidian Directorate</title>
     <style>
-        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
+        :root {
+            --fsp-pitch: #000000;
+            --fsp-card: #0a0a0a;
+            --fsp-fire: #ff3300;
+            --fsp-gold: #c5a059;
+            --fsp-white: #ffffff;
+            --fsp-gray: #555555;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
-        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 50px; border-bottom: 2px solid #111; background: #000; position: fixed; width: 100%; top: 0; z-index: 10000; }
-        .logo { height: 150px; }
-        .hero { height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 180px; text-align: center; }
-        .hero h1 { font-family: 'Bebas Neue'; font-size: 6rem; letter-spacing: 15px; }
-        .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 5% 100px; }
-        .tier-card { background: #080808; border: 1px solid #1a1a1a; padding: 40px 30px; text-align: center; transition: 0.4s; }
-        .tier-card:hover { border-color: var(--fsp-fire); transform: translateY(-10px); }
-        .price { font-size: 3rem; font-weight: 900; margin: 20px 0; }
-        .btn-select { display: block; width: 100%; padding: 20px; background: #111; color: #fff; text-decoration: none; font-weight: 900; letter-spacing: 3px; font-size: 0.75rem; text-transform: uppercase; }
-        .tier-card:hover .btn-select { background: var(--fsp-fire); }
+        body { 
+            background: var(--fsp-pitch); 
+            color: var(--fsp-white); 
+            font-family: 'Outfit', sans-serif; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 180px COMMAND HEADER */
+        header { 
+            height: 180px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 60px; 
+            border-bottom: 1px solid #1a1a1a; 
+            background: rgba(0,0,0,0.95); 
+            backdrop-filter: blur(10px);
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 10000; 
+        }
+        .logo { height: 150px; transition: transform 0.3s ease; }
+        .logo:hover { transform: scale(1.05); }
+
+        /* HERO SECTION */
+        .hero { 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+            padding-top: 180px;
+        }
+        .hero h1 { 
+            font-family: 'Bebas Neue'; 
+            font-size: clamp(4rem, 12vw, 9rem); 
+            letter-spacing: 20px; 
+            line-height: 0.85; 
+            animation: glowPulse 4s infinite ease-in-out;
+        }
+        @keyframes glowPulse {
+            0%, 100% { text-shadow: 0 0 20px rgba(255,51,0,0); }
+            50% { text-shadow: 0 0 30px rgba(255,51,0,0.4); }
+        }
+        .hero p { 
+            letter-spacing: 8px; 
+            color: var(--fsp-gray); 
+            font-weight: 900; 
+            margin-top: 25px; 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+        }
+
+        /* TIER GRID ARCHITECTURE */
+        .tier-section { padding: 120px 8%; background: #000; }
+        .tier-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px; 
+        }
+        
+        .tier-card { 
+            background: var(--fsp-card); 
+            border: 1px solid #1a1a1a; 
+            padding: 60px 40px; 
+            text-align: center; 
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            position: relative;
+            overflow: hidden;
+        }
+        .tier-card:hover { 
+            border-color: var(--fsp-fire); 
+            transform: translateY(-15px); 
+            background: #0f0f0f;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+        .tier-card.icon-card:hover { border-color: var(--fsp-gold); }
+
+        .tier-card h3 { font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 5px; margin-bottom: 10px; }
+        .price { font-size: 3.5rem; font-weight: 900; margin-bottom: 5px; }
+        .billing { font-size: 0.6rem; color: #444; letter-spacing: 3px; font-weight: 900; display: block; margin-bottom: 30px; }
+        
+        .features { list-style: none; text-align: left; margin: 40px 0; border-top: 1px solid #222; padding-top: 30px; }
+        .features li { font-size: 0.8rem; color: #888; margin-bottom: 15px; letter-spacing: 1px; display: flex; align-items: center; }
+        .features li::before { content: '◈'; color: var(--fsp-fire); margin-right: 12px; font-size: 0.6rem; }
+        .icon-card .features li::before { color: var(--fsp-gold); }
+
+        /* ACTION BUTTONS */
+        .btn-link { 
+            display: block; 
+            width: 100%; 
+            padding: 22px; 
+            background: #151515; 
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: 900; 
+            letter-spacing: 4px; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            transition: 0.4s; 
+            border: 1px solid transparent;
+        }
+        .tier-card:hover .btn-link { 
+            background: var(--fsp-fire); 
+            color: white; 
+            box-shadow: 0 0 20px rgba(255,51,0,0.3);
+        }
+        .icon-card:hover .btn-link { 
+            background: var(--fsp-gold); 
+            color: black; 
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+        }
+
+        footer { padding: 100px 50px; text-align: center; border-top: 1px solid #111; color: #333; font-size: 0.6rem; letter-spacing: 5px; }
+
+        @media (max-width: 900px) {
+            header { height: 140px; padding: 0 30px; }
+            .logo { height: 100px; }
+            .hero h1 { font-size: 4rem; }
+            .tier-section { padding: 60px 5%; }
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <header>
-        <img src="VEXILLIALSDP_FSP.png" class="logo">
-        <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:3px;">DIRECTORATE INDEX</span>
+        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+        <div style="border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
+            <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:4px; font-size: 0.7rem;">OBSIDIAN NODE 1.0</span>
+        </div>
     </header>
-    <div class="hero"><h1>OBSIDIAN</h1><p style="letter-spacing:10px; color:#444;">SELECT COMMITMENT LEVEL</p></div>
-    <div class="tier-grid">
-        <div class="tier-card"><h3>BASIC</h3><div class="price">FREE</div><a href="briefing-basic.html" class="btn-select">ENROLL FREE</a></div>
-        <div class="tier-card"><h3>PRO</h3><div class="price">$29</div><a href="briefing-pro.html" class="btn-select">SELECT PRO</a></div>
-        <div class="tier-card"><h3>ELITE</h3><div class="price">$99</div><a href="briefing-elite.html" class="btn-select">SELECT ELITE</a></div>
-        <div class="tier-card"><h3>ICON</h3><div class="price">$249</div><a href="briefing-icon.html" class="btn-select">SELECT ICON</a></div>
-    </div>
-</body>
-</html>
+
+    <section class="hero">
+        <h1>OBSIDIAN<br><span style="color:var(--fsp-gold)">DIRECTORATE</span></h1>
+        <p>SECURE METADATA // PRODUCTION PIPELINE // TALENT EQUITY</p>
+    </section>
+
+    <section class="
