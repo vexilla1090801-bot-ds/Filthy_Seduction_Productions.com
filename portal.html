@@ -4,171 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal | FSP Obsidian Directorate</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        :root { 
-            --fsp-fire: #ff3300; 
-            --fsp-gold: #c5a059; 
-            --fsp-pitch: #0a0a0a; 
-            --fsp-green: #00ff66;
-            --fsp-border: #1a1a1a;
-        }
-
+        :root { --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-pitch: #0a0a0a; --fsp-green: #00ff66; --fsp-border: #1a1a1a; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; display: grid; grid-template-columns: 280px 1fr 320px; height: 100vh; overflow: hidden; }
 
-        body { 
-            background: #000; 
-            color: #fff; 
-            font-family: 'Outfit', sans-serif; 
-            display: grid;
-            grid-template-columns: 280px 1fr 320px;
-            height: 100vh;
-            overflow: hidden;
-        }
+        /* SIDEBARS */
+        .sidebar { background: var(--fsp-pitch); border-right: 1px solid var(--fsp-border); padding: 40px 25px; display: flex; flex-direction: column; }
+        .sidebar-right { border-left: 1px solid var(--fsp-border); border-right: none; }
+        .nav-brand { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 5px; color: var(--fsp-fire); margin-bottom: 50px; text-decoration: none; }
+        .nav-link { display: block; color: #444; text-decoration: none; font-family: 'Bebas Neue'; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 15px; transition: 0.3s; }
+        .nav-link.active { color: var(--fsp-gold); }
 
-        /* WEBMASTER OVERLAY: BOOT SEQUENCE */
-        #boot-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 9999; display: flex; 
-            flex-direction: column; justify-content: center; align-items: center;
-            font-family: 'Source Code Pro'; color: var(--fsp-fire);
-        }
-
-        /* LEFT NAVIGATION */
-        .sidebar-left {
-            background: var(--fsp-pitch);
-            border-right: 1px solid var(--fsp-border);
-            padding: 40px 25px;
-            display: flex; flex-direction: column;
-        }
-        .nav-brand { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 5px; color: var(--fsp-fire); margin-bottom: 50px; }
-        .nav-link { 
-            display: block; color: #444; text-decoration: none; font-family: 'Bebas Neue'; 
-            font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 15px; transition: 0.3s;
-        }
-        .nav-link.active { color: var(--fsp-gold); border-left: 2px solid var(--fsp-gold); padding-left: 10px; }
-
-        /* MAIN CONTENT: THE MATRIX */
-        .main-portal { 
-            overflow-y: auto; padding: 40px; 
-            background: radial-gradient(circle at top right, #0d0d0d, #000);
-        }
+        /* MAIN CONTENT */
+        .main-portal { overflow-y: auto; padding: 40px; background: radial-gradient(circle at top right, #0d0d0d, #000); }
         .portal-header { margin-bottom: 40px; border-bottom: 1px solid var(--fsp-border); padding-bottom: 20px; }
-        .portal-header h2 { font-family: 'Bebas Neue'; font-size: 3.5rem; letter-spacing: 12px; }
+        h2 { font-family: 'Bebas Neue'; font-size: 3.5rem; letter-spacing: 12px; }
 
-        .node-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
-            gap: 25px; 
-        }
+        /* THE GRID */
+        .node-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
 
-        /* UPDATED NODE CARD WITH ASSET PREVIEW */
+        /* ENHANCED NODE CARD */
         .node-card {
             background: #050505; border: 1px solid var(--fsp-border);
-            padding: 0; overflow: hidden; position: relative;
-            transition: 0.4s;
+            position: relative; transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            overflow: hidden;
         }
-        .node-card:hover { border-color: var(--fsp-gold); transform: scale(1.02); z-index: 10; }
+        .node-card:hover { border-color: var(--fsp-gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
 
-        .node-thumb {
-            width: 100%; height: 180px; background: #111;
+        /* IMAGE FALLBACK BOX */
+        .node-image-container {
+            width: 100%; height: 320px; background: #080808;
+            position: relative; overflow: hidden;
             display: flex; align-items: center; justify-content: center;
-            border-bottom: 1px solid var(--fsp-border);
-            background-image: linear-gradient(45deg, #0a0a0a 25%, transparent 25%), 
-                              linear-gradient(-45deg, #0a0a0a 25%, transparent 25%);
-            background-size: 20px 20px;
         }
+        .node-image-container img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(100%) contrast(1.1); transition: 0.8s;
+        }
+        .node-card:hover img { filter: grayscale(0%) contrast(1); transform: scale(1.05); }
 
-        .node-info { padding: 20px; }
-        .node-name { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 2px; color: #fff; }
-        .node-status { display: flex; align-items: center; gap: 8px; font-size: 0.6rem; color: #444; margin-top: 5px; }
-        .dot { width: 6px; height: 6px; background: var(--fsp-green); border-radius: 50%; box-shadow: 0 0 5px var(--fsp-green); }
+        /* CARD OVERLAY */
+        .node-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,1) 30%, transparent);
+        }
+        .node-name { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 2px; }
+        .node-status { font-family: 'Source Code Pro'; font-size: 0.6rem; color: var(--fsp-green); letter-spacing: 1px; }
 
-        /* RIGHT PANEL: LIVE INTEL MAP */
-        .sidebar-right { background: var(--fsp-pitch); border-left: 1px solid var(--fsp-border); padding: 30px; }
-        .intel-title { font-family: 'Bebas Neue'; color: var(--fsp-gold); letter-spacing: 3px; margin-bottom: 20px; }
-        .intel-log { font-family: 'Source Code Pro'; font-size: 0.65rem; color: #444; }
-        .log-entry { margin-bottom: 15px; padding-left: 10px; border-left: 1px solid var(--fsp-fire); }
-        .log-entry b { color: #fff; }
-
+        /* DATA LOG */
+        .log-entry { font-family: 'Source Code Pro'; font-size: 0.65rem; color: #444; margin-bottom: 12px; border-left: 1px solid var(--fsp-fire); padding-left: 10px; }
     </style>
 </head>
-<body onload="initializeMatrix()">
+<body onload="bootPortal()">
 
-    <div id="boot-screen">
-        <div class="nav-brand">OBSIDIAN_DIRECTORATE</div>
-        <p id="boot-text">INITIALIZING_SURROGATE_NODES...</p>
-    </div>
-
-    <nav class="sidebar-left">
-        <div class="nav-brand">FSP_OS</div>
+    <nav class="sidebar">
+        <a href="index.html" class="nav-brand">FSP_OS</a>
         <a href="portal.html" class="nav-link active">SURROGATE_MATRIX</a>
         <a href="ledger.html" class="nav-link">TALENT_LEDGER</a>
         <a href="production-briefs.html" class="nav-link">MISSIONS_DISPATCH</a>
         <a href="revenue-ledger.html" class="nav-link">ROYALTY_VAULT</a>
-        <a href="showroom.html" class="nav-link" style="margin-top: auto; color: var(--fsp-fire);">PUBLIC_SHOWROOM</a>
     </nav>
 
     <main class="main-portal">
         <header class="portal-header">
             <h2>MATRIX_CONTROL</h2>
-            <p style="font-family: 'Source Code Pro'; font-size: 0.65rem; color: var(--fsp-gold); letter-spacing: 4px;">SECURE_HANDSHAKE_ESTABLISHED // NODE_COUNT: 300</p>
+            <p style="font-family: 'Source Code Pro'; font-size: 0.65rem; color: var(--fsp-gold); letter-spacing: 4px;">SYSTEM_STATUS: 300_NODES_ACTIVE</p>
         </header>
 
-        <div class="node-grid" id="node-matrix">
+        <div class="node-grid" id="matrix-inject">
             </div>
     </main>
 
-    <aside class="sidebar-right">
-        <div class="intel-title">LIVE_SYSTEM_LOG</div>
-        <div class="intel-log" id="system-log">
-            <div class="log-entry"><b>SYSTEM</b>: Welcome, Director. All nodes ready.</div>
-        </div>
+    <aside class="sidebar sidebar-right">
+        <div style="font-family: 'Bebas Neue'; color: var(--fsp-gold); letter-spacing: 3px; margin-bottom: 30px;">LIVE_INTEL</div>
+        <div id="intel-feed"></div>
     </aside>
 
     <script>
-        function initializeMatrix() {
-            const matrix = document.getElementById('node-matrix');
-            const log = document.getElementById('system-log');
-            const boot = document.getElementById('boot-screen');
-            const names = ["SOPHIA", "JORDAN", "ELENA", "ZARA", "VALENTINA", "MILA", "ALEXA", "SLOANE", "JADE", "BELLA"];
-            
-            // Generate 32 Master Nodes for the UI
-            let htmlBuffer = "";
-            for (let i = 1; i <= 32; i++) {
+        const names = ["SOPHIA", "JORDAN", "ELENA", "ZARA", "VALENTINA", "MILA", "ALEXA", "SLOANE"];
+
+        function bootPortal() {
+            const grid = document.getElementById('matrix-inject');
+            let cards = "";
+
+            // Loop to generate nodes
+            for (let i = 1; i <= 24; i++) {
                 const name = names[Math.floor(Math.random() * names.length)];
-                htmlBuffer += `
-                    <div class="node-card">
-                        <div class="quality-badge" style="position:absolute; top:10px; right:10px; font-size:0.5rem; background:rgba(0,0,0,0.8); padding:3px 8px; border:1px solid var(--fsp-fire); color:var(--fsp-fire); z-index:2;">8K_READY</div>
-                        <div class="node-thumb">
-                            <span style="font-family:'Bebas Neue'; color:#1a1a1a; font-size:3rem;">FSP</span>
-                        </div>
-                        <div class="node-info">
-                            <div class="node-name">${name}_${100 + i}</div>
-                            <div class="node-status"><div class="dot"></div> SYNC_ACTIVE // 99.8%</div>
-                            <a href="production-briefs.html" style="display:block; margin-top:15px; font-size:0.6rem; color:#fff; text-decoration:none; border:1px solid #222; padding:8px; text-align:center; transition:0.3s;">SYNC_MISSION</a>
-                        </div>
+                const nodeID = 100 + i;
+                
+                // PATH FIX: We use a high-end placeholder if the asset folder isn't found
+                // To use your real images, put them in: /assets/surrogates/name.jpg
+                const imgPath = `assets/surrogates/${name.toLowerCase()}.jpg`;
+
+                cards += `
+                <div class="node-card">
+                    <div class="node-image-container">
+                        <img src="${imgPath}" onerror="this.src='https://via.placeholder.com/400x600/0a0a0a/c5a059?text=${name}_${nodeID}'" alt="${name}">
                     </div>
-                `;
+                    <div class="node-overlay">
+                        <div class="node-status">● SYNC_ACTIVE</div>
+                        <div class="node-name">${name}_${nodeID}</div>
+                        <div style="font-size: 0.5rem; color: #555; letter-spacing: 2px;">RANK: ELITE_SURROGATE</div>
+                    </div>
+                </div>`;
             }
-            matrix.innerHTML = htmlBuffer;
+            grid.innerHTML = cards;
+            startIntel();
+        }
 
-            // Remove boot screen after load
-            setTimeout(() => {
-                boot.style.display = 'none';
-            }, 1200);
-
-            // Start Live Ticker
+        function startIntel() {
+            const feed = document.getElementById('intel-feed');
             setInterval(() => {
-                const randomName = names[Math.floor(Math.random() * names.length)];
+                const name = names[Math.floor(Math.random() * names.length)];
                 const entry = document.createElement('div');
                 entry.className = 'log-entry';
-                entry.innerHTML = `<b>NODE_${randomName}</b>: Payout of $0.45 synced to Vault.`;
-                log.prepend(entry);
-                if(log.children.length > 10) log.removeChild(log.lastChild);
-            }, 4000);
+                entry.innerHTML = `<b>NODE_${name}</b> uploaded new 8K master file.`;
+                feed.prepend(entry);
+                if(feed.children.length > 12) feed.removeChild(feed.lastChild);
+            }, 3000);
         }
     </script>
 </body>
