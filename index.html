@@ -67,4 +67,97 @@
         .card:hover .btn { background: var(--fsp-white); color: #000; }
 
         /* MASTER FOOTER (Utility Links) */
-        footer { padding: 8
+        footer { padding: 80px 10%; background: #000; border-top: 1px solid #111; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: start; gap: 50px; }
+        .footer-logo { height: 100px; opacity: 0.5; transition: 0.3s; }
+        .footer-logo:hover { opacity: 1; }
+        
+        .footer-nav { display: flex; flex-direction: column; gap: 15px; }
+        .footer-nav h5 { color: var(--fsp-gold); font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; }
+        .footer-nav a { color: #444; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; transition: 0.3s; }
+        .footer-nav a:hover { color: var(--fsp-fire); }
+
+        .legal-box { border: 1px solid #111; padding: 30px; color: #333; font-size: 0.6rem; line-height: 2; text-align: justify; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-link">
+            <img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP COMMAND">
+        </a>
+        <nav class="main-nav">
+            <a href="index.html" class="active">COMMAND</a>
+            <a href="portal.html">PORTAL</a>
+            <a href="registry.html">REGISTRY</a>
+            <a href="briefing-pro.html">BRIEFING</a>
+        </nav>
+        <div class="system-status">
+            <span class="pulse"></span>
+            <span class="status-text" style="color:var(--fsp-fire); font-size:0.65rem; font-weight:900; letter-spacing:4px;">STATUS: ACTIVE</span>
+        </div>
+    </header>
+
+    <main class="hero">
+        <p class="terminal-text">> SYSTEM INITIALIZED // DIRECT_LINK_ESTABLISHED</p>
+        <h1>OBSIDIAN<br><span style="color:var(--fsp-gold)">DIRECTORATE</span></h1>
+        <p style="letter-spacing:10px; color:#444; font-weight:900; text-transform:uppercase; font-size:0.75rem; margin-top:20px;">Identity // Placement // Revenue Equity</p>
+    </main>
+
+    <section class="ticker">
+        <div class="stat"><h4>REMOTE NODES</h4><p>ACTIVE</p></div>
+        <div class="stat"><h4>STUDIO ACCESS</h4><p>AUTHORIZED</p></div>
+        <div class="stat"><h4>BASE PRODUCTION</h4><p>$100/HR</p></div>
+        <div class="stat"><h4>ICON PRODUCTION</h4><p>$250/HR</p></div>
+    </section>
+
+    <section class="tier-section">
+        <div class="grid">
+            <div class="card">
+                <h3>BASIC</h3>
+                <div class="price">FREE</div>
+                <span class="commitment" style="color:#444;">VERIFICATION ONLY</span>
+                <a href="briefing-basic.html" class="btn">VIEW BRIEFING</a>
+            </div>
+            <div class="card hot">
+                <h3>PRO</h3>
+                <div class="price">$29/mo</div>
+                <span class="commitment">03-MONTH COMMITMENT</span>
+                <a href="briefing-pro.html" class="btn" style="background:var(--fsp-fire); border:none;">VIEW BRIEFING</a>
+            </div>
+            <div class="card">
+                <h3>ELITE</h3>
+                <div class="price">$99/mo</div>
+                <span class="commitment">06-MONTH COMMITMENT</span>
+                <a href="briefing-elite.html" class="btn">VIEW BRIEFING</a>
+            </div>
+            <div class="card top">
+                <h3>ICON</h3>
+                <div class="price">$249/mo</div>
+                <span class="commitment" style="color:var(--fsp-gold)">12-MONTH COMMITMENT</span>
+                <a href="briefing-icon.html" class="btn">VIEW BRIEFING</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <img src="VEXILLIALSDP_FSP.png" class="footer-logo" alt="FSP">
+                <p style="color:#222; font-size:0.55rem; margin-top:20px; letter-spacing:2px;">&copy; 2026 FSP DIRECTORATE<br>ENCRYPTION: ACTIVE</p>
+            </div>
+            <div class="legal-box">
+                <b>18 U.S.C. § 2257 COMPLIANCE:</b> THE OBSIDIAN DIRECTORATE IS A PROFESSIONAL IDENTITY MANAGEMENT HUB. ALL MODELS AND CONTENT CREATORS MUST BE 18+. ALL RECORDS ARE MAINTAINED BY FILTHY SEDUCTION PRODUCTIONS.
+            </div>
+            <div class="footer-nav">
+                <h5>Information</h5>
+                <a href="about.html">ABOUT AGENCY</a>
+                <a href="terms.html">TERMS OF SERVICE</a>
+                <a href="support.html">SYSTEM SUPPORT</a>
+                <a href="portal.html">TALENT PORTAL</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
