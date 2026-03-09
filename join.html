@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join the Directorate | FSP Talent Intake</title>
+    <title>Initialize Identity | FSP Talent Intake</title>
     <style>
         :root {
             --fsp-black: #050505;
@@ -11,10 +11,9 @@
             --fsp-fire: #ff3300;
             --fsp-gold: #c5a059;
             --fsp-white: #ffffff;
-            --fsp-grey: #1a1a1a;
+            --fsp-grey: #121212;
         }
 
-        /* STABILITY RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -22,261 +21,175 @@
             color: var(--fsp-white);
             font-family: 'Outfit', sans-serif;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* COMMAND HEADER - LOCKED 180px */
+        /* COMMAND HEADER - 180px */
         header.fsp-nav-command {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 180px; 
-            background: rgba(0, 0, 0, 0.98);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 50px;
-            border-bottom: 2px solid #1a1a1a;
-            z-index: 10000;
-            backdrop-filter: blur(30px);
+            position: fixed; top: 0; left: 0; width: 100%; height: 180px; 
+            background: rgba(0, 0, 0, 0.98); display: flex; align-items: center;
+            justify-content: space-between; padding: 0 50px; border-bottom: 2px solid #1a1a1a;
+            z-index: 10000; backdrop-filter: blur(30px);
         }
 
-        .logo-box {
-            display: flex;
-            align-items: center;
-            height: 100%;
+        .fsp-logo-main { height: 150px; width: auto; }
+
+        /* MAIN LAYOUT */
+        .join-container {
+            margin-top: 180px; padding: 60px 5%;
+            display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px;
         }
 
-        .fsp-logo-main {
-            height: 150px; /* Big Dog Size */
-            width: auto;
-            display: block;
+        /* LEFT: THE LIVE PREVIEW CARD (THE "GLOW" ON THE PORTAL) */
+        .preview-pane {
+            position: sticky; top: 220px; height: fit-content;
+            background: #080808; border: 1px solid #222; padding: 30px;
+            text-align: center; box-shadow: 0 0 40px rgba(0,0,0,1);
         }
 
-        .secure-status {
-            text-align: right;
-            color: var(--fsp-gold);
-            font-weight: 900;
-            letter-spacing: 2px;
-            font-size: 0.75rem;
-            max-width: 250px;
+        .id-card-preview {
+            width: 100%; aspect-ratio: 3/4; background: #000;
+            border: 1px solid var(--fsp-fire); margin-top: 20px;
+            position: relative; overflow: hidden;
+            box-shadow: 0 0 20px var(--fsp-glow);
         }
 
-        /* CONTENT WRAPPER */
-        .join-wrapper {
-            margin-top: 180px; /* Offset for header */
-            padding: 80px 10%;
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 60px;
-            min-height: calc(100vh - 180px);
-            background: radial-gradient(circle at top right, #0f0f0f 0%, #000 100%);
+        #preview-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+
+        .preview-overlay {
+            position: absolute; bottom: 0; width: 100%; padding: 20px;
+            background: linear-gradient(transparent, #000); text-align: left;
         }
 
-        /* LEFT SIDE - THE VALUE */
-        .manifesto-side h1 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: clamp(3rem, 6vw, 5rem);
-            letter-spacing: 10px;
-            line-height: 0.9;
-            margin-bottom: 30px;
+        /* RIGHT: THE SMART FORM */
+        .form-box { background: #0a0a0a; padding: 50px; border: 1px solid #151515; }
+
+        h2 { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; letter-spacing: 4px; color: var(--fsp-fire); margin-bottom: 20px; }
+
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+
+        input, select, textarea {
+            width: 100%; background: #000; border: 1px solid #333; padding: 15px;
+            color: white; outline: none; transition: 0.3s;
         }
 
-        .gold-glow { color: var(--fsp-gold); text-shadow: 0 0 20px rgba(197, 160, 89, 0.4); }
+        input:focus { border-color: var(--fsp-fire); }
 
-        .benefit-card {
-            background: var(--fsp-grey);
-            padding: 30px;
-            border-left: 4px solid var(--fsp-fire);
-            margin-bottom: 20px;
-            transition: 0.3s;
+        /* ATTRIBUTES SELECTOR */
+        .attribute-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 10px; }
+
+        .upload-section { margin: 30px 0; border-top: 1px solid #222; padding-top: 20px; }
+
+        .file-label {
+            display: block; padding: 20px; border: 2px dashed #333; text-align: center;
+            cursor: pointer; transition: 0.3s; color: #666; font-weight: 900;
         }
 
-        .benefit-card:hover { background: #222; transform: translateX(10px); }
-        .benefit-card h3 { font-size: 0.75rem; letter-spacing: 3px; color: #666; margin-bottom: 10px; }
-        .benefit-card p { font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; }
+        .file-label:hover { border-color: var(--fsp-gold); color: white; }
 
-        /* RIGHT SIDE - THE FORM */
-        .intake-form-box {
-            background: #080808;
-            padding: 60px;
-            border: 1px solid #111;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        .form-section { margin-bottom: 50px; }
-        .form-section h2 { 
-            font-size: 0.8rem; 
-            letter-spacing: 5px; 
-            color: var(--fsp-fire); 
-            margin-bottom: 25px; 
-            text-transform: uppercase;
-            border-bottom: 1px solid #111;
-            padding-bottom: 10px;
-        }
-
-        .input-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        input, select {
-            background: #000;
-            border: 1px solid #222;
-            padding: 20px;
-            color: white;
-            font-family: 'Outfit', sans-serif;
-            width: 100%;
-            outline: none;
-            font-size: 1rem;
-        }
-
-        input:focus { border-color: var(--fsp-fire); box-shadow: 0 0 10px rgba(255, 51, 0, 0.2); }
-
-        /* UPLOAD GRID */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 15px;
-        }
-
-        .upload-slot {
-            background: #030303;
-            border: 1px dashed #333;
-            padding: 20px 10px;
-            text-align: center;
-            font-size: 0.6rem;
-            letter-spacing: 1px;
-            color: #666;
-            text-transform: uppercase;
-            font-weight: 900;
-            transition: 0.3s;
-        }
-
-        .upload-slot:hover { border-color: var(--fsp-gold); color: var(--fsp-white); }
-        .upload-slot label { cursor: pointer; display: block; width: 100%; height: 100%; }
-
-        /* BUTTON */
         .initialize-btn {
-            width: 100%;
-            padding: 30px;
-            background: var(--fsp-fire);
-            color: white;
-            border: none;
-            font-weight: 900;
-            font-size: 1.4rem;
-            letter-spacing: 6px;
-            cursor: pointer;
-            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            margin-top: 20px;
-            text-transform: uppercase;
+            width: 100%; padding: 30px; background: var(--fsp-fire); border: none;
+            color: white; font-weight: 900; font-size: 1.5rem; letter-spacing: 5px;
+            cursor: pointer; margin-top: 30px; transition: 0.5s;
         }
 
-        .initialize-btn:hover {
-            background: white;
-            color: black;
-            box-shadow: 0 0 50px rgba(255,255,255,0.3);
-            transform: translateY(-5px);
-        }
+        .initialize-btn:hover { background: var(--fsp-white); color: #000; box-shadow: 0 0 50px white; }
 
-        /* ERROR FIXES: MOBILE VIEW */
-        @media (max-width: 1024px) {
-            header.fsp-nav-command { height: 140px; padding: 0 25px; }
-            .fsp-logo-main { height: 110px; }
-            .join-wrapper { margin-top: 140px; grid-template-columns: 1fr; padding: 40px 5%; }
-            .manifesto-side { text-align: center; }
-            .input-group { grid-template-columns: 1fr; }
-            .intake-form-box { padding: 30px; }
-        }
+        @media (max-width: 1000px) { .join-container { grid-template-columns: 1fr; } }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="fsp-nav-command">
-        <div class="logo-box">
-            <a href="index.html">
-                <img src="VEXILLIALSDP_FSP.png" alt="FSP Directorate Logo" class="fsp-logo-main">
-            </a>
-        </div>
-        <div class="secure-status">
-            SECURE PORTAL [E-256]<br>
-            IDENTITY ENCRYPTION: ACTIVE
+        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="fsp-logo-main"></a>
+        <div style="text-align: right; color: var(--fsp-gold); font-size: 0.7rem; font-weight: 900; letter-spacing: 2px;">
+            INTAKE SYSTEM: ACTIVE<br>STATUS: ENCRYPTED
         </div>
     </header>
 
-    <main class="join-wrapper">
+    <main class="join-container">
         
-        <section class="manifesto-side">
-            <h1>INITIALIZE <span class="gold-glow">IDENTITY</span></h1>
-            <p style="color: #666; margin-bottom: 40px; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem;">
-                Step into the Obsidian Ledger. We build the history that defines your career.
-            </p>
-            
-            <div class="benefit-card">
-                <h3>THE RATE</h3>
-                <p>$100.00 / HOUR</p>
+        <section class="preview-pane">
+            <h3 style="letter-spacing: 3px; font-size: 0.8rem; color: #444;">PORTAL PREVIEW</h3>
+            <div class="id-card-preview">
+                <img id="preview-img" src="" alt="Awaiting Capture...">
+                <div class="preview-overlay">
+                    <span id="preview-name" style="font-weight: 900; font-size: 1.5rem; text-transform: uppercase;">STAGE NAME</span><br>
+                    <span id="preview-status" style="color: var(--fsp-gold); font-size: 0.7rem; letter-spacing: 2px;">CERTIFIED ELITE</span>
+                </div>
             </div>
-
-            <div class="benefit-card">
-                <h3>THE COMMITMENT</h3>
-                <p>5 MANAGED VIDEOS</p>
-            </div>
-
-            <div class="benefit-card">
-                <h3>THE ASSET</h3>
-                <p>CERTIFIED HISTORY</p>
-            </div>
+            <p style="margin-top: 20px; color: #555; font-size: 0.7rem;">Every photo and video you upload is recorded to your Certified History.</p>
         </section>
 
-        <section class="intake-form-box">
-            <form id="fsp-onboarding-form">
-                
-                <div class="form-section">
-                    <h2>01. Professional Details</h2>
-                    <div class="input-group">
-                        <input type="text" placeholder="LEGAL FIRST NAME" required>
-                        <input type="text" placeholder="LEGAL LAST NAME" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" placeholder="STAGE NAME (DESIRED)">
-                        <input type="email" placeholder="SECURE CONTACT EMAIL" required>
+        <section class="form-box">
+            <form id="intakeForm">
+                <h2>IDENTIFICATION</h2>
+                <div class="input-row">
+                    <input type="text" id="firstName" placeholder="LEGAL FIRST NAME" required>
+                    <input type="text" id="lastName" placeholder="LEGAL LAST NAME" required>
+                </div>
+                <div class="input-row">
+                    <input type="text" id="stageName" placeholder="DESIRED STAGE NAME" onkeyup="updatePreview()" required>
+                    <input type="email" placeholder="SECURE EMAIL" required>
+                </div>
+
+                <h2>DIMENSIONS & ATTRIBUTES</h2>
+                <div class="attribute-grid">
+                    <select id="height"><option>HEIGHT</option><option>5'0-5'4</option><option>5'5-5'8</option><option>5'9+</option></select>
+                    <select id="eyes"><option>EYE COLOR</option><option>BLUE</option><option>BROWN</option><option>GREEN</option><option>HAZEL</option></select>
+                    <select id="hair"><option>HAIR</option><option>BLONDE</option><option>BRUNETTE</option><option>BLACK</option><option>RED</option></select>
+                </div>
+                <div class="input-row" style="margin-top:20px;">
+                    <input type="text" placeholder="TOP DIMENSIONS (e.g. 34D)">
+                    <input type="text" placeholder="WAIST/HIPS">
+                </div>
+                <textarea placeholder="TELL THE DIRECTORATE ABOUT YOUR BODY AND YOUR INTERESTS..." rows="4" style="margin-top:10px;"></textarea>
+
+                <div class="upload-section">
+                    <h2>THE EVIDENCE (MANDATORY)</h2>
+                    <p style="font-size: 0.6rem; color: #ff3300; margin-bottom: 15px;">NO FILTERS. NO BLUR. FIVE ANGLES REQUIRED.</p>
+                    <div class="attribute-grid">
+                        <label class="file-label">FACE<input type="file" id="faceImg" accept="image/*" hidden onchange="showImg(this)"></label>
+                        <label class="file-label">UPPER FR<input type="file" accept="image/*" hidden></label>
+                        <label class="file-label">UPPER BK<input type="file" accept="image/*" hidden></label>
+                        <label class="file-label">LOWER FR<input type="file" accept="image/*" hidden></label>
+                        <label class="file-label">LOWER BK<input type="file" accept="image/*" hidden></label>
+                        <label class="file-label" style="border-color:var(--fsp-fire); color:white;">VIDEO INTRO<input type="file" accept="video/*" hidden></label>
                     </div>
                 </div>
 
-                <div class="form-section">
-                    <h2>02. Visual Evidence (Mandatory 5)</h2>
-                    <p style="font-size: 0.6rem; color: #444; margin-bottom: 15px; letter-spacing: 2px;">HIGH RESOLUTION. NO FILTERS. NO BLUR.</p>
-                    <div class="photo-grid">
-                        <div class="upload-slot"><label>FACE <input type="file" hidden required></label></div>
-                        <div class="upload-slot"><label>UPPER FRONT <input type="file" hidden required></label></div>
-                        <div class="upload-slot"><label>UPPER BACK <input type="file" hidden required></label></div>
-                        <div class="upload-slot"><label>LOWER FRONT <input type="file" hidden required></label></div>
-                        <div class="upload-slot"><label>LOWER BACK <input type="file" hidden required></label></div>
-                    </div>
-                </div>
-
-                <div class="form-section">
-                    <h2>03. Performance Intro</h2>
-                    <p style="font-size: 0.65rem; color: #666; margin-bottom: 15px; letter-spacing: 1px; border-left: 2px solid var(--fsp-fire); padding-left: 10px;">
-                        <strong>DIRECTOR'S CUE:</strong> Start recording. State your stage name and your drive to dominate the industry with FSP. Max duration: 5 minutes.
-                    </p>
-                    <input type="file" accept="video/*" style="width:100%; border-style: dashed;" required>
-                </div>
-
-                <button type="submit" class="initialize-btn">INITIALIZE STATUS</button>
-
+                <button type="submit" class="initialize-btn">INITIALIZE STAR STATUS</button>
             </form>
         </section>
-
     </main>
 
-    <footer style="text-align: center; padding: 60px 20px; color: #222; font-size: 0.7rem; letter-spacing: 5px; background: #000;">
-        FILTHY SEDUCTION PRODUCTIONS &copy; 2026 | ALL IDENTITY DATA ENCRYPTED
-    </footer>
+    <script>
+        // FUNCTION TO UPDATE THE PREVIEW NAME LIVE
+        function updatePreview() {
+            const name = document.getElementById('stageName').value;
+            document.getElementById('preview-name').innerText = name || "STAGE NAME";
+        }
+
+        // FUNCTION TO SHOW THE IMAGE IN THE PREVIEW CARD IMMEDIATELY
+        function showImg(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('preview-img');
+                    img.src = e.target.result;
+                    img.style.opacity = "1";
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // FUNCTION TO HANDLE THE "INITIALIZE" BUTTON CLICK
+        document.getElementById('intakeForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert("SYSTEM ALERT: Your Identity is being Certified. Your profile is now being loaded into the Obsidian Portal.");
+            window.location.href = "portal.html"; // Redirects to the portal
+        };
+    </script>
 
 </body>
 </html>
