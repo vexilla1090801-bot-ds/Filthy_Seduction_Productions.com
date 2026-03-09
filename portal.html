@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Portal | FSP Certified History</title>
+    <style>
+        :root {
+            --fsp-black: #050505;
+            --fsp-pitch: #000000;
+            --fsp-fire: #ff3300;
+            --fsp-gold: #c5a059;
+            --fsp-white: #ffffff;
+            --fsp-glow: rgba(255, 51, 0, 0.7);
+        }
+
+        /* RESET & STABILITY */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--fsp-pitch);
+            color: var(--fsp-white);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ERROR FIX: ENSURE HEADER STAYS ON TOP */
+        header.fsp-nav-slim {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            background: rgba(0, 0, 0, 0.98);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 1px solid #1a1a1a;
+            z-index: 9999; /* Max Priority */
+            backdrop-filter: blur(25px);
+        }
+
+        /* 2X BREAKOUT LOGO - MASTER AUTHORITY */
+        .logo-box { position: relative; height: 100%; }
+
+        .fsp-logo-top-left {
+            height: 160px; /* Enhanced Size */
+            width: auto;
+            position: absolute;
+            top: -15px;
+            left: 0;
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.9));
+            z-index: 10000;
+        }
+
+        .fsp-logo-top-left:hover {
+            filter: drop-shadow(0 0 45px var(--fsp-fire));
+            transform: scale(1.08) rotate(-1deg);
+        }
+
+        /* LIVE SYSTEM STATUS */
+        .system-status {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--fsp-fire);
+            font-weight: 900;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--fsp-fire);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--fsp-fire);
+            animation: pulse-ring 1.2s infinite;
+        }
+
+        /* ENHANCED TICKER */
+        .ticker-bar {
+            margin-top: 75px;
+            background: #080808;
+            border-bottom: 2px solid #111;
+            padding: 12px 0;
+            overflow: hidden;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker-slide 50s linear infinite;
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .ticker-content b { color: var(--fsp-fire); margin: 0 50px; }
+
+        /* THE OBSIDIAN TALENT GRID */
+        .portal-main {
+            padding: 80px 5%;
+            position: relative;
+            z-index: 10; /* Lower than header */
+        }
+
+        .portal-header-text {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .bebas {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3rem, 10vw, 6rem);
+            letter-spacing: 12px;
+            line-height: 1;
+        }
+
+        .lust-glow {
+            color: var(--fsp-white);
+            text-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        .talent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* THE CARD: AI LUST ARCHITECTURE */
+        .talent-card {
+            background: #0a0a0a;
+            border: 1px solid #151515;
+            aspect-ratio: 2/3;
+            position: relative;
+            overflow: hidden;
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: card-birth 1s ease-out backwards;
+        }
+
+        .talent-card:hover {
+            border-color: var(--fsp-fire);
+            box-shadow: 0 0 50px var(--fsp-glow);
+            transform: translateY(-15px) scale(1.03);
+            z-index: 50;
+        }
+
+        /* Placeholder image logic - Ensure visibility */
+        .talent-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            transition: 0.8s;
+            filter: grayscale(100%) contrast(1.2);
+        }
+
+        .talent-card:hover .talent-img {
+            opacity: 1;
+            filter: grayscale(0%) contrast(1);
+        }
+
+        .info-overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 40px 25px;
+            background: linear-gradient(to top, #000 0%, transparent 100%);
+            z-index: 2;
+        }
+
+        .stage-name {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .status-tag {
+            color: var(--fsp-gold);
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            border-left: 2px solid var(--fsp-fire);
+            padding-left: 10px;
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* ANIMATIONS */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 51, 0, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 51, 0, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 51, 0, 0); }
+        }
+
+        @keyframes ticker-slide {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        @keyframes card-birth {
+            from { opacity: 0; transform: translateY(50px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        /* MOBILE ENHANCEMENT */
+        @media (max-width: 768px) {
+            .fsp-logo-top-left { height: 100px; }
+            .talent-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .portal-main { padding: 40px 15px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="fsp-nav-slim">
+        <div class="logo-box">
+            <a href="index.html">
+                <img src="VEXILLIALSDP_FSP.png" alt="FSP Directorate" class="fsp-logo-top-left">
+            </a>
+        </div>
+        <div class="system-status">
+            <span class="pulse-dot"></span>
+            <span>TALENT DATABASE ONLINE</span>
+        </div>
+    </header>
+
+    <div class="ticker-bar">
+        <div class="ticker-content">
+            <b>CERTIFIED IDENTITY</b> [FSP-9921] - STATUS: ICON <b>HISTORY SECURED</b> [FSP-8832] - STATUS: ELITE <b>$100/HR RATE ACTIVE</b> [FSP-7743] - STATUS: BASIC <b>NEW STAR INITIALIZED</b> [FSP-1102] - STATUS: ICON <b>AI LUST ARCHIVE</b> 
+            <b>CERTIFIED IDENTITY</b> [FSP-9921] - STATUS: ICON <b>HISTORY SECURED</b> [FSP-8832] - STATUS: ELITE <b>$100/HR RATE ACTIVE</b> [FSP-7743] - STATUS: BASIC <b>NEW STAR INITIALIZED</b> [FSP-1102] - STATUS: ICON <b>AI LUST ARCHIVE</b>
+        </div>
+    </div>
+
+    <main class="portal-main">
+        <div class="portal-header-text">
+            <h1 class="bebas">THE <span style="color:var(--fsp-fire); text-shadow: 0 0 30px var(--fsp-fire);">OBSIDIAN</span> PORTAL</h1>
+            <p style="text-transform: uppercase; color: #444; letter-spacing: 4px; font-weight: 900; font-size: 0.8rem;">
+                Your History. Your Stardom. Fully Certified.
+            </p>
+        </div>
+
+        <section class="talent-grid">
+            <div class="talent-card" style="animation-delay: 0.1s;">
+                <div style="width:100%; height:100%; background: linear-gradient(45deg, #111, #000); position: absolute; top:0; left:0;"></div>
+                <div class="info-overlay">
+                    <span class="stage-name">VIXEN V.</span>
+                    <span class="status-tag">CERTIFIED ICON // ID: FSP-001</span>
+                </div>
+            </div>
+
+            <div class="talent-card" style="animation-delay: 0.2s;">
+                <div style="width:100%; height:100%; background: linear-gradient(45deg, #111, #000); position: absolute; top:0; left:0;"></div>
+                <div class="info-overlay">
+                    <span class="stage-name">DANTE FIRE</span>
+                    <span class="status-tag">CERTIFIED ELITE // ID: FSP-002</span>
+                </div>
+            </div>
+
+            <div class="talent-card" style="animation-delay: 0.3s;">
+                <div style="width:100%; height:100%; background: linear-gradient(45deg, #111, #000); position: absolute; top:0; left:0;"></div>
+                <div class="info-overlay">
+                    <span class="stage-name">SABLE NIGHT</span>
+                    <span class="status-tag">CERTIFIED BASIC // ID: FSP-003</span>
+                </div>
+            </div>
+
+            </section>
+    </main>
+
+    <footer style="text-align: center; padding: 100px 20px; border-top: 1px solid #111; background: #000;">
+        <a href="join.html" style="color: var(--fsp-gold); text-decoration: none; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; border: 1px solid var(--fsp-gold); padding: 20px 40px; transition: 0.4s;">
+            JOIN THE LEDGER
+        </a>
+    </footer>
+
+</body>
+</html>
