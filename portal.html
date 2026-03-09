@@ -6,58 +6,54 @@
     <title>Executive Portal | FSP Obsidian Directorate</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --fsp-pitch: #000; --fsp-gold: #c5a059; --fsp-fire: #ff3300; --fsp-white: #fff; --fsp-glass: rgba(255,255,255,0.03); }
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-card: #0c0c0c; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
 
         /* UNIVERSAL HEADER */
-        header { 
-            height: 180px; display: flex; align-items: center; justify-content: space-between; 
-            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
-            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
-        }
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
         .logo { height: 150px; }
         .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
-        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; }
-        .main-nav a.active { color: var(--fsp-gold); }
+        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
 
-        .dashboard-layout { 
-            display: grid; grid-template-columns: 350px 1fr 350px; gap: 30px; 
-            max-width: 1800px; margin: 240px auto 100px; padding: 0 40px; 
-        }
+        .portal-layout { max-width: 1400px; margin: 240px auto 100px; padding: 0 5%; display: grid; grid-template-columns: 350px 1fr 350px; gap: 30px; }
 
-        /* LEFT: IDENTITY & REVENUE */
-        .panel { background: #080808; border: 1px solid #151515; padding: 30px; height: fit-content; }
-        .profile-section { text-align: center; margin-bottom: 40px; }
-        .profile-hex { width: 120px; height: 120px; margin: 0 auto 20px; border: 2px solid var(--fsp-gold); overflow: hidden; }
-        .profile-hex img { width: 100%; height: 100%; object-fit: cover; }
-        .id-label { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 4px; }
+        /* COLUMN 1: IDENTITY CARD */
+        .id-card { background: var(--fsp-card); border: 1px solid #1a1a1a; padding: 30px; height: fit-content; position: sticky; top: 240px; }
+        .id-card h2 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 5px; line-height: 1; margin-bottom: 5px; }
+        .node-serial { font-size: 0.65rem; color: #444; font-weight: 900; letter-spacing: 2px; margin-bottom: 30px; display: block; }
         
-        .rev-counter { background: #000; border: 1px solid #222; padding: 20px; margin-top: 20px; text-align: center; }
-        .rev-counter p { font-size: 0.5rem; letter-spacing: 3px; color: #444; font-weight: 900; margin-bottom: 5px; }
-        .rev-val { font-family: 'Bebas Neue'; font-size: 2.5rem; color: var(--fsp-gold); }
+        .stat-block { margin-bottom: 25px; }
+        .stat-label { font-size: 0.55rem; color: var(--fsp-gold); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+        .stat-value { font-family: 'Bebas Neue'; font-size: 2rem; display: block; }
+        .status-pill { display: inline-block; padding: 4px 12px; background: #111; border: 1px solid #222; font-size: 0.55rem; font-weight: 900; margin-top: 5px; letter-spacing: 1px; }
 
-        /* CENTER: ACTIVE OPS & LEDGER */
-        .ops-center h2 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 8px; margin-bottom: 30px; border-left: 4px solid var(--fsp-fire); padding-left: 20px; }
-        .ops-card { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 25px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--fsp-fire); display: inline-block; margin-right: 10px; }
-        .card-text h4 { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
-        .card-text p { font-size: 0.75rem; color: #555; margin-top: 5px; }
-        .btn-view { padding: 10px 20px; background: transparent; border: 1px solid #333; color: #666; font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; cursor: pointer; }
+        /* COLUMN 2: OPERATIONS CENTER */
+        .ops-header { border-bottom: 1px solid #111; padding-bottom: 20px; margin-bottom: 30px; }
+        .ops-header h1 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 8px; }
+        
+        .op-card { background: #080808; border: 1px solid #151515; padding: 30px; margin-bottom: 20px; border-left: 4px solid var(--fsp-fire); }
+        .op-card h4 { font-size: 0.7rem; color: #fff; letter-spacing: 2px; font-weight: 900; margin-bottom: 10px; }
+        .op-card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+        .op-status { display: flex; justify-content: space-between; margin-top: 15px; font-size: 0.6rem; font-weight: 900; letter-spacing: 1px; }
 
-        /* RIGHT: COMPLIANCE & REPOSITORY */
-        .compliance-list { list-style: none; margin-top: 20px; }
-        .compliance-list li { padding: 15px 0; border-bottom: 1px solid #151515; display: flex; justify-content: space-between; font-size: 0.7rem; }
-        .status-ok { color: #00ff66; font-weight: 900; }
-        .status-warn { color: var(--fsp-fire); font-weight: 900; }
+        /* THE VAULT / UPLOAD ZONE */
+        .vault-zone { background: #050505; border: 2px dashed #1a1a1a; padding: 60px; text-align: center; margin-top: 40px; transition: 0.3s; cursor: pointer; }
+        .vault-zone:hover { border-color: var(--fsp-fire); background: #080000; }
+        .vault-zone h3 { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 5px; margin-bottom: 10px; }
+        .vault-zone p { font-size: 0.65rem; color: #444; font-weight: 900; letter-spacing: 2px; }
 
-        .upload-trigger { 
-            width: 100%; padding: 20px; border: 2px dashed #222; text-align: center; 
-            margin-top: 30px; cursor: pointer; transition: 0.3s; color: #444; font-size: 0.6rem; font-weight: 900;
-        }
-        .upload-trigger:hover { border-color: var(--fsp-gold); color: #fff; }
+        /* COLUMN 3: COMPLIANCE & SUBMITTALS */
+        .side-panel { background: #080808; border: 1px solid #111; padding: 25px; margin-bottom: 30px; }
+        .side-panel h3 { font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 20px; border-bottom: 1px solid #111; padding-bottom: 10px; }
+        
+        .checklist-item { display: flex; justify-content: space-between; font-size: 0.65rem; font-weight: 900; padding: 12px 0; border-bottom: 1px solid #0f0f0f; }
+        .check-state { color: #333; }
+        .check-state.done { color: var(--fsp-fire); }
+        .check-state.pending { color: var(--fsp-gold); }
 
-        @media (max-width: 1200px) { .dashboard-layout { grid-template-columns: 1fr; } }
+        .support-callout { font-size: 0.65rem; color: #444; line-height: 1.6; border-top: 1px solid #111; padding-top: 20px; margin-top: 20px; }
+        .support-callout a { color: var(--fsp-fire); text-decoration: none; font-weight: 900; }
     </style>
 </head>
 <body>
@@ -66,100 +62,106 @@
     <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
     <nav class="main-nav">
         <a href="index.html">COMMAND</a>
+        <a href="community.html">COMMUNITY</a>
         <a href="ledger.html">LEDGER</a>
-        <a href="portal.html" class="active">EXECUTIVE PORTAL</a>
+        <a href="portal.html" style="color:var(--fsp-gold)">PORTAL</a>
     </nav>
 </header>
 
-<main class="dashboard-layout">
-    
-    <aside class="panel">
-        <div class="profile-section">
-            <div class="profile-hex">
-                <img id="port-img" src="" alt="NODE">
-            </div>
-            <h3 id="port-name" class="id-label">---</h3>
-            <p id="port-id" style="font-size: 0.6rem; letter-spacing: 3px; color: #444; font-weight: 900;"></p>
+<main class="portal-layout">
+    <aside class="id-card">
+        <h2 id="display-name">EVA</h2>
+        <span class="node-serial">BASIC-5596-2026</span>
+        
+        <div class="stat-block">
+            <span class="stat-label">Total Accrued Revenue</span>
+            <span class="stat-value">$0,000.00</span>
         </div>
 
-        <div class="rev-counter">
-            <p>TOTAL ACCRUED REVENUE</p>
-            <div class="rev-val" id="port-accrued">$0,000.00</div>
+        <div class="stat-block">
+            <span class="stat-label">Tier Privilege</span>
+            <span class="stat-value" style="font-size: 1.2rem; color:var(--fsp-gold)">BASIC AUTHORIZED</span>
         </div>
 
-        <div style="margin-top: 30px;">
-            <p style="font-size: 0.55rem; letter-spacing: 2px; color: #333; font-weight: 900; margin-bottom: 15px;">TIER PRIVILEGE</p>
-            <div id="port-tier-badge" style="padding: 10px; border: 1px solid var(--fsp-gold); color: var(--fsp-gold); font-size: 0.6rem; text-align: center; font-weight: 900; letter-spacing: 3px;">
-                PENDING
-            </div>
+        <div class="stat-block">
+            <span class="stat-label">System Initialization</span>
+            <span class="status-pill" style="color:#0f0; border-color:#0f0">COMPLETED</span>
+            <p style="font-size:0.6rem; color:#444; margin-top:5px;">Ledger node successfully created and paid.</p>
         </div>
     </aside>
 
-    <section class="ops-center">
-        <h2>ACTIVE OPERATIONS</h2>
-        
-        <div class="ops-card">
-            <div class="card-text">
-                <h4><span class="status-dot"></span> IDENTITY VERIFICATION 2257</h4>
-                <p>Pending manual review by Directorate compliance officer.</p>
-            </div>
-            <button class="btn-view">STATUS</button>
+    <section class="operations-center">
+        <div class="ops-header">
+            <h1>ACTIVE OPERATIONS</h1>
         </div>
 
-        <div class="ops-card">
-            <div class="card-text">
-                <h4><span class="status-dot" style="background: #00ff66;"></span> SYSTEM INITIALIZATION</h4>
-                <p>Obsidian Ledger node successfully created and paid.</p>
+        <div class="op-card">
+            <h4>IDENTITY VERIFICATION 2257</h4>
+            <p>Pending manual review by Directorate compliance officer. Access to high-tier Ledger payouts is restricted until validation is finalized.</p>
+            <div class="op-status">
+                <span style="color:var(--fsp-gold)">STATUS: IN_REVIEW</span>
+                <span>ETA: 24-48 HOURS</span>
             </div>
-            <button class="btn-view" style="color:#00ff66; border-color:#00ff66;">COMPLETED</button>
         </div>
 
-        <h2 style="margin-top: 50px;">MY SUBMITTALS</h2>
-        <p style="color: #333; font-size: 0.8rem; text-align: center; padding: 40px; border: 1px dashed #111;">
-            NO ACTIVE PROJECT SUBMITTALS DETECTED. VISIT THE PRODUCTION LEDGER TO APPLY.
-        </p>
+        <div class="op-card" style="border-left-color: #222;">
+            <h4>MY SUBMITTALS</h4>
+            <p style="color:#444;">NO ACTIVE PROJECT SUBMITTALS DETECTED. VISIT THE PRODUCTION LEDGER TO APPLY FOR LIVE CASTING CALLS.</p>
+            <div class="op-status">
+                <a href="ledger.html" style="color:#fff; text-decoration:none;">BROWSE LEDGER →</a>
+            </div>
+        </div>
+
+        <div class="vault-zone" onclick="triggerUpload()">
+            <h3>DROP METADATA ASSETS HERE</h3>
+            <p>(4K VIDEO / RAW PHOTO ONLY)</p>
+            <input type="file" id="asset-upload" style="display:none" multiple>
+        </div>
     </section>
 
-    <aside class="panel">
-        <h3 style="font-family: 'Bebas Neue'; letter-spacing: 3px; font-size: 1.2rem; margin-bottom: 20px;">COMPLIANCE CHECKLIST</h3>
-        <ul class="compliance-list">
-            <li><span>PHOTO ID SYNC</span> <span class="status-warn">REQUIRED</span></li>
-            <li><span>AGE VERIFICATION</span> <span class="status-ok">VERIFIED</span></li>
-            <li><span>TAX DOCUMENTATION</span> <span class="status-warn">PENDING</span></li>
-            <li><span>REVENUE NODE</span> <span class="status-ok">ACTIVE</span></li>
-        </ul>
-
-        <div class="upload-trigger">
-            DROP METADATA ASSETS HERE<br>
-            <span style="font-size: 10px; opacity: 0.5;">(4K VIDEO / RAW PHOTO ONLY)</span>
+    <aside class="compliance-panel">
+        <div class="side-panel">
+            <h3>COMPLIANCE CHECKLIST</h3>
+            <div class="checklist-item">
+                <span>PHOTO ID SYNC</span>
+                <span class="check-state pending">REQUIRED</span>
+            </div>
+            <div class="checklist-item">
+                <span>AGE VERIFICATION</span>
+                <span class="check-state done">VERIFIED</span>
+            </div>
+            <div class="checklist-item">
+                <span>TAX DOCUMENTATION</span>
+                <span class="check-state pending">PENDING</span>
+            </div>
+            <div class="checklist-item">
+                <span>REVENUE NODE</span>
+                <span class="check-state done">ACTIVE</span>
+            </div>
         </div>
 
-        <div style="margin-top: 40px; border-top: 1px solid #111; padding-top: 20px;">
-            <p style="font-size: 0.6rem; color: #444; line-height: 1.6;">
-                <b>SUPPORT:</b> Contact your assigned Directorate Brand Manager for technical assistance with the Obsidian Vault.
+        <div class="side-panel">
+            <h3>CAREER CONCIERGE</h3>
+            <p class="support-callout">
+                Contact your assigned **Directorate Brand Manager** for technical assistance with the Obsidian Vault or career lifestyle coaching.
+                <br><br>
+                <a href="vexillaaits.com_account_support.html">OPEN AITS SUPPORT TICKET</a>
             </p>
         </div>
     </aside>
-
 </main>
 
 <script>
+    function triggerUpload() {
+        document.getElementById('asset-upload').click();
+    }
+    
+    // Auto-load name from intake if exists
     window.onload = function() {
         const data = JSON.parse(localStorage.getItem('fsp_active_profile'));
-        if(!data) {
-            window.location.href = "join.html";
-            return;
+        if(data) {
+            document.getElementById('display-name').innerText = data.name.toUpperCase();
         }
-
-        document.getElementById('port-name').innerText = data.name;
-        document.getElementById('port-id').innerText = data.id;
-        document.getElementById('port-img').src = data.image;
-        document.getElementById('port-tier-badge').innerText = data.tier + " AUTHORIZED";
-
-        // Logic for accrued revenue (demo value)
-        if(data.tier === 'ICON') document.getElementById('port-accrued').innerText = "$2,988.00";
-        else if(data.tier === 'ELITE') document.getElementById('port-accrued').innerText = "$594.00";
-        else if(data.tier === 'PRO') document.getElementById('port-accrued').innerText = "$87.00";
     }
 </script>
 
