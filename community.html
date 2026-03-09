@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Node | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-card: #080808; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
+        .main-nav a.active { color: var(--fsp-fire); }
+
+        .community-layout { max-width: 1400px; margin: 240px auto 100px; padding: 0 5%; display: grid; grid-template-columns: 1fr 350px; gap: 40px; }
+
+        /* MEMBER GRID */
+        .member-feed h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 12px; margin-bottom: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        
+        .member-card { background: var(--fsp-card); border: 1px solid #111; padding: 25px; transition: 0.4s; position: relative; overflow: hidden; }
+        .member-card:hover { border-color: var(--fsp-fire); transform: translateY(-5px); }
+        .member-card.icon-tier { border-left: 4px solid var(--fsp-gold); }
+
+        .card-header { display: flex; gap: 15px; align-items: center; margin-bottom: 20px; }
+        .avatar { width: 60px; height: 60px; background: #111; border: 1px solid #222; overflow: hidden; }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .name-box h3 { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 2px; line-height: 1; }
+        .name-box span { font-size: 0.55rem; color: var(--fsp-fire); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+
+        .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; border-top: 1px solid #111; padding-top: 15px; }
+        .stat-item { font-size: 0.6rem; color: #444; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+        .stat-item b { display: block; color: #fff; font-size: 0.8rem; margin-top: 2px; }
+
+        .btn-group { display: flex; gap: 10px; }
+        .btn-sm { flex: 1; padding: 12px; font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; border: 1px solid #222; background: transparent; color: #fff; cursor: pointer; text-decoration: none; text-align: center; }
+        .btn-sm:hover { background: #fff; color: #000; }
+
+        /* RIGHT SIDEBAR: ACTIVITY */
+        .activity-sidebar { background: #050505; border: 1px solid #111; padding: 30px; height: fit-content; }
+        .activity-sidebar h2 { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 4px; margin-bottom: 20px; color: var(--fsp-gold); }
+        .log-item { font-size: 0.75rem; color: #666; padding: 15px 0; border-bottom: 1px solid #111; }
+        .log-item b { color: var(--fsp-white); }
+        .log-time { font-size: 0.55rem; color: #333; display: block; margin-top: 5px; }
+
+        .warning-box { margin-top: 40px; padding: 20px; border: 1px dashed var(--fsp-fire); font-size: 0.65rem; color: var(--fsp-fire); line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+    <nav class="main-nav">
+        <a href="index.html">COMMAND</a>
+        <a href="ledger.html">LEDGER</a>
+        <a href="community.html" class="active">COMMUNITY</a>
+        <a href="portal.html">PORTAL</a>
+    </nav>
+</header>
+
+<main class="community-layout">
+    <section class="member-feed">
+        <h1>ACTIVE NODES</h1>
+        
+        <div class="grid">
+            <div class="member-card icon-tier">
+                <div class="card-header">
+                    <div class="avatar"><img src="performer1.jpg" alt=""></div>
+                    <div class="name-box">
+                        <h3>VALERIE_X</h3>
+                        <span>ICON STATUS // $250/HR</span>
+                    </div>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-item">Verified Assets<b>142</b></div>
+                    <div class="stat-item">Last Production<b>03.05.26</b></div>
+                </div>
+                <div class="btn-group">
+                    <a href="profile.html" class="btn-sm">VIEW PRO-FILE</a>
+                    <a href="vexillaaits.com_account_support.html" class="btn-sm">MESSAGE</a>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="card-header">
+                    <div class="avatar"><img src="performer2.jpg" alt=""></div>
+                    <div class="name-box">
+                        <h3>JAX_OBSIDIAN</h3>
+                        <span style="color:#666">PRO STATUS // $100/HR</span>
+                    </div>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-item">Verified Assets<b>24</b></div>
+                    <div class="stat-item">Last Production<b>03.01.26</b></div>
+                </div>
+                <div class="btn-group">
+                    <a href="profile.html" class="btn-sm">VIEW PRO-FILE</a>
+                    <a href="vexillaaits.com_account_support.html" class="btn-sm">MESSAGE</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <aside class="activity-sidebar">
+        <h2>GLOBAL LOGS</h2>
+        <div class="log-item">
+            <b>PERFORMER_K</b> initialized a new 2257 Ticket.
+            <span class="log-time">2 MINUTES AGO</span>
+        </div>
+        <div class="log-item">
+            <b>OBSIDIAN_BOT</b> approved 4K Metadata for <b>VALERIE_X</b>.
+            <span class="log-time">15 MINUTES AGO</span>
+        </div>
+        <div class="log-item">
+            <b>DIRECTORATE</b> posted a new $150/HR Studio Call.
+            <span class="log-time">1 HOUR AGO</span>
+        </div>
+
+        <div class="warning-box">
+            <b>SECURITY WARNING:</b> Sharing phone numbers or external emails in comments or messages is a direct violation of the Doctrine. System-wide censoring is active.
+        </div>
+    </aside>
+</main>
+
+</body>
+</html>
