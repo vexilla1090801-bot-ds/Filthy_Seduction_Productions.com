@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance Vault | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-card: #080808; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        /* UNIVERSAL HEADER */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+
+        .compliance-wrap { max-width: 1200px; margin: 240px auto 100px; padding: 0 5%; }
+        
+        .vault-header { margin-bottom: 60px; text-align: left; border-left: 2px solid var(--fsp-gold); padding-left: 30px; }
+        .vault-header h1 { font-family: 'Bebas Neue'; font-size: 3.5rem; letter-spacing: 12px; line-height: 1; }
+        .vault-header p { font-size: 0.7rem; color: #444; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; margin-top: 10px; }
+
+        .status-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+
+        /* RECORD CARDS */
+        .record-card { background: #050505; border: 1px solid #151515; padding: 40px; margin-bottom: 30px; position: relative; }
+        .record-card h3 { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 20px; color: var(--fsp-white); }
+        
+        .data-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #111; font-family: 'Source Code Pro'; font-size: 0.75rem; }
+        .data-label { color: #555; text-transform: uppercase; }
+        .data-status { color: #0f0; font-weight: 700; }
+
+        /* UPLOAD ZONE */
+        .upload-zone { border: 2px dashed #1a1a1a; padding: 50px; text-align: center; background: #080808; transition: 0.3s; cursor: pointer; }
+        .upload-zone:hover { border-color: var(--fsp-fire); background: #0d0000; }
+        .upload-zone p { font-size: 0.65rem; color: #444; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* LEGAL NOTICES */
+        .legal-notice { background: #0a0a0a; padding: 30px; border: 1px solid #111; height: fit-content; }
+        .legal-notice h4 { font-family: 'Bebas Neue'; font-size: 1.1rem; letter-spacing: 2px; color: var(--fsp-gold); margin-bottom: 15px; }
+        .legal-notice p { font-size: 0.7rem; color: #666; line-height: 1.6; }
+
+        .btn-sync { display: block; width: 100%; padding: 20px; background: var(--fsp-white); color: #000; text-align: center; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; margin-top: 20px; transition: 0.4s; }
+        .btn-sync:hover { background: var(--fsp-fire); color: #fff; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+</header>
+
+<main class="compliance-wrap">
+    <div class="vault-header">
+        <h1>COMPLIANCE VAULT</h1>
+        <p>Federal 18 U.S.C. § 2257 Recordkeeping & Rights Management</p>
+    </div>
+
+    <div class="status-grid">
+        <section class="records-area">
+            <div class="record-card">
+                <h3>PRIMARY IDENTITY RECORD</h3>
+                <div class="data-row">
+                    <span class="data-label">Legal Name Verification</span>
+                    <span class="data-status">VERIFIED</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Age Attestation (2257)</span>
+                    <span class="data-status">ACTIVE</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Document Expiry</span>
+                    <span style="color:var(--fsp-gold)">09.2028</span>
+                </div>
+                <p style="font-size: 0.6rem; color: #333; margin-top: 20px; font-family: 'Source Code Pro';">RECORD_HASH: FSP_7721_AUTH_BLOCK</p>
+            </div>
+
+            <div class="upload-zone">
+                <p>Drop New ID Documents or Legal Certifications Here</p>
+                <span style="font-size: 0.5rem; color: #222; margin-top: 10px; display: block;">SECURE AES-256 ENCRYPTED UPLOAD ONLY</span>
+            </div>
+        </section>
+
+        <aside class="notices-area">
+            <div class="legal-notice">
+                <h4>DIRECTORATE PROTECTION</h4>
+                <p>Your Compliance Vault is the bedrock of your career. Without active 2257 Sync, the Directorate cannot authorize payouts or production dispatches. Our Legal Liaisons review all documents within 6 hours of submission.</p>
+                
+                <a href="vexillaaits.com_account_support.html" class="btn-sync">REQUEST LEGAL REVIEW</a>
+            </div>
+
+            <div style="margin-top: 30px; text-align: center;">
+                <p style="font-size: 0.55rem; color: #222; text-transform: uppercase; letter-spacing: 2px;">
+                    Custodian of Records:<br>
+                    FSP DIRECTORATE HQ
+                </p>
+            </div>
+        </aside>
+    </div>
+</main>
+
+<footer style="background: #050505; border-top: 1px solid #111; padding: 60px 5%; margin-top: 100px; text-align: center;">
+    <p style="font-size: 0.6rem; color: #222; letter-spacing: 2px;">© 2026 FILTHY SEDUCTION PRODUCTIONS | COMPLIANCE_VAULT_v3.9</p>
+</footer>
+
+</body>
+</html>
