@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Director Console | Obsidian Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-pitch: #0a0a0a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #000; color: #fff; font-family: 'Source Code Pro', monospace; 
+            display: grid; grid-template-columns: 350px 1fr; height: 100vh;
+        }
+
+        /* ADMIN SIDEBAR */
+        .admin-sidebar { 
+            background: var(--fsp-pitch); border-right: 1px solid #1a1a1a; 
+            padding: 40px; display: flex; flex-direction: column;
+        }
+        .admin-logo { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 5px; color: var(--fsp-fire); margin-bottom: 50px; }
+        
+        .tool-group { margin-bottom: 40px; }
+        .tool-label { font-size: 0.6rem; color: #444; letter-spacing: 3px; margin-bottom: 15px; display: block; }
+        .admin-btn { 
+            display: block; width: 100%; padding: 15px; background: transparent; 
+            border: 1px solid #222; color: #888; text-decoration: none; 
+            font-size: 0.7rem; margin-bottom: 10px; transition: 0.3s;
+        }
+        .admin-btn:hover, .admin-btn.active { border-color: var(--fsp-fire); color: #fff; background: #111; }
+
+        /* MAIN WORKSPACE */
+        .workspace { padding: 60px; overflow-y: auto; }
+        .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; }
+        h1 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 10px; }
+
+        /* CREATION FORM */
+        .form-box { background: #050505; border: 1px solid #111; padding: 40px; max-width: 700px; }
+        .form-row { margin-bottom: 25px; }
+        .form-row label { display: block; font-size: 0.7rem; color: var(--fsp-gold); margin-bottom: 10px; }
+        input, select, textarea { 
+            width: 100%; background: #000; border: 1px solid #222; padding: 15px; 
+            color: #fff; font-family: 'Source Code Pro'; outline: none;
+        }
+        input:focus { border-color: var(--fsp-fire); }
+
+        .btn-execute { 
+            background: var(--fsp-fire); color: #fff; border: none; padding: 20px 40px; 
+            font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 5px; 
+            cursor: pointer; transition: 0.4s;
+        }
+        .btn-execute:hover { background: #fff; color: #000; box-shadow: 0 0 30px rgba(255, 255, 255, 0.2); }
+
+        /* RECENT ACTIVITY LOG */
+        .mini-log { margin-top: 40px; font-size: 0.65rem; color: #333; }
+        .log-line { margin-bottom: 5px; }
+        .log-line b { color: var(--fsp-fire); }
+
+    </style>
+</head>
+<body>
+
+    <aside class="admin-sidebar">
+        <div class="admin-logo">DIRECTOR_V1</div>
+        
+        <div class="tool-group">
+            <span class="tool-label">MATRIX_MANAGEMENT</span>
+            <a href="#" class="admin-btn active">MINT_NEW_NODE</a>
+            <a href="#" class="admin-btn">REVENUE_ADJUSTER</a>
+            <a href="#" class="admin-btn">CRISIS_PROTOCOL_INIT</a>
+        </div>
+
+        <div class="tool-group">
+            <span class="tool-label">PUBLIC_FACE</span>
+            <a href="showroom.html" class="admin-btn">VIEW_SHOWROOM</a>
+            <a href="portal.html" class="admin-btn">EXIT_TO_PORTAL</a>
+        </div>
+    </aside>
+
+    <main class="workspace">
+        <div class="header-row">
+            <h1>MINT_NODE</h1>
+            <div style="font-size: 0.7rem; color: #444;">AUTH_LEVEL: 10 (OBSIDIAN)</div>
+        </div>
+
+        <div class="form-box">
+            <div class="form-row">
+                <label>NODE_DESIGNATION (NAME)</label>
+                <input type="text" placeholder="e.g. NODE_VIVIENNE" id="nodeName">
+            </div>
+            
+            <div class="form-row">
+                <label>RANK_LEVEL</label>
+                <select>
+                    <option>SURROGATE_PROBATION</option>
+                    <option selected>ELITE_SURROGATE</option>
+                    <option>ROYAL_DIRECTORATE</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label>INITIAL_VAULT_SEED ($)</label>
+                <input type="number" placeholder="0.00">
+            </div>
+
+            <div class="form-row">
+                <label>SYSTEM_DIRECTIVE_NOTE</label>
+                <textarea rows="3" placeholder="Enter specific mission parameters..."></textarea>
+            </div>
+
+            <button class="btn-execute" onclick="mintNode()">EXECUTE_MINTING</button>
+        </div>
+
+        <div class="mini-log" id="admin-log">
+            <div class="log-line"><b>[SYSTEM]</b> Director Console active...</div>
+            <div class="log-line"><b>[SYSTEM]</b> Secure handshake with GitHub Pages established.</div>
+        </div>
+    </main>
+
+    <script>
+        function mintNode() {
+            const name = document.getElementById('nodeName').value || "UNKNOWN_NODE";
+            const log = document.getElementById('admin-log');
+            const newLine = document.createElement('div');
+            newLine.className = 'log-line';
+            newLine.innerHTML = `<b>[SUCCESS]</b> New Node <b>${name.toUpperCase()}</b> added to Surrogate Matrix.`;
+            log.prepend(newLine);
+            alert("NODE SUCCESSFULLY MINTED TO THE DIRECTORATE.");
+        }
+    </script>
+
+</body>
+</html>
