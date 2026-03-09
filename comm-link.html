@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comm-Link | Private Directorate Feed</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-pitch: #0a0a0a; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; display: grid; grid-template-columns: 300px 1fr 350px; height: 100vh; overflow: hidden; }
+
+        /* LEFT NAV: THE CHANNELS */
+        .side-nav { background: #050505; border-right: 1px solid #111; padding: 40px 20px; }
+        .nav-item { padding: 15px; font-size: 0.65rem; font-weight: 900; letter-spacing: 2px; color: #444; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        .nav-item.active { color: var(--fsp-fire); border-left: 2px solid var(--fsp-fire); background: rgba(255,51,0,0.05); }
+
+        /* CENTER: THE MAIN PULSE */
+        .feed-container { overflow-y: auto; padding: 40px; border-right: 1px solid #111; background: var(--fsp-pitch); }
+        .post-card { background: #000; border: 1px solid #151515; padding: 25px; margin-bottom: 25px; position: relative; }
+        .post-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .avatar { width: 45px; height: 45px; background: #111; border: 1px solid var(--fsp-gold); border-radius: 50%; }
+        .node-name { font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 2px; color: var(--fsp-white); }
+        .post-content { color: #888; font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+        
+        /* THE "SEXUAL IDENTITY" PREVIEW */
+        .bts-photo-stub { width: 100%; height: 350px; background: #080808; border: 1px solid #111; display: flex; align-items: center; justify-content: center; color: #1a1a1a; font-family: 'Bebas Neue'; font-size: 3rem; margin-bottom: 20px; }
+
+        .engagement-bar { display: flex; gap: 20px; font-family: 'Source Code Pro'; font-size: 0.6rem; color: #444; }
+        .engagement-bar span:hover { color: var(--fsp-fire); cursor: pointer; }
+
+        /* RIGHT: LIVE INTEL & SURROGATE ACTIVITY */
+        .intel-panel { padding: 40px 20px; background: #050505; }
+        .intel-header { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 30px; border-bottom: 1px solid #111; padding-bottom: 10px; }
+        .live-node { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 0.7rem; color: #666; }
+        .status-dot { width: 6px; height: 6px; background: #0f0; border-radius: 50%; box-shadow: 0 0 10px #0f0; }
+
+        /* THE CHAT INPUT */
+        .post-input { position: sticky; bottom: 0; background: #000; padding: 20px; border-top: 1px solid #111; }
+        input { width: 100%; background: #080808; border: 1px solid #222; padding: 15px; color: #fff; outline: none; }
+    </style>
+</head>
+<body>
+
+    <aside class="side-nav">
+        <h2 style="font-family: 'Bebas Neue'; color: #fff; margin-bottom: 40px; letter-spacing: 5px;">COMM_LINK</h2>
+        <div class="nav-item active">#GLOBAL_PULSE</div>
+        <div class="nav-item">#PRODUCTION_TALK</div>
+        <div class="nav-item">#EARNINGS_BOAST</div>
+        <div class="nav-item" style="color:var(--fsp-gold)">#ROYAL_LOUNGE</div>
+    </aside>
+
+    <main class="feed-container">
+        <div class="post-card">
+            <div class="post-header">
+                <div class="avatar"></div>
+                <div>
+                    <span class="node-name">NODE_ALEXA</span>
+                    <span style="font-size: 0.5rem; display: block; color: var(--fsp-gold);">ELITE_STATUS // MIAMI</span>
+                </div>
+            </div>
+            <p class="post-content">
+                Just wrapped the "Silk & Shadows" set for the new Production Brief. The 8K detail on this lounge set is going to drive the FlammableFilth audience crazy. 😈 Who else is shooting today?
+            </p>
+            <div class="bts-photo-stub">BTS_SULT_01.JPG</div>
+            <div class="engagement-bar">
+                <span>[24] HANDSHAKES</span>
+                <span>[12] CONNECTED</span>
+            </div>
+        </div>
+
+        <div class="post-card">
+            <div class="post-header">
+                <div class="avatar" style="border-color: var(--fsp-fire);"></div>
+                <div>
+                    <span class="node-name">NODE_JORDAN</span>
+                    <span style="font-size: 0.5rem; display: block; color: var(--fsp-fire);">ICON_STATUS // LONDON</span>
+                </div>
+            </div>
+            <p class="post-content">
+                Payout just hit. $4,200 for the weekend residuals. If you aren't optimizing your metadata, you're leaving money on the table, girls. Get that bag. 💸
+            </p>
+            <div class="engagement-bar">
+                <span>[56] HANDSHAKES</span>
+                <span>[8] CONNECTED</span>
+            </div>
+        </div>
+
+        <div class="post-input">
+            <input type="text" placeholder="Share your status with the Directorate...">
+        </div>
+    </main>
+
+    <aside class="intel-panel">
+        <div class="intel-header">ACTIVE_NODES</div>
+        <div class="live-node"><span class="status-dot"></span> NODE_SOPHIA (Viewing Showroom)</div>
+        <div class="live-node"><span class="status-dot"></span> NODE_ELENA (Uploading Assets)</div>
+        <div class="live-node"><span class="status-dot"></span> NODE_VALENTINA (Active in Chat)</div>
+        <div class="live-node"><span class="status-dot"></span> NODE_ZARA (On Set)</div>
+        <div class="live-node"><span class="status-dot"></span> NODE_MILA (Miami HQ)</div>
+
+        <div style="margin-top: 50px; background: rgba(197, 160, 89, 0.05); padding: 20px; border: 1px solid var(--fsp-gold);">
+            <h4 style="font-family: 'Bebas Neue'; color: var(--fsp-gold); letter-spacing: 2px;">PRODUCTION_TIP</h4>
+            <p style="font-size: 0.65rem; color: #888; line-height: 1.4; margin-top: 10px;">
+                "Remember: FlammableFilth audiences pay for the *vibe* as much as the body. Keep your 'Around the Home' sets authentic but expensive."
+            </p>
+        </div>
+    </aside>
+
+</body>
+</html>
