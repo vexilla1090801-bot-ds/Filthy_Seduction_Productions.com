@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Production Ledger | FSP Obsidian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-dark-grey: #0a0a0a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        /* UNIVERSAL HEADER */
+        header { 
+            height: 180px; display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
+            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
+        }
+        .logo { height: 150px; }
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
+        .main-nav a.active { color: var(--fsp-fire); border-bottom: 1px solid var(--fsp-fire); padding-bottom: 5px; }
+
+        .ledger-container { max-width: 1400px; margin: 240px auto 100px; padding: 0 5%; }
+        
+        /* LEDGER HEADER */
+        .ledger-intro { margin-bottom: 60px; border-left: 4px solid var(--fsp-fire); padding-left: 30px; }
+        .ledger-intro h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 12px; line-height: 1; }
+        .ledger-intro p { font-size: 0.75rem; color: #555; letter-spacing: 4px; font-weight: 900; margin-top: 10px; }
+
+        /* PROJECT FEED */
+        .project-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .project-card { 
+            background: var(--fsp-dark-grey); border: 1px solid #1a1a1a; padding: 40px; 
+            display: grid; grid-template-columns: 150px 1fr 250px; align-items: center; gap: 40px;
+            transition: 0.3s;
+        }
+        .project-card:hover { border-color: var(--fsp-gold); background: #0c0c0c; }
+        
+        .rate-box { text-align: center; border-right: 1px solid #222; }
+        .rate-box .amount { font-family: 'Bebas Neue'; font-size: 3rem; color: var(--fsp-gold); display: block; }
+        .rate-box .unit { font-size: 0.6rem; color: #444; font-weight: 900; letter-spacing: 2px; }
+
+        .project-info h3 { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 4px; margin-bottom: 10px; }
+        .project-info p { color: #777; font-size: 0.9rem; font-weight: 300; max-width: 600px; }
+        .tag-row { margin-top: 15px; display: flex; gap: 10px; }
+        .tag { font-size: 0.55rem; padding: 4px 10px; border: 1px solid #333; color: #555; font-weight: 900; letter-spacing: 1px; }
+
+        .apply-btn { 
+            background: transparent; border: 1px solid #fff; color: #fff; padding: 18px; 
+            font-weight: 900; letter-spacing: 4px; text-transform: uppercase; font-size: 0.7rem; 
+            cursor: pointer; transition: 0.4s; text-align: center; text-decoration: none;
+        }
+        .apply-btn:hover { background: #fff; color: #000; }
+        .locked { opacity: 0.3; pointer-events: none; filter: grayscale(1); }
+
+        /* MEMBER SIDEBAR SNIPPET */
+        .member-status-bar { 
+            background: #111; padding: 15px 30px; margin-bottom: 40px; 
+            display: flex; justify-content: space-between; align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+    <nav class="main-nav">
+        <a href="index.html">COMMAND</a>
+        <a href="ledger.html" class="active">LEDGER</a>
+        <a href="join.html">PORTAL</a>
+    </nav>
+</header>
+
+<main class="ledger-container">
+    <div class="member-status-bar">
+        <div>
+            <span style="font-size: 0.6rem; color: #444; font-weight: 900; letter-spacing: 2px;">ACTIVE IDENTITY:</span>
+            <span id="member-id" style="color: var(--fsp-gold); font-weight: 700; margin-left: 10px;">GUEST_NODE</span>
+        </div>
+        <div>
+            <span style="font-size: 0.6rem; color: #444; font-weight: 900; letter-spacing: 2px;">AUTHORIZATION:</span>
+            <span id="member-tier" style="color: var(--fsp-fire); font-weight: 700; margin-left: 10px;">PENDING</span>
+        </div>
+    </div>
+
+    <section class="ledger-intro">
+        <h1>PRODUCTION LEDGER</h1>
+        <p>OPEN CASTING & REVENUE OPPORTUNITIES // SYSTEM_DATE: 2026</p>
+    </section>
+
+    <div class="project-grid">
+        <div class="project-card" id="project-pro">
+            <div class="rate-box">
+                <span class="amount">$100</span>
+                <span class="unit">PER HOUR</span>
+            </div>
+            <div class="project-info">
+                <h3>REMOTE CONTENT SYNC // VOL. 14</h3>
+                <p>Seeking Pro-tier talent for high-fidelity remote production. Scripted dialogue and solo aesthetic performance required for Directorate indexing.</p>
+                <div class="tag-row">
+                    <span class="tag">REMOTE</span><span class="tag">PRO STATUS</span><span class="tag">SOLO</span>
+                </div>
+            </div>
+            <a href="#" class="apply-btn" onclick="submitInterest('REMOTE SYNC 14')">SUBMIT ID</a>
+        </div>
+
+        <div class="project-card" id="project-elite">
+            <div class="rate-box">
+                <span class="amount">$150</span>
+                <span class="unit">PER HOUR</span>
+            </div>
+            <div class="project-info">
+                <h3>STUDIO SESSION // NEON OBSIDIAN</h3>
+                <p>On-location production in Los Angeles. Scripted role with reputable partner. High-production value intended for global distribution channels.</p>
+                <div class="tag-row">
+                    <span class="tag">LOS ANGELES</span><span class="tag">ELITE+</span><span class="tag">PARTNERED</span>
+                </div>
+            </div>
+            <a href="#" class="apply-btn" onclick="submitInterest('NEON OBSIDIAN')">SUBMIT ID</a>
+        </div>
+
+        <div class="project-card" id="project-icon">
+            <div class="rate-box">
+                <span class="amount">$250</span>
+                <span class="unit">PER HOUR</span>
+            </div>
+            <div class="project-info">
+                <h3>GLOBAL LEGACY SERIES // THE VAULT</h3>
+                <p>Icon-exclusive project. Multi-day production with full strategy consulting and legacy branding. Reserved for highest-tier Directorate partners.</p>
+                <div class="tag-row">
+                    <span class="tag">GLOBAL</span><span class="tag">ICON ONLY</span><span class="tag">LEGACY</span>
+                </div>
+            </div>
+            <a href="#" class="apply-btn" onclick="submitInterest('THE VAULT')">SUBMIT ID</a>
+        </div>
+    </div>
+</main>
+
+<script>
+    window.onload = function() {
+        const data = JSON.parse(localStorage.getItem('fsp_active_profile'));
+        const isPaid = localStorage.getItem('fsp_paid_status') === 'true';
+
+        if(data && isPaid) {
+            document.getElementById('member-id').innerText = data.id;
+            document.getElementById('member-tier').innerText = data.tier + " AUTHORIZED";
+
+            // LOGIC: LOCK PROJECTS ABOVE THEIR TIER
+            if(data.tier === 'PRO') {
+                document.getElementById('project-elite').classList.add('locked');
+                document.getElementById('project-icon').classList.add('locked');
+            } else if(data.tier === 'ELITE') {
+                document.getElementById('project-icon').classList.add('locked');
+            }
+        } else {
+            // LOCK EVERYTHING FOR NON-PAID
+            document.querySelectorAll('.project-card').forEach(card => card.classList.add('locked'));
+            alert("LEDGER ACCESS DENIED. AUTHORIZE ENROLLMENT TO VIEW PRODUCTION OPPORTUNITIES.");
+        }
+    }
+
+    function submitInterest(project) {
+        const data = JSON.parse(localStorage.getItem('fsp_active_profile'));
+        alert(`SUBMITTING ID: ${data.id} FOR PROJECT: ${project}\n\nDIRECTORATE WILL REVIEW METADATA.`);
+    }
+</script>
+
+</body>
+</html>
