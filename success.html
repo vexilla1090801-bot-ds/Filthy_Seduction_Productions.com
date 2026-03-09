@@ -2,51 +2,149 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Active Status Confirmed | FSP Obsidian</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Status Confirmed | FSP Obsidian Directorate</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
-        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; text-align: center; padding-top: 150px; }
-        
-        .success-box { max-width: 800px; margin: 0 auto; border: 1px solid #1a1a1a; padding: 60px; background: #080808; border-top: 5px solid #0f0; }
-        h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 10px; color: #0f0; margin-bottom: 20px; }
-        
-        .status-card { background: #000; border: 1px solid #222; padding: 30px; margin: 40px 0; text-align: left; }
-        .instruction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
-        .step { background: #111; padding: 20px; border-left: 3px solid var(--fsp-fire); text-align: left; }
-        .step h3 { font-size: 0.7rem; letter-spacing: 2px; color: var(--fsp-fire); margin-bottom: 10px; text-transform: uppercase; }
-        .step p { font-size: 0.85rem; color: #777; line-height: 1.4; }
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-green: #00ff66; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
 
-        .btn-portal { display: inline-block; margin-top: 50px; padding: 20px 40px; background: #fff; color: #000; text-decoration: none; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; }
-        .btn-portal:hover { background: var(--fsp-fire); color: #fff; }
+        /* UNIVERSAL CENTERED HEADER */
+        header { 
+            height: 180px; display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
+            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
+        }
+        .logo { height: 150px; }
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { color: #444; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
+
+        .container { max-width: 900px; margin: 240px auto 100px; padding: 0 5%; text-align: center; }
+
+        /* SUCCESS BADGE */
+        .success-shield { 
+            background: #080808; border: 1px solid #1a1a1a; padding: 60px; 
+            border-top: 5px solid var(--fsp-green); position: relative;
+        }
+        .check-icon { 
+            width: 80px; height: 80px; border: 3px solid var(--fsp-green); border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; 
+            color: var(--fsp-green); font-size: 2rem; font-weight: 900;
+        }
+
+        h1 { font-family: 'Bebas Neue'; font-size: 4.5rem; letter-spacing: 15px; color: #fff; margin-bottom: 10px; }
+        .sub-header { color: #555; font-size: 0.7rem; letter-spacing: 5px; font-weight: 900; text-transform: uppercase; margin-bottom: 50px; }
+
+        /* STATUS DATA */
+        .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; margin-bottom: 40px; }
+        .status-box { background: #000; border: 1px solid #111; padding: 25px; border-left: 3px solid var(--fsp-gold); }
+        .status-box .label { font-size: 0.55rem; color: #444; letter-spacing: 2px; font-weight: 900; display: block; margin-bottom: 5px; }
+        .status-box .val { font-size: 0.9rem; color: #fff; font-weight: 700; }
+
+        /* ACTION STEPS */
+        .next-steps { text-align: left; margin-top: 50px; }
+        .step-item { display: flex; gap: 20px; margin-bottom: 30px; background: rgba(255,255,255,0.02); padding: 25px; border: 1px solid #111; }
+        .step-num { font-family: 'Bebas Neue'; font-size: 2.5rem; color: var(--fsp-fire); opacity: 0.5; }
+        .step-content h3 { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; color: var(--fsp-gold); }
+        .step-content p { font-size: 0.85rem; color: #777; line-height: 1.6; font-weight: 300; }
+
+        .btn-finish { 
+            display: inline-block; width: 100%; padding: 25px; background: var(--fsp-white); 
+            color: #000; text-decoration: none; font-weight: 900; letter-spacing: 8px; 
+            text-transform: uppercase; transition: 0.4s; margin-top: 30px; 
+        }
+        .btn-finish:hover { background: var(--fsp-fire); color: #fff; letter-spacing: 12px; }
+
     </style>
 </head>
 <body>
 
-    <div class="success-box">
-        <h1>ACCESS GRANTED</h1>
-        <p style="letter-spacing: 5px; color: #555;">IDENTITY LOCKED // PRODUCTION CYCLE INITIALIZED</p>
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+    <nav class="main-nav">
+        <a href="index.html">COMMAND</a>
+        <a href="briefing-basic.html">ENROLL</a>
+        <a href="briefing-pro.html">PRO</a>
+        <a href="briefing-elite.html">ELITE</a>
+        <a href="briefing-icon.html">ICON</a>
+    </nav>
+</header>
 
-        <div class="status-card">
-            <p style="font-size: 0.6rem; color: #444; font-weight: 900; letter-spacing: 2px;">LEDGER STATUS</p>
-            <p style="font-size: 1.2rem; font-weight: 700; color: var(--fsp-gold);">ACTIVE PERMITTED PERFORMER</p>
-            <hr style="border: 0; border-top: 1px solid #111; margin: 15px 0;">
-            <p style="font-size: 0.8rem; color: #888;">Your credentials have been synced with the Directorate. You are now authorized for casting submittals at your designated revenue scale.</p>
+<main class="container">
+    <div class="success-shield">
+        <div class="check-icon">✓</div>
+        <h1>AUTHORIZED</h1>
+        <p class="sub-header">IDENTITY NODE COMMITTED TO LEDGER</p>
+
+        <div class="status-grid">
+            <div class="status-box">
+                <span class="label">PERFORMER ALIAS</span>
+                <span class="val" id="disp-name">--</span>
+            </div>
+            <div class="status-box">
+                <span class="label">LEDGER STATUS</span>
+                <span class="val" style="color:var(--fsp-green)">ACTIVE // PAID</span>
+            </div>
+            <div class="status-box">
+                <span class="label">DIRECTORATE ID</span>
+                <span class="val" id="disp-id">--</span>
+            </div>
+            <div class="status-box">
+                <span class="label">REVENUE SCALE</span>
+                <span class="val" id="disp-rev">--</span>
+            </div>
         </div>
 
-        <div class="instruction-grid">
-            <div class="step">
-                <h3>Step 01: Verification</h3>
-                <p>Submit your 2257 ID records to our compliance officer via the secure portal link sent to your email.</p>
+        <div class="next-steps">
+            <div class="step-item">
+                <div class="step-num">01</div>
+                <div class="step-content">
+                    <h3>Legal Verification (2257)</h3>
+                    <p>Check your encrypted email for the 18 U.S.C. § 2257 identity verification link. You must upload a government-issued photo ID to activate your production submittals.</p>
+                </div>
             </div>
-            <div class="step">
-                <h3>Step 02: Metadata</h3>
-                <p>Upload your 4K production assets to your assigned folder to begin the indexing process.</p>
+            <div class="step-item">
+                <div class="step-num">02</div>
+                <div class="step-content">
+                    <h3>Asset Indexing</h3>
+                    <p>Prepare your high-fidelity metadata (Photos/Videos). Your private Obsidian Vault link will be issued once identity verification is complete.</p>
+                </div>
             </div>
         </div>
 
-        <a href="join.html" class="btn-portal">RETURN TO TALENT PORTAL</a>
+        <a href="join.html" class="btn-finish">RETURN TO TALENT PORTAL</a>
     </div>
+
+    <p style="margin-top: 40px; font-size: 0.6rem; color: #222; letter-spacing: 2px;">
+        FILTHY SEDUCTION PRODUCTIONS | THE OBSIDIAN DIRECTORATE | SYSTEM_STAMP: 2026-AUTH-X
+    </p>
+</main>
+
+<script>
+    window.onload = function() {
+        const data = JSON.parse(localStorage.getItem('fsp_active_profile'));
+        if(!data) {
+            window.location.href = "index.html";
+            return;
+        }
+
+        document.getElementById('disp-name').innerText = data.name;
+        document.getElementById('disp-id').innerText = data.id;
+
+        // Map Revenue back for the final view
+        const tier = data.id.split('-')[0]; // Gets PRO, ELITE, or ICON
+        let rev = "$0.00/HR";
+        if(tier === 'PRO') rev = "$100.00/HR";
+        if(tier === 'ELITE') rev = "$150.00/HR";
+        if(tier === 'ICON') rev = "$250.00/HR";
+        
+        document.getElementById('disp-rev').innerText = rev;
+
+        // Optional: Clear storage or set a "Paid" flag here
+        localStorage.setItem('fsp_paid_status', 'true');
+    }
+</script>
 
 </body>
 </html>
