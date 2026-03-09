@@ -3,127 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <title>Basic Enrollment | FSP Obsidian</title>
+    <title>Basic Enrollment | FSP Obsidian Directorate</title>
     <style>
-        :root {
-            --fsp-pitch: #000; --fsp-gold: #c5a059; --fsp-fire: #ff3300; --fsp-white: #fff;
-        }
+        :root { --fsp-black: #050505; --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; line-height: 1.6; }
-
-        /* 180px COMMAND HEADER */
-        header { 
-            height: 180px; display: flex; align-items: center; justify-content: space-between; 
-            padding: 0 60px; border-bottom: 1px solid #1a1a1a; background: #000; 
-            position: fixed; width: 100%; top: 0; z-index: 1000; 
-        }
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 50px; border-bottom: 1px solid #111; background: #000; position: fixed; width: 100%; top: 0; z-index: 1000; }
         .logo { height: 150px; }
-
-        .form-layout { 
-            max-width: 1000px; margin: 240px auto 100px; padding: 60px; 
-            background: #080808; border: 1px solid #1a1a1a; position: relative;
-        }
-        .form-layout::before { content: 'SECURE UPLOAD PORTAL'; position: absolute; top: -15px; left: 20px; background: var(--fsp-fire); color: #fff; padding: 5px 15px; font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; }
-
-        h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 10px; color: var(--fsp-gold); margin-bottom: 10px; }
-        .instruction { color: #555; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 50px; text-transform: uppercase; }
-
-        .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
-        .input-group { margin-bottom: 25px; }
-        label { display: block; font-size: 0.65rem; color: #444; letter-spacing: 2px; margin-bottom: 10px; font-weight: 900; text-transform: uppercase; }
+        .container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; padding: 220px 5% 80px; max-width: 1600px; margin: 0 auto; }
+        h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 10px; color: var(--fsp-white); margin-bottom: 20px; }
+        .benefit-block { margin-bottom: 30px; border-left: 2px solid var(--fsp-gold); padding-left: 20px; color: #888; }
+        .benefit-block h3 { color: var(--fsp-gold); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
         
-        input, select, textarea { 
-            width: 100%; background: #000; border: 1px solid #222; padding: 20px; 
-            color: #fff; font-family: 'Outfit'; font-size: 1rem; transition: 0.4s; 
-        }
-        input:focus, select:focus, textarea:focus { border-color: var(--fsp-gold); outline: none; }
+        .enrollment-form { background: #080808; border: 1px solid #1a1a1a; padding: 40px; }
+        .social-fast { display: flex; gap: 10px; margin-bottom: 30px; }
+        .btn-social { flex: 1; padding: 15px; background: #111; border: 1px solid #222; color: #fff; font-size: 0.6rem; letter-spacing: 2px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
+        .btn-social:hover { background: #fff; color: #000; }
 
-        .agreement-box { background: #000; padding: 30px; border: 1px solid #1a1a1a; margin: 40px 0; display: flex; align-items: flex-start; gap: 15px; }
-        .agreement-box input { width: 25px; height: 25px; cursor: pointer; }
-        .agreement-text { font-size: 0.75rem; color: #888; letter-spacing: 1px; }
-
-        .btn-submit { 
-            width: 100%; padding: 30px; background: var(--fsp-fire); color: #fff; 
-            border: none; font-weight: 900; letter-spacing: 8px; cursor: pointer; 
-            text-transform: uppercase; transition: 0.5s; font-size: 0.9rem; 
-        }
-        .btn-submit:hover { background: #fff; color: #000; letter-spacing: 12px; }
-
-        @media (max-width: 800px) { .field-grid { grid-template-columns: 1fr; } .form-layout { padding: 30px; margin-top: 200px; } }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; font-size: 0.6rem; color: #444; letter-spacing: 2px; margin-bottom: 8px; font-weight: 900; }
+        input, select, textarea { width: 100%; background: #000; border: 1px solid #222; padding: 15px; color: white; outline: none; }
+        input:focus { border-color: var(--fsp-fire); }
+        .submit-btn { width: 100%; padding: 25px; background: var(--fsp-fire); color: white; border: none; font-weight: 900; letter-spacing: 5px; cursor: pointer; text-transform: uppercase; }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header>
-    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
-    <div style="border-right: 4px solid var(--fsp-gold); padding-right: 20px;">
-        <span style="color:var(--fsp-gold); font-weight:900; letter-spacing:5px;">BASIC IDENTITY SYNC</span>
-    </div>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo"></a>
+    <span style="color:var(--fsp-gold); font-weight:900; letter-spacing:3px; padding-right:20px;">BASIC STRATEGY</span>
 </header>
 
-<main class="form-layout">
-    <h1>INITIAL ENROLLMENT</h1>
-    <p class="instruction">Basic Tier: Identity Verification & Ledger Authorization</p>
+<main class="container">
+    <section>
+        <h1>BASIC ACCESS</h1>
+        <div class="benefit-block">
+            <h3>Standard Initialization</h3>
+            <p>Enter the Obsidian Ledger with zero upfront cost. Secure your metadata identity and establish your presence in our talent database.</p>
+        </div>
+        <div class="benefit-block">
+            <h3>Media Limits</h3>
+            <p>Basic accounts are authorized for 5 photo slots and 1 video submittal. All information is encrypted and secured by FSP standards.</p>
+        </div>
+        <div class="benefit-block">
+            <h3>Official Status</h3>
+            <p>Once registered, your adult screen name is reserved. You may upgrade to Pro or Elite at any time to increase your revenue potential.</p>
+        </div>
+    </section>
 
-    <form onsubmit="handleEnrollment(event)">
-        <div class="field-grid">
-            <div class="input-group">
-                <label>LEGAL FIRST NAME</label>
-                <input type="text" required placeholder="AS PER GOVT ID">
+    <section class="enrollment-form">
+        <label>FAST INITIALIZATION</label>
+        <div class="social-fast">
+            <button class="btn-social">Google Access</button>
+            <button class="btn-social">X / Twitter</button>
+        </div>
+
+        <form onsubmit="finishBasic(event)">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="input-group"><label>FIRST NAME</label><input type="text" required></div>
+                <div class="input-group"><label>LAST NAME</label><input type="text" required></div>
             </div>
-            <div class="input-group">
-                <label>LEGAL LAST NAME</label>
-                <input type="text" required placeholder="AS PER GOVT ID">
+            <div class="input-group"><label>LEGAL ADDRESS (FOR VERIFICATION)</label><input type="text" required></div>
+            <div class="input-group"><label>EMAIL ADDRESS</label><input type="email" required></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="input-group"><label>GENDER</label><select><option>FEMALE</option><option>MALE</option><option>NON-BINARY</option></select></div>
+                <div class="input-group"><label>AGE</label><input type="number" min="18" required></div>
             </div>
-        </div>
-
-        <div class="input-group">
-            <label>SECURE EMAIL ADDRESS</label>
-            <input type="email" required placeholder="FOR LEDGER NOTIFICATIONS">
-        </div>
-
-        <div class="field-grid">
-            <div class="input-group">
-                <label>ADULT SCREEN NAME</label>
-                <input type="text" placeholder="THE IDENTITY OTHERS WILL SEE">
-            </div>
-            <div class="input-group">
-                <label>IDENTIFIED GENDER</label>
-                <select required>
-                    <option value="" disabled selected>SELECT GENDER</option>
-                    <option value="female">FEMALE</option>
-                    <option value="male">MALE</option>
-                    <option value="non-binary">NON-BINARY</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="input-group">
-            <label>CONTENT INTEREST CATEGORIES</label>
-            <textarea rows="3" placeholder="E.G. SOLO, DIALOGUE, PROFESSIONAL MODELING, LIFESTYLE"></textarea>
-        </div>
-
-        <div class="agreement-box">
-            <input type="checkbox" required id="age-check">
-            <label for="age-check" class="agreement-text">
-                I CERITFY THAT I AM AT LEAST 18 YEARS OF AGE AND AUTHORIZE THE OBSIDIAN DIRECTORATE TO INDEX MY LEGAL IDENTITY WITHIN THE FSP PRIVATE LEDGER FOR PRODUCTION ELIGIBILITY.
-            </label>
-        </div>
-
-        <button type="submit" class="btn-submit">INITIALIZE BASIC IDENTITY</button>
-    </form>
+            <div class="input-group"><label>ADULT SCREEN NAME (LEAVE BLANK FOR FSP TO SELECT)</label><input type="text" placeholder="Optional"></div>
+            <div class="input-group"><label>PRODUCTION INTERESTS</label><input type="text" placeholder="e.g. Solo, Dialogue, Professional Modeling"></div>
+            <div class="input-group"><label>EXISTING VIDEOS ONLINE?</label><input type="text" placeholder="Link or Number of Videos"></div>
+            
+            <button type="submit" class="submit-btn">OPEN ACCOUNT & SECURE NAME</button>
+        </form>
+    </section>
 </main>
 
 <script>
-    function handleEnrollment(e) {
+    function finishBasic(e) {
         e.preventDefault();
+        alert("ACCOUNT REGISTERED. SCREEN NAME SECURED. PROCEEDING TO DATABASE PORTAL.");
         sessionStorage.setItem('selectedTier', 'basic');
-        alert("IDENTITY VERIFIED. SYNCING WITH THE OBSIDIAN LEDGER...");
         window.location.href = "join.html";
     }
 </script>
-
 </body>
 </html>
