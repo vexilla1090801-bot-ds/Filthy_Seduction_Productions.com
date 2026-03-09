@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Pro Strategy Briefing | FSP Obsidian</title>
+    <style>
+        :root {
+            --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; line-height: 1.6; }
+
+        /* 180px COMMAND HEADER */
+        header { 
+            height: 180px; display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 60px; border-bottom: 1px solid #1a1a1a; background: #000; 
+            position: fixed; width: 100%; top: 0; z-index: 1000; 
+        }
+        .logo { height: 150px; }
+
+        .briefing-layout { 
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; 
+            padding: 240px 8% 100px; max-width: 1600px; margin: 0 auto; 
+        }
+
+        /* STRATEGY LEFT */
+        .strategy h1 { 
+            font-family: 'Bebas Neue'; font-size: clamp(4rem, 8vw, 6rem); 
+            letter-spacing: 12px; color: var(--fsp-white); margin-bottom: 10px; 
+        }
+        .status-tag { 
+            display: inline-block; padding: 10px 20px; border: 1px solid var(--fsp-fire); 
+            font-size: 0.6rem; letter-spacing: 3px; font-weight: 900; color: var(--fsp-fire); margin-bottom: 40px; 
+            background: rgba(255, 51, 0, 0.05);
+        }
+
+        .benefit-card { margin-bottom: 40px; border-left: 2px solid #222; padding-left: 30px; transition: 0.3s; }
+        .benefit-card:hover { border-left-color: var(--fsp-fire); }
+        .benefit-card h3 { color: var(--fsp-gold); font-size: 1.1rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+        .benefit-card p { color: #777; font-size: 1.1rem; font-weight: 300; max-width: 550px; }
+
+        /* ENROLLMENT BOX RIGHT */
+        .enrollment-vault { 
+            background: #080808; border: 1px solid #1a1a1a; 
+            padding: 50px; position: sticky; top: 220px; 
+        }
+        .enrollment-vault h2 { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 4px; margin-bottom: 30px; }
+
+        .input-row { margin-bottom: 20px; }
+        label { display: block; font-size: 0.6rem; color: #444; letter-spacing: 2px; margin-bottom: 8px; font-weight: 900; }
+        input { 
+            width: 100%; background: #000; border: 1px solid #222; padding: 18px; 
+            color: #fff; font-family: 'Outfit'; font-size: 0.95rem; outline: none;
+        }
+        input:focus { border-color: var(--fsp-fire); }
+
+        .payment-summary { 
+            background: #000; padding: 30px; margin: 30px 0; border: 1px solid #222; 
+            text-align: center; 
+        }
+        .payment-summary p { font-size: 0.65rem; color: #555; letter-spacing: 3px; margin-bottom: 5px; text-transform: uppercase; }
+        .payment-summary .price { font-size: 3rem; font-weight: 900; color: var(--fsp-white); }
+        .payment-summary .price span { font-size: 1rem; color: #444; }
+
+        .btn-authorize { 
+            width: 100%; padding: 25px; background: var(--fsp-fire); color: #fff; 
+            border: none; font-weight: 900; letter-spacing: 6px; cursor: pointer; 
+            text-transform: uppercase; transition: 0.4s; font-size: 0.85rem; 
+        }
+        .btn-authorize:hover { 
+            background: white; color: black; transform: translateY(-2px); 
+        }
+
+        @media (max-width: 1100px) { .briefing-layout { grid-template-columns: 1fr; } }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+    <div style="border-right: 4px solid var(--fsp-fire); padding-right: 20px;">
+        <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:4px;">STATUS: PRO BRIEFING</span>
+    </div>
+</header>
+
+<main class="briefing-layout">
+    <section class="strategy">
+        <h1>PRO STATUS</h1>
+        <div class="status-tag">ACTIVE PRODUCTION PIPELINE</div>
+
+        <div class="benefit-card">
+            <h3>Standard Casting Access</h3>
+            <p>Pro status authorizes your identity for the $100/hr production scale. You are moved from the "Basic" ledger into the active talent pool for immediate scripted submittals.</p>
+        </div>
+
+        <div class="benefit-card">
+            <h3>Media Repository (15+3)</h3>
+            <p>Expand your metadata footprint with 15 photo slots and 3 high-definition video repositories. Professional tools for professional talent.</p>
+        </div>
+
+        <div class="benefit-card">
+            <h3>Start/Stop Flexibility</h3>
+            <p>The Pro tier is month-to-month. Maintain your status while active in production, and pause your metadata authority whenever you are off-cycle.</p>
+        </div>
+
+        <div class="benefit-card">
+            <h3>Direct Script Blog</h3>
+            <p>Gain access to the inner Directorate Script Blog, where upcoming 60-minute requirements are posted before they reach the general public.</p>
+        </div>
+    </section>
+
+    <section class="enrollment-vault">
+        <h2>AUTHORIZE PRO IDENTITY</h2>
+        <form onsubmit="finalizePro(event)">
+            <div class="input-row">
+                <label>LEGAL IDENTITY (NAME ON CARD)</label>
+                <input type="text" required placeholder="FULL LEGAL NAME">
+            </div>
+            <div class="input-row">
+                <label>CREDIT CARD NUMBER</label>
+                <input type="text" required placeholder="XXXX XXXX XXXX XXXX">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="input-row">
+                    <label>EXPIRY</label>
+                    <input type="text" required placeholder="MM / YY">
+                </div>
+                <div class="input-row">
+                    <label>CVC</label>
+                    <input type="password" required placeholder="***">
+                </div>
+            </div>
+
+            <div class="payment-summary">
+                <p>Monthly Recurring Subscription</p>
+                <div class="price">$29.00<span>/mo</span></div>
+            </div>
+
+            <button type="submit" class="btn-authorize">AUTHORIZE PRO STATUS</button>
+        </form>
+    </section>
+</main>
+
+<script>
+    function finalizePro(e) {
+        e.preventDefault();
+        sessionStorage.setItem('selectedTier', 'pro');
+        alert("PRO STATUS INITIALIZED. ACCESSING PRODUCTION PIPELINE...");
+        window.location.href = "join.html";
+    }
+</script>
+
+</body>
+</html>
