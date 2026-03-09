@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Initialization | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px; }
+
+        .onboarding-container { max-width: 900px; width: 100%; background: #080808; border: 1px solid #111; padding: 60px; position: relative; }
+        .onboarding-container::before { content: "INITIALIZING_NODE_v.4.0"; position: absolute; top: 20px; left: 30px; font-family: 'Source Code Pro'; font-size: 0.5rem; color: #222; letter-spacing: 2px; }
+
+        .step-indicator { display: flex; gap: 10px; margin-bottom: 40px; }
+        .dot { width: 40px; height: 4px; background: #222; }
+        .dot.active { background: var(--fsp-fire); box-shadow: 0 0 10px var(--fsp-fire); }
+
+        .induction-header h1 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 8px; margin-bottom: 10px; }
+        .induction-header p { color: var(--fsp-gold); font-size: 0.7rem; letter-spacing: 3px; font-weight: 900; text-transform: uppercase; margin-bottom: 40px; }
+
+        .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        
+        .mission-card { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 30px; transition: 0.3s; position: relative; cursor: pointer; }
+        .mission-card:hover { border-color: var(--fsp-fire); }
+        .mission-card.complete { border-color: #0f0; }
+        .mission-card.complete::after { content: "✓"; position: absolute; top: 20px; right: 20px; color: #0f0; font-weight: 900; }
+
+        .mission-card h3 { font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 10px; }
+        .mission-card p { font-size: 0.7rem; color: #555; line-height: 1.5; margin-bottom: 20px; }
+
+        .btn-action { display: inline-block; padding: 10px 20px; border: 1px solid #333; color: #fff; text-decoration: none; font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+        .btn-action:hover { background: #fff; color: #000; }
+
+        .footer-nav { margin-top: 50px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #111; padding-top: 30px; }
+        .status-text { font-family: 'Source Code Pro'; font-size: 0.6rem; color: #333; }
+        
+        .btn-finish { padding: 20px 50px; background: var(--fsp-fire); color: #fff; border: none; font-weight: 900; letter-spacing: 4px; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; opacity: 0.5; }
+        .btn-finish.ready { opacity: 1; box-shadow: 0 0 20px rgba(255, 51, 0, 0.4); }
+    </style>
+</head>
+<body>
+
+<div class="onboarding-container">
+    <div class="step-indicator">
+        <div class="dot active"></div>
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+    <div class="induction-header">
+        <h1>NODE INDUCTION</h1>
+        <p>Complete the following protocols to activate your FSP credentials</p>
+    </div>
+
+    <div class="mission-grid">
+        <div class="mission-card complete">
+            <h3>IDENTITY SYNC</h3>
+            <p>Verification of legal age and stage-name alignment for 2257 compliance.</p>
+            <a href="identity.html" class="btn-action">REVIEW IDENTITY</a>
+        </div>
+
+        <div class="mission-card">
+            <h3>REVENUE ROUTING</h3>
+            <p>Establish secure settlement pathways for production and asset payouts.</p>
+            <a href="revenue.html" class="btn-action">CONFIGURE BANKING</a>
+        </div>
+
+        <div class="mission-card">
+            <h3>LIAISON HANDSHAKE</h3>
+            <p>Initialize contact with your assigned Brand Manager for career guidance.</p>
+            <a href="managers.html" class="btn-action">MEET YOUR TEAM</a>
+        </div>
+
+        <div class="mission-card">
+            <h3>TIER SELECTION</h3>
+            <p>Confirm your starting protocol level (Basic, Elite, or Icon).</p>
+            <a href="tiers.html" class="btn-action">SELECT PROTOCOL</a>
+        </div>
+    </div>
+
+    <div class="footer-nav">
+        <div class="status-text">SYSTEM_READY // AWAITING_FINAL_COMMIT</div>
+        <button class="btn-finish" onclick="window.location.href='index.html'">ACTIVATE NODE</button>
+    </div>
+</div>
+
+</body>
+</html>
