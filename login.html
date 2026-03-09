@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Authorization | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--fsp-pitch); 
+            color: var(--fsp-white); 
+            font-family: 'Outfit', sans-serif; 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* ATMOSPHERIC BACKGROUND */
+        .bg-overlay {
+            position: absolute; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #110000 0%, #000 70%);
+            z-index: -1;
+        }
+
+        .login-card {
+            width: 100%; max-width: 450px;
+            background: rgba(8, 8, 8, 0.9);
+            border: 1px solid #1a1a1a;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-card::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--fsp-fire), transparent);
+        }
+
+        .logo-small { height: 120px; margin-bottom: 30px; }
+        
+        h1 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 8px; margin-bottom: 10px; }
+        .subtitle { font-size: 0.6rem; color: #444; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px; }
+
+        .input-wrap { margin-bottom: 20px; text-align: left; }
+        label { font-size: 0.55rem; color: var(--fsp-gold); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        
+        input {
+            width: 100%; background: #000; border: 1px solid #222; padding: 15px;
+            color: #fff; font-family: 'Source Code Pro', monospace; font-size: 0.8rem;
+            transition: 0.3s; outline: none;
+        }
+        input:focus { border-color: var(--fsp-fire); }
+
+        .btn-auth {
+            width: 100%; padding: 20px; background: var(--fsp-white); color: #000;
+            border: none; font-weight: 900; letter-spacing: 5px; font-size: 0.75rem;
+            text-transform: uppercase; cursor: pointer; margin-top: 20px; transition: 0.4s;
+        }
+        .btn-auth:hover { background: var(--fsp-fire); color: #fff; }
+
+        .gate-footer { margin-top: 30px; font-size: 0.6rem; color: #333; letter-spacing: 1px; }
+        .gate-footer a { color: var(--fsp-gold); text-decoration: none; font-weight: 900; }
+
+        /* SCANNER ANIMATION MOCK */
+        .scanner-line {
+            position: absolute; width: 100%; height: 1px; background: rgba(255, 51, 0, 0.2);
+            top: 0; left: 0; animation: scan 4s infinite linear;
+        }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+    </style>
+</head>
+<body>
+
+<div class="bg-overlay"></div>
+
+<div class="login-card">
+    <div class="scanner-line"></div>
+    <img src="VEXILLIALSDP_FSP.png" class="logo-small" alt="FSP">
+    
+    <h1>NODE ACCESS</h1>
+    <p class="subtitle">DIRECTORATE SECURITY CHECKPOINT</p>
+
+    <form action="index.html">
+        <div class="input-wrap">
+            <label>Member Credentials (UID)</label>
+            <input type="text" placeholder="Enter Node ID..." required>
+        </div>
+        
+        <div class="input-wrap">
+            <label>Encryption Key (Password)</label>
+            <input type="password" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn-auth">AUTHORIZE HANDSHAKE</button>
+    </form>
+
+    <div class="gate-footer">
+        UNAUTHORIZED ACCESS IS LOGGED.<br>
+        <a href="vexillaaits.com_account_support.html">FORGOT KEY?</a> | <a href="portal.html">INITIATE NEW NODE</a>
+    </div>
+</div>
+
+</body>
+</html>
