@@ -3,171 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Production Intake | FSP</title>
+    <title>FSP | Filthy Seduction Productions - The Obsidian Directorate</title>
     <style>
         :root {
-            --fsp-black: #050505; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #ffffff;
+            --fsp-black: #050505;
+            --fsp-pitch: #000000;
+            --fsp-fire: #ff3300;
+            --fsp-gold: #c5a059;
+            --fsp-white: #ffffff;
         }
+
+        /* RESET & STABILITY */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; }
 
-        /* HEADER 180px SYNC */
-        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 50px; border-bottom: 2px solid #111; }
-        .logo { height: 150px; }
-
-        .dashboard { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; padding: 50px; margin-top: 20px; }
-
-        /* THE OBSIDIAN MIRROR (PREVIEW PANE) */
-        .mirror-container { position: sticky; top: 50px; background: #080808; border: 1px solid #222; padding: 20px; text-align: center; }
-        .mirror-display { width: 100%; aspect-ratio: 3/4; background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; border: 1px solid #111; }
-        #main-preview { width: 100%; height: 100%; object-fit: cover; display: none; }
-        #video-preview { width: 100%; height: 100%; display: none; }
-        .mirror-label { position: absolute; top: 10px; left: 10px; font-size: 0.6rem; color: var(--fsp-fire); letter-spacing: 2px; }
-
-        /* FORM & BUTTONS */
-        .form-area { background: #0a0a0a; padding: 40px; }
-        .upload-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 30px 0; }
-        
-        /* THE DYNAMIC BUTTON */
-        .upload-slot {
-            height: 120px; background: #000; border: 1px dashed #333;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            cursor: pointer; transition: 0.3s; position: relative;
+        body {
+            background-color: var(--fsp-pitch);
+            color: var(--fsp-white);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
-        .upload-slot:hover { border-color: var(--fsp-fire); }
-        .upload-slot.verified { border: 1px solid var(--fsp-gold); background: rgba(197, 160, 89, 0.05); }
-        .upload-slot span { font-size: 0.6rem; letter-spacing: 1px; color: #444; margin-top: 5px; }
-        .upload-slot.verified span { color: var(--fsp-gold); }
+
+        /* MASTER COMMAND HEADER - FIXED 180px */
+        header.fsp-nav-command {
+            position: fixed; top: 0; left: 0; width: 100%; height: 180px; 
+            background: rgba(0, 0, 0, 0.98); display: flex; align-items: center;
+            justify-content: space-between; padding: 0 50px; border-bottom: 2px solid #1a1a1a;
+            z-index: 10000; backdrop-filter: blur(30px);
+        }
+
+        .fsp-logo-main { height: 150px; width: auto; transition: 0.5s; }
+        .fsp-logo-main:hover { filter: drop-shadow(0 0 20px var(--fsp-fire)); }
+
+        nav.fsp-sub-nav { display: flex; gap: 30px; }
+        .nav-link { 
+            color: #555; text-decoration: none; font-weight: 900; 
+            font-size: 0.7rem; letter-spacing: 3px; transition: 0.3s; 
+            text-transform: uppercase;
+        }
+        .nav-link:hover { color: var(--fsp-gold); }
+
+        /* HERO CANVAS */
+        .hero {
+            margin-top: 180px; padding: 120px 5%; min-height: 80vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+            text-align: center;
+        }
+
+        .bebas { font-family: 'Bebas Neue', cursive; font-size: clamp(3rem, 12vw, 8rem); letter-spacing: 15px; line-height: 0.9; }
+        .gold-glow { color: var(--fsp-gold); text-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
+
+        /* SECTION ARCHITECTURE */
+        section { padding: 100px 8%; border-bottom: 1px solid #111; position: relative; }
+        .sec-title { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 10px; margin-bottom: 60px; text-align: center; }
+
+        /* THE SUBSCRIPTION TIERS (The commitment gateway) */
+        .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .tier-card { 
+            background: #080808; border: 1px solid #1a1a1a; padding: 50px 30px; 
+            text-align: center; transition: 0.4s; position: relative;
+        }
+        .tier-card:hover { border-color: var(--fsp-gold); transform: translateY(-10px); }
+        .tier-card.featured { border: 2px solid var(--fsp-fire); }
         
-        .check-mark { display: none; color: var(--fsp-gold); font-size: 1.2rem; }
-        .upload-slot.verified .check-mark { display: block; }
-        .upload-slot.verified .plus-icon { display: none; }
+        .tier-card h3 { letter-spacing: 5px; margin-bottom: 15px; font-size: 1.5rem; }
+        .price { font-size: 2.8rem; font-weight: 900; margin-bottom: 5px; }
+        .billing-note { font-size: 0.65rem; color: var(--fsp-gold); font-weight: 900; letter-spacing: 2px; margin-bottom: 30px; display: block; height: 20px;}
+        
+        .feat { list-style: none; text-align: left; font-size: 0.8rem; color: #555; line-height: 2.5; margin-bottom: 40px; }
+        .feat b { color: white; }
 
-        .btn-action { width: 100%; padding: 25px; background: var(--fsp-fire); border: none; color: #fff; font-weight: 900; letter-spacing: 5px; cursor: pointer; margin-top: 20px; }
-        .btn-action:hover { background: #fff; color: #000; }
+        .btn-tier {
+            display: block; width: 100%; padding: 20px; background: #111; color: #fff;
+            text-decoration: none; font-weight: 900; letter-spacing: 3px; font-size: 0.8rem;
+            transition: 0.3s;
+        }
+        .tier-card:hover .btn-tier { background: var(--fsp-fire); }
 
-        /* STATUS CONTROLS */
-        .profile-status { display: flex; gap: 20px; margin-top: 20px; }
-        .status-toggle { flex: 1; padding: 15px; background: #111; border: 1px solid #222; color: #555; font-size: 0.7rem; text-align: center; cursor: pointer; }
-        .status-toggle.active { border-color: var(--fsp-gold); color: white; }
+        /* THE REVENUE LADDER */
+        .revenue-section { background: #050505; }
+        .revenue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .rev-card { border-left: 4px solid var(--fsp-fire); padding: 40px; background: #000; }
+        .rev-card h4 { color: var(--fsp-fire); letter-spacing: 4px; margin-bottom: 15px; font-family: 'Bebas Neue'; font-size: 1.8rem; }
+        .rev-card p { font-size: 0.95rem; color: #888; line-height: 1.8; }
+        .rev-card .potential { display: block; margin-top: 20px; font-weight: 900; color: var(--fsp-gold); font-size: 1.4rem; letter-spacing: 1px; }
+
+        /* THE ECOSYSTEM (COMMUNITY & BLOG) */
+        .eco-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .eco-box { background: #080808; border: 1px solid #111; padding: 60px; transition: 0.4s; }
+        .eco-box:hover { border-color: var(--fsp-fire); }
+        .eco-box h3 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 5px; margin-bottom: 20px; }
+        .eco-box p { color: #666; font-size: 1rem; line-height: 1.8; margin-bottom: 30px; }
+
+        footer { padding: 100px; text-align: center; border-top: 1px solid #111; color: #222; font-size: 0.7rem; letter-spacing: 5px; }
+
+        @media (max-width: 1024px) {
+            header.fsp-nav-command { height: 140px; padding: 0 20px; }
+            .fsp-logo-main { height: 110px; }
+            .hero { margin-top: 140px; }
+            .eco-grid { grid-template-columns: 1fr; }
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header>
-    <img src="VEXILLIALSDP_FSP.png" class="logo">
-    <div style="text-align: right;">
-        <span style="color:var(--fsp-fire); font-size: 0.8rem; letter-spacing: 3px; font-weight: 900;">DASHBOARD INITIALIZATION</span>
-    </div>
-</header>
+    <header class="fsp-nav-command">
+        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="fsp-logo-main"></a>
+        <nav class="fsp-sub-nav">
+            <a href="portal.html" class="nav-link">PORTAL</a>
+            <a href="#community" class="nav-link">COMMUNITY</a>
+            <a href="#blog" class="nav-link">JOBS BLOG</a>
+        </nav>
+    </header>
 
-<div class="dashboard">
-    <div class="mirror-container">
-        <div class="mirror-display" id="mirror">
-            <div class="mirror-label" id="mirror-tag">AWAITING INPUT...</div>
-            <img id="main-preview">
-            <video id="video-preview" controls></video>
-            <div id="placeholder-text" style="color:#222; font-size:0.7rem; letter-spacing:5px;">OFFLINE</div>
+    <main class="hero">
+        <h1 class="bebas">OBSIDIAN <span class="gold-glow">DIRECTORATE</span></h1>
+        <p style="letter-spacing: 8px; color: #555; font-weight: 900; text-transform: uppercase; margin-top: 15px;">
+            Identity Initialization // Metadata Authority // $100+ Hourly
+        </p>
+        <div style="margin-top: 50px;">
+            <a href="#subscriptions" style="padding: 25px 60px; background: var(--fsp-fire); color: white; text-decoration: none; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; border: none;">INITIALIZE ACCESS</a>
         </div>
-        <p style="margin-top:20px; font-size:0.6rem; color:#444; line-height:1.5;">CLICK ANY VERIFIED SLOT TO PREVIEW OR REPLACE CONTENT.</p>
-    </div>
+    </main>
 
-    <div class="form-area">
-        <h2 style="font-family:'Bebas Neue'; letter-spacing:5px; margin-bottom:20px;">01. ASSET MANAGEMENT</h2>
-        
-        <div class="upload-grid">
-            <label class="upload-slot" id="slot-face" onclick="viewContent('face')">
-                <div class="plus-icon">+</div>
-                <div class="check-mark">✓</div>
-                <span>FACE</span>
-                <input type="file" hidden onchange="handleFile(this, 'face')">
-            </label>
-            <label class="upload-slot" id="slot-front" onclick="viewContent('front')">
-                <div class="plus-icon">+</div>
-                <div class="check-mark">✓</div>
-                <span>FRONT</span>
-                <input type="file" hidden onchange="handleFile(this, 'front')">
-            </label>
-            <label class="upload-slot" id="slot-back" onclick="viewContent('back')">
-                <div class="plus-icon">+</div>
-                <div class="check-mark">✓</div>
-                <span>BACK</span>
-                <input type="file" hidden onchange="handleFile(this, 'back')">
-            </label>
+    <section id="subscriptions">
+        <h2 class="sec-title">MEMBERSHIP <span style="color:var(--fsp-fire)">TIERS</span></h2>
+        <div class="tier-grid">
+            <div class="tier-card">
+                <h3>BASIC</h3>
+                <div class="price">FREE</div>
+                <span class="billing-note">LIFETIME ACCESS</span>
+                <ul class="feat">
+                    <li>✓ 5 PHOTO SLOTS / 1 VIDEO</li>
+                    <li>✓ STANDARD METADATA IDENTITY</li>
+                    <li>✓ COMMUNITY CHAT ACCESS</li>
+                    <li>✓ <b> worth $1000s in direction</b></li>
+                </ul>
+                <a href="join.html" class="btn-tier">START FREE</a>
+            </div>
+
+            <div class="tier-card">
+                <h3>PRO</h3>
+                <div class="price">$29<span>/MO</span></div>
+                <span class="billing-note">START/STOP ANYTIME</span>
+                <ul class="feat">
+                    <li>✓ 15 PHOTO SLOTS / 3 VIDEOS</li>
+                    <li>✓ PRODUCTION BLOG ACCESS</li>
+                    <li>✓ START/STOP SUBSCRIPTION</li>
+                    <li>✓ PROFILE REMAINS PERMANENT</li>
+                </ul>
+                <a href="checkout.html?tier=pro" class="btn-tier">SELECT PRO</a>
+            </div>
+
+            <div class="tier-card featured">
+                <h3 style="color:var(--fsp-fire)">ELITE</h3>
+                <div class="price">$99<span>/MO</span></div>
+                <span class="billing-note">6 MONTHS ADVANCE REQUIRED</span>
+                <ul class="feat">
+                    <li>✓ 40 PHOTO SLOTS / 10 VIDEOS</li>
+                    <li>✓ PRIORITY JOB BOARD ACCESS</li>
+                    <li>✓ ENHANCED SEARCH RANKING</li>
+                    <li>✓ INSTANT SCRIPT APPROVAL</li>
+                </ul>
+                <a href="checkout.html?tier=elite" class="btn-tier">SELECT ELITE</a>
+            </div>
+
+            <div class="tier-card">
+                <h3 style="color:var(--fsp-gold)">ICON</h3>
+                <div class="price">$249<span>/MO</span></div>
+                <span class="billing-note">12 MONTHS ADVANCE REQUIRED</span>
+                <ul class="feat">
+                    <li>✓ <b>UNLIMITED</b> MEDIA REPOSITORY</li>
+                    <li>✓ FRONT-PAGE LUST-LOOP FEATURE</li>
+                    <li>✓ 1-ON-1 STAFF CONSULTATION</li>
+                    <li>✓ GLOBAL METADATA AUTHORITY</li>
+                </ul>
+                <a href="checkout.html?tier=icon" class="btn-tier">SELECT ICON</a>
+            </div>
         </div>
+    </section>
 
-        <h2 style="font-family:'Bebas Neue'; letter-spacing:5px; margin-bottom:20px;">02. VIDEO REQUIREMENT (60 MIN)</h2>
-        <label class="upload-slot" id="slot-video" style="width:100%; height:80px;" onclick="viewContent('video')">
-            <div class="plus-icon">+ UPLOAD PRODUCTION VIDEO</div>
-            <div class="check-mark">✓ VIDEO LOADED - CLICK TO PLAY</div>
-            <input type="file" accept="video/*" hidden onchange="handleFile(this, 'video')">
-        </label>
-
-        <h2 style="font-family:'Bebas Neue'; letter-spacing:5px; margin-top:40px; margin-bottom:20px;">03. CASTING STATUS</h2>
-        <p style="font-size:0.7rem; color:#666; margin-bottom:10px;">Inform directors of your availability. Your profile stays live regardless.</p>
-        <div class="profile-status">
-            <div class="status-toggle active" id="stat-active" onclick="setStatus('active')">ACTIVE FOR JOBS</div>
-            <div class="status-toggle" id="stat-pause" onclick="setStatus('pause')">PAUSE INTAKE</div>
+    <section class="revenue-section">
+        <h2 class="sec-title">REVENUE <span style="color:var(--fsp-gold)">POTENTIAL</span></h2>
+        <div class="revenue-grid">
+            <div class="rev-card">
+                <h4>PRODUCTION SCRIPT</h4>
+                <p>Submit <b>exactly 60 minutes</b> of instructed video content. Follow the requirement perfectly to close the job instantly.</p>
+                <span class="potential">$100 - $150 / HOUR</span>
+            </div>
+            <div class="rev-card">
+                <h4>PHOTOGRAPHY SYNC</h4>
+                <p>Submit photography based on director requirements for placement in global ads and FSP publications.</p>
+                <span class="potential">$50 - $100 / JOB</span>
+            </div>
+            <div class="rev-card">
+                <h4>CELEBRITY GROWTH</h4>
+                <p>As your metadata presence expands, your job access increases. Top tiers receive elite production scripts.</p>
+                <span class="potential">UNCAPPED RATE</span>
+            </div>
         </div>
+    </section>
 
-        <button class="btn-action" onclick="finalize()">INITIALIZE CERTIFICATION</button>
-    </div>
-</div>
+    <section id="community">
+        <h2 class="sec-title">THE <span style="color:var(--fsp-fire)">ECOSYSTEM</span></h2>
+        <div class="eco-grid">
+            <div class="eco-box">
+                <h3>COMMUNITY CHAT</h3>
+                <p>Connect with FSP Staff and peer performers. Share brand strategy, clarify requirements, and stay in sync with the Directorate.</p>
+                <a href="chat.html" class="nav-link" style="color:var(--fsp-gold)">OPEN CHAT →</a>
+            </div>
+            <div id="blog" class="eco-box">
+                <h3>PRODUCTION BLOG</h3>
+                <p>The central ledger of upcoming jobs and new requirements. Follow the feed to secure high-paying video tasks.</p>
+                <a href="blog.html" class="nav-link" style="color:var(--fsp-gold)">VIEW JOBS →</a>
+            </div>
+        </div>
+    </section>
 
-<script>
-    // Local Store for Previews
-    const productionStore = { face: null, front: null, back: null, video: null };
-
-    function handleFile(input, type) {
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                productionStore[type] = e.target.result;
-                document.getElementById('slot-' + type).classList.add('verified');
-                viewContent(type); // Instant Preview after upload
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function viewContent(type) {
-        const data = productionStore[type];
-        const img = document.getElementById('main-preview');
-        const vid = document.getElementById('video-preview');
-        const tag = document.getElementById('mirror-tag');
-        const placeholder = document.getElementById('placeholder-text');
-
-        if (!data) return;
-
-        placeholder.style.display = "none";
-        tag.innerText = "VERIFYING ASSET: " + type.toUpperCase();
-
-        if (type === 'video') {
-            img.style.display = "none";
-            vid.style.display = "block";
-            vid.src = data;
-        } else {
-            vid.style.display = "none";
-            img.style.display = "block";
-            img.src = data;
-        }
-    }
-
-    function setStatus(mode) {
-        document.getElementById('stat-active').classList.remove('active');
-        document.getElementById('stat-pause').classList.remove('active');
-        document.getElementById('stat-' + mode).classList.add('active');
-    }
-
-    function finalize() {
-        if (!productionStore.face || !productionStore.video) {
-            alert("MANDATORY ASSETS MISSING: Face photo and Production Video required.");
-            return;
-        }
-        alert("IDENTITY ENCRYPTED. Redirecting to Portal...");
-        window.location.href = "portal.html";
-    }
-</script>
+    <footer>
+        FILTHY SEDUCTION PRODUCTIONS &copy; 2026 | THE OBSIDIAN LEDGER | PERMANENT IDENTITY
+    </footer>
 
 </body>
 </html>
