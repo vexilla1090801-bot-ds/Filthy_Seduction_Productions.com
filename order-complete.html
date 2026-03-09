@@ -1,140 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finalize Enrollment | FSP Obsidian Directorate</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
-
-        /* UNIVERSAL HEADER */
-        header { 
-            height: 180px; display: flex; align-items: center; justify-content: space-between; 
-            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
-            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
-        }
-        .logo { height: 150px; }
-        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
-        .main-nav a { color: #444; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
-
-        .order-container { max-width: 850px; margin: 240px auto 100px; padding: 0 5%; }
-        
-        .invoice-vault { 
-            background: #080808; border: 1px solid #1a1a1a; padding: 60px; 
-            position: relative; border-top: 5px solid var(--fsp-fire);
-        }
-        
-        h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 12px; margin-bottom: 10px; }
-        .status-bar { background: #111; padding: 10px; font-size: 0.6rem; letter-spacing: 4px; font-weight: 900; color: var(--fsp-fire); margin-bottom: 40px; text-transform: uppercase; }
-
-        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; text-align: left; }
-        .detail-item { border-bottom: 1px solid #151515; padding-bottom: 15px; }
-        .label { display: block; font-size: 0.55rem; color: #444; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; }
-        .val { font-size: 0.9rem; color: #fff; font-weight: 700; letter-spacing: 1px; }
-
-        .total-display { 
-            background: #000; border: 1px solid #222; padding: 40px; margin-bottom: 40px; 
-            text-align: center; border-left: 5px solid var(--fsp-gold);
-        }
-        .total-display p { font-size: 0.65rem; color: #666; letter-spacing: 5px; margin-bottom: 10px; font-weight: 900; }
-        .price-tag { font-family: 'Bebas Neue'; font-size: 6rem; line-height: 1; color: #fff; }
-
-        .btn-pay { 
-            display: block; width: 100%; padding: 30px; background: var(--fsp-white); color: #000; 
-            text-decoration: none; font-weight: 900; letter-spacing: 10px; font-size: 1.1rem; 
-            text-transform: uppercase; transition: 0.4s; text-align: center;
-        }
-        .btn-pay:hover { background: var(--fsp-fire); color: #fff; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255, 51, 0, 0.3); }
-
-        .legal-footer { margin-top: 40px; font-size: 0.6rem; color: #333; line-height: 1.8; text-align: center; letter-spacing: 1px; }
-    </style>
-</head>
-<body>
-
-<header>
-    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
-    <nav class="main-nav">
-        <a href="index.html">COMMAND</a>
-        <a href="briefing-basic.html">ENROLL</a>
-        <a href="briefing-pro.html">PRO</a>
-        <a href="briefing-elite.html">ELITE</a>
-        <a href="briefing-icon.html">ICON</a>
-    </nav>
-</header>
-
-<main class="order-container">
-    <div class="invoice-vault">
-        <div class="status-bar">SECURE NODE // IDENTITY FINALIZATION</div>
-        <h1>COMMITMENT LOCK</h1>
-        
-        <div class="detail-grid">
-            <div class="detail-item">
-                <span class="label">PERFORMER ALIAS</span>
-                <span class="val" id="final-name">--</span>
-            </div>
-            <div class="detail-item">
-                <span class="label">DIRECTORATE ID</span>
-                <span class="val" id="final-id">--</span>
-            </div>
-            <div class="detail-item">
-                <span class="label">INDUSTRY SSN</span>
-                <span class="val" id="final-ssn">--</span>
-            </div>
-            <div class="detail-item">
-                <span class="label">ENROLLMENT TERM</span>
-                <span class="val" id="final-term">--</span>
-            </div>
-        </div>
-
-        <div class="total-display">
-            <p>ADVANCE TOTAL DUE</p>
-            <div class="price-tag" id="final-price">$0.00</div>
-        </div>
-
-        <a href="#" class="btn-pay" id="payment-trigger">AUTHORIZE PAYMENT</a>
-
-        <div class="legal-footer">
-            18 U.S.C. § 2257 COMPLIANT // NO REFUNDS ON IDENTITY CREDENTIALING SERVICES // BY CLICKING AUTHORIZE YOU AGREE TO THE SELECTED SERVICE TERM AND PRODUCTION REVENUE SCALE.
-        </div>
-    </div>
-</main>
-
 <script>
     window.onload = function() {
-        // Pull data from previous steps
         const profile = JSON.parse(localStorage.getItem('fsp_active_profile'));
         const tier = (sessionStorage.getItem('selectedTier') || 'BASIC').toUpperCase();
 
         if(!profile) {
-            window.location.href = "briefing-basic.html";
+            window.location.href = "index.html"; 
             return;
         }
 
-        // Map Data to UI
         document.getElementById('final-name').innerText = profile.name;
         document.getElementById('final-id').innerText = profile.id;
         document.getElementById('final-ssn').innerText = profile.ssn;
 
-        // Pricing & Term Calculation
         let price = "$0.00";
         let term = "BASIC ENTRY (N/A)";
-        let link = "YOUR_STRIPE_OR_PAYPAL_URL"; // Placeholder
+        
+        // --- EDIT THESE LINKS BELOW ---
+        let link = "index.html"; // Default fallback if tier is missing
 
         if(tier === 'PRO') {
             price = "$87.00";
             term = "3 MONTHS (ADVANCE)";
-            link = "https://buy.stripe.com/PRO_LINK"; // REPLACE WITH ACTUAL
+            link = "https://buy.stripe.com/your_actual_pro_link"; // PASTE YOUR STRIPE LINK HERE
         } else if(tier === 'ELITE') {
             price = "$594.00";
             term = "6 MONTHS (ADVANCE)";
-            link = "https://buy.stripe.com/ELITE_LINK"; // REPLACE WITH ACTUAL
+            link = "https://buy.stripe.com/your_actual_elite_link"; // PASTE YOUR STRIPE LINK HERE
         } else if(tier === 'ICON') {
             price = "$2,988.00";
             term = "12 MONTHS (ADVANCE)";
-            link = "https://buy.stripe.com/ICON_LINK"; // REPLACE WITH ACTUAL
+            link = "https://buy.stripe.com/your_actual_icon_link"; // PASTE YOUR STRIPE LINK HERE
         }
 
         document.getElementById('final-price').innerText = price;
@@ -142,6 +37,3 @@
         document.getElementById('payment-trigger').href = link;
     }
 </script>
-
-</body>
-</html>
