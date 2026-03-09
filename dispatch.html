@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Dispatch | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-glow: rgba(255, 51, 0, 0.3); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+
+        /* UNIVERSAL HEADER */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+
+        .dispatch-container { max-width: 1200px; margin: 240px auto 100px; padding: 0 5%; }
+        
+        .terminal-window { 
+            background: #050505; border: 1px solid #1a1a1a; padding: 40px; 
+            font-family: 'Source Code Pro', monospace; position: relative;
+            box-shadow: 0 0 50px var(--fsp-glow);
+        }
+        
+        .terminal-header { 
+            display: flex; justify-content: space-between; border-bottom: 1px solid #222; 
+            padding-bottom: 15px; margin-bottom: 30px; font-size: 0.7rem; color: #444; 
+        }
+
+        .feed-item { margin-bottom: 25px; border-left: 2px solid #222; padding-left: 20px; transition: 0.3s; }
+        .feed-item:hover { border-left-color: var(--fsp-fire); }
+        .timestamp { color: var(--fsp-fire); font-weight: 700; margin-right: 15px; }
+        .event-type { color: var(--fsp-gold); text-transform: uppercase; margin-right: 15px; font-weight: 900; }
+        .message { color: #aaa; font-size: 0.9rem; }
+
+        /* INTERACTIVE DISPATCH MAP */
+        .dispatch-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 50px; }
+        
+        .map-visual { background: #080808; border: 1px solid #111; height: 300px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .map-visual::after { content: "ACTIVE_PRODUCTION_ZONES"; position: absolute; top: 10px; left: 10px; font-size: 0.5rem; color: #333; letter-spacing: 2px; }
+        
+        /* RADAR ANIMATION */
+        .radar { width: 150px; height: 150px; border: 1px solid var(--fsp-fire); border-radius: 50%; position: relative; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+
+        .status-panel { background: #080808; border: 1px solid #111; padding: 30px; }
+        .status-panel h3 { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 20px; }
+        .stat-row { display: flex; justify-content: space-between; font-size: 0.7rem; color: #555; margin-bottom: 10px; }
+        .stat-row b { color: #fff; }
+
+        .btn-action { display: block; width: 100%; padding: 20px; background: var(--fsp-fire); color: #fff; text-decoration: none; text-align: center; font-weight: 900; letter-spacing: 5px; margin-top: 20px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+    <nav style="position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px;">
+        <a href="index.html" style="color:#555; text-decoration:none; font-weight:900; font-size:0.75rem; letter-spacing:4px;">COMMAND</a>
+        <a href="dispatch.html" style="color:var(--fsp-fire); text-decoration:none; font-weight:900; font-size:0.75rem; letter-spacing:4px;">DISPATCH</a>
+        <a href="ledger.html" style="color:#555; text-decoration:none; font-weight:900; font-size:0.75rem; letter-spacing:4px;">LEDGER</a>
+        <a href="portal.html" style="color:#555; text-decoration:none; font-weight:900; font-size:0.75rem; letter-spacing:4px;">PORTAL</a>
+    </nav>
+</header>
+
+<main class="dispatch-container">
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <span>FSP_OBSIDIAN_CORE_v4.02</span>
+            <span>ENCRYPTION: AES-256</span>
+            <span>CONNECTION: SECURE</span>
+        </div>
+
+        <div id="dispatch-feed">
+            <div class="feed-item">
+                <span class="timestamp">[08:42:01]</span>
+                <span class="event-type">System</span>
+                <span class="message">Identity Sync initiated for Node BASIC-5596.</span>
+            </div>
+            <div class="feed-item">
+                <span class="timestamp">[07:15:22]</span>
+                <span class="event-type">Casting</span>
+                <span class="message">New Production Brief uploaded: "Project Noir-88" (Miami).</span>
+            </div>
+            <div class="feed-item">
+                <span class="timestamp">[06:30:00]</span>
+                <span class="event-type">Revenue</span>
+                <span class="message">Batch settlement processed for 14 Elite Tier Nodes.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="dispatch-grid">
+        <div class="map-visual">
+            <div class="radar"></div>
+            <div style="position: absolute; color: var(--fsp-gold); font-family: 'Bebas Neue'; letter-spacing: 5px;">SCANNING...</div>
+        </div>
+
+        <aside class="status-panel">
+            <h3>NETWORK STATUS</h3>
+            <div class="stat-row"><span>ACTIVE NODES</span><b>1,248</b></div>
+            <div class="stat-row"><span>PENDING 2257</span><b>82</b></div>
+            <div class="stat-row"><span>OPEN CASTING</span><b>14</b></div>
+            <div class="stat-row"><span>REVENUE NODE</span><b style="color:#0f0">ONLINE</b></div>
+            
+            <a href="ledger.html" class="btn-action">RESPOND TO CALL</a>
+        </aside>
+    </div>
+</main>
+
+<script>
+    // AUTOMATIC FEED INJECTOR
+    const logs = [
+        "Compliance: 2257 Vault verification bypass attempt blocked.",
+        "Directorate: New Icon Tier feature placement confirmed.",
+        "AITS: Ticket #8821 resolved by Brand Manager.",
+        "System: Metadata scrubbing complete for node EVA."
+    ];
+
+    setInterval(() => {
+        const feed = document.getElementById('dispatch-feed');
+        const time = new Date().toLocaleTimeString();
+        const randomLog = logs[Math.floor(Math.random() * logs.length)];
+        
+        const div = document.createElement('div');
+        div.className = 'feed-item';
+        div.innerHTML = `<span class="timestamp">[${time}]</span><span class="event-type">LOG</span><span class="message">${randomLog}</span>`;
+        
+        feed.prepend(div);
+        if(feed.children.length > 8) feed.lastChild.remove();
+    }, 5000);
+</script>
+
+</body>
+</html>
