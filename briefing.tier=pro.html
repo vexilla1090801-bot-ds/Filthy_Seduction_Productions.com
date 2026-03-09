@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Strategy Briefing | FSP Obsidian Directorate</title>
+    <title>Elite Strategy Briefing | FSP Obsidian Directorate</title>
     <style>
         :root {
             --fsp-black: #050505; --fsp-pitch: #000000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #ffffff;
@@ -17,11 +17,11 @@
 
         .briefing-container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; padding: 250px 5% 80px; max-width: 1600px; margin: 0 auto; }
 
-        /* LEFT: PRO STRATEGY CONTENT */
+        /* LEFT: ELITE STRATEGY CONTENT */
         .strategy-content h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 10px; margin-bottom: 20px; color: var(--fsp-fire); }
-        .commitment-tag { display: inline-block; padding: 10px 20px; background: #111; border: 1px solid #333; color: #888; font-weight: 900; font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 40px; }
+        .commitment-tag { display: inline-block; padding: 10px 20px; background: rgba(255,51,0,0.1); border: 1px solid var(--fsp-fire); color: var(--fsp-fire); font-weight: 900; font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 40px; }
         
-        .benefit-block { margin-bottom: 40px; border-left: 2px solid var(--fsp-fire); padding-left: 30px; }
+        .benefit-block { margin-bottom: 40px; border-left: 2px solid var(--fsp-gold); padding-left: 30px; }
         .benefit-block h3 { color: var(--fsp-gold); letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px; text-transform: uppercase; }
         .benefit-block p { color: #888; font-size: 1.1rem; }
 
@@ -32,14 +32,14 @@
         .input-group { margin-bottom: 25px; }
         .input-group label { display: block; font-size: 0.65rem; color: #555; letter-spacing: 2px; margin-bottom: 8px; font-weight: 900; }
         input { width: 100%; background: #000; border: 1px solid #222; padding: 18px; color: white; outline: none; transition: 0.3s; }
-        input:focus { border-color: var(--fsp-fire); }
+        input:focus { border-color: var(--fsp-gold); }
 
         .total-display { background: #000; padding: 30px; margin: 30px 0; border: 1px solid #222; text-align: center; }
         .total-display span { font-size: 0.7rem; color: #444; letter-spacing: 3px; display: block; }
-        .total-display b { font-size: 2.5rem; color: var(--fsp-white); letter-spacing: 2px; }
+        .total-display b { font-size: 2.5rem; color: var(--fsp-gold); letter-spacing: 2px; }
 
         .submit-btn { width: 100%; padding: 25px; background: var(--fsp-fire); color: white; border: none; font-weight: 900; letter-spacing: 5px; cursor: pointer; text-transform: uppercase; }
-        .submit-btn:hover { background: white; color: black; box-shadow: 0 0 30px white; }
+        .submit-btn:hover { background: white; color: black; box-shadow: 0 0 30px var(--fsp-fire); }
 
         @media (max-width: 1000px) { .briefing-container { grid-template-columns: 1fr; padding-top: 200px; } }
     </style>
@@ -50,39 +50,39 @@
 <header>
     <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo"></a>
     <div style="text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
-        <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:3px;">PRO STRATEGY BRIEFING</span>
+        <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:3px;">ELITE STRATEGY BRIEFING</span>
     </div>
 </header>
 
 <main class="briefing-container">
     <section class="strategy-content">
-        <h1>PRO STATUS</h1>
-        <div class="commitment-tag">MONTHLY SUBSCRIPTION // FLEXIBLE BILLING</div>
+        <h1>ELITE STATUS</h1>
+        <div class="commitment-tag">REQUIRED: 6 MONTH ADVANCE COMMITMENT</div>
         
         <div class="benefit-block">
-            <h3>Standard Real Estate</h3>
-            <p>Unlock 15 high-resolution photo slots and 3 dedicated video repositories. This allows you to build a foundational portfolio within the Obsidian Ledger that directors can access 24/7.</p>
+            <h3>Expanded Asset Ledger</h3>
+            <p>The Elite tier grants you 40 photo slots and 10 video repositories. This high-capacity storage is designed for performers ready to dominate multiple production requirements simultaneously.</p>
         </div>
 
         <div class="benefit-block">
-            <h3>The $100 Production Baseline</h3>
-            <p>As a Pro member, you are authorized to accept 60-minute scripted video requirements. Upon perfect submittal and Directorate approval, you receive a baseline of $100 per hour of production.</p>
+            <h3>Priority Job Distribution</h3>
+            <p>Elite members are pushed to the top of the casting queue. When a new 60-minute scripted requirement is released, Elite performers receive the notification 24 hours before Pro members.</p>
         </div>
 
         <div class="benefit-block">
-            <h3>Start/Stop Flexibility</h3>
-            <p>Unlike Elite or Icon tiers, Pro allows you to pause your subscription at any time. Your profile and metadata remain on our servers, allowing you to resume your celebrity growth whenever you are ready.</p>
+            <h3>Advanced Search Ranking</h3>
+            <p>Our metadata algorithms prioritize Elite profiles in the Obsidian Ledger. This leads to higher visibility for external publications and premium FSP productions.</p>
         </div>
 
         <div class="benefit-block">
-            <h3>Production Blog Access</h3>
-            <p>Gain full transparency into the upcoming job boards. See which requirements are trending and prepare your 60-minute submittals in advance to close jobs quickly.</p>
+            <h3>6-Month Investment Logic</h3>
+            <p>We require a 6-month commitment to ensure our Elite performers are dedicated to the brand lifecycle. This funding allows us to provide deeper production support and faster approval times.</p>
         </div>
     </section>
 
     <section class="enrollment-box">
-        <h2>INITIALIZE PRO</h2>
-        <form onsubmit="processPro(event)">
+        <h2>INITIALIZE ELITE</h2>
+        <form onsubmit="processElite(event)">
             <div class="input-group">
                 <label>LEGAL IDENTITY (CARDHOLDER)</label>
                 <input type="text" required placeholder="FULL NAME">
@@ -103,21 +103,20 @@
             </div>
 
             <div class="total-display">
-                <span>INITIAL DEPOSIT:</span>
-                <b>$29.00</b>
+                <span>6-MONTH COMMITMENT TOTAL:</span>
+                <b>$594.00</b>
             </div>
 
-            <button type="submit" class="submit-btn">AUTHORIZE PRO STATUS</button>
+            <button type="submit" class="submit-btn">AUTHORIZE ELITE STATUS</button>
         </form>
     </section>
 </main>
 
 <script>
-    function processPro(e) {
+    function processElite(e) {
         e.preventDefault();
-        // Set local storage to verify they chose Pro
-        sessionStorage.setItem('selectedTier', 'pro');
-        alert("PRO STATUS AUTHORIZED. REDIRECTING TO ASSET INTAKE...");
+        sessionStorage.setItem('selectedTier', 'elite');
+        alert("ELITE STATUS AUTHORIZED. REDIRECTING TO ASSET INTAKE...");
         window.location.href = "join.html";
     }
 </script>
