@@ -7,140 +7,74 @@
     <title>FSP | The Obsidian Directorate</title>
     <style>
         :root {
-            --fsp-pitch: #000000;
-            --fsp-card: #0a0a0a;
-            --fsp-fire: #ff3300;
-            --fsp-gold: #c5a059;
-            --fsp-white: #ffffff;
-            --fsp-gray: #555555;
+            --fsp-pitch: #000000; --fsp-card: #080808; --fsp-fire: #ff3300; 
+            --fsp-gold: #c5a059; --fsp-white: #ffffff; --fsp-gray: #666;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            background: var(--fsp-pitch); 
-            color: var(--fsp-white); 
-            font-family: 'Outfit', sans-serif; 
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            background: var(--fsp-pitch); color: var(--fsp-white); 
+            font-family: 'Outfit', sans-serif; overflow-x: hidden;
         }
 
-        /* 180px COMMAND HEADER */
+        /* 180px COMMAND HEADER & GLOW LOGO */
         header { 
-            height: 180px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 0 60px; 
-            border-bottom: 1px solid #1a1a1a; 
-            background: rgba(0,0,0,0.95); 
-            backdrop-filter: blur(10px);
-            position: fixed; 
-            width: 100%; 
-            top: 0; 
-            z-index: 10000; 
+            height: 180px; display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 60px; border-bottom: 1px solid #111; background: rgba(0,0,0,0.9); 
+            backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; 
         }
-        .logo { height: 150px; transition: transform 0.3s ease; }
-        .logo:hover { transform: scale(1.05); }
+        .logo { height: 150px; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); filter: drop-shadow(0 0 0px transparent); }
+        .logo:hover { filter: drop-shadow(0 0 25px var(--fsp-fire)); transform: scale(1.03); }
 
         /* HERO SECTION */
         .hero { 
-            height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center;
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
-            padding-top: 180px;
+            height: 90vh; display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; text-align: center; padding-top: 180px;
+            background: radial-gradient(circle at center, #0f0f0f 0%, #000 100%);
         }
-        .hero h1 { 
-            font-family: 'Bebas Neue'; 
-            font-size: clamp(4rem, 12vw, 9rem); 
-            letter-spacing: 20px; 
-            line-height: 0.85; 
-            animation: glowPulse 4s infinite ease-in-out;
-        }
-        @keyframes glowPulse {
-            0%, 100% { text-shadow: 0 0 20px rgba(255,51,0,0); }
-            50% { text-shadow: 0 0 30px rgba(255,51,0,0.4); }
-        }
-        .hero p { 
-            letter-spacing: 8px; 
-            color: var(--fsp-gray); 
-            font-weight: 900; 
-            margin-top: 25px; 
-            text-transform: uppercase; 
-            font-size: 0.75rem; 
-        }
+        .hero h1 { font-family: 'Bebas Neue'; font-size: clamp(4rem, 12vw, 9rem); letter-spacing: 25px; line-height: 0.85; margin-bottom: 20px; }
+        .hero p { letter-spacing: 10px; color: var(--fsp-gray); font-weight: 900; text-transform: uppercase; font-size: 0.8rem; }
 
-        /* TIER GRID ARCHITECTURE */
-        .tier-section { padding: 120px 8%; background: #000; }
-        .tier-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 25px; 
+        /* REVENUE AUTHORITY SECTION */
+        .revenue-ticker {
+            background: #050505; border-top: 1px solid #111; border-bottom: 1px solid #111;
+            padding: 40px 0; display: flex; justify-content: center; gap: 80px;
         }
+        .stat-box { text-align: center; }
+        .stat-box h4 { font-size: 0.6rem; color: var(--fsp-gray); letter-spacing: 4px; margin-bottom: 10px; }
+        .stat-box p { font-size: 2rem; font-weight: 900; color: var(--fsp-gold); font-family: 'Bebas Neue'; }
+
+        /* TIER GRID */
+        .tier-section { padding: 100px 5%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         
-        .tier-card { 
-            background: var(--fsp-card); 
-            border: 1px solid #1a1a1a; 
-            padding: 60px 40px; 
-            text-align: center; 
-            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); 
-            position: relative;
-            overflow: hidden;
+        .card { 
+            background: var(--fsp-card); border: 1px solid #1a1a1a; padding: 60px 40px; 
+            transition: 0.5s; position: relative;
         }
-        .tier-card:hover { 
-            border-color: var(--fsp-fire); 
-            transform: translateY(-15px); 
-            background: #0f0f0f;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-        }
-        .tier-card.icon-card:hover { border-color: var(--fsp-gold); }
+        .card:hover { border-color: var(--fsp-white); transform: translateY(-10px); background: #0c0c0c; }
+        .card.featured { border-top: 4px solid var(--fsp-fire); }
+        .card.iconic { border-top: 4px solid var(--fsp-gold); }
 
-        .tier-card h3 { font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 5px; margin-bottom: 10px; }
-        .price { font-size: 3.5rem; font-weight: 900; margin-bottom: 5px; }
-        .billing { font-size: 0.6rem; color: #444; letter-spacing: 3px; font-weight: 900; display: block; margin-bottom: 30px; }
+        .card h3 { font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 6px; margin-bottom: 15px; }
+        .price { font-size: 3.5rem; font-weight: 900; line-height: 1; }
+        .billing { font-size: 0.65rem; color: #444; letter-spacing: 3px; font-weight: 900; display: block; margin-top: 10px; margin-bottom: 40px; }
         
-        .features { list-style: none; text-align: left; margin: 40px 0; border-top: 1px solid #222; padding-top: 30px; }
-        .features li { font-size: 0.8rem; color: #888; margin-bottom: 15px; letter-spacing: 1px; display: flex; align-items: center; }
-        .features li::before { content: '◈'; color: var(--fsp-fire); margin-right: 12px; font-size: 0.6rem; }
-        .icon-card .features li::before { color: var(--fsp-gold); }
+        .feats { list-style: none; text-align: left; margin-bottom: 40px; border-top: 1px solid #151515; padding-top: 30px; }
+        .feats li { font-size: 0.85rem; color: #888; margin-bottom: 15px; letter-spacing: 1px; display: flex; align-items: center; }
+        .feats li::before { content: '→'; color: var(--fsp-fire); margin-right: 15px; font-weight: 900; }
 
-        /* ACTION BUTTONS */
-        .btn-link { 
-            display: block; 
-            width: 100%; 
-            padding: 22px; 
-            background: #151515; 
-            color: #fff; 
-            text-decoration: none; 
-            font-weight: 900; 
-            letter-spacing: 4px; 
-            font-size: 0.7rem; 
-            text-transform: uppercase; 
-            transition: 0.4s; 
-            border: 1px solid transparent;
+        .btn { 
+            display: block; width: 100%; padding: 22px; background: #111; color: #fff; 
+            text-decoration: none; font-weight: 900; letter-spacing: 5px; font-size: 0.75rem; 
+            text-transform: uppercase; transition: 0.3s; text-align: center;
         }
-        .tier-card:hover .btn-link { 
-            background: var(--fsp-fire); 
-            color: white; 
-            box-shadow: 0 0 20px rgba(255,51,0,0.3);
-        }
-        .icon-card:hover .btn-link { 
-            background: var(--fsp-gold); 
-            color: black; 
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
-        }
+        .card:hover .btn { background: var(--fsp-white); color: #000; }
+        .iconic:hover .btn { background: var(--fsp-gold); color: #000; }
 
-        footer { padding: 100px 50px; text-align: center; border-top: 1px solid #111; color: #333; font-size: 0.6rem; letter-spacing: 5px; }
+        footer { padding: 80px; text-align: center; border-top: 1px solid #111; color: #222; font-size: 0.6rem; letter-spacing: 6px; }
 
-        @media (max-width: 900px) {
-            header { height: 140px; padding: 0 30px; }
-            .logo { height: 100px; }
-            .hero h1 { font-size: 4rem; }
-            .tier-section { padding: 60px 5%; }
-        }
+        @media (max-width: 900px) { header { height: 140px; padding: 0 20px; } .logo { height: 100px; } }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
@@ -148,14 +82,83 @@
 
     <header>
         <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
-        <div style="border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
-            <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:4px; font-size: 0.7rem;">OBSIDIAN NODE 1.0</span>
+        <div style="text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
+            <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:5px; font-size: 0.7rem;">SYSTEM: ONLINE</span>
         </div>
     </header>
 
-    <section class="hero">
-        <h1>OBSIDIAN<br><span style="color:var(--fsp-gold)">DIRECTORATE</span></h1>
-        <p>SECURE METADATA // PRODUCTION PIPELINE // TALENT EQUITY</p>
+    <main class="hero">
+        <p>Filthy Seduction Productions // The Obsidian Directorate</p>
+        <h1>DIRECTORATE<br><span style="color:var(--fsp-gold)">RESOURCES</span></h1>
+        <p>Securing Talent Equity & Metadata Authority</p>
+    </main>
+
+    <section class="revenue-ticker">
+        <div class="stat-box"><h4>BASIC REVENUE</h4><p>$0/HR</p></div>
+        <div class="stat-box"><h4>PRO REVENUE</h4><p>$100/HR</p></div>
+        <div class="stat-box"><h4>ELITE REVENUE</h4><p>$150/HR</p></div>
+        <div class="stat-box" style="border-left: 1px solid #222; padding-left: 80px;"><h4>ICON REVENUE</h4><p style="color:var(--fsp-white)">$250/HR</p></div>
     </section>
 
-    <section class="
+    <section class="tier-section">
+        <div class="grid">
+            <div class="card">
+                <h3>BASIC</h3>
+                <div class="price">FREE</div>
+                <span class="billing">IDENTITY ENROLLMENT</span>
+                <ul class="feats">
+                    <li>Secured Legal Identity</li>
+                    <li>Obsidion Ledger Entry</li>
+                    <li>5 Photo / 1 Video Slots</li>
+                    <li>Public Directory Listing</li>
+                </ul>
+                <a href="briefing-basic.html" class="btn">START ENROLLMENT</a>
+            </div>
+
+            <div class="card">
+                <h3>PRO</h3>
+                <div class="price">$29</div>
+                <span class="billing">MONTHLY AUTHORIZATION</span>
+                <ul class="feats">
+                    <li>15 Photo / 3 Video Slots</li>
+                    <li><b>$100/HR</b> Production Scale</li>
+                    <li>Direct Script Blog Access</li>
+                    <li>Talent Queue Priority</li>
+                </ul>
+                <a href="briefing-pro.html" class="btn">SELECT PRO</a>
+            </div>
+
+            <div class="card featured">
+                <h3 style="color:var(--fsp-fire)">ELITE</h3>
+                <div class="price">$99</div>
+                <span class="billing">6-MONTH COMMITMENT</span>
+                <ul class="feats">
+                    <li>40 Photo / 10 Video Slots</li>
+                    <li><b>$150/HR</b> Production Scale</li>
+                    <li>24HR Priority Script Alerts</li>
+                    <li>Search Algorithm Optimization</li>
+                </ul>
+                <a href="briefing-elite.html" class="btn">SELECT ELITE</a>
+            </div>
+
+            <div class="card iconic">
+                <h3 style="color:var(--fsp-gold)">ICON</h3>
+                <div class="price">$249</div>
+                <span class="billing">12-MONTH COMMITMENT</span>
+                <ul class="feats">
+                    <li><b>UNLIMITED</b> Repository Slots</li>
+                    <li><b>$250/HR</b> Production Scale</li>
+                    <li>Global Lust-Loop Feature</li>
+                    <li>Staff Strategy Consultation</li>
+                </ul>
+                <a href="briefing-icon.html" class="btn">SELECT ICON</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 FILTHY SEDUCTION PRODUCTIONS | ALL METADATA ENCRYPTED | THE OBSIDIAN DIRECTORATE 1.0
+    </footer>
+
+</body>
+</html>
