@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tier Strategy Briefing | FSP Obsidian Directorate</title>
+    <style>
+        :root {
+            --fsp-black: #050505; --fsp-pitch: #000000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; line-height: 1.6; }
+
+        /* COMMAND HEADER SYNC */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 50px; border-bottom: 1px solid #111; background: #000; }
+        .logo { height: 150px; }
+
+        .briefing-container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; padding: 80px 5%; max-width: 1600px; margin: 0 auto; }
+
+        /* LEFT: STRATEGY CONTENT */
+        .strategy-content h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 10px; margin-bottom: 20px; color: var(--fsp-fire); }
+        .commitment-tag { display: inline-block; padding: 10px 20px; background: #111; border: 1px solid var(--fsp-gold); color: var(--fsp-gold); font-weight: 900; font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 40px; }
+        
+        .benefit-block { margin-bottom: 40px; border-left: 2px solid #222; padding-left: 30px; }
+        .benefit-block h3 { color: var(--fsp-gold); letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px; text-transform: uppercase; }
+        .benefit-block p { color: #888; font-size: 1.1rem; }
+
+        /* RIGHT: ENROLLMENT FORM */
+        .enrollment-box { background: #080808; border: 1px solid #1a1a1a; padding: 60px; position: sticky; top: 40px; }
+        .enrollment-box h2 { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 4px; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+
+        .input-group { margin-bottom: 25px; }
+        .input-group label { display: block; font-size: 0.65rem; color: #555; letter-spacing: 2px; margin-bottom: 8px; font-weight: 900; }
+        input { width: 100%; background: #000; border: 1px solid #222; padding: 18px; color: white; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--fsp-fire); }
+
+        .total-display { background: #000; padding: 30px; margin: 30px 0; border: 1px solid #222; text-align: center; }
+        .total-display span { font-size: 0.7rem; color: #444; letter-spacing: 3px; display: block; }
+        .total-display b { font-size: 2.5rem; color: var(--fsp-gold); letter-spacing: 2px; }
+
+        .submit-btn { width: 100%; padding: 25px; background: var(--fsp-fire); color: white; border: none; font-weight: 900; letter-spacing: 5px; cursor: pointer; text-transform: uppercase; }
+        .submit-btn:hover { background: white; color: black; }
+
+        @media (max-width: 1000px) { .briefing-container { grid-template-columns: 1fr; } }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo"></a>
+    <div style="text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
+        <span id="tier-header" style="color:var(--fsp-fire); font-weight:900; letter-spacing:3px;">STRATEGY BRIEFING</span>
+    </div>
+</header>
+
+<main class="briefing-container">
+    <section class="strategy-content">
+        <h1 id="b-title">ICON STATUS</h1>
+        <div class="commitment-tag" id="b-commitment">12 MONTH COMMITMENT REQUIRED</div>
+        
+        <div class="benefit-block">
+            <h3>Metadata Foundation</h3>
+            <p id="b-p1">The Icon tier establishes your brand as a permanent pillar in the Obsidian Ledger. We synchronize your metadata across global production nodes to ensure long-term celebrity equity.</p>
+        </div>
+
+        <div class="benefit-block">
+            <h3>Production Priority</h3>
+            <p id="b-p2">Icons receive "First-Look" access to all 60-minute scripted requirements. Your submittals bypass standard queues for instant Directorate approval.</p>
+        </div>
+
+        <div class="benefit-block">
+            <h3>The 60-Minute Standard</h3>
+            <p>Every job closed at this level triggers a baseline of $100-$250. Perfect execution of the one-hour requirement is expected as a professional standard.</p>
+        </div>
+    </section>
+
+    <section class="enrollment-box">
+        <h2>SECURE ENROLLMENT</h2>
+        <form onsubmit="handlePayment(event)">
+            <div class="input-group">
+                <label>LEGAL IDENTITY (CARDHOLDER)</label>
+                <input type="text" required placeholder="FULL NAME">
+            </div>
+            <div class="input-group">
+                <label>CREDIT CARD NUMBER</label>
+                <input type="text" required placeholder="XXXX XXXX XXXX XXXX">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="input-group">
+                    <label>EXPIRY</label>
+                    <input type="text" required placeholder="MM/YY">
+                </div>
+                <div class="input-group">
+                    <label>CVC</label>
+                    <input type="password" required placeholder="***">
+                </div>
+            </div>
+
+            <div class="total-display">
+                <span>TOTAL COMMITMENT DUE:</span>
+                <b id="b-total">$2,988.00</b>
+            </div>
+
+            <button type="submit" class="submit-btn">AUTHORIZE & INITIALIZE</button>
+        </form>
+    </section>
+</main>
+
+<script>
+    const tierData = {
+        icon: {
+            title: "ICON STATUS",
+            commitment: "12 MONTH COMMITMENT REQUIRED",
+            p1: "Unlimited real estate availability. Add infinite photos and videos as your brand expands globally.",
+            p2: "Executive Brand Authority. You run the show, with front-page 'Lust-Loop' priority and direct staff consultation.",
+            total: "$2,988.00"
+        },
+        elite: {
+            title: "ELITE STATUS",
+            commitment: "6 MONTH COMMITMENT REQUIRED",
+            p1: "40 Photo Slots and 10 Managed Videos. Enhanced search ranking ensures casting directors find you first.",
+            p2: "Priority Script Queue. Receive $100+ production requirements before Pro and Basic members.",
+            total: "$594.00"
+        },
+        pro: {
+            title: "PRO STATUS",
+            commitment: "MONTHLY RECURRING (STOP/START ANYTIME)",
+            p1: "15 Photo Slots and 3 Videos. The flexible entry point for professional production work.",
+            p2: "Standard Production Access. Close 60-minute jobs at the $100 baseline rate.",
+            total: "$29.00"
+        }
+    };
+
+    window.onload = function() {
+        const params = new URLSearchParams(window.location.search);
+        const tier = params.get('tier') || 'icon';
+        const data = tierData[tier];
+
+        document.getElementById('b-title').innerText = data.title;
+        document.getElementById('b-commitment').innerText = data.commitment;
+        document.getElementById('b-p1').innerText = data.p1;
+        document.getElementById('b-p2').innerText = data.p2;
+        document.getElementById('b-total').innerText = data.total;
+        document.getElementById('tier-header').innerText = data.title + " BRIEFING";
+    };
+
+    function handlePayment(e) {
+        e.preventDefault();
+        alert("PAYMENT AUTHORIZED. PREPARING PRODUCTION DASHBOARD...");
+        window.location.href = "join.html";
+    }
+</script>
+
+</body>
+</html>
