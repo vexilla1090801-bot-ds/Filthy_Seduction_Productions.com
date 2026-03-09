@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Operations | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-card: #080808; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+
+        /* UNIVERSAL HEADER */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+
+        .map-section { height: 60vh; width: 100%; margin-top: 180px; background: #050505; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .map-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, transparent 20%, #000 80%); z-index: 2; pointer-events: none; }
+        .map-placeholder { font-family: 'Bebas Neue'; font-size: 8rem; color: #111; letter-spacing: 20px; z-index: 1; }
+
+        .location-container { max-width: 1200px; margin: 60px auto 100px; padding: 0 5%; }
+        
+        .hub-header { margin-bottom: 50px; border-left: 4px solid var(--fsp-fire); padding-left: 30px; }
+        .hub-header h1 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 10px; }
+        .hub-header p { font-size: 0.7rem; color: #444; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
+
+        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        
+        /* HUB CARDS */
+        .hub-card { background: var(--fsp-card); border: 1px solid #151515; position: relative; transition: 0.4s; overflow: hidden; }
+        .hub-card:hover { border-color: var(--fsp-gold); transform: scale(1.02); }
+        .hub-img { height: 250px; background: #111; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue'; color: #222; font-size: 2rem; }
+        
+        .hub-content { padding: 30px; }
+        .hub-tag { font-size: 0.55rem; color: var(--fsp-fire); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+        .hub-card h3 { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 3px; margin-bottom: 10px; }
+        .hub-details { font-size: 0.75rem; color: #666; line-height: 1.6; margin-bottom: 20px; }
+
+        .amenities { display: flex; gap: 10px; margin-bottom: 25px; }
+        .icon-box { font-size: 0.6rem; color: #444; border: 1px solid #222; padding: 5px 10px; text-transform: uppercase; font-weight: 900; }
+
+        .btn-book { display: block; width: 100%; padding: 15px; background: transparent; border: 1px solid #333; color: #fff; text-align: center; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+        .btn-book:hover { background: var(--fsp-white); color: #000; }
+
+        /* TIER RESTRICTION OVERLAY */
+        .restricted { filter: grayscale(1) blur(2px); opacity: 0.5; cursor: not-allowed; }
+        .tier-lock { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; font-family: 'Bebas Neue'; color: var(--fsp-gold); background: #000; padding: 10px 20px; border: 1px solid var(--fsp-gold); letter-spacing: 3px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+</header>
+
+<section class="map-section">
+    <div class="map-overlay"></div>
+    <div class="map-placeholder">GLOBAL_NODES</div>
+</section>
+
+<main class="location-container">
+    <div class="hub-header">
+        <h1>PRODUCTION HUBS</h1>
+        <p>Verified Shooting Locations & Strategic Safe-Zones</p>
+    </div>
+
+    <div class="hub-grid">
+        <div class="hub-card">
+            <div class="hub-img">MIAMI_HQ</div>
+            <div class="hub-content">
+                <span class="hub-tag">Primary HQ // Southeast</span>
+                <h3>THE OBSIDIAN TOWER</h3>
+                <p class="hub-details">Full-scale 8K studio with underwater production tanks and luxury penthouse sets.</p>
+                <div class="amenities">
+                    <div class="icon-box">8K_READY</div>
+                    <div class="icon-box">PRIVATE_SPA</div>
+                </div>
+                <a href="briefing.html" class="btn-book">VIEW OPEN DISPATCHES</a>
+            </div>
+        </div>
+
+        <div class="hub-card">
+            <div class="hub-img">LONDON_VILLA</div>
+            <div class="hub-content">
+                <span class="hub-tag">International Hub // Europe</span>
+                <h3>THE REGENCY VAULT</h3>
+                <p class="hub-details">Neo-noir industrial aesthetics located in central London. High-security executive suites.</p>
+                <div class="amenities">
+                    <div class="icon-box">24/7_SEC</div>
+                    <div class="icon-box">TRAVEL_STAFF</div>
+                </div>
+                <a href="briefing.html" class="btn-book">VIEW OPEN DISPATCHES</a>
+            </div>
+        </div>
+
+        <div class="hub-card restricted">
+            <div class="tier-lock">ICON_TIER_ONLY</div>
+            <div class="hub-img">TOKYO_NEON</div>
+            <div class="hub-content">
+                <span class="hub-tag">Elite Node // Asia</span>
+                <h3>SHINJUKU SKYLINE</h3>
+                <p class="hub-details">Cyber-noir high-rise studio. Exclusively for Tier-3 Icon performers and above.</p>
+                <div class="amenities">
+                    <div class="icon-box">8K_HDR</div>
+                    <div class="icon-box">VIP_LOGISTICS</div>
+                </div>
+                <a href="#" class="btn-book" style="pointer-events: none;">ACCESS DENIED</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer style="background: #050505; border-top: 1px solid #111; padding: 60px 5%; margin-top: 100px; text-align: center;">
+    <p style="font-size: 0.6rem; color: #222; letter-spacing: 2px;">© 2026 FILTHY SEDUCTION PRODUCTIONS | GLOBAL_OPERATIONS_v5.8</p>
+</footer>
+
+</body>
+</html>
