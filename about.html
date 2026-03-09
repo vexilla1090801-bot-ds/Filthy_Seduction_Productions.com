@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Doctrine | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; line-height: 1.6; }
+
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
+        .main-nav a.active { color: var(--fsp-gold); }
+
+        .content-wrap { max-width: 1100px; margin: 240px auto 100px; padding: 0 5%; }
+        
+        /* SECTION STYLING */
+        section { margin-bottom: 100px; }
+        h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 15px; margin-bottom: 20px; color: var(--fsp-white); }
+        h2 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 8px; color: var(--fsp-gold); margin-bottom: 30px; border-left: 4px solid var(--fsp-fire); padding-left: 20px; }
+        p { font-size: 1rem; color: #888; margin-bottom: 20px; font-weight: 300; }
+
+        /* THE BASIC PROFILE LIGHT */
+        .profile-focus { background: #080808; border: 1px solid var(--fsp-gold); padding: 50px; position: relative; overflow: hidden; }
+        .profile-focus::before { content: 'CRITICAL'; position: absolute; top: 10px; right: 10px; font-size: 0.6rem; font-weight: 900; color: var(--fsp-gold); letter-spacing: 3px; }
+        .profile-focus h3 { font-family: 'Bebas Neue'; font-size: 2rem; color: #fff; letter-spacing: 4px; margin-bottom: 15px; }
+
+        /* RULES GRID */
+        .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .rule-card { background: #050505; border: 1px solid #111; padding: 30px; transition: 0.3s; }
+        .rule-card:hover { border-color: var(--fsp-fire); }
+        .rule-card h4 { font-size: 0.7rem; color: var(--fsp-fire); letter-spacing: 3px; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; }
+        .rule-card p { font-size: 0.85rem; margin-bottom: 0; }
+
+        .btn-action { display: inline-block; margin-top: 40px; padding: 20px 40px; border: 1px solid #fff; color: #fff; text-decoration: none; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; font-size: 0.75rem; transition: 0.4s; }
+        .btn-action:hover { background: var(--fsp-white); color: #000; }
+
+        .support-link { color: var(--fsp-fire); text-decoration: none; font-weight: 900; border-bottom: 1px solid var(--fsp-fire); }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+    <nav class="main-nav">
+        <a href="index.html">COMMAND</a>
+        <a href="portal.html">PORTAL</a>
+        <a href="about.html" class="active">DOCTRINE</a>
+        <a href="vexillaaits.com_account_support.html">SUPPORT</a>
+    </nav>
+</header>
+
+<main class="content-wrap">
+    <section>
+        <h1>THE DOCTRINE</h1>
+        <p>Filthy Seduction Productions (FSP) is not a talent agency. We are a Directorate. We provide the infrastructure, the credentialing, and the production environments for the modern adult performer. Our system is built on three pillars: **Security**, **Metadata Excellence**, and **Revenue Equity**.</p>
+    </section>
+
+    <section>
+        <h2>OUR MISSION</h2>
+        <p>To professionalize the adult incentive market by providing performers with a centralized, encrypted Identity Node. We eliminate the noise of the industry, allowing top-tier talent to communicate, collaborate, and produce high-fidelity content within a secure, classified ecosystem.</p>
+    </section>
+
+    <section class="profile-focus">
+        <h3>THE FOUNDATION: THE BASIC PROFILE</h3>
+        <p>Your **Basic Profile** is the most vital asset in the entire FSP network. It is the core data-string that casting agents use to index your capabilities. If your profile is outdated, inaccurate, or sub-standard, the system automatically de-prioritizes your node for $100-$250/hr opportunities.</p>
+        <p><b>Requirements for A1 Standard:</b></p>
+        <ul style="list-style: none; color: #aaa; font-size: 0.9rem; margin-left: 10px;">
+            <li>◈ Monthly Metadata Updates (Fresh Headshots)</li>
+            <li>◈ Active 18 U.S.C. § 2257 Verification</li>
+            <li>◈ Accurate Performance Boundary Logs</li>
+            <li>◈ Maintained Subscription Status</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>CLASSIFIED CONDUCT</h2>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <h4>01. SUBSCRIPTION INTEGRITY</h4>
+                <p>Access to the Obsidian Ledger and high-tier casting is contingent upon an active, up-to-date subscription. Lapsed accounts lose Directorate ID privileges immediately.</p>
+            </div>
+            <div class="rule-card">
+                <h4>02. CONTACT PROTOCOL</h4>
+                <p>Sharing personal phone numbers or off-site contact info is strictly prohibited. All communication must flow through the <a href="vexillaaits.com_account_support.html" class="support-link">Vexilla AITS</a> to ensure member safety.</p>
+            </div>
+            <div class="rule-card">
+                <h4>03. DATA SECRECY</h4>
+                <p>Production briefs, scripts, and revenue scales are classified. Disclosure of Directorate internal metadata to non-members results in permanent node termination.</p>
+            </div>
+            <div class="rule-card">
+                <h4>04. QUALIFICATION STANDARDS</h4>
+                <p>Members must maintain the aesthetic and professional standards of their chosen tier (Pro, Elite, or Icon) to remain eligible for top-tier star access.</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="text-align: center;">
+        <a href="portal.html" class="btn-action">INITIALIZE / EDIT MY PROFILE</a>
+        <p style="margin-top: 30px; font-size: 0.7rem; color: #444;">HAVING ISSUES? <a href="vexillaaits.com_account_support.html" class="support-link">SUBMIT AN AITS TICKET</a></p>
+    </section>
+</main>
+
+</body>
+</html>
