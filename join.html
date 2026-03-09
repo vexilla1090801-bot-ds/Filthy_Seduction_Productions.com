@@ -3,63 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Obsidian Ledger | FSP Talent Portal</title>
+    <title>Identity Enrollment | FSP Obsidian Directorate</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-glass: rgba(255,255,255,0.03); }
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
 
-        /* UNIVERSAL HEADER */
-        header { 
-            height: 180px; display: flex; align-items: center; justify-content: space-between; 
-            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
-            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
-        }
+        /* UNIVERSAL HEADER STYLES INCLUDED */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
         .logo { height: 150px; }
         .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
-        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; }
-        .main-nav a:hover { color: var(--fsp-fire); }
+        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
 
-        /* PORTAL CONTAINER */
-        .portal-layout { max-width: 1400px; margin: 240px auto 100px; padding: 0 5%; }
+        .form-container { max-width: 800px; margin: 240px auto 100px; padding: 60px; background: #080808; border: 1px solid #151515; }
+        h1 { font-family: 'Bebas Neue'; font-size: 3.5rem; letter-spacing: 10px; margin-bottom: 10px; }
+        .legal-notice { font-size: 0.65rem; color: var(--fsp-fire); letter-spacing: 2px; font-weight: 900; margin-bottom: 40px; text-transform: uppercase; border-bottom: 1px solid #111; padding-bottom: 20px; }
+
+        .section-label { font-size: 0.6rem; color: var(--fsp-gold); letter-spacing: 3px; font-weight: 900; margin: 30px 0 15px; text-transform: uppercase; border-left: 3px solid var(--fsp-gold); padding-left: 10px; }
         
-        /* PROFILE DISPLAY (THE CARD) */
-        #profile-display { display: none; text-align: center; animation: fadeIn 0.8s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .big-dog-card { 
-            background: #080808; border: 1px solid #1a1a1a; max-width: 600px; margin: 0 auto;
-            padding: 60px; position: relative; border-top: 5px solid var(--fsp-gold);
-        }
-        .profile-photo { width: 220px; height: 220px; border: 3px solid #111; margin: 0 auto 30px; overflow: hidden; background: #000; border-radius: 2px; }
-        .profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+        input, select { width: 100%; background: #000; border: 1px solid #222; padding: 18px; color: #fff; margin-bottom: 20px; font-family: 'Outfit'; }
+        .file-input-wrapper { border: 2px dashed #222; padding: 30px; text-align: center; color: #444; font-size: 0.7rem; font-weight: 900; margin-bottom: 20px; cursor: pointer; }
         
-        .id-badge { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 10px; color: #fff; line-height: 1; }
-        .tier-label { color: var(--fsp-gold); font-size: 0.8rem; font-weight: 900; letter-spacing: 6px; margin-bottom: 30px; display: block; }
-        
-        .ledger-data { background: #000; border: 1px solid #111; padding: 25px; text-align: left; margin-top: 30px; }
-        .data-row { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #0a0a0a; padding-bottom: 10px; }
-        .label { font-size: 0.6rem; color: #444; letter-spacing: 2px; font-weight: 900; text-transform: uppercase; }
-        .value { font-size: 0.85rem; color: #aaa; font-weight: 700; }
-
-        .edit-trigger { margin-top: 40px; background: transparent; border: 1px solid #222; color: #444; padding: 15px 40px; cursor: pointer; font-weight: 900; letter-spacing: 3px; font-size: 0.6rem; }
-        .edit-trigger:hover { color: #fff; border-color: #fff; }
-
-        /* INTAKE FORM (THE EDIT MODE) */
-        #intake-form { display: block; }
-        .form-vault { background: #080808; border: 1px solid #111; padding: 60px; }
-        h2 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 8px; margin-bottom: 40px; color: var(--fsp-gold); }
-        .section-tag { color: var(--fsp-fire); font-size: 0.65rem; font-weight: 900; letter-spacing: 4px; margin: 40px 0 20px; border-bottom: 1px solid #1a1a1a; padding-bottom: 10px; }
-        
-        .input-group { margin-bottom: 25px; }
-        label { display: block; font-size: 0.6rem; color: #444; font-weight: 900; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
-        input, select, textarea { width: 100%; background: #000; border: 1px solid #222; padding: 20px; color: #fff; font-family: 'Outfit'; font-size: 1rem; transition: 0.3s; }
-        input:focus { border-color: var(--fsp-fire); }
-
-        .btn-initialize { width: 100%; padding: 30px; background: var(--fsp-fire); color: #fff; font-weight: 900; letter-spacing: 10px; border: none; cursor: pointer; margin-top: 40px; text-transform: uppercase; font-size: 0.9rem; }
-        .btn-initialize:hover { background: #fff; color: #000; }
-
+        .btn-submit { width: 100%; padding: 25px; background: var(--fsp-white); color: #000; font-weight: 900; letter-spacing: 10px; text-transform: uppercase; border: none; cursor: pointer; transition: 0.4s; }
+        .btn-submit:hover { background: var(--fsp-fire); color: #fff; }
     </style>
 </head>
 <body>
@@ -68,147 +35,55 @@
     <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
     <nav class="main-nav">
         <a href="index.html">COMMAND</a>
-        <a href="briefing-basic.html">ENROLL</a>
-        <a href="briefing-pro.html">PRO</a>
-        <a href="briefing-elite.html">ELITE</a>
-        <a href="briefing-icon.html">ICON</a>
+        <a href="community.html">COMMUNITY</a>
+        <a href="portal.html">PORTAL</a>
+        <a href="vexillaaits.com_account_support.html" style="color:var(--fsp-fire)">SUPPORT</a>
     </nav>
-    <div style="border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
-        <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:4px; font-size: 0.6rem;">LEDGER SECURE</span>
-    </div>
 </header>
 
-<main class="portal-layout">
+<main class="form-container">
+    <h1>IDENTITY ENROLLMENT</h1>
+    <p class="legal-notice">Mandatory 18 U.S.C. § 2257 Compliance Check Inbound</p>
 
-    <div id="profile-display">
-        <div class="big-dog-card">
-            <div class="profile-photo">
-                <img id="final-img" src="" alt="FSP PERFORMER">
-            </div>
-            <div id="final-name" class="id-badge">PERFORMER</div>
-            <span id="final-tier" class="tier-label">PENDING AUTHORIZATION</span>
-            
-            <div class="ledger-data">
-                <div class="data-row"><span class="label">Directorate ID</span> <span class="value" id="final-id">--</span></div>
-                <div class="data-row"><span class="label">Industry SSN</span> <span class="value" id="final-ssn">--</span></div>
-                <div class="data-row"><span class="label">Primary Attribute</span> <span class="value" id="final-gender">--</span></div>
-                <div class="data-row"><span class="label">Revenue Node</span> <span class="value" id="final-revenue">--</span></div>
-            </div>
+    <form id="intake-form" onsubmit="handleIntake(event)">
+        <div class="section-label">Basic Performer Metadata</div>
+        <input type="text" id="node-name" placeholder="LEGAL FULL NAME" required>
+        <input type="text" id="screen-name" placeholder="STORY/SCREEN NAME" required>
+        <input type="email" id="node-email" placeholder="ENCRYPTED EMAIL ADDRESS" required>
 
-            <button class="edit-trigger" id="edit-btn" onclick="toggleEdit()">EDIT MY IDENTITY</button>
+        <div class="section-label">Identity Verification (Drivers License / Passport)</div>
+        <input type="text" id="id-number" placeholder="GOVERNMENT ID NUMBER" required>
+        <div class="file-input-wrapper" onclick="document.getElementById('id-upload').click()">
+            CLICK TO UPLOAD GOVERNMENT ISSUED PHOTO ID (FRONT & BACK)
+            <input type="file" id="id-upload" style="display:none" required>
         </div>
-    </div>
+        <p style="font-size: 0.55rem; color: #333; text-align: center; margin-bottom: 20px;">*ALL DATA IS ENCRYPTED VIA VEXILLA AITS PROTOCOL. ACCESS IS RESTRICTED TO COMPLIANCE OFFICERS ONLY.</p>
 
-    <div id="intake-form">
-        <div class="form-vault">
-            <h2>INITIALIZE LEDGER RECORD</h2>
-            <form onsubmit="processLedger(event)">
-                <div class="section-tag">01 // BRANDING</div>
-                <div class="input-group">
-                    <label>ADULT SCREEN NAME</label>
-                    <input type="text" id="in-name" required placeholder="E.G. 'OBSIDIAN_01'">
-                </div>
-                
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div class="input-group">
-                        <label>IDENTIFIED GENDER</label>
-                        <select id="in-gender" required>
-                            <option value="FEMALE">FEMALE</option>
-                            <option value="MALE">MALE</option>
-                            <option value="NON-BI">NON-BINARY</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label>UPLOAD HEADSHOT</label>
-                        <input type="file" id="in-file" accept="image/*" onchange="handleImage(event)">
-                    </div>
-                </div>
+        <div class="section-label">System Tier Selection</div>
+        <select id="node-tier" required>
+            <option value="PRO">PRO NODE ($100/HR - $29/3MO)</option>
+            <option value="ELITE">ELITE NODE ($150/HR - $99/6MO)</option>
+            <option value="ICON">ICON NODE ($250/HR - $249/12MO)</option>
+        </select>
 
-                <div class="section-tag">02 // PERFORMANCE BOUNDARIES</div>
-                <div class="input-group">
-                    <label>COVERT ATTRIBUTES & COMFORT LEVELS</label>
-                    <textarea rows="4" id="in-meta" placeholder="DESCRIBE YOUR PRODUCTION CAPABILITIES..."></textarea>
-                </div>
-
-                <button type="submit" class="btn-initialize">INITIALIZE LEDGER SYNC</button>
-            </form>
-        </div>
-    </div>
-
+        <button type="submit" class="btn-submit">INITIALIZE NODE</button>
+    </form>
 </main>
 
 <script>
-    let currentImage = "";
-
-    function handleImage(e) {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onloadend = () => { currentImage = reader.result; };
-        if (file) reader.readAsDataURL(file);
-    }
-
-    function generateSSN() {
-        const part1 = Math.floor(Math.random() * 900) + 100;
-        const part2 = Math.floor(Math.random() * 900) + 100;
-        return `${part1}-FS-${part2}`;
-    }
-
-    function processLedger(e) {
+    function handleIntake(e) {
         e.preventDefault();
-        
-        // 1. Capture Data
-        const name = document.getElementById('in-name').value;
-        const gender = document.getElementById('in-gender').value;
-        const tier = (sessionStorage.getItem('selectedTier') || 'BASIC').toUpperCase();
-        
-        // 2. Generate Directorate Tracking
-        const idNum = Math.floor(Math.random() * 9000) + 1000;
-        const fspID = `${tier}-${idNum}-2026`;
-        const fspSSN = generateSSN();
-
-        // 3. Store in LocalStorage (to simulate a real database for this user)
-        const profileData = { name, gender, tier, fspID, fspSSN, image: currentImage };
-        localStorage.setItem('fsp_profile', JSON.stringify(profileData));
-        localStorage.setItem('is_owner', 'true');
-
-        renderProfile();
+        const profile = {
+            name: document.getElementById('screen-name').value,
+            legal: document.getElementById('node-name').value,
+            idNum: document.getElementById('id-number').value,
+            tier: document.getElementById('node-tier').value,
+            id: document.getElementById('node-tier').value + "-" + Math.floor(1000 + Math.random() * 9000),
+            image: "placeholder-performer.jpg"
+        };
+        localStorage.setItem('fsp_active_profile', JSON.stringify(profile));
+        window.location.href = "checkout.html";
     }
-
-    function renderProfile() {
-        const data = JSON.parse(localStorage.getItem('fsp_profile'));
-        if(!data) return;
-
-        // Populate View
-        document.getElementById('final-name').innerText = data.name;
-        document.getElementById('final-tier').innerText = data.tier + " AUTHORIZED";
-        document.getElementById('final-gender').innerText = data.gender;
-        document.getElementById('final-id').innerText = data.fspID;
-        document.getElementById('final-ssn').innerText = data.fspSSN;
-        document.getElementById('final-img').src = data.image || "default-avatar.png";
-        
-        // Set Revenue based on Tier
-        let rev = "$0.00/HR";
-        if(data.tier === 'PRO') rev = "$100.00/HR";
-        if(data.tier === 'ELITE') rev = "$150.00/HR";
-        if(data.tier === 'ICON') rev = "$250.00/HR";
-        document.getElementById('final-revenue').innerText = rev;
-
-        // Toggle visibility
-        document.getElementById('intake-form').style.display = 'none';
-        document.getElementById('profile-display').style.display = 'block';
-
-        // Check ownership for Edit button
-        const isOwner = localStorage.getItem('is_owner') === 'true';
-        document.getElementById('edit-btn').style.display = isOwner ? 'inline-block' : 'none';
-    }
-
-    function toggleEdit() {
-        document.getElementById('intake-form').style.display = 'block';
-        document.getElementById('profile-display').style.display = 'none';
-    }
-
-    // Auto-load profile if it exists
-    window.onload = renderProfile;
 </script>
 
 </body>
