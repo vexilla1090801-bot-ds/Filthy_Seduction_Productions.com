@@ -3,167 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Executive Portal | FSP Obsidian Directorate</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <title>Talent Ledger | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-card: #0c0c0c; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
 
-        /* UNIVERSAL HEADER */
         header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
         .logo { height: 150px; }
-        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
-        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
 
-        .portal-layout { max-width: 1400px; margin: 240px auto 100px; padding: 0 5%; display: grid; grid-template-columns: 350px 1fr 350px; gap: 30px; }
+        .ledger-layout { max-width: 1400px; margin: 240px auto 100px; padding: 0 5%; }
 
-        /* COLUMN 1: IDENTITY CARD */
-        .id-card { background: var(--fsp-card); border: 1px solid #1a1a1a; padding: 30px; height: fit-content; position: sticky; top: 240px; }
-        .id-card h2 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 5px; line-height: 1; margin-bottom: 5px; }
-        .node-serial { font-size: 0.65rem; color: #444; font-weight: 900; letter-spacing: 2px; margin-bottom: 30px; display: block; }
+        /* ACTIVITY TICKER */
+        .live-feed { background: #111; border: 1px solid #222; padding: 15px; margin-bottom: 50px; display: flex; align-items: center; gap: 20px; }
+        .feed-label { color: var(--fsp-fire); font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; }
+        .feed-scroll { font-family: 'Source Code Pro'; font-size: 0.65rem; color: #666; }
+
+        /* SURROGATE GRID */
+        .surrogate-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
         
-        .stat-block { margin-bottom: 25px; }
-        .stat-label { font-size: 0.55rem; color: var(--fsp-gold); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
-        .stat-value { font-family: 'Bebas Neue'; font-size: 2rem; display: block; }
-        .status-pill { display: inline-block; padding: 4px 12px; background: #111; border: 1px solid #222; font-size: 0.55rem; font-weight: 900; margin-top: 5px; letter-spacing: 1px; }
+        .node-card { background: var(--fsp-card); border: 1px solid #151515; position: relative; transition: 0.5s; overflow: hidden; }
+        .node-card:hover { transform: translateY(-10px); border-color: var(--fsp-gold); }
 
-        /* COLUMN 2: OPERATIONS CENTER */
-        .ops-header { border-bottom: 1px solid #111; padding-bottom: 20px; margin-bottom: 30px; }
-        .ops-header h1 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 8px; }
-        
-        .op-card { background: #080808; border: 1px solid #151515; padding: 30px; margin-bottom: 20px; border-left: 4px solid var(--fsp-fire); }
-        .op-card h4 { font-size: 0.7rem; color: #fff; letter-spacing: 2px; font-weight: 900; margin-bottom: 10px; }
-        .op-card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
-        .op-status { display: flex; justify-content: space-between; margin-top: 15px; font-size: 0.6rem; font-weight: 900; letter-spacing: 1px; }
+        .node-visual { height: 450px; background: #050505; position: relative; }
+        .node-visual::after { 
+            content: ""; position: absolute; bottom: 0; width: 100%; height: 50%; 
+            background: linear-gradient(transparent, #0c0c0c); 
+        }
 
-        /* THE VAULT / UPLOAD ZONE */
-        .vault-zone { background: #050505; border: 2px dashed #1a1a1a; padding: 60px; text-align: center; margin-top: 40px; transition: 0.3s; cursor: pointer; }
-        .vault-zone:hover { border-color: var(--fsp-fire); background: #080000; }
-        .vault-zone h3 { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 5px; margin-bottom: 10px; }
-        .vault-zone p { font-size: 0.65rem; color: #444; font-weight: 900; letter-spacing: 2px; }
+        .tier-badge { position: absolute; top: 20px; right: 20px; background: var(--fsp-gold); color: #000; font-size: 0.55rem; font-weight: 900; padding: 4px 10px; letter-spacing: 1px; z-index: 5; }
 
-        /* COLUMN 3: COMPLIANCE & SUBMITTALS */
-        .side-panel { background: #080808; border: 1px solid #111; padding: 25px; margin-bottom: 30px; }
-        .side-panel h3 { font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 20px; border-bottom: 1px solid #111; padding-bottom: 10px; }
-        
-        .checklist-item { display: flex; justify-content: space-between; font-size: 0.65rem; font-weight: 900; padding: 12px 0; border-bottom: 1px solid #0f0f0f; }
-        .check-state { color: #333; }
-        .check-state.done { color: var(--fsp-fire); }
-        .check-state.pending { color: var(--fsp-gold); }
+        .node-info { padding: 30px; position: relative; z-index: 10; margin-top: -60px; }
+        .node-name { font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 3px; }
+        .node-attributes { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
+        .attr { font-size: 0.55rem; border: 1px solid #222; padding: 4px 8px; color: #555; text-transform: uppercase; font-weight: 700; }
 
-        .support-callout { font-size: 0.65rem; color: #444; line-height: 1.6; border-top: 1px solid #111; padding-top: 20px; margin-top: 20px; }
-        .support-callout a { color: var(--fsp-fire); text-decoration: none; font-weight: 900; }
+        /* THE FLAMMABLE FILTH BUTTON */
+        .btn-flammable { 
+            display: block; width: 100%; padding: 15px; background: #110000; 
+            border: 1px solid var(--fsp-fire); color: var(--fsp-fire); text-align: center; 
+            text-decoration: none; font-size: 0.65rem; font-weight: 900; letter-spacing: 2px; 
+            text-transform: uppercase; transition: 0.3s; margin-top: 15px;
+        }
+        .btn-flammable:hover { background: var(--fsp-fire); color: #fff; box-shadow: 0 0 15px rgba(255, 51, 0, 0.4); }
+
+        .x-rated-status { font-size: 0.5rem; color: #333; text-align: center; margin-top: 8px; font-family: 'Source Code Pro'; }
     </style>
 </head>
 <body>
 
 <header>
     <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
-    <nav class="main-nav">
-        <a href="index.html">COMMAND</a>
-        <a href="community.html">COMMUNITY</a>
-        <a href="ledger.html">LEDGER</a>
-        <a href="portal.html" style="color:var(--fsp-gold)">PORTAL</a>
-    </nav>
 </header>
 
-<main class="portal-layout">
-    <aside class="id-card">
-        <h2 id="display-name">EVA</h2>
-        <span class="node-serial">BASIC-5596-2026</span>
-        
-        <div class="stat-block">
-            <span class="stat-label">Total Accrued Revenue</span>
-            <span class="stat-value">$0,000.00</span>
-        </div>
+<main class="ledger-layout">
+    <div class="live-feed">
+        <span class="feed-label">LIVE_INTEL:</span>
+        <div class="feed-scroll">NODE_ELITE_SOPHIA JUST UPLOADED 4 NEW ASSETS TO THE VAULT... SYSTEM_SYNC_COMPLETE...</div>
+    </div>
 
-        <div class="stat-block">
-            <span class="stat-label">Tier Privilege</span>
-            <span class="stat-value" style="font-size: 1.2rem; color:var(--fsp-gold)">BASIC AUTHORIZED</span>
-        </div>
-
-        <div class="stat-block">
-            <span class="stat-label">System Initialization</span>
-            <span class="status-pill" style="color:#0f0; border-color:#0f0">COMPLETED</span>
-            <p style="font-size:0.6rem; color:#444; margin-top:5px;">Ledger node successfully created and paid.</p>
-        </div>
-    </aside>
-
-    <section class="operations-center">
-        <div class="ops-header">
-            <h1>ACTIVE OPERATIONS</h1>
-        </div>
-
-        <div class="op-card">
-            <h4>IDENTITY VERIFICATION 2257</h4>
-            <p>Pending manual review by Directorate compliance officer. Access to high-tier Ledger payouts is restricted until validation is finalized.</p>
-            <div class="op-status">
-                <span style="color:var(--fsp-gold)">STATUS: IN_REVIEW</span>
-                <span>ETA: 24-48 HOURS</span>
+    <div class="surrogate-grid">
+        <div class="node-card">
+            <span class="tier-badge">ICON_MEMBER</span>
+            <div class="node-visual">
+                <div style="display:flex; align-items:center; justify-content:center; height:100%; color:#1a1a1a; font-size:3rem;">◈</div>
+            </div>
+            <div class="node-info">
+                <h3 class="node-name">SOPHIA</h3>
+                <p style="font-size:0.6rem; color:var(--fsp-gold); letter-spacing:2px;">EST. 2025 // MIAMI HUB</p>
+                <div class="node-attributes">
+                    <span class="attr">Athletic</span><span class="attr">Tattooed</span><span class="attr">5'9"</span><span class="attr">Fair</span>
+                </div>
+                <p style="font-size: 0.7rem; color: #666; line-height: 1.4;">Specializes in high-fashion cinematic adult productions. Primary lead for "Midnight Velvet" series.</p>
+                
+                <a href="flammablefilth_gateway.html" class="btn-flammable">VIEW PRODUCTION CONTENT</a>
+                <div class="x-rated-status">14 VIDEOS ON FLAMMABLEFILTH.COM</div>
             </div>
         </div>
 
-        <div class="op-card" style="border-left-color: #222;">
-            <h4>MY SUBMITTALS</h4>
-            <p style="color:#444;">NO ACTIVE PROJECT SUBMITTALS DETECTED. VISIT THE PRODUCTION LEDGER TO APPLY FOR LIVE CASTING CALLS.</p>
-            <div class="op-status">
-                <a href="ledger.html" style="color:#fff; text-decoration:none;">BROWSE LEDGER →</a>
+        <div class="node-card">
+            <span class="tier-badge" style="background:var(--fsp-white)">ELITE_MEMBER</span>
+            <div class="node-visual">
+                <div style="display:flex; align-items:center; justify-content:center; height:100%; color:#1a1a1a; font-size:3rem;">◈</div>
+            </div>
+            <div class="node-info">
+                <h3 class="node-name">ISABELLA</h3>
+                <p style="font-size:0.6rem; color:var(--fsp-gold); letter-spacing:2px;">EST. 2026 // LONDON HUB</p>
+                <div class="node-attributes">
+                    <span class="attr">Petite</span><span class="attr">Classic</span><span class="attr">5'4"</span><span class="attr">Ebony</span>
+                </div>
+                <p style="font-size: 0.7rem; color: #666; line-height: 1.4;">Focuses on high-fidelity lifestyle and 'Around the Home' luxury aesthetic sets.</p>
+                
+                <a href="flammablefilth_gateway.html" class="btn-flammable">VIEW PRODUCTION CONTENT</a>
+                <div class="x-rated-status">8 VIDEOS ON FLAMMABLEFILTH.COM</div>
             </div>
         </div>
 
-        <div class="vault-zone" onclick="triggerUpload()">
-            <h3>DROP METADATA ASSETS HERE</h3>
-            <p>(4K VIDEO / RAW PHOTO ONLY)</p>
-            <input type="file" id="asset-upload" style="display:none" multiple>
-        </div>
-    </section>
-
-    <aside class="compliance-panel">
-        <div class="side-panel">
-            <h3>COMPLIANCE CHECKLIST</h3>
-            <div class="checklist-item">
-                <span>PHOTO ID SYNC</span>
-                <span class="check-state pending">REQUIRED</span>
+        <div class="node-card">
+            <span class="tier-badge">ICON_MEMBER</span>
+            <div class="node-visual">
+                <div style="display:flex; align-items:center; justify-content:center; height:100%; color:#1a1a1a; font-size:3rem;">◈</div>
             </div>
-            <div class="checklist-item">
-                <span>AGE VERIFICATION</span>
-                <span class="check-state done">VERIFIED</span>
-            </div>
-            <div class="checklist-item">
-                <span>TAX DOCUMENTATION</span>
-                <span class="check-state pending">PENDING</span>
-            </div>
-            <div class="checklist-item">
-                <span>REVENUE NODE</span>
-                <span class="check-state done">ACTIVE</span>
+            <div class="node-info">
+                <h3 class="node-name">VALENTINA</h3>
+                <p style="font-size:0.6rem; color:var(--fsp-gold); letter-spacing:2px;">EST. 2024 // GLOBAL TRAVEL</p>
+                <div class="node-attributes">
+                    <span class="attr">Curvy</span><span class="attr">Elegant</span><span class="attr">5'7"</span><span class="attr">Latina</span>
+                </div>
+                <p style="font-size: 0.7rem; color: #666; line-height: 1.4;">A1 Directorate Ambassador. Featured in over 30 global studio productions.</p>
+                
+                <a href="flammablefilth_gateway.html" class="btn-flammable">VIEW PRODUCTION CONTENT</a>
+                <div class="x-rated-status">32 VIDEOS ON FLAMMABLEFILTH.COM</div>
             </div>
         </div>
-
-        <div class="side-panel">
-            <h3>CAREER CONCIERGE</h3>
-            <p class="support-callout">
-                Contact your assigned **Directorate Brand Manager** for technical assistance with the Obsidian Vault or career lifestyle coaching.
-                <br><br>
-                <a href="vexillaaits.com_account_support.html">OPEN AITS SUPPORT TICKET</a>
-            </p>
-        </div>
-    </aside>
+    </div>
 </main>
 
-<script>
-    function triggerUpload() {
-        document.getElementById('asset-upload').click();
-    }
-    
-    // Auto-load name from intake if exists
-    window.onload = function() {
-        const data = JSON.parse(localStorage.getItem('fsp_active_profile'));
-        if(data) {
-            document.getElementById('display-name').innerText = data.name.toUpperCase();
-        }
-    }
-</script>
+<footer style="background: #050505; border-top: 1px solid #111; padding: 60px 5%; margin-top: 100px; text-align: center;">
+    <p style="font-size: 0.6rem; color: #222; letter-spacing: 2px;">© 2026 FILTHY SEDUCTION PRODUCTIONS | TALENT_LEDGER_v6.0</p>
+</footer>
 
 </body>
 </html>
