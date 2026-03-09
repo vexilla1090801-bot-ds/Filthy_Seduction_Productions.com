@@ -11,140 +11,90 @@
             --fsp-fire: #ff3300;
             --fsp-gold: #c5a059;
             --fsp-white: #ffffff;
+            --fsp-grey: #111111;
         }
 
+        /* RESET FOR STABILITY - PREVENTS WHITE SCREEN */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--fsp-black);
+            background-color: var(--fsp-pitch);
             color: var(--fsp-white);
             font-family: 'Outfit', sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
         }
 
-        /* MASTER COMMAND HEADER - 180px SYNC */
+        /* MASTER COMMAND HEADER - 180px */
         header.fsp-nav-command {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 180px; 
-            background: rgba(0, 0, 0, 0.98);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 50px;
-            border-bottom: 2px solid #1a1a1a;
-            z-index: 10000;
-            backdrop-filter: blur(30px);
+            position: fixed; top: 0; left: 0; width: 100%; height: 180px; 
+            background: rgba(0, 0, 0, 0.98); display: flex; align-items: center;
+            justify-content: space-between; padding: 0 50px; border-bottom: 2px solid #1a1a1a;
+            z-index: 10000; backdrop-filter: blur(30px);
         }
 
-        .logo-box { height: 100%; display: flex; align-items: center; }
+        .fsp-logo-main { height: 150px; width: auto; display: block; }
 
-        .fsp-logo-main {
-            height: 150px; /* Big Dog Size */
-            width: auto;
-            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+        .header-status { text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px; }
 
-        .fsp-logo-main:hover {
-            filter: drop-shadow(0 0 30px var(--fsp-fire));
-            transform: scale(1.03);
-        }
-
-        /* NAV ACTIONS */
-        .nav-actions {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 10px;
-        }
-
-        .status-light {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.7rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            color: var(--fsp-fire);
-        }
-
-        .pulse {
-            width: 8px;
-            height: 8px;
-            background: var(--fsp-fire);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--fsp-fire);
-            animation: blink 1.5s infinite;
-        }
-
-        .portal-btn {
-            color: var(--fsp-white);
-            text-decoration: none;
-            font-weight: 900;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            border-bottom: 1px solid var(--fsp-fire);
-            padding-bottom: 4px;
-            transition: 0.3s;
-        }
-
-        .portal-btn:hover { color: var(--fsp-gold); border-color: var(--fsp-gold); }
-
-        /* THE MAIN CANVAS - RECALIBRATED */
-        .main-canvas {
-            margin-top: 180px; /* Perfect Header Offset */
-            height: calc(100vh - 180px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+        /* HERO CANVAS */
+        .hero-canvas {
+            margin-top: 180px; padding: 100px 5%; min-height: 80vh; 
+            display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; text-align: center;
             background: radial-gradient(circle at center, #111 0%, #000 100%);
-            padding: 40px;
         }
 
-        .bebas {
-            font-family: 'Bebas Neue', cursive;
-            font-size: clamp(3.5rem, 12vw, 8rem);
-            letter-spacing: 15px;
-            line-height: 0.85;
-            margin-bottom: 30px;
+        .bebas { font-family: 'Bebas Neue', cursive; font-size: clamp(3.5rem, 12vw, 8rem); letter-spacing: 15px; line-height: 0.9; }
+        .gold-glow { color: var(--fsp-gold); text-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
+
+        /* PRODUCTION STANDARDS SECTION */
+        .standards-row {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; width: 100%; max-width: 1200px; margin-top: 80px;
         }
 
-        .fire-text { color: var(--fsp-fire); text-shadow: 0 0 50px var(--fsp-fire); }
-
-        .cta-box { margin-top: 50px; }
-
-        .big-dog-btn {
-            padding: 25px 80px;
-            background: var(--fsp-fire);
-            color: white;
-            text-decoration: none;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            font-size: 1.3rem;
-            transition: 0.5s;
-            display: inline-block;
+        .standard-card {
+            background: #080808; border: 1px solid #1a1a1a; padding: 40px;
+            text-align: left; transition: 0.4s;
         }
+        .standard-card:hover { border-color: var(--fsp-fire); transform: translateY(-5px); }
+        .standard-card h3 { color: var(--fsp-fire); font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 15px; }
+        .standard-card p { font-size: 1.1rem; line-height: 1.6; color: #999; }
+        .standard-card b { color: white; }
 
-        .big-dog-btn:hover {
-            background: white;
-            color: black;
-            box-shadow: 0 0 60px white;
-            transform: translateY(-10px);
+        /* THE TIERS */
+        .tier-section { padding: 100px 5%; background: var(--fsp-pitch); }
+        .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 60px; }
+
+        .tier-card {
+            background: #0a0a0a; border: 1px solid #1a1a1a; padding: 60px 40px;
+            text-align: center; transition: 0.5s; position: relative;
         }
+        .tier-card:hover { border-color: var(--fsp-gold); background: #0f0f0f; }
+        .tier-card.featured { border: 2px solid var(--fsp-fire); box-shadow: 0 0 30px rgba(255,51,0,0.2); }
 
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .tier-title { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 5px; margin-bottom: 10px; }
+        .tier-rate { font-size: 1.2rem; font-weight: 900; color: var(--fsp-gold); letter-spacing: 2px; margin-bottom: 30px; }
 
-        /* MOBILE FIX */
+        .feature-list { list-style: none; text-align: left; margin-bottom: 40px; color: #666; font-size: 0.9rem; line-height: 2.2; }
+        .feature-list li::before { content: "✓"; color: var(--fsp-fire); margin-right: 10px; font-weight: 900; }
+
+        .cta-btn {
+            display: block; width: 100%; padding: 25px; background: var(--fsp-fire);
+            color: white; text-decoration: none; font-weight: 900; letter-spacing: 5px;
+            text-transform: uppercase; transition: 0.3s;
+        }
+        .cta-btn:hover { background: white; color: black; box-shadow: 0 0 30px white; }
+
+        /* FOOTER */
+        footer { padding: 100px; text-align: center; border-top: 1px solid #111; color: #333; font-size: 0.7rem; letter-spacing: 5px; }
+
         @media (max-width: 1024px) {
             header.fsp-nav-command { height: 140px; padding: 0 20px; }
-            .fsp-logo-main { height: 110px; }
-            .main-canvas { margin-top: 140px; height: calc(100vh - 140px); }
+            .fsp-logo-main { height: 100px; }
+            .hero-canvas { margin-top: 140px; }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
@@ -152,32 +102,84 @@
 <body>
 
     <header class="fsp-nav-command">
-        <div class="logo-box">
-            <img src="VEXILLIALSDP_FSP.png" alt="FSP Master Logo" class="fsp-logo-main">
-        </div>
-        
-        <div class="nav-actions">
-            <div class="status-light">
-                <div class="pulse"></div>
-                SYSTEM ONLINE
-            </div>
-            <a href="portal.html" class="portal-btn">VIEW PORTAL</a>
+        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" alt="FSP Master Logo" class="fsp-logo-main"></a>
+        <div class="header-status">
+            <span style="color: var(--fsp-fire); font-weight: 900; font-size: 0.8rem; letter-spacing: 3px;">DIRECTORATE ONLINE</span><br>
+            <span style="color: #444; font-size: 0.6rem; letter-spacing: 2px;">ENCRYPTION: ACTIVE</span>
         </div>
     </header>
 
-    <main class="main-canvas">
-        <h1 class="bebas">OBSIDIAN <span class="fire-text">LEDGER</span></h1>
-        <p style="text-transform: uppercase; color: #555; letter-spacing: 5px; font-weight: 700; font-size: 1rem;">
-            Certified History. $100/hr Baseline. Elite Only.
+    <main class="hero-canvas">
+        <h1 class="bebas">OBSIDIAN <span class="gold-glow">LEDGER</span></h1>
+        <p style="margin-top: 20px; letter-spacing: 6px; color: #555; font-weight: 900; text-transform: uppercase;">
+            Certified Identity // Metadata Authority // $100+ Per Hour
         </p>
-        
-        <div class="cta-box">
-            <a href="join.html" class="big-dog-btn">INITIALIZE STATUS</a>
+
+        <div class="standards-row">
+            <div class="standard-card">
+                <h3>THE PRODUCTION STANDARD</h3>
+                <p>Submit <b>exactly 60 minutes</b> of high-detail scripted content. Follow every instruction, record properly, and close the job instantly.</p>
+            </div>
+            <div class="standard-card">
+                <h3>THE $100+ BASELINE</h3>
+                <p>Approved 60-minute submissions trigger <b>instant $100+ payments</b>. Efficiency is rewarded; accuracy prevents rework.</p>
+            </div>
+            <div class="standard-card">
+                <h3>THE BRAND FOUNDATION</h3>
+                <p>Build your <b>Adult Persona</b> with permanent metadata. Every production reinforces your celebrity in the global ledger.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 60px;">
+            <a href="#tiers" style="padding: 25px 60px; border: 1px solid var(--fsp-white); color: white; text-decoration: none; font-weight: 900; letter-spacing: 5px; text-transform: uppercase;">INITIALIZE STATUS</a>
         </div>
     </main>
 
-    <footer style="padding: 40px; background: #000; text-align: center; font-size: 0.7rem; color: #222; letter-spacing: 5px; border-top: 1px solid #0a0a0a;">
-        FILTHY SEDUCTION PRODUCTIONS &copy; 2026 | BUILT FOR THE BIG DOGS
+    <section class="tier-section" id="tiers">
+        <h2 class="bebas" style="text-align: center; margin-bottom: 50px;">SELECT YOUR <span style="color:var(--fsp-fire);">STATUS</span></h2>
+        
+        <div class="tier-grid">
+            <div class="tier-card">
+                <div class="tier-title">BASIC</div>
+                <div class="tier-rate">$29/MO SUBSCRIPTION</div>
+                <ul class="feature-list">
+                    <li>$100 PER APPROVED HOUR</li>
+                    <li>5 PHOTO SLOTS / 1 VIDEO</li>
+                    <li>STANDARD PORTAL VISIBILITY</li>
+                    <li>BASIC BRAND METADATA</li>
+                </ul>
+                <a href="join.html" class="cta-btn">SELECT BASIC</a>
+            </div>
+
+            <div class="tier-card featured">
+                <div style="position:absolute; top:0; left:0; width:100%; background:var(--fsp-fire); color:white; font-size:0.6rem; font-weight:900; padding:8px; letter-spacing:3px;">MAXIMUM EARNING STATUS</div>
+                <div class="tier-title" style="color:var(--fsp-fire);">ELITE</div>
+                <div class="tier-rate">$100+ PER HOUR (UNCAPPED)</div>
+                <ul class="feature-list">
+                    <li>20 PHOTO SLOTS / 5 VIDEOS</li>
+                    <li>PRIORITY SCRIPT QUEUE</li>
+                    <li>ENHANCED METADATA AUTHORITY</li>
+                    <li>INSTANT APPROVAL CHANNEL</li>
+                </ul>
+                <a href="join.html" class="cta-btn">SELECT ELITE</a>
+            </div>
+
+            <div class="tier-card">
+                <div class="tier-title" style="color:var(--fsp-gold);">ICON</div>
+                <div class="tier-rate">CUSTOM RATE NEGOTIATION</div>
+                <ul class="feature-list">
+                    <li>UNLIMITED MEDIA REPOSITORY</li>
+                    <li>FRONT-PAGE LUST-LOOP FOCUS</li>
+                    <li>METADATA FOUNDATION SYNC</li>
+                    <li>DIRECTORATE CONSULTATION</li>
+                </ul>
+                <a href="join.html" class="cta-btn">SELECT ICON</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        FILTHY SEDUCTION PRODUCTIONS &copy; 2026 | THE DIRECTORATE IS ALWAYS WATCHING
     </footer>
 
 </body>
