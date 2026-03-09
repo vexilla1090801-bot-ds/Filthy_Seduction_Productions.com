@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elite Validation | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-pitch: #0a0a0a; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+
+        .validation-box { width: 800px; background: var(--fsp-pitch); border: 1px solid #111; padding: 60px; position: relative; }
+        .validation-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--fsp-fire), transparent); }
+
+        .v-step { display: none; }
+        .v-step.active { display: block; animation: fadeIn 0.8s ease; }
+
+        .v-header { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 5px; margin-bottom: 20px; color: var(--fsp-gold); }
+        .v-text { color: #888; font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px; }
+
+        /* THE CHOICE BUTTONS */
+        .option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .opt-btn { 
+            background: #000; border: 1px solid #222; padding: 25px; color: #fff; 
+            text-align: left; cursor: pointer; transition: 0.3s; position: relative;
+        }
+        .opt-btn:hover { border-color: var(--fsp-fire); background: #0d0000; }
+        .opt-btn b { display: block; font-family: 'Bebas Neue'; font-size: 1.2rem; margin-bottom: 5px; letter-spacing: 2px; }
+        .opt-btn span { font-size: 0.7rem; color: #444; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* PROGRESS METER */
+        .v-progress { position: absolute; bottom: 0; left: 0; height: 4px; background: var(--fsp-fire); width: 0%; transition: 1s; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="validation-box">
+    <div class="v-progress" id="progress"></div>
+
+    <div class="v-step active" id="step1">
+        <div class="v-header">IDENTITY_HANDSHAKE</div>
+        <p class="v-text">
+            The Directorate is not a "hobby" site. We produce 8K cinematic adult content for a global elite audience. How do you define your sexual brand in the FlammableFilth ecosystem?
+        </p>
+        <div class="option-grid">
+            <div class="opt-btn" onclick="nextStep(2, 33)">
+                <b>THE ARCHITECT</b>
+                <span>Strategic, Aggressive, Power-Driven.</span>
+            </div>
+            <div class="opt-btn" onclick="nextStep(2, 33)">
+                <b>THE MUSE</b>
+                <span>Ethereal, Elegant, Artistically Nude.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="v-step" id="step2">
+        <div class="v-header">AESTHETIC_INTEGRITY</div>
+        <p class="v-text">
+            A surrogate node is filming an "Around the Home" set. The wardrobe is silk, the lighting is neon-noir. She asks for your input on the "Heat Level." What is the A1 standard?
+        </p>
+        <div class="option-grid">
+            <div class="opt-btn" onclick="nextStep(3, 66)">
+                <b>IMPLIED_DOMINANCE</b>
+                <span>Class over clutter. Focus on the tease.</span>
+            </div>
+            <div class="opt-btn" onclick="nextStep(3, 66)">
+                <b>RAW_INTENSITY</b>
+                <span>Aggressive, high-fidelity, movie-level heat.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="v-step" id="step3">
+        <div class="v-header">ROYAL_AUTHORIZATION</div>
+        <p class="v-text">
+            Your content will live on separate, high-security servers (FlammableFilth.com). Your identity will be marketed as an Icon. Are you ready to let the Directorate manage your evolution into an Elite Performer?
+        </p>
+        <div class="opt-btn" style="width: 100%; text-align: center;" onclick="finish()">
+            <b>INITIALIZE_ELITE_PROFILE</b>
+            <span>(BY CLICKING, YOU SYNC WITH THE 300-NODE NETWORK)</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function nextStep(step, percent) {
+        document.querySelectorAll('.v-step').forEach(s => s.classList.remove('active'));
+        document.getElementById('step' + step).classList.add('active');
+        document.getElementById('progress').style.width = percent + '%';
+    }
+
+    function finish() {
+        document.getElementById('progress').style.width = '100%';
+        alert('VALIDATION_COMPLETE. SYNCING WITH FLAMMABLE FILTH SERVERS...');
+        window.location.href = "portal.html"; // Redirect to the directory
+    }
+</script>
+
+</body>
+</html>
