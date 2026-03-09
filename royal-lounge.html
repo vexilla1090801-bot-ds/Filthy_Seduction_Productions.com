@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Royal Lounge | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;900&family=Source+Code+Pro:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --royal-gold: #c5a059; --royal-black: #050505; --royal-accent: #1a1a1a; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; overflow: hidden; }
+
+        /* THE "BLACK TIER" OVERLAY */
+        .lounge-wrap { 
+            height: 100vh; display: grid; grid-template-columns: 400px 1fr; 
+            background: radial-gradient(circle at center, #111 0%, #000 100%); 
+        }
+
+        /* SIDEBAR: ELITE STATUS ONLY */
+        .royal-sidebar { 
+            background: var(--royal-black); border-right: 1px solid var(--royal-accent); 
+            padding: 60px 40px; display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .royal-label { font-family: 'Source Code Pro'; font-size: 0.6rem; color: var(--royal-gold); letter-spacing: 5px; }
+        .royal-nav { margin-top: 50px; }
+        .royal-nav a { 
+            display: block; color: #444; text-decoration: none; font-family: 'Bebas Neue'; 
+            font-size: 1.8rem; letter-spacing: 3px; margin-bottom: 25px; transition: 0.4s; 
+        }
+        .royal-nav a:hover, .royal-nav a.active { color: var(--royal-gold); text-shadow: 0 0 15px rgba(197, 160, 89, 0.4); }
+
+        /* MAIN: THE PRIVATE VIEW */
+        .royal-main { padding: 80px; position: relative; }
+        .royal-header h1 { font-family: 'Bebas Neue'; font-size: 6rem; letter-spacing: 20px; line-height: 0.8; margin-bottom: 20px; color: #fff; }
+        
+        .exclusive-feed { margin-top: 60px; border-top: 1px solid var(--royal-accent); padding-top: 40px; }
+        .exclusive-item { 
+            background: rgba(255,255,255,0.02); border: 1px solid #111; padding: 30px; 
+            margin-bottom: 20px; display: flex; gap: 30px; align-items: center;
+        }
+        .exclusive-item img { width: 120px; height: 120px; background: #000; border: 1px solid var(--royal-gold); }
+        .exclusive-item h3 { font-family: 'Bebas Neue'; color: var(--royal-gold); font-size: 1.5rem; letter-spacing: 2px; }
+
+        .gate-lock { 
+            position: absolute; bottom: 40px; right: 40px; font-family: 'Source Code Pro'; 
+            font-size: 0.6rem; color: #222; text-transform: uppercase; letter-spacing: 3px; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="lounge-wrap">
+    <aside class="royal-sidebar">
+        <div>
+            <span class="royal-label">LEVEL_09_ACCESS // ROYAL</span>
+            <div class="royal-nav">
+                <a href="#" class="active">PRIVATE_LOUNGE</a>
+                <a href="#">HIGH_TICKET_BRIEFS</a>
+                <a href="#">DIRECT_ADMIN_LINE</a>
+                <a href="#">OFF-SHORE_VAULT</a>
+            </div>
+        </div>
+        <div style="font-size: 0.7rem; color: #222; letter-spacing: 2px;">
+            VERIFIED_IDENTITY: <b>NODE_SOPHIA</b>
+        </div>
+    </aside>
+
+    <main class="royal-main">
+        <div class="royal-header">
+            <p style="color: var(--royal-gold); letter-spacing: 10px; font-weight: 900; margin-bottom: 10px;">EST. 2026</p>
+            <h1>THE<br>CORRIDOR</h1>
+        </div>
+
+        <div class="exclusive-feed">
+            <h2 style="font-family: 'Source Code Pro'; font-size: 0.8rem; margin-bottom: 30px; color: #555;">PENDING_PRIVATE_CONTRACTS</h2>
+            
+            <div class="exclusive-item">
+                <div style="font-family: 'Bebas Neue'; font-size: 3rem; color: #111;">B_01</div>
+                <div>
+                    <h3>TOKYO PENTHOUSE SHOOT</h3>
+                    <p style="font-size: 0.8rem; color: #666;">ALL-EXPENSE PRODUCTION // $15,000 SIGNING BONUS</p>
+                    <p style="font-size: 0.6rem; color: var(--royal-gold); margin-top: 10px;">ELIGIBILITY: ROYAL_STATUS_ONLY</p>
+                </div>
+            </div>
+
+            <div class="exclusive-item">
+                <div style="font-family: 'Bebas Neue'; font-size: 3rem; color: #111;">B_02</div>
+                <div>
+                    <h3>THE 'OBSIDIAN' FEATURE FILM</h3>
+                    <p style="font-size: 0.8rem; color: #666;">LEAD ROLE // FLAMMABLE FILTH ORIGINALS</p>
+                    <p style="font-size: 0.6rem; color: var(--royal-gold); margin-top: 10px;">ELIGIBILITY: TOP_5_GLOBAL_RANK</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gate-lock">ENCRYPTED_SESSION_ACTIVE // NO_RECORD_LOGGED</div>
+    </main>
+</div>
+
+</body>
+</html>

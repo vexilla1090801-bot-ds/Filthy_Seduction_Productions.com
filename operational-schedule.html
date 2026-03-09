@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>War Map | Obsidian Directorate Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-pitch: #050505; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; }
+
+        .schedule-wrap { max-width: 1200px; margin: 100px auto; padding: 0 5%; }
+        .header-section { border-bottom: 1px solid #111; padding-bottom: 40px; margin-bottom: 60px; }
+        .header-section h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 10px; color: var(--fsp-fire); }
+
+        /* THE WEEKLY GRID */
+        .week-block { margin-bottom: 60px; display: grid; grid-template-columns: 250px 1fr; gap: 40px; }
+        .week-label { font-family: 'Bebas Neue'; font-size: 2.5rem; color: var(--fsp-gold); border-top: 1px solid var(--fsp-gold); padding-top: 20px; }
+        
+        .task-list { list-style: none; }
+        .task-item { 
+            background: var(--fsp-pitch); border: 1px solid #111; padding: 25px; 
+            margin-bottom: 15px; display: flex; align-items: flex-start; gap: 20px;
+            transition: 0.3s;
+        }
+        .task-item:hover { border-color: var(--fsp-fire); }
+        .check-box { width: 20px; height: 20px; border: 2px solid var(--fsp-fire); margin-top: 5px; flex-shrink: 0; }
+        
+        .task-content h3 { font-family: 'Bebas Neue'; font-size: 1.4rem; letter-spacing: 2px; margin-bottom: 5px; }
+        .task-content p { color: #555; font-size: 0.85rem; line-height: 1.5; }
+
+        .status-tag { font-family: 'Source Code Pro'; font-size: 0.55rem; color: #0f0; margin-top: 10px; display: block; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="schedule-wrap">
+    <header class="header-section">
+        <h1>THE_WAR_MAP</h1>
+        <p style="font-family: 'Source Code Pro'; color: #444; letter-spacing: 5px;">30-DAY OPERATIONAL INITIALIZATION // A1 ELITE</p>
+    </header>
+
+    <div class="week-block">
+        <div class="week-label">WEEK_01<br>THE SEEDING</div>
+        <div class="task-list">
+            <div class="task-item">
+                <div class="check-box"></div>
+                <div class="task-content">
+                    <h3>ACTIVATE SURROGATE MATRIX</h3>
+                    <p>Initialize the first 300 nodes. Ensure each has a unique "Sexual Identity" profile and 8K placeholder assets in the Showroom.</p>
+                    <span class="status-tag">DAEMON: SURROGATE_INIT_COMPLETE</span>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="check-box"></div>
+                <div class="task-content">
+                    <h3>DEPLOY FIRST PRODUCTION BRIEF</h3>
+                    <p>Issue OBJ_ID: FF_2026_01 (The Lifestyle Series). Set the bounty to $500 to attract high-tier "Around the Home" content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="week-block">
+        <div class="week-label">WEEK_02<br>THE HEAT CYCLE</div>
+        <div class="task-list">
+            <div class="task-item">
+                <div class="check-box"></div>
+                <div class="task-content">
+                    <h3>TRIGGER 5% NETWORK EXPANSION</h3>
+                    <p>The system automatically generates 15 new Surrogate Nodes. Admin must approve their "Sexual Poses" and metadata for FlammableFilth sync.</p>
+                    <span class="status-tag">AUTO_SCALING: ACTIVE</span>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="check-box"></div>
+                <div class="task-content">
+                    <h3>ENGAGEMENT HANDSHAKE</h3>
+                    <p>Manually trigger the Comm-Link "Success Story." Have Node_Sophia post about her first $1,000 royalty payout to inspire real members.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="week-block">
+        <div class="week-label">WEEK_03<br>ASCENSION</div>
+        <div class="task-list">
+            <div class="task-item">
+                <div class="check-box"></div>
+                <div class="task-content">
+                    <h3>IDENTIFY TOP PERFORMERS</h3>
+                    <p>Review real member submissions. Move the first 3 performers to "Elite Status." This unlocks their private ledger and Royal Lounge access.</p>
+                </div>
+            </div>
+            <div class="task-item">
+                <div class="check-box"></div>
+                <div class="task-content">
+                    <h3>CROSS-SERVER AUDIT</h3>
+                    <p>Ensure the FlammableFilth.com Showroom is correctly tracking "Live Views" from the Surrogate Handshake script.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
