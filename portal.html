@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talent Portal | FSP Certified History</title>
+    <title>The Obsidian Portal | FSP Certified Database</title>
     <style>
         :root {
             --fsp-black: #050505;
@@ -11,7 +11,7 @@
             --fsp-fire: #ff3300;
             --fsp-gold: #c5a059;
             --fsp-white: #ffffff;
-            --fsp-glow: rgba(255, 51, 0, 0.4);
+            --fsp-grey: #111111;
         }
 
         /* RESET & STABILITY */
@@ -25,7 +25,7 @@
             min-height: 100vh;
         }
 
-        /* SYNCHRONIZED COMMAND HEADER - LOCKED 180px */
+        /* MASTER COMMAND HEADER - 180px */
         header.fsp-nav-command {
             position: fixed; top: 0; left: 0; width: 100%; height: 180px; 
             background: rgba(0, 0, 0, 0.98); display: flex; align-items: center;
@@ -33,13 +33,9 @@
             z-index: 10000; backdrop-filter: blur(30px);
         }
 
-        .fsp-logo-main { height: 150px; width: auto; transition: 0.5s; }
+        .fsp-logo-main { height: 150px; width: auto; display: block; }
 
-        .portal-status-box {
-            text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px;
-        }
-
-        /* THE LUST LOOP TICKER */
+        /* TICKER SYSTEM */
         .ticker-wrap {
             margin-top: 180px; background: #080808; border-bottom: 1px solid #111;
             padding: 15px 0; overflow: hidden; white-space: nowrap;
@@ -51,22 +47,27 @@
         }
         .ticker-content span { color: var(--fsp-fire); margin: 0 40px; }
 
-        /* PORTAL GRID */
+        /* MAIN CONTENT AREA */
         .portal-main { padding: 60px 5%; position: relative; z-index: 10; }
         
         .bebas {
             font-family: 'Bebas Neue', cursive;
             font-size: clamp(3rem, 10vw, 5.5rem);
-            letter-spacing: 12px; text-align: center; margin-bottom: 50px;
+            letter-spacing: 12px; text-align: center; margin-bottom: 20px;
         }
 
+        .sub-header {
+            text-align: center; color: var(--fsp-gold); letter-spacing: 5px;
+            font-weight: 900; font-size: 0.7rem; margin-bottom: 60px; text-transform: uppercase;
+        }
+
+        /* TALENT GRID ARCHITECTURE */
         .talent-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        /* TALENT CARD ARCHITECTURE */
         .talent-card {
             background: #0a0a0a; border: 1px solid #151515; aspect-ratio: 3/4;
             position: relative; overflow: hidden; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -74,38 +75,37 @@
         }
 
         .talent-card:hover {
-            border-color: var(--fsp-fire); box-shadow: 0 0 40px var(--fsp-glow);
+            border-color: var(--fsp-fire); box-shadow: 0 0 40px rgba(255, 51, 0, 0.3);
             transform: translateY(-10px);
         }
 
-        .talent-img-box {
+        .talent-img {
             width: 100%; height: 100%; background-color: #111;
             background-size: cover; background-position: center; transition: 0.6s;
         }
 
-        .info-overlay {
+        .card-overlay {
             position: absolute; bottom: 0; width: 100%; padding: 40px 20px 20px;
             background: linear-gradient(transparent, #000 90%); z-index: 2;
         }
 
-        .stage-name {
-            display: block; font-size: 1.6rem; font-weight: 900;
+        .s-name {
+            display: block; font-size: 1.8rem; font-weight: 900;
             text-transform: uppercase; letter-spacing: 2px;
         }
 
-        .cert-badge {
+        .c-badge {
             color: var(--fsp-gold); font-size: 0.65rem; font-weight: 900;
             letter-spacing: 2px; text-transform: uppercase;
         }
 
         @keyframes ticker-slide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* MOBILE FIX */
         @media (max-width: 768px) {
             header.fsp-nav-command { height: 130px; padding: 0 20px; }
             .fsp-logo-main { height: 100px; }
             .ticker-wrap { margin-top: 130px; }
-            .talent-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .talent-grid { grid-template-columns: 1fr; }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
@@ -114,69 +114,71 @@
 
     <header class="fsp-nav-command">
         <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="fsp-logo-main"></a>
-        <div class="portal-status-box">
-            <span style="color:var(--fsp-fire); font-weight:900; font-size:0.8rem; letter-spacing:3px;">TALENT DATABASE</span><br>
-            <span style="color:#444; font-size:0.6rem; letter-spacing:1px;">ENCRYPTION: ACTIVE</span>
+        <div style="text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
+            <span style="color:var(--fsp-fire); font-weight:900; font-size:0.8rem; letter-spacing:3px;">IDENTITY LEDGER</span><br>
+            <span style="color:#444; font-size:0.6rem; letter-spacing:1px;">STATUS: LIVE INTAKE</span>
         </div>
     </header>
 
     <div class="ticker-wrap">
         <div class="ticker-content" id="lust-ticker">
-            <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-001] STAGE NAME: VIXEN V. <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-002] STAGE NAME: DANTE F. <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-003] STAGE NAME: SABLE N. 
-            <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-001] STAGE NAME: VIXEN V. <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-002] STAGE NAME: DANTE F. <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-003] STAGE NAME: SABLE N.
+            <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-101] VIXEN V. <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-102] DANTE F. <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-103] SABLE N.
+            <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-101] VIXEN V. <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-102] DANTE F. <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-103] SABLE N.
         </div>
     </div>
 
     <main class="portal-main">
         <h1 class="bebas">THE <span style="color:var(--fsp-fire);">OBSIDIAN</span> PORTAL</h1>
+        <p class="sub-header">Certified Performers // $100+ Per Hour Baseline</p>
 
         <section class="talent-grid" id="main-grid">
             <div class="talent-card">
-                <div class="talent-img-box" style="background-image: url('vixen_placeholder.jpg');"></div>
-                <div class="info-overlay">
-                    <span class="stage-name">VIXEN V.</span>
-                    <span class="cert-badge">ICON STATUS // CERTIFIED</span>
+                <div class="talent-img" style="background-image: url('vixen.jpg');"></div>
+                <div class="card-overlay">
+                    <span class="s-name">VIXEN V.</span>
+                    <span class="c-badge">ICON STATUS // CERTIFIED</span>
                 </div>
             </div>
 
             <div class="talent-card">
-                <div class="talent-img-box" style="background-image: url('dante_placeholder.jpg');"></div>
-                <div class="info-overlay">
-                    <span class="stage-name">DANTE F.</span>
-                    <span class="cert-badge">ELITE STATUS // CERTIFIED</span>
+                <div class="talent-img" style="background-image: url('dante.jpg');"></div>
+                <div class="card-overlay">
+                    <span class="s-name">DANTE F.</span>
+                    <span class="c-badge">ELITE STATUS // CERTIFIED</span>
                 </div>
             </div>
         </section>
     </main>
 
     <script>
+        // THE "LIVE" INJECTION LOGIC
         window.onload = function() {
-            // PULL DATA FROM SESSION STORAGE
-            const newName = sessionStorage.getItem('userName');
-            const newPhoto = sessionStorage.getItem('userPhoto');
+            // Retrieve data from the Join Page
+            const uName = sessionStorage.getItem('userName');
+            const uPhoto = sessionStorage.getItem('userPhoto');
 
-            if (newName && newPhoto) {
+            if (uName && uPhoto) {
                 const grid = document.getElementById('main-grid');
+                const ticker = document.getElementById('lust-ticker');
+                
+                // 1. CREATE THE CARD
                 const newCard = document.createElement('div');
                 newCard.className = 'talent-card';
-                // Fire glow for the newest member
-                newCard.style.borderColor = 'var(--fsp-fire)'; 
-                newCard.style.boxShadow = '0 0 20px var(--fsp-glow)';
+                newCard.style.borderColor = 'var(--fsp-fire)'; // Highlights the new member
                 
                 newCard.innerHTML = `
-                    <div class="talent-img-box" style="background-image:url('${newPhoto}');"></div>
-                    <div class="info-overlay">
-                        <span class="stage-name">${newName}</span>
-                        <span class="cert-badge">INITIALIZED // NEW MEMBER</span>
+                    <div class="talent-img" style="background-image:url('${uPhoto}');"></div>
+                    <div class="card-overlay">
+                        <span class="s-name">${uName}</span>
+                        <span class="c-badge">NEW MEMBER // CERTIFIED</span>
                     </div>
                 `;
                 
-                // PREPEND puts the user at the TOP of the list
+                // 2. INJECT AT THE TOP
                 grid.prepend(newCard);
 
-                // UPDATE TICKER WITH NEW MEMBER
-                const ticker = document.getElementById('lust-ticker');
-                ticker.innerHTML = `<span>IDENTITY INITIALIZED</span> [NEW] STAGE NAME: ${newName} ` + ticker.innerHTML;
+                // 3. UPDATE THE TICKER
+                ticker.innerHTML = `<span>IDENTITY INITIALIZED</span> [NEW] ${uName} ` + ticker.innerHTML;
             }
         };
     </script>
