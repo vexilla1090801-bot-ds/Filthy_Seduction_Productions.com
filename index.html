@@ -5,36 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FSP | The Obsidian Directorate</title>
     <style>
-        :root { --fsp-black: #050505; --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
+        :root {
+            --fsp-black: #050505; --fsp-pitch: #000000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #ffffff;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
-        header { position: fixed; top: 0; left: 0; width: 100%; height: 180px; background: rgba(0,0,0,0.98); display: flex; align-items: center; justify-content: space-between; padding: 0 50px; border-bottom: 2px solid #1a1a1a; z-index: 10000; }
-        .logo { height: 150px; }
-        .hero { margin-top: 180px; padding: 100px 5%; text-align: center; background: radial-gradient(circle, #111 0%, #000 100%); }
-        .bebas { font-family: 'Bebas Neue', cursive; font-size: clamp(3rem, 10vw, 7rem); letter-spacing: 12px; }
-        .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 50px 8%; }
-        .tier-card { background: #080808; border: 1px solid #1a1a1a; padding: 40px; text-align: center; transition: 0.4s; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+
+        /* COMMAND HEADER - 180px FIXED */
+        header { 
+            height: 180px; display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 50px; border-bottom: 2px solid #111; background: #000; 
+            position: fixed; width: 100%; top: 0; z-index: 10000; 
+        }
+        .logo { height: 150px; transition: 0.5s; }
+        .logo:hover { filter: drop-shadow(0 0 15px var(--fsp-fire)); }
+
+        /* HERO SECTION */
+        .hero { 
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; text-align: center; margin-top: 50px;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+        }
+        .hero h1 { font-family: 'Bebas Neue'; font-size: clamp(3rem, 10vw, 7rem); letter-spacing: 15px; line-height: 0.9; }
+        .hero p { letter-spacing: 5px; color: #555; font-weight: 900; margin-top: 20px; text-transform: uppercase; font-size: 0.8rem; }
+
+        /* TIER GRID */
+        .tier-section { padding: 100px 5%; background: #000; }
+        .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        
+        .tier-card { 
+            background: #080808; border: 1px solid #1a1a1a; padding: 50px 30px; 
+            text-align: center; transition: 0.4s; position: relative;
+        }
         .tier-card:hover { border-color: var(--fsp-fire); transform: translateY(-10px); }
-        .price { font-size: 2.5rem; font-weight: 900; margin: 20px 0; }
-        .btn-tier { display: block; width: 100%; padding: 15px; background: #111; color: #fff; text-decoration: none; font-weight: 900; letter-spacing: 3px; font-size: 0.7rem; }
-        .tier-card:hover .btn-tier { background: var(--fsp-fire); }
+        .tier-card.elite-card { border-top: 4px solid var(--fsp-fire); }
+        .tier-card.icon-card { border-top: 4px solid var(--fsp-gold); }
+
+        .tier-card h3 { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 4px; margin-bottom: 10px; }
+        .price { font-size: 3rem; font-weight: 900; margin-bottom: 5px; }
+        .billing-cycle { display: block; font-size: 0.6rem; color: #444; letter-spacing: 2px; font-weight: 900; height: 30px; }
+        
+        .feat-list { list-style: none; text-align: left; margin: 30px 0; border-top: 1px solid #111; padding-top: 30px; }
+        .feat-list li { font-size: 0.75rem; color: #777; margin-bottom: 12px; letter-spacing: 1px; }
+        .feat-list b { color: var(--fsp-white); }
+
+        .btn-select { 
+            display: block; width: 100%; padding: 20px; background: #111; color: #fff; 
+            text-decoration: none; font-weight: 900; letter-spacing: 3px; font-size: 0.75rem; 
+            text-transform: uppercase; transition: 0.3s; 
+        }
+        .tier-card:hover .btn-select { background: var(--fsp-fire); color: white; }
+        .icon-card:hover .btn-select { background: var(--fsp-gold); color: black; }
+
+        footer { padding: 80px; text-align: center; color: #222; font-size: 0.6rem; letter-spacing: 4px; border-top: 1px solid #111; }
+
+        @media (max-width: 768px) {
+            header { height: 140px; padding: 0 20px; }
+            .logo { height: 100px; }
+            .hero h1 { font-size: 3rem; }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <header>
-        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo"></a>
-        <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:3px;">DIRECTORATE</span>
+        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP LOGO"></a>
+        <div style="text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
+            <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:3px; font-size: 0.7rem;">COMMAND CENTER</span>
+        </div>
     </header>
+
     <main class="hero">
-        <h1 class="bebas">OBSIDIAN <span style="color:var(--fsp-gold)">LEDGER</span></h1>
-        <p style="letter-spacing:5px; color:#555; margin-top:20px;">CERTIFIED PRODUCTION // $100+ HOURLY</p>
+        <h1>OBSIDIAN<br><span style="color:var(--fsp-gold)">DIRECTORATE</span></h1>
+        <p>Metadata Identity // Production Equity // 60-Minute Standards</p>
     </main>
-    <section class="tier-grid">
-        <div class="tier-card"><h3>BASIC</h3><div class="price">FREE</div><a href="join.html" class="btn-tier">START FREE</a></div>
-        <div class="tier-card"><h3>PRO</h3><div class="price">$29<span>/MO</span></div><a href="briefing.tier=pro.html" class="btn-tier">SELECT PRO</a></div>
-        <div class="tier-card"><h3>ELITE</h3><div class="price">$99<span>/MO</span></div><a href="briefing.tier=elite.html" class="btn-tier">SELECT ELITE</a></div>
-        <div class="tier-card"><h3>ICON</h3><div class="price">$249<span>/MO</span></div><a href="briefing.tier=icon.html" class="btn-tier">SELECT ICON</a></div>
+
+    <section class="tier-section">
+        <div class="tier-grid">
+            <div class="tier-card">
+                <h3>BASIC</h3>
+                <div class="price">FREE</div>
+                <span class="billing-cycle">INITIAL ENROLLMENT</span>
+                <ul class="feat-list">
+                    <li>✓ <b>5</b> Photo Slots / <b>1</b> Video</li>
+                    <li>✓ Reserved Screen Name</li>
+                    <li>✓ Standard Search Placement</li>
+                    <li>✓ Secure Encrypted Profile</li>
+                </ul>
+                <a href="briefing.tier=basic.html" class="btn-select">START BASIC</a>
+            </div>
+
+            <div class="tier-card">
+                <h3>PRO</h3>
+                <div class="price">$29</div>
+                <span class="billing-cycle">MONTHLY / FLEXIBLE</span>
+                <ul class="feat-list">
+                    <li>✓ <b>15</b> Photo Slots / <b>3</b> Videos</li>
+                    <li>✓ $100/hr Production Scale</li>
+                    <li>✓ Start/Stop Flexibility</li>
+                    <li>✓ Production Blog Access</li>
+                </ul>
+                <a href="briefing.tier=pro.html" class="btn-select">SELECT PRO</a>
+            </div>
+
+            <div class="tier-card elite-card">
+                <h3 style="color:var(--fsp-fire)">ELITE</h3>
+                <div class="price">$99</div>
+                <span class="billing-cycle">6-MONTH ADVANCE REQUIRED</span>
+                <ul class="feat-list">
+                    <li>✓ <b>40</b> Photo Slots / <b>10</b> Videos</li>
+                    <li>✓ Priority Job Notifications</li>
+                    <li>✓ Enhanced Metadata Ranking</li>
+                    <li>✓ $100-$150/hr Scale</li>
+                </ul>
+                <a href="briefing.tier=elite.html" class="btn-select">SELECT ELITE</a>
+            </div>
+
+            <div class="tier-card icon-card">
+                <h3 style="color:var(--fsp-gold)">ICON</h3>
+                <div class="price">$249</div>
+                <span class="billing-cycle">12-MONTH ADVANCE REQUIRED</span>
+                <ul class="feat-list">
+                    <li>✓ <b>UNLIMITED</b> Media Assets</li>
+                    <li>✓ Lust-Loop Front Page Feature</li>
+                    <li>✓ <b>$250/hr</b> Production Scale</li>
+                    <li>✓ Direct Staff Consultation</li>
+                </ul>
+                <a href="briefing.tier=icon.html" class="btn-select">SELECT ICON</a>
+            </div>
+        </div>
     </section>
+
+    <footer>
+        &copy; 2026 FILTHY SEDUCTION PRODUCTIONS | ALL RIGHTS RESERVED | THE OBSIDIAN LEDGER
+    </footer>
+
 </body>
 </html>
