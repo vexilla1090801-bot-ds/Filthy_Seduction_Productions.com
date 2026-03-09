@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Activation | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        /* UNIVERSAL HEADER */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+        
+        .checkout-layout { max-width: 1100px; margin: 240px auto 100px; padding: 0 5%; display: grid; grid-template-columns: 1fr 400px; gap: 40px; }
+
+        /* PAYMENT SUMMARY */
+        .payment-box { background: #080808; border: 1px solid #151515; padding: 50px; border-top: 4px solid var(--fsp-gold); }
+        h1 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 10px; margin-bottom: 10px; }
+        .sub-text { font-size: 0.65rem; color: #444; letter-spacing: 3px; font-weight: 900; text-transform: uppercase; margin-bottom: 40px; display: block; }
+
+        .form-group { margin-bottom: 25px; }
+        label { display: block; font-size: 0.6rem; color: #666; font-weight: 900; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
+        input { width: 100%; background: #000; border: 1px solid #222; padding: 18px; color: #fff; font-family: 'Outfit'; }
+
+        .card-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        .btn-activate { width: 100%; padding: 25px; background: var(--fsp-white); color: #000; font-weight: 900; letter-spacing: 8px; border: none; cursor: pointer; text-transform: uppercase; margin-top: 20px; transition: 0.4s; }
+        .btn-activate:hover { background: var(--fsp-fire); color: #fff; }
+
+        /* ORDER SIDEBAR */
+        .order-sidebar { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 30px; height: fit-content; }
+        .order-sidebar h3 { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 20px; color: var(--fsp-gold); }
+        
+        .item-row { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #151515; }
+        .total-row { display: flex; justify-content: space-between; font-family: 'Bebas Neue'; font-size: 2rem; color: #fff; margin-top: 20px; }
+
+        .security-lock { margin-top: 30px; font-size: 0.6rem; color: #333; line-height: 1.6; text-align: center; }
+        .security-lock b { color: var(--fsp-fire); }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+</header>
+
+<main class="checkout-layout">
+    <section class="payment-box">
+        <h1>NODE ACTIVATION</h1>
+        <span class="sub-text">Secure Encrypted Payment Gateway</span>
+
+        <form onsubmit="processPayment(event)">
+            <div class="form-group">
+                <label>Name on Identification</label>
+                <input type="text" placeholder="FULL LEGAL NAME" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Card Number</label>
+                <input type="text" placeholder="0000 0000 0000 0000" required>
+            </div>
+
+            <div class="card-meta">
+                <div class="form-group">
+                    <label>Expiration</label>
+                    <input type="text" placeholder="MM/YY" required>
+                </div>
+                <div class="form-group">
+                    <label>CVC</label>
+                    <input type="text" placeholder="***" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-activate">AUTHORIZE ACTIVATION</button>
+        </form>
+    </section>
+
+    <aside class="order-sidebar">
+        <h3>SUMMARY</h3>
+        <div class="item-row">
+            <span>Directorate Tier Access</span>
+            <span id="tier-price">$29.00</span>
+        </div>
+        <div class="item-row">
+            <span>2257 Admin & Sync</span>
+            <span>INCLUDED</span>
+        </div>
+        <div class="item-row">
+            <span>Career Concierge Setup</span>
+            <span>INCLUDED</span>
+        </div>
+
+        <div class="total-row">
+            <span>TOTAL</span>
+            <span id="total-price">$29.00</span>
+        </div>
+
+        <div class="security-lock">
+            <b>SECURITY BLANKET ACTIVE</b><br>
+            Charges will appear as "FSP_DIRECTORATE" on your statement. All transactions are SSL-encrypted and identity-shielded.
+        </div>
+    </aside>
+</main>
+
+<script>
+    window.onload = function() {
+        const data = JSON.parse(localStorage.getItem('fsp_active_profile'));
+        if(data) {
+            let price = "$29.00";
+            if(data.tier === 'ELITE') price = "$99.00";
+            if(data.tier === 'ICON') price = "$249.00";
+            
+            document.getElementById('tier-price').innerText = price;
+            document.getElementById('total-price').innerText = price;
+        }
+    }
+
+    function processPayment(e) {
+        e.preventDefault();
+        alert("AUTHORIZING TRANSACTION...\nIDENTITY SYNCING WITH 2257 VAULT...");
+        window.location.href = "portal.html";
+    }
+</script>
+
+</body>
+</html>
