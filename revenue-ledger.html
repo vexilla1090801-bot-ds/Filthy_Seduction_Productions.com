@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Financial Engine | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-pitch: #080808; --fsp-green: #00ff66; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; }
+
+        .ledger-container { max-width: 1400px; margin: 150px auto; padding: 0 5%; display: grid; grid-template-columns: 1fr 400px; gap: 40px; }
+
+        /* REVENUE SUMMARY CARDS */
+        .revenue-header { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+        .stat-card { background: var(--fsp-pitch); border: 1px solid #111; padding: 30px; position: relative; }
+        .stat-card span { font-size: 0.6rem; color: #444; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
+        .stat-card h2 { font-family: 'Source Code Pro'; font-size: 2.2rem; margin-top: 10px; color: var(--fsp-white); }
+        .stat-card.highlight h2 { color: var(--fsp-gold); }
+
+        /* BOUNTY TRACKER */
+        .active-bounties { background: var(--fsp-pitch); border: 1px solid #151515; padding: 40px; }
+        .bounty-row { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #111; }
+        .bounty-info h4 { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 2px; color: var(--fsp-fire); }
+        .bounty-info p { font-size: 0.7rem; color: #555; text-transform: uppercase; margin-top: 5px; }
+        .bounty-status { font-family: 'Source Code Pro'; font-size: 0.7rem; padding: 5px 15px; border-radius: 20px; background: rgba(255, 255, 255, 0.05); }
+
+        /* SURROGATE PAYOUT FEED (SOCIAL PROOF) */
+        .payout-feed { background: #050505; border: 1px solid #111; padding: 30px; height: fit-content; position: sticky; top: 150px; }
+        .payout-item { padding: 15px 0; border-bottom: 1px solid #111; display: flex; justify-content: space-between; font-size: 0.65rem; font-family: 'Source Code Pro'; }
+        .payout-item strong { color: var(--fsp-green); }
+
+        .btn-withdraw { width: 100%; padding: 20px; background: var(--fsp-gold); color: #000; border: none; font-weight: 900; letter-spacing: 3px; cursor: pointer; margin-top: 30px; text-transform: uppercase; transition: 0.3s; }
+        .btn-withdraw:hover { background: #fff; box-shadow: 0 0 20px rgba(197, 160, 89, 0.4); }
+    </style>
+</head>
+<body>
+
+<div class="ledger-container">
+    <div class="revenue-header">
+        <div class="stat-card">
+            <span>AVAILABLE_BALANCE</span>
+            <h2 id="balance">$1,450.00</h2>
+        </div>
+        <div class="stat-card highlight">
+            <span>TOTAL_LIFETIME_PROCEEDS</span>
+            <h2>$12,840.50</h2>
+        </div>
+        <div class="stat-card">
+            <span>PENDING_BOUNTIES</span>
+            <h2 style="color: var(--fsp-fire);">$800.00</h2>
+        </div>
+    </div>
+
+    <section class="active-bounties">
+        <h3 style="font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 5px; margin-bottom: 30px;">ACTIVE_MISSION_PAYOUTS</h3>
+        
+        <div class="bounty-row">
+            <div class="bounty-info">
+                <h4>OBJ_ID: FF_2026_09A</h4>
+                <p>Status: Content Approved // Finalizing Metadata</p>
+            </div>
+            <div class="bounty-status" style="color: var(--fsp-green);">+$500.00</div>
+        </div>
+
+        <div class="bounty-row">
+            <div class="bounty-info">
+                <h4>ROYALTY_SYNC: MIDNIGHT VELVET</h4>
+                <p>Showroom Performance: 1,400+ Premium Views</p>
+            </div>
+            <div class="bounty-status" style="color: var(--fsp-gold);">+$340.50</div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <p style="font-size: 0.6rem; color: #333; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;">Historical Ledger</p>
+            <div class="bounty-row" style="opacity: 0.4;">
+                <div class="bounty-info"><h4>OBJ_ID: FF_2026_08C</h4><p>Settled 2026.02.28</p></div>
+                <div class="bounty-status">+$1,200.00</div>
+            </div>
+        </div>
+    </section>
+
+    <aside class="payout-feed">
+        <h4 style="font-family: 'Bebas Neue'; letter-spacing: 2px; margin-bottom: 20px;">NETWORK_PAYOUT_LOG</h4>
+        <div id="payout-list">
+            <div class="payout-item">NODE_SOPHIA <span>AUTHORIZING <strong>$2,400.50</strong></span></div>
+            <div class="payout-item">NODE_JORDAN <span>AUTHORIZING <strong>$850.00</strong></span></div>
+            <div class="payout-item">NODE_ELENA <span>AUTHORIZING <strong>$1,120.00</strong></span></div>
+            <div class="payout-item">NODE_ZARA <span>AUTHORIZING <strong>$4,500.00</strong></span></div>
+        </div>
+        
+        <button class="btn-withdraw">WITHDRAW_TO_IDENTITY_WALLET</button>
+        <p style="font-size: 0.55rem; color: #444; margin-top: 20px; text-align: center; line-height: 1.4;">
+            *TRANSFERS TO EXTERNAL SERVERS MAY TAKE 1-3 SECONDS. <br>
+            FSP SECURITY BLANKET ACTIVE.
+        </p>
+    </aside>
+</div>
+
+<script>
+    // AUTO-UPDATE BALANCE (Simulates small royalty trickles)
+    setInterval(() => {
+        let el = document.getElementById('balance');
+        let current = parseFloat(el.innerText.replace('$', '').replace(',', ''));
+        let trickle = Math.random() * 0.05; // Simulate a small view royalty
+        el.innerText = '$' + (current + trickle).toLocaleString(undefined, {minimumFractionDigits: 2});
+    }, 3000);
+</script>
+
+</body>
+</html>

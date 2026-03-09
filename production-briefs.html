@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Production Briefs | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-pitch: #050505; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; }
+
+        header { height: 120px; border-bottom: 1px solid #111; display: flex; align-items: center; padding: 0 5%; justify-content: space-between; background: rgba(0,0,0,0.9); }
+        .brand { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 5px; color: var(--fsp-fire); }
+
+        .brief-container { max-width: 1200px; margin: 60px auto; padding: 0 5%; }
+        
+        .brief-header { margin-bottom: 40px; border-left: 4px solid var(--fsp-gold); padding-left: 25px; }
+        .brief-header h1 { font-family: 'Bebas Neue'; font-size: 3.5rem; letter-spacing: 8px; margin: 0; }
+        .brief-header p { color: #555; font-size: 0.7rem; letter-spacing: 3px; font-weight: 900; text-transform: uppercase; }
+
+        /* THE LIVE BRIEF STACK */
+        .brief-card { background: var(--fsp-pitch); border: 1px solid #151515; padding: 40px; margin-bottom: 30px; position: relative; transition: 0.4s; overflow: hidden; }
+        .brief-card:hover { border-color: var(--fsp-fire); }
+        .brief-card::before { content: "TOP_PRIORITY"; position: absolute; top: 0; right: 0; background: var(--fsp-fire); color: #fff; font-size: 0.5rem; padding: 5px 15px; font-weight: 900; letter-spacing: 2px; }
+
+        .brief-meta { display: flex; gap: 30px; margin-bottom: 25px; font-family: 'Source Code Pro'; font-size: 0.65rem; color: var(--fsp-gold); }
+        .brief-title { font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 3px; margin-bottom: 15px; }
+        .brief-desc { color: #888; line-height: 1.6; font-size: 0.9rem; max-width: 800px; margin-bottom: 25px; }
+
+        /* INTEL / REQUIREMENTS */
+        .requirements { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; border-top: 1px solid #111; padding-top: 25px; }
+        .req-item b { display: block; font-size: 0.55rem; color: #444; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+        .req-item span { font-size: 0.8rem; color: #fff; font-weight: 700; }
+
+        .btn-accept { display: inline-block; margin-top: 30px; padding: 15px 40px; background: #fff; color: #000; text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; transition: 0.3s; }
+        .btn-accept:hover { background: var(--fsp-fire); color: #fff; }
+
+        /* SURROGATE UPLINK FEED */
+        .surrogate-uplink { background: #080808; border: 1px solid #111; padding: 20px; margin-top: 50px; }
+        .uplink-row { display: flex; justify-content: space-between; font-size: 0.6rem; font-family: 'Source Code Pro'; padding: 10px 0; border-bottom: 1px solid #111; color: #444; }
+        .uplink-row strong { color: #0f0; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand">FSP_DIRECTORATE</div>
+    <div style="font-size: 0.6rem; color: #444; font-family: 'Source Code Pro';">SYSTEM_TIME: 2026.03.09 // 09:40_EST</div>
+</header>
+
+<main class="brief-container">
+    <div class="brief-header">
+        <h1>PRODUCTION_BRIEFS</h1>
+        <p>Strategic Content Objectives for FlammableFilth.com</p>
+    </div>
+
+    <div class="brief-card">
+        <div class="brief-meta">
+            <span>OBJ_ID: FF_2026_09A</span>
+            <span>BOUNTY: $500.00 BASE + ROYALTIES</span>
+        </div>
+        <h2 class="brief-title">THE "AROUND THE HOME" LIFESTYLE SERIES</h2>
+        <p class="brief-desc">
+            We are looking for high-heat, non-nude "Tease" content within luxury domestic environments. Think silk robes, morning coffee in high-end lingerie, and natural "unaware" vibes. This content will feed the main Social Proof engine of the Directorate.
+        </p>
+        <div class="requirements">
+            <div class="req-item"><b>Wardrobe</b><span>Silk / Lace / Cashmere</span></div>
+            <div class="req-item"><b>Lighting</b><span>Natural Window / Golden Hour</span></div>
+            <div class="req-item"><b>Submission</b><span>4K RAW (Min 10 Minutes)</span></div>
+        </div>
+        <a href="production-dispatch.html" class="btn-accept">ACCEPT MISSION</a>
+    </div>
+
+    <div class="brief-card" style="border-color: var(--fsp-gold);">
+        <div class="brief-meta">
+            <span>OBJ_ID: FF_2026_09B</span>
+            <span style="color:var(--fsp-fire)">BOUNTY: $1,200.00 + ELITE_RESIDUALS</span>
+        </div>
+        <h2 class="brief-title">NEO-NOIR OFFICE EXECUTIVE</h2>
+        <p class="brief-desc">
+            Aggressive, power-driven content for our "Executive" category. This is for FlammableFilth.com's premium "Movie Level" tier. Sharp blazers, office settings, and dominant sexual energy are required.
+        </p>
+        <div class="requirements">
+            <div class="req-item"><b>Wardrobe</b><span>Corporate Chic / Sheer Underlay</span></div>
+            <div class="req-item"><b>Lighting</b><span>Neon-Noir / High Contrast</span></div>
+            <div class="req-item"><b>Submission</b><span>8K MASTER (Min 20 Minutes)</span></div>
+        </div>
+        <a href="production-dispatch.html" class="btn-accept">ACCEPT MISSION</a>
+    </div>
+
+    <div class="surrogate-uplink">
+        <h4 style="font-family: 'Bebas Neue'; letter-spacing: 2px; margin-bottom: 15px;">LIVE_ACCEPTANCE_LOG</h4>
+        <div class="uplink-row">NODE_SOPHIA JUST ACCEPTED: <strong>LIFESTYLE_SERIES</strong> // STATUS: FILMING</div>
+        <div class="uplink-row">NODE_JORDAN JUST ACCEPTED: <strong>NEO-NOIR_OFFICE</strong> // STATUS: FILMING</div>
+        <div class="uplink-row">NODE_ELENA JUST ACCEPTED: <strong>LIFESTYLE_SERIES</strong> // STATUS: FILMING</div>
+    </div>
+</main>
+
+</body>
+</html>
