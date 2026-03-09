@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Strategy Briefing | FSP Obsidian Directorate</title>
+    <title>Icon Strategy Briefing | FSP Obsidian Directorate</title>
     <style>
         :root {
             --fsp-black: #050505; --fsp-pitch: #000000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #ffffff;
@@ -17,9 +17,9 @@
 
         .briefing-container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; padding: 250px 5% 80px; max-width: 1600px; margin: 0 auto; }
 
-        /* LEFT: ELITE STRATEGY CONTENT */
-        .strategy-content h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 10px; margin-bottom: 20px; color: var(--fsp-fire); }
-        .commitment-tag { display: inline-block; padding: 10px 20px; background: rgba(255,51,0,0.1); border: 1px solid var(--fsp-fire); color: var(--fsp-fire); font-weight: 900; font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 40px; }
+        /* LEFT: ICON STRATEGY CONTENT */
+        .strategy-content h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 10px; margin-bottom: 20px; color: var(--fsp-gold); text-shadow: 0 0 20px rgba(197, 160, 89, 0.3); }
+        .commitment-tag { display: inline-block; padding: 10px 20px; background: rgba(197,160,89,0.1); border: 1px solid var(--fsp-gold); color: var(--fsp-gold); font-weight: 900; font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 40px; }
         
         .benefit-block { margin-bottom: 40px; border-left: 2px solid var(--fsp-gold); padding-left: 30px; }
         .benefit-block h3 { color: var(--fsp-gold); letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px; text-transform: uppercase; }
@@ -39,7 +39,7 @@
         .total-display b { font-size: 2.5rem; color: var(--fsp-gold); letter-spacing: 2px; }
 
         .submit-btn { width: 100%; padding: 25px; background: var(--fsp-fire); color: white; border: none; font-weight: 900; letter-spacing: 5px; cursor: pointer; text-transform: uppercase; }
-        .submit-btn:hover { background: white; color: black; box-shadow: 0 0 30px var(--fsp-fire); }
+        .submit-btn:hover { background: var(--fsp-gold); color: black; box-shadow: 0 0 40px var(--fsp-gold); }
 
         @media (max-width: 1000px) { .briefing-container { grid-template-columns: 1fr; padding-top: 200px; } }
     </style>
@@ -49,40 +49,40 @@
 
 <header>
     <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo"></a>
-    <div style="text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
-        <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:3px;">ELITE STRATEGY BRIEFING</span>
+    <div style="text-align: right; border-right: 3px solid var(--fsp-gold); padding-right: 20px;">
+        <span style="color:var(--fsp-gold); font-weight:900; letter-spacing:3px;">ICON STRATEGY BRIEFING</span>
     </div>
 </header>
 
 <main class="briefing-container">
     <section class="strategy-content">
-        <h1>ELITE STATUS</h1>
-        <div class="commitment-tag">REQUIRED: 6 MONTH ADVANCE COMMITMENT</div>
+        <h1>ICON STATUS</h1>
+        <div class="commitment-tag">REQUIRED: 12 MONTH ADVANCE COMMITMENT</div>
         
         <div class="benefit-block">
-            <h3>Expanded Asset Ledger</h3>
-            <p>The Elite tier grants you 40 photo slots and 10 video repositories. This high-capacity storage is designed for performers ready to dominate multiple production requirements simultaneously.</p>
+            <h3>Unlimited Media Real Estate</h3>
+            <p>Icons hold the highest authority in the Obsidian Ledger. You are granted unlimited slots for both photography and high-fidelity video, allowing for total brand saturation.</p>
         </div>
 
         <div class="benefit-block">
-            <h3>Priority Job Distribution</h3>
-            <p>Elite members are pushed to the top of the casting queue. When a new 60-minute scripted requirement is released, Elite performers receive the notification 24 hours before Pro members.</p>
+            <h3>Elite Production Pipeline</h3>
+            <p>Access the highest-paying 60-minute requirements. Icon members are prioritized for major publication syncs and receive a premium pay scale starting at $250/hr for approved submittals.</p>
         </div>
 
         <div class="benefit-block">
-            <h3>Advanced Search Ranking</h3>
-            <p>Our metadata algorithms prioritize Elite profiles in the Obsidian Ledger. This leads to higher visibility for external publications and premium FSP productions.</p>
+            <h3>Lust-Loop Front Page Placement</h3>
+            <p>Your identity is hard-coded into the community's primary visual feed. Icons receive 10x the traffic of standard profiles through our proprietary Lust-Loop rotation.</p>
         </div>
 
         <div class="benefit-block">
-            <h3>6-Month Investment Logic</h3>
-            <p>We require a 6-month commitment to ensure our Elite performers are dedicated to the brand lifecycle. This funding allows us to provide deeper production support and faster approval times.</p>
+            <h3>1-on-1 Staff Consultation</h3>
+            <p>Direct access to Filthy Seduction Productions staff. We provide tailored direction worth thousands of dollars to ensure your metadata celebrity reaches maximum equity.</p>
         </div>
     </section>
 
     <section class="enrollment-box">
-        <h2>INITIALIZE ELITE</h2>
-        <form onsubmit="processElite(event)">
+        <h2>INITIALIZE ICON</h2>
+        <form onsubmit="processIcon(event)">
             <div class="input-group">
                 <label>LEGAL IDENTITY (CARDHOLDER)</label>
                 <input type="text" required placeholder="FULL NAME">
@@ -103,20 +103,20 @@
             </div>
 
             <div class="total-display">
-                <span>6-MONTH COMMITMENT TOTAL:</span>
-                <b>$594.00</b>
+                <span>12-MONTH COMMITMENT TOTAL:</span>
+                <b>$2,988.00</b>
             </div>
 
-            <button type="submit" class="submit-btn">AUTHORIZE ELITE STATUS</button>
+            <button type="submit" class="submit-btn">AUTHORIZE ICON STATUS</button>
         </form>
     </section>
 </main>
 
 <script>
-    function processElite(e) {
+    function processIcon(e) {
         e.preventDefault();
-        sessionStorage.setItem('selectedTier', 'elite');
-        alert("ELITE STATUS AUTHORIZED. REDIRECTING TO ASSET INTAKE...");
+        sessionStorage.setItem('selectedTier', 'icon');
+        alert("ICON STATUS AUTHORIZED. WELCOME TO THE DIRECTORATE.");
         window.location.href = "join.html";
     }
 </script>
