@@ -9,19 +9,18 @@
     <style>
         :root {
             --fsp-pitch: #000000; --fsp-card: #080808; --fsp-fire: #ff3300; 
-            --fsp-gold: #c5a059; --fsp-white: #ffffff; --fsp-gray: #444;
+            --fsp-gold: #c5a059; --fsp-white: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; overflow-x: hidden; padding-top: 180px; }
 
-        /* HEADER (REPLICATED FROM COMMAND) */
+        /* MASTER HEADER - IDENTICAL TO INDEX */
         header { 
             height: 180px; display: flex; align-items: center; justify-content: space-between; 
             padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
             position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
         }
-        
         .logo-link { display: flex; align-items: center; text-decoration: none; }
         .logo { height: 150px; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
         .logo:hover { filter: drop-shadow(0 0 25px var(--fsp-fire)); transform: scale(1.02); }
@@ -30,32 +29,26 @@
         .main-nav a { 
             color: #666; text-decoration: none; font-weight: 900; font-size: 0.75rem; 
             letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
         }
-        .main-nav a:hover, .main-nav a.active { color: var(--fsp-fire); text-shadow: 0 0 10px rgba(255,51,0,0.5); }
+        .main-nav a:hover, .main-nav a.active { color: var(--fsp-fire); border-bottom: 2px solid var(--fsp-fire); }
 
         .system-status { display: flex; align-items: center; gap: 12px; border-right: 3px solid var(--fsp-fire); padding-right: 20px; }
         .pulse { width: 10px; height: 10px; background: var(--fsp-fire); border-radius: 50%; animation: blink 1.5s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
-        .status-text { color: var(--fsp-fire); font-size: 0.65rem; font-weight: 900; letter-spacing: 4px; }
 
-        /* PORTAL INTRO */
+        /* PORTAL CONTENT */
         .portal-intro { text-align: center; padding: 80px 10% 40px; }
         .portal-intro h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 15px; margin: 0; }
         .portal-intro p { color: var(--fsp-gold); letter-spacing: 8px; font-weight: 900; text-transform: uppercase; font-size: 0.8rem; }
 
-        /* GRID SYSTEM */
         .profile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; padding: 0 5% 120px; }
-
-        .profile-card { 
-            background: var(--fsp-card); border: 1px solid #1a1a1a; transition: 0.5s; 
-            position: relative; overflow: hidden;
-        }
+        .profile-card { background: var(--fsp-card); border: 1px solid #1a1a1a; transition: 0.5s; position: relative; overflow: hidden; }
         .profile-card:hover { border-color: var(--fsp-white); transform: translateY(-5px); }
 
         .img-box { width: 100%; aspect-ratio: 3/4; background: #050505; position: relative; display: flex; align-items: center; justify-content: center; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.6s; }
         .profile-card:hover img { filter: grayscale(0%); transform: scale(1.05); }
-        .img-fallback { position: absolute; font-size: 0.55rem; color: #222; font-weight: 900; letter-spacing: 3px; }
 
         .status-badge { 
             position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.85); 
@@ -67,35 +60,35 @@
         .profile-name { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 4px; display: block; margin-bottom: 5px; }
         .profile-tier { font-size: 0.65rem; color: var(--fsp-gold); font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
 
-        .action-btn { 
-            display: block; width: 100%; padding: 18px; text-align: center; 
-            background: #111; color: #fff; text-decoration: none; 
-            font-size: 0.7rem; font-weight: 900; letter-spacing: 4px; margin-top: 20px; transition: 0.3s;
-        }
-        .profile-card:hover .action-btn { background: var(--fsp-white); color: #000; }
+        .btn { display: block; width: 100%; padding: 18px; text-align: center; background: #111; color: #fff; text-decoration: none; font-size: 0.7rem; font-weight: 900; letter-spacing: 4px; margin-top: 20px; border: 1px solid #222; transition: 0.3s; }
+        .profile-card:hover .btn { background: var(--fsp-white); color: #000; }
 
-        /* FOOTER (REPLICATED FROM COMMAND) */
-        footer { padding: 100px 15%; background: #000; border-top: 1px solid #111; color: #333; font-size: 0.65rem; line-height: 2.2; text-align: center; letter-spacing: 1px; }
-        .legal-warning { color: #555; margin-bottom: 30px; border: 1px solid #111; padding: 20px; text-align: left; }
+        /* MASTER FOOTER - IDENTICAL TO INDEX */
+        footer { padding: 80px 10%; background: #000; border-top: 1px solid #111; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: start; gap: 50px; }
+        .footer-logo { height: 100px; opacity: 0.5; transition: 0.3s; }
+        .footer-nav { display: flex; flex-direction: column; gap: 15px; }
+        .footer-nav h5 { color: var(--fsp-gold); font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; }
+        .footer-nav a { color: #444; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; transition: 0.3s; }
+        .footer-nav a:hover { color: var(--fsp-fire); }
+        .legal-box { border: 1px solid #111; padding: 30px; color: #333; font-size: 0.6rem; line-height: 2; text-align: justify; }
     </style>
 </head>
 <body>
 
     <header>
         <a href="index.html" class="logo-link">
-            <img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP OBSIDIAN">
+            <img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP COMMAND">
         </a>
-        
         <nav class="main-nav">
             <a href="index.html">COMMAND</a>
-            <a href="briefing-pro.html">PRO</a>
             <a href="portal.html" class="active">PORTAL</a>
-            <a href="about.html">ABOUT</a>
+            <a href="registry.html">REGISTRY</a>
+            <a href="briefing-pro.html">BRIEFING</a>
         </nav>
-
         <div class="system-status">
             <span class="pulse"></span>
-            <span class="status-text">NODE: ACTIVE</span>
+            <span class="status-text" style="color:var(--fsp-fire); font-size:0.65rem; font-weight:900; letter-spacing:4px;">STATUS: ACTIVE</span>
         </div>
     </header>
 
@@ -109,49 +102,33 @@
         <div class="profile-card">
             <span class="status-badge">AVAILABLE</span>
             <div class="img-box">
-                <span class="img-fallback">IDENTITY_ENCRYPTED</span>
-                <img src="assets/profiles/model_01.jpg" onerror="this.style.display='none'">
+                <img src="assets/profiles/model_01.jpg" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='">
             </div>
             <div class="profile-info">
                 <span class="profile-tier">PRO STATUS</span>
                 <span class="profile-name">CODE: X-RAY</span>
-                <a href="#" class="action-btn">VIEW CLEARANCE</a>
-            </div>
-        </div>
-
-        <div class="profile-card">
-            <span class="status-badge" style="border-color:var(--fsp-gold); color:var(--fsp-gold);">IN-STUDIO</span>
-            <div class="img-box">
-                <span class="img-fallback">IDENTITY_ENCRYPTED</span>
-                <img src="assets/profiles/model_02.jpg" onerror="this.style.display='none'">
-            </div>
-            <div class="profile-info">
-                <span class="profile-tier" style="color:var(--fsp-gold);">ICON STATUS</span>
-                <span class="profile-name">CODE: NOVA</span>
-                <a href="#" class="action-btn">VIEW CLEARANCE</a>
-            </div>
-        </div>
-
-        <div class="profile-card">
-            <span class="status-badge">REMOTE ONLY</span>
-            <div class="img-box">
-                <span class="img-fallback">IDENTITY_ENCRYPTED</span>
-                <img src="assets/profiles/model_03.jpg" onerror="this.style.display='none'">
-            </div>
-            <div class="profile-info">
-                <span class="profile-tier">ELITE STATUS</span>
-                <span class="profile-name">CODE: SIERRA</span>
-                <a href="#" class="action-btn">VIEW CLEARANCE</a>
+                <a href="profile-view.html?id=01" class="btn">VIEW CLEARANCE</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="legal-warning">
-            <b>18 U.S.C. § 2257 RECORD-KEEPING COMPLIANCE:</b> ALL MODELS, PERFORMERS, AND CONTENT CREATORS REGISTERING WITH THE OBSIDIAN DIRECTORATE MUST BE AT LEAST 18 YEARS OF AGE. ALL CONTENT PRODUCED OR INDEXED BY FILTHY SEDUCTION PRODUCTIONS COMPLIES WITH FEDERAL RECORD-KEEPING REQUIREMENTS. BY ENTERING THIS SITE, YOU CERTIFY LEGAL AGE AND ADHERENCE TO ALL ADULT ENTERTAINMENT LAWS WITHIN YOUR JURISDICTION.
+        <div class="footer-grid">
+            <div>
+                <img src="VEXILLIALSDP_FSP.png" class="footer-logo" alt="FSP">
+                <p style="color:#222; font-size:0.55rem; margin-top:20px; letter-spacing:2px;">&copy; 2026 FSP DIRECTORATE</p>
+            </div>
+            <div class="legal-box">
+                <b>18 U.S.C. § 2257 COMPLIANCE:</b> ALL RECORDS ARE MAINTAINED BY FILTHY SEDUCTION PRODUCTIONS. ALL PERFORMERS ARE 18+ YEARS OF AGE.
+            </div>
+            <div class="footer-nav">
+                <h5>Information</h5>
+                <a href="about.html">ABOUT AGENCY</a>
+                <a href="terms.html">TERMS OF SERVICE</a>
+                <a href="support.html">SYSTEM SUPPORT</a>
+                <a href="portal.html">TALENT PORTAL</a>
+            </div>
         </div>
-        <p>THE OBSIDIAN DIRECTORATE IS A SPECIALIZED DIVISION OF FILTHY SEDUCTION PRODUCTIONS. OUR MISSION IS TO DEVELOP, CREDENTIAL, AND MANAGE THE PROFESSIONAL IDENTITIES OF ADULT ENTERTAINERS FOR BOTH REMOTE AND STUDIO-BASED PRODUCTIONS. ALL PAY RATES ARE BASED ON PROFESSIONAL PRODUCTION STANDARDS AND DIRECTOR-TIER APPROVAL.</p>
-        <p style="margin-top:20px; color:#111;">&copy; 2026 FSP DIRECTORATE | LOGO: VEXILLIALSDP_FSP | NODE 1.0</p>
     </footer>
 
 </body>
