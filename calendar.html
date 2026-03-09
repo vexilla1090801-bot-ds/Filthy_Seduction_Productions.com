@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production Calendar | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-card: #080808; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        /* UNIVERSAL HEADER */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+
+        .calendar-layout { max-width: 1200px; margin: 240px auto 100px; padding: 0 5%; }
+        
+        .calendar-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 1px solid #111; padding-bottom: 20px; }
+        .calendar-header h1 { font-family: 'Bebas Neue'; font-size: 3.5rem; letter-spacing: 10px; }
+        .month-nav { font-family: 'Bebas Neue'; font-size: 1.5rem; color: var(--fsp-gold); letter-spacing: 3px; }
+
+        /* THE GRID */
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); border: 1px solid #111; background: #050505; }
+        .day-label { padding: 15px; font-size: 0.6rem; font-weight: 900; color: #444; text-transform: uppercase; letter-spacing: 2px; text-align: center; border-bottom: 1px solid #111; }
+        
+        .day-cell { min-height: 140px; padding: 10px; border: 1px solid #0a0a0a; position: relative; transition: 0.3s; }
+        .day-cell:hover { background: #080808; }
+        .day-num { font-family: 'Source Code Pro'; font-size: 0.7rem; color: #222; margin-bottom: 10px; display: block; }
+        
+        /* EVENT STYLES */
+        .event { font-size: 0.55rem; padding: 5px 8px; margin-bottom: 5px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; border-left: 2px solid transparent; }
+        .event.shoot { background: rgba(255, 51, 0, 0.1); color: var(--fsp-fire); border-left-color: var(--fsp-fire); }
+        .event.scrub { background: rgba(197, 160, 89, 0.1); color: var(--fsp-gold); border-left-color: var(--fsp-gold); }
+        .event.settle { background: rgba(0, 255, 0, 0.1); color: #0f0; border-left-color: #0f0; }
+
+        .today { border: 1px solid #333 !important; }
+        .today .day-num { color: var(--fsp-white); font-weight: 900; }
+
+        .legend { display: flex; gap: 30px; margin-top: 40px; padding: 20px; background: #080808; border: 1px solid #111; }
+        .legend-item { display: flex; align-items: center; gap: 10px; font-size: 0.65rem; font-weight: 900; letter-spacing: 1px; color: #444; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+</header>
+
+<main class="calendar-layout">
+    <div class="calendar-header">
+        <div>
+            <h1>DISPATCH_LOG</h1>
+            <p style="font-size:0.6rem; letter-spacing:3px; color:#444; font-weight:900;">PRODUCTION & SETTLEMENT TIMELINE</p>
+        </div>
+        <div class="month-nav">MARCH 2026</div>
+    </div>
+
+    <div class="calendar-grid">
+        <div class="day-label">SUN</div><div class="day-label">MON</div><div class="day-label">TUE</div>
+        <div class="day-label">WED</div><div class="day-label">THU</div><div class="day-label">FRI</div><div class="day-label">SAT</div>
+
+        <div class="day-cell"><span class="day-num">01</span><div class="event settle">MONTHLY_STIPEND</div></div>
+        <div class="day-cell"><span class="day-num">02</span></div>
+        <div class="day-cell"><span class="day-num">03</span></div>
+        <div class="day-cell"><span class="day-num">04</span><div class="event scrub">VAULT_SYNC_09</div></div>
+        <div class="day-cell"><span class="day-num">05</span></div>
+        <div class="day-cell"><span class="day-num">06</span></div>
+        <div class="day-cell"><span class="day-num">07</span></div>
+
+        <div class="day-cell"><span class="day-num">08</span></div>
+        <div class="day-cell today"><span class="day-num">09</span><div class="event scrub">PENDING_REVIEW</div></div>
+        <div class="day-cell"><span class="day-num">10</span></div>
+        <div class="day-cell"><span class="day-num">11</span></div>
+        <div class="day-cell"><span class="day-num">12</span><div class="event shoot">MIAMI_NOIR_SET</div></div>
+        <div class="day-cell"><span class="day-num">13</span><div class="event shoot">MIAMI_NOIR_SET</div></div>
+        <div class="day-cell"><span class="day-num">14</span><div class="event shoot">WRAP_PARTY_VIP</div></div>
+
+        <div class="day-cell"><span class="day-num">15</span><div class="event settle">PRODUCTION_PAYOUT</div></div>
+        <div class="day-cell"><span class="day-num">16</span></div>
+        <div class="day-cell"><span class="day-num">17</span></div>
+        <div class="day-cell"><span class="day-num">18</span></div>
+        <div class="day-cell"><span class="day-num">19</span></div>
+        <div class="day-cell"><span class="day-num">20</span><div class="event scrub">8K_ASSET_SCRUB</div></div>
+        <div class="day-cell"><span class="day-num">21</span></div>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item"><span class="dot" style="background:var(--fsp-fire)"></span> ON-SET PRODUCTION</div>
+        <div class="legend-item"><span class="dot" style="background:var(--fsp-gold)"></span> METADATA SCRUBBING</div>
+        <div class="legend-item"><span class="dot" style="background:#0f0"></span> REVENUE SETTLEMENT</div>
+    </div>
+
+    <div style="margin-top: 50px; padding: 30px; border: 1px solid #111; text-align: center;">
+        <p style="font-size: 0.7rem; color: #444; margin-bottom: 15px;">Need to adjust your production availability?</p>
+        <a href="vexillaaits.com_account_support.html" style="color:var(--fsp-white); text-decoration:none; font-weight:900; letter-spacing:2px; font-size:0.6rem;">CONTACT SCHEDULING LIAISON →</a>
+    </div>
+</main>
+
+<footer style="background: #050505; border-top: 1px solid #111; padding: 60px 5%; margin-top: 100px; text-align: center;">
+    <p style="font-size: 0.6rem; color: #222; letter-spacing: 2px;">© 2026 FILTHY SEDUCTION PRODUCTIONS | DISPATCH_CALENDAR_v2.4</p>
+</footer>
+
+</body>
+</html>
