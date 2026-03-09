@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Deactivation | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-card: #080808; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px; }
+
+        .exit-container { max-width: 800px; width: 100%; background: #080808; border: 1px solid #1a1a1a; padding: 60px; position: relative; }
+        .exit-container::before { content: "TERMINATION_PROTOCOL_v.1.0"; position: absolute; top: 20px; left: 30px; font-family: 'Source Code Pro'; font-size: 0.5rem; color: #333; letter-spacing: 2px; }
+
+        .exit-header h1 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 8px; margin-bottom: 10px; color: var(--fsp-fire); }
+        .exit-header p { color: #555; font-size: 0.7rem; letter-spacing: 3px; font-weight: 900; text-transform: uppercase; margin-bottom: 40px; }
+
+        .protocol-box { background: #050505; border: 1px solid #111; padding: 30px; margin-bottom: 30px; }
+        .protocol-box h3 { font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 15px; color: var(--fsp-gold); }
+        .protocol-box p { font-size: 0.75rem; color: #777; line-height: 1.6; margin-bottom: 20px; }
+
+        .data-export-list { list-style: none; margin-bottom: 20px; }
+        .data-export-list li { font-size: 0.65rem; color: #444; padding: 10px 0; border-bottom: 1px solid #111; display: flex; justify-content: space-between; align-items: center; }
+        .data-export-list li span { color: var(--fsp-white); font-weight: 900; }
+
+        .btn-secondary { display: inline-block; padding: 15px 30px; border: 1px solid #333; color: #666; text-decoration: none; font-size: 0.65rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; margin-right: 15px; }
+        .btn-secondary:hover { border-color: #fff; color: #fff; }
+
+        .btn-danger { display: inline-block; padding: 15px 30px; background: var(--fsp-fire); color: #fff; text-decoration: none; font-size: 0.65rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; border: none; cursor: pointer; }
+        .btn-danger:hover { background: #b32400; box-shadow: 0 0 20px rgba(255, 51, 0, 0.3); }
+
+        .warning-text { font-family: 'Source Code Pro'; font-size: 0.6rem; color: #444; margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="exit-container">
+    <div class="exit-header">
+        <h1>NODE_OFFBOARDING</h1>
+        <p>Strategic Deactivation & Data Portability</p>
+    </div>
+
+    <div class="protocol-box">
+        <h3>ARCHIVE EXPORT</h3>
+        <p>Before deactivating your node, you are entitled to a full export of your professional records and tax documentation.</p>
+        <ul class="data-export-list">
+            <li>Production History (PDF) <span>READY</span></li>
+            <li>2257 Compliance Ledger <span>READY</span></li>
+            <li>Annual Revenue Statement (2026) <span>READY</span></li>
+            <li>Master Asset Metadata <span>READY</span></li>
+        </ul>
+        <a href="#" class="btn-secondary">DOWNLOAD ALL DATA</a>
+    </div>
+
+    <div class="protocol-box" style="border-color: #220000;">
+        <h3>DEACTIVATION PROTOCOL</h3>
+        <p>Deactivating your node will remove your profile from the Ledger and disable all Liaison communications. **Note:** Completed production assets will remain in the FSP Secure Archive per your Performance Agreement.</p>
+        
+        <div style="margin-top: 30px;">
+            <a href="index.html" class="btn-secondary">CANCEL & RETURN</a>
+            <button class="btn-danger">CONFIRM DEACTIVATION</button>
+        </div>
+    </div>
+
+    <p class="warning-text">
+        SYSTEM_ID: TERMINAL_77 // FINAL_SETTLEMENT_PENDING: $0.00 // HANDSHAKE_CLOSE_REQUIRED
+    </p>
+</div>
+
+</body>
+</html>
