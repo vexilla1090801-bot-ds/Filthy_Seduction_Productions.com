@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <title>Icon Strategy Briefing | FSP Obsidian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --fsp-pitch: #000; --fsp-gold: #c5a059; --fsp-fire: #ff3300; --fsp-white: #fff;
@@ -12,135 +13,147 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; line-height: 1.6; }
 
-        /* 180px COMMAND HEADER */
+        /* UNIVERSAL BIG DOG HEADER */
         header { 
             height: 180px; display: flex; align-items: center; justify-content: space-between; 
-            padding: 0 60px; border-bottom: 1px solid #1a1a1a; background: #000; 
-            position: fixed; width: 100%; top: 0; z-index: 1000; 
+            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
+            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
         }
-        .logo { height: 150px; }
+        .logo { height: 150px; transition: 0.4s; }
+        .logo:hover { filter: drop-shadow(0 0 20px var(--fsp-gold)); }
+
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; }
+        .main-nav a:hover { color: var(--fsp-gold); }
+        .main-nav a.active { color: var(--fsp-gold); border-bottom: 1px solid var(--fsp-gold); padding-bottom: 5px; }
 
         .briefing-layout { 
-            display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; 
-            padding: 240px 8% 100px; max-width: 1800px; margin: 0 auto; 
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; 
+            padding: 240px 8% 100px; max-width: 1600px; margin: 0 auto; 
         }
 
         /* STRATEGY LEFT */
         .strategy h1 { 
-            font-family: 'Bebas Neue'; font-size: clamp(4rem, 8vw, 7rem); 
+            font-family: 'Bebas Neue'; font-size: clamp(4rem, 8vw, 7.5rem); 
             letter-spacing: 15px; color: var(--fsp-gold); margin-bottom: 10px; 
-            text-shadow: 0 0 50px rgba(197, 160, 89, 0.3);
+            text-shadow: 0 0 30px rgba(197, 160, 89, 0.2);
         }
-        .security-badge { 
-            display: inline-block; padding: 10px 20px; border: 1px solid #222; 
-            font-size: 0.6rem; letter-spacing: 3px; font-weight: 900; color: #555; margin-bottom: 40px; 
+        .status-tag { 
+            display: inline-block; padding: 12px 25px; border: 1px solid var(--fsp-gold); 
+            font-size: 0.65rem; letter-spacing: 4px; font-weight: 900; color: var(--fsp-gold); margin-bottom: 40px; 
+            background: rgba(197, 160, 89, 0.05);
         }
-        .security-badge b { color: var(--fsp-gold); }
 
-        .benefit-card { margin-bottom: 50px; border-left: 2px solid var(--fsp-gold); padding-left: 30px; }
-        .benefit-card h3 { color: var(--fsp-gold); font-size: 1.2rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px; }
-        .benefit-card p { color: #888; font-size: 1.15rem; font-weight: 300; max-width: 600px; }
+        .benefit-card { margin-bottom: 45px; border-left: 2px solid #222; padding-left: 30px; }
+        .benefit-card h3 { color: var(--fsp-white); font-size: 1.2rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+        .benefit-card p { color: #888; font-size: 1.15rem; font-weight: 300; max-width: 550px; }
 
-        /* ENROLLMENT BOX RIGHT (GLASSMORPHISM) */
+        /* ENROLLMENT VAULT RIGHT */
         .enrollment-vault { 
-            background: rgba(10, 10, 10, 0.8); border: 1px solid #1a1a1a; 
-            padding: 60px; position: sticky; top: 220px; 
-            backdrop-filter: blur(15px); border-radius: 2px;
+            background: #080808; border: 1px solid #c5a05933; 
+            padding: 55px; position: sticky; top: 220px; 
+            box-shadow: 0 0 40px rgba(197, 160, 89, 0.05);
         }
         .enrollment-vault h2 { font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 5px; margin-bottom: 35px; color: #fff; }
 
-        .input-row { margin-bottom: 25px; }
-        label { display: block; font-size: 0.65rem; color: #444; letter-spacing: 3px; margin-bottom: 10px; font-weight: 900; }
+        .input-row { margin-bottom: 22px; }
+        label { display: block; font-size: 0.6rem; color: #555; letter-spacing: 2px; margin-bottom: 8px; font-weight: 900; text-transform: uppercase; }
         input { 
             width: 100%; background: #000; border: 1px solid #222; padding: 20px; 
-            color: #fff; font-family: 'Outfit'; font-size: 1rem; transition: 0.4s; 
+            color: #fff; font-family: 'Outfit'; font-size: 1rem; outline: none; transition: 0.3s;
         }
-        input:focus { border-color: var(--fsp-gold); outline: none; box-shadow: 0 0 15px rgba(197, 160, 89, 0.1); }
+        input:focus { border-color: var(--fsp-gold); background: #050505; }
 
         .payment-summary { 
-            background: #000; padding: 40px; margin: 40px 0; border: 1px solid #222; 
-            border-left: 4px solid var(--fsp-gold); text-align: center; 
+            background: #000; padding: 35px; margin: 35px 0; border: 1px solid #222; 
+            text-align: center; border-bottom: 4px solid var(--fsp-gold);
         }
-        .payment-summary p { font-size: 0.7rem; color: #555; letter-spacing: 4px; margin-bottom: 10px; text-transform: uppercase; }
-        .payment-summary .price { font-size: 3.5rem; font-weight: 900; color: var(--fsp-gold); }
+        .payment-summary p { font-size: 0.65rem; color: #555; letter-spacing: 4px; margin-bottom: 8px; text-transform: uppercase; }
+        .payment-summary .price { font-size: 4rem; font-weight: 900; color: var(--fsp-white); letter-spacing: -2px; }
 
         .btn-authorize { 
-            width: 100%; padding: 30px; background: var(--fsp-fire); color: #fff; 
+            width: 100%; padding: 30px; background: var(--fsp-gold); color: #000; 
             border: none; font-weight: 900; letter-spacing: 8px; cursor: pointer; 
-            text-transform: uppercase; transition: 0.5s; font-size: 0.9rem; 
+            text-transform: uppercase; transition: 0.5s; font-size: 1rem; 
         }
-        .btn-authorize:hover { 
-            background: var(--fsp-gold); color: #000; 
-            box-shadow: 0 0 50px rgba(197, 160, 89, 0.4); transform: translateY(-3px); 
-        }
+        .btn-authorize:hover { background: white; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); }
 
-        @media (max-width: 1100px) { .briefing-layout { grid-template-columns: 1fr; } .strategy h1 { font-size: 4rem; } }
+        .disclaimer { font-size: 0.6rem; color: #444; margin-top: 25px; line-height: 1.5; text-align: center; }
+
+        @media (max-width: 1100px) { .briefing-layout { grid-template-columns: 1fr; } .main-nav { display: none; } }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header>
-    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
-    <div style="border-right: 4px solid var(--fsp-gold); padding-right: 20px;">
-        <span style="color:var(--fsp-gold); font-weight:900; letter-spacing:5px;">STATUS: ICON BRIEFING</span>
-    </div>
-</header>
+    <header>
+        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP ICON"></a>
+        <nav class="main-nav">
+            <a href="index.html">COMMAND</a>
+            <a href="briefing-basic.html">ENROLL</a>
+            <a href="briefing-pro.html">PRO</a>
+            <a href="briefing-elite.html">ELITE</a>
+            <a href="briefing-icon.html" class="active">ICON</a>
+        </nav>
+        <div style="border-right: 4px solid var(--fsp-gold); padding-right: 20px;">
+            <span style="color:var(--fsp-gold); font-weight:900; letter-spacing:5px; font-size: 0.75rem;">ICON STATUS</span>
+        </div>
+    </header>
 
 <main class="briefing-layout">
     <section class="strategy">
         <h1>ICON STATUS</h1>
-        <div class="security-badge">PROTOCOL: <b>12-MONTH MANDATORY COMMITMENT</b></div>
+        <div class="status-tag">12-MONTH GLOBAL LEGACY COMMITMENT</div>
 
         <div class="benefit-card">
-            <h3>Permanent Lust-Loop Anchor</h3>
-            <p>Icons are hard-coded into the front-page rotation. Your identity is guaranteed 24/7 visibility to all Directorate directors, ensuring your metadata remains at peak equity.</p>
+            <h3>Max-Tier Revenue Scale</h3>
+            <p>Icon status authorizes your identity for the <b>$250/hr</b> production scale. This is the Directorate's highest compensation bracket, reserved for performers who represent the FSP brand globally.</p>
         </div>
 
         <div class="benefit-card">
-            <h3>Unlimited Media Infrastructure</h3>
-            <p>The "Standard" limits are removed. Upload unlimited photography and high-fidelity video assets. The Obsidian Ledger will index every submittal with Icon-tier priority.</p>
+            <h3>Unlimited Media Repository</h3>
+            <p>The Ledger restrictions are completely removed. Upload unlimited photo and video metadata to ensure total dominance in director-tier searches and casting algorithms.</p>
         </div>
 
         <div class="benefit-card">
-            <h3>$250/HR Production Scale</h3>
-            <p>You are authorized for the highest scripted pay-scale. Icons receive first-right-of-refusal on all professional 60-minute production briefs before they reach the general population.</p>
+            <h3>Global Lust-Loop Feature</h3>
+            <p>Your identity is hard-coded into our proprietary exposure circuit. Icon profiles receive 500% more visibility than Pro tiers, ensuring consistent remote and studio project flow.</p>
         </div>
 
         <div class="benefit-card">
-            <h3>Directorate Concierge</h3>
-            <p>Direct access to FSP production staff for profile optimization, lighting consultations, and script preparation to ensure your content meets the $250/hr standard.</p>
+            <h3>Staff Strategy Consultation</h3>
+            <p>Direct 1-on-1 access to Directorate branding staff. We oversee your official entertainer identity, ensuring you are cast in the correct projects with the right reputable partners.</p>
         </div>
     </section>
 
     <section class="enrollment-vault">
-        <h2>SECURE ICON IDENTITY</h2>
+        <h2>AUTHORIZE ICON IDENTITY</h2>
         <form onsubmit="finalizeIcon(event)">
             <div class="input-row">
-                <label>LEGAL IDENTITY (AS SHOWN ON CARD)</label>
+                <label>LEGAL IDENTITY (IDENTITY VERIFICATION)</label>
                 <input type="text" required placeholder="FULL LEGAL NAME">
             </div>
             <div class="input-row">
                 <label>CREDIT CARD NUMBER</label>
                 <input type="text" required placeholder="XXXX XXXX XXXX XXXX">
             </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                 <div class="input-row">
-                    <label>EXPIRY DATE</label>
+                    <label>EXPIRY</label>
                     <input type="text" required placeholder="MM / YY">
                 </div>
                 <div class="input-row">
-                    <label>CVC SECURITY CODE</label>
+                    <label>CVC</label>
                     <input type="password" required placeholder="***">
                 </div>
             </div>
 
             <div class="payment-summary">
-                <p>12-Month Advance Total</p>
+                <p>12-Month Legacy Advance Total</p>
                 <div class="price">$2,988.00</div>
             </div>
 
-            <button type="submit" class="btn-authorize">AUTHORIZE ICON STATUS</button>
+            <button type="submit" class="btn-authorize">AUTHORIZE ICON PARTNERSHIP</button>
+            <p class="disclaimer">By clicking authorize, you enter a 12-month professional partnership with the FSP Obsidian Directorate. All participants must be 18+ and comply with 18 U.S.C. § 2257 requirements.</p>
         </form>
     </section>
 </main>
@@ -148,9 +161,8 @@
 <script>
     function finalizeIcon(e) {
         e.preventDefault();
-        // Sets the tier in session memory so join.html knows which features to unlock
         sessionStorage.setItem('selectedTier', 'icon');
-        alert("ICON STATUS INITIALIZED. AUTHORIZING METADATA SYNC...");
+        alert("ICON PARTNERSHIP INITIALIZED. PREPARING GLOBAL LEDGER DEPLOYMENT...");
         window.location.href = "join.html";
     }
 </script>
