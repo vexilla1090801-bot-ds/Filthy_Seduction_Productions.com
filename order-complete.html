@@ -20,34 +20,36 @@
         .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
         .main-nav a { color: #444; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
 
-        .order-container { max-width: 800px; margin: 240px auto 100px; padding: 0 5%; text-align: center; }
+        .order-container { max-width: 850px; margin: 240px auto 100px; padding: 0 5%; }
         
-        /* INVOICE CARD */
-        .invoice-vault { background: #080808; border: 1px solid #1a1a1a; padding: 60px; position: relative; overflow: hidden; }
-        .invoice-vault::after { content: 'OFFICIAL INVOICE'; position: absolute; top: 20px; right: -40px; background: var(--fsp-gold); color: #000; padding: 5px 50px; transform: rotate(45deg); font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; }
-
-        h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 10px; margin-bottom: 10px; }
-        .summary-line { color: #555; font-size: 0.7rem; letter-spacing: 4px; margin-bottom: 50px; border-bottom: 1px solid #111; padding-bottom: 20px; }
-
-        .detail-box { text-align: left; background: #000; border: 1px solid #111; padding: 30px; margin-bottom: 40px; }
-        .row { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #0a0a0a; padding-bottom: 10px; }
-        .row .label { font-size: 0.6rem; color: #444; letter-spacing: 2px; font-weight: 900; }
-        .row .val { font-size: 0.8rem; color: #fff; font-weight: 700; }
-
-        .total-lock { margin: 40px 0; }
-        .total-lock p { font-size: 0.6rem; color: var(--fsp-fire); letter-spacing: 4px; font-weight: 900; margin-bottom: 10px; }
-        .final-price { font-size: 5rem; font-weight: 900; line-height: 1; font-family: 'Bebas Neue'; }
-
-        /* PAYMENT BUTTON */
-        .btn-payment { 
-            display: block; width: 100%; padding: 30px; background: var(--fsp-white); color: #000; 
-            text-decoration: none; font-weight: 900; letter-spacing: 10px; font-size: 1rem; 
-            text-transform: uppercase; transition: 0.5s; border: none; cursor: pointer;
+        .invoice-vault { 
+            background: #080808; border: 1px solid #1a1a1a; padding: 60px; 
+            position: relative; border-top: 5px solid var(--fsp-fire);
         }
-        .btn-payment:hover { background: var(--fsp-fire); color: #fff; transform: translateY(-5px); box-shadow: 0 10px 40px rgba(255, 51, 0, 0.2); }
+        
+        h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 12px; margin-bottom: 10px; }
+        .status-bar { background: #111; padding: 10px; font-size: 0.6rem; letter-spacing: 4px; font-weight: 900; color: var(--fsp-fire); margin-bottom: 40px; text-transform: uppercase; }
 
-        .security-footer { margin-top: 40px; display: flex; justify-content: center; gap: 30px; opacity: 0.3; }
-        .security-footer span { font-size: 0.5rem; letter-spacing: 2px; font-weight: 900; border: 1px solid #333; padding: 5px 10px; }
+        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; text-align: left; }
+        .detail-item { border-bottom: 1px solid #151515; padding-bottom: 15px; }
+        .label { display: block; font-size: 0.55rem; color: #444; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; }
+        .val { font-size: 0.9rem; color: #fff; font-weight: 700; letter-spacing: 1px; }
+
+        .total-display { 
+            background: #000; border: 1px solid #222; padding: 40px; margin-bottom: 40px; 
+            text-align: center; border-left: 5px solid var(--fsp-gold);
+        }
+        .total-display p { font-size: 0.65rem; color: #666; letter-spacing: 5px; margin-bottom: 10px; font-weight: 900; }
+        .price-tag { font-family: 'Bebas Neue'; font-size: 6rem; line-height: 1; color: #fff; }
+
+        .btn-pay { 
+            display: block; width: 100%; padding: 30px; background: var(--fsp-white); color: #000; 
+            text-decoration: none; font-weight: 900; letter-spacing: 10px; font-size: 1.1rem; 
+            text-transform: uppercase; transition: 0.4s; text-align: center;
+        }
+        .btn-pay:hover { background: var(--fsp-fire); color: #fff; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255, 51, 0, 0.3); }
+
+        .legal-footer { margin-top: 40px; font-size: 0.6rem; color: #333; line-height: 1.8; text-align: center; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -65,70 +67,79 @@
 
 <main class="order-container">
     <div class="invoice-vault">
+        <div class="status-bar">SECURE NODE // IDENTITY FINALIZATION</div>
         <h1>COMMITMENT LOCK</h1>
-        <p class="summary-line">AUTHORIZING ADVANCE PRODUCTION DEPOSIT</p>
-
-        <div class="detail-box">
-            <div class="row"><span class="label">PERFORMER ALIAS</span> <span class="val" id="out-name">---</span></div>
-            <div class="row"><span class="label">ASSIGNED DIRECTORATE ID</span> <span class="val" id="out-id">---</span></div>
-            <div class="row"><span class="label">TIER AUTHORIZATION</span> <span class="val" id="out-tier">---</span></div>
-            <div class="row"><span class="label">COMMITMENT TERM</span> <span class="val" id="out-term">---</span></div>
+        
+        <div class="detail-grid">
+            <div class="detail-item">
+                <span class="label">PERFORMER ALIAS</span>
+                <span class="val" id="final-name">--</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">DIRECTORATE ID</span>
+                <span class="val" id="final-id">--</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">INDUSTRY SSN</span>
+                <span class="val" id="final-ssn">--</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">ENROLLMENT TERM</span>
+                <span class="val" id="final-term">--</span>
+            </div>
         </div>
 
-        <div class="total-lock">
-            <p>TOTAL DUE IN ADVANCE</p>
-            <div class="final-price" id="out-price">$0.00</div>
+        <div class="total-display">
+            <p>ADVANCE TOTAL DUE</p>
+            <div class="price-tag" id="final-price">$0.00</div>
         </div>
 
-        <a href="#" class="btn-payment" id="payment-link">SECURE COMPLETE ORDER</a>
+        <a href="#" class="btn-pay" id="payment-trigger">AUTHORIZE PAYMENT</a>
 
-        <div class="security-footer">
-            <span>SSL SECURE</span>
-            <span>2257 COMPLIANT</span>
-            <span>ENCRYPTED NODE</span>
+        <div class="legal-footer">
+            18 U.S.C. § 2257 COMPLIANT // NO REFUNDS ON IDENTITY CREDENTIALING SERVICES // BY CLICKING AUTHORIZE YOU AGREE TO THE SELECTED SERVICE TERM AND PRODUCTION REVENUE SCALE.
         </div>
     </div>
-
-    <p style="color:#222; font-size: 0.6rem; margin-top: 40px; letter-spacing: 2px;">
-        BY COMPLETING THIS ORDER, YOU AUTHORIZE FILTHY SEDUCTION PRODUCTIONS TO INITIALIZE YOUR PROFESSIONAL IDENTITY LEDGER. NO REFUNDS ARE ISSUED FOR ADVANCE COMMITMENTS DUE TO THE SPECIALIZED NATURE OF DIRECTORATE ENROLLMENT.
-    </p>
 </main>
 
 <script>
     window.onload = function() {
-        const data = JSON.parse(localStorage.getItem('fsp_profile'));
-        if(!data) {
-            window.location.href = "index.html"; // Safety bounce
+        // Pull data from previous steps
+        const profile = JSON.parse(localStorage.getItem('fsp_active_profile'));
+        const tier = (sessionStorage.getItem('selectedTier') || 'BASIC').toUpperCase();
+
+        if(!profile) {
+            window.location.href = "briefing-basic.html";
             return;
         }
 
-        // Set Display Values
-        document.getElementById('out-name').innerText = data.name;
-        document.getElementById('out-id').innerText = data.fspID;
-        document.getElementById('out-tier').innerText = data.tier;
+        // Map Data to UI
+        document.getElementById('final-name').innerText = profile.name;
+        document.getElementById('final-id').innerText = profile.id;
+        document.getElementById('final-ssn').innerText = profile.ssn;
 
-        // Determine Price and Term based on Tier
+        // Pricing & Term Calculation
         let price = "$0.00";
-        let term = "NO COMMITMENT";
-        let stripeLink = "#"; // Default
+        let term = "BASIC ENTRY (N/A)";
+        let link = "YOUR_STRIPE_OR_PAYPAL_URL"; // Placeholder
 
-        if(data.tier === 'PRO') {
+        if(tier === 'PRO') {
             price = "$87.00";
             term = "3 MONTHS (ADVANCE)";
-            stripeLink = "YOUR_STRIPE_PRO_LINK_HERE"; 
-        } else if(data.tier === 'ELITE') {
+            link = "https://buy.stripe.com/PRO_LINK"; // REPLACE WITH ACTUAL
+        } else if(tier === 'ELITE') {
             price = "$594.00";
             term = "6 MONTHS (ADVANCE)";
-            stripeLink = "YOUR_STRIPE_ELITE_LINK_HERE";
-        } else if(data.tier === 'ICON') {
+            link = "https://buy.stripe.com/ELITE_LINK"; // REPLACE WITH ACTUAL
+        } else if(tier === 'ICON') {
             price = "$2,988.00";
             term = "12 MONTHS (ADVANCE)";
-            stripeLink = "YOUR_STRIPE_ICON_LINK_HERE";
+            link = "https://buy.stripe.com/ICON_LINK"; // REPLACE WITH ACTUAL
         }
 
-        document.getElementById('out-price').innerText = price;
-        document.getElementById('out-term').innerText = term;
-        document.getElementById('payment-link').href = stripeLink;
+        document.getElementById('final-price').innerText = price;
+        document.getElementById('final-term').innerText = term;
+        document.getElementById('payment-trigger').href = link;
     }
 </script>
 
