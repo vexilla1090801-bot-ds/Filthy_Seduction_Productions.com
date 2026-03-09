@@ -13,11 +13,7 @@
             --fsp-white: #ffffff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--fsp-black);
@@ -27,13 +23,12 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* UPGRADED HEADER: FULL ENCASEMENT */
+        /* MASTER COMMAND HEADER - 180px SYNC */
         header.fsp-nav-command {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            /* Header is now 20px taller than the logo for a perfect vertical frame */
             height: 180px; 
             background: rgba(0, 0, 0, 0.98);
             display: flex;
@@ -43,22 +38,14 @@
             border-bottom: 2px solid #1a1a1a;
             z-index: 10000;
             backdrop-filter: blur(30px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* CENTERED MASTER LOGO */
-        .logo-box {
-            height: 100%;
-            display: flex;
-            align-items: center; /* Vertical Center */
-            justify-content: flex-start;
-        }
+        .logo-box { height: 100%; display: flex; align-items: center; }
 
         .fsp-logo-main {
-            height: 150px; /* The massive Big Dog size */
+            height: 150px; /* Big Dog Size */
             width: auto;
             transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.05));
         }
 
         .fsp-logo-main:hover {
@@ -66,58 +53,56 @@
             transform: scale(1.03);
         }
 
-        /* NAV STATUS AREA */
-        .nav-status-area {
+        /* NAV ACTIONS */
+        .nav-actions {
             display: flex;
-            flex-direction: column; /* Stacked for a professional dashboard look */
+            flex-direction: column;
             align-items: flex-end;
             gap: 10px;
         }
 
-        .status-badge {
+        .status-light {
             display: flex;
             align-items: center;
-            gap: 12px;
-            background: #111;
-            padding: 10px 20px;
-            border: 1px solid #222;
-            border-radius: 4px;
+            gap: 10px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: var(--fsp-fire);
         }
 
-        .pulse-light {
-            width: 10px;
-            height: 10px;
+        .pulse {
+            width: 8px;
+            height: 8px;
             background: var(--fsp-fire);
             border-radius: 50%;
-            box-shadow: 0 0 15px var(--fsp-fire);
-            animation: pulse-glow 1.5s infinite;
+            box-shadow: 0 0 10px var(--fsp-fire);
+            animation: blink 1.5s infinite;
         }
 
-        .portal-link {
+        .portal-btn {
             color: var(--fsp-white);
             text-decoration: none;
             font-weight: 900;
-            letter-spacing: 3px;
-            font-size: 0.9rem;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            border-bottom: 1px solid var(--fsp-fire);
+            padding-bottom: 4px;
             transition: 0.3s;
-            text-transform: uppercase;
         }
 
-        .portal-link:hover {
-            color: var(--fsp-fire);
-            text-shadow: 0 0 15px var(--fsp-fire);
-        }
+        .portal-btn:hover { color: var(--fsp-gold); border-color: var(--fsp-gold); }
 
-        /* THE OBSIDIAN CANVAS (AI LUST) */
+        /* THE MAIN CANVAS - RECALIBRATED */
         .main-canvas {
-            margin-top: 180px; /* Perfectly matches the new header height */
+            margin-top: 180px; /* Perfect Header Offset */
             height: calc(100vh - 180px);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, #0f0f0f 0%, #000 100%);
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
             padding: 40px;
         }
 
@@ -125,48 +110,41 @@
             font-family: 'Bebas Neue', cursive;
             font-size: clamp(3.5rem, 12vw, 8rem);
             letter-spacing: 15px;
-            line-height: 0.8;
-            margin-bottom: 25px;
+            line-height: 0.85;
+            margin-bottom: 30px;
         }
 
-        .fire-glow {
-            color: var(--fsp-fire);
-            text-shadow: 0 0 40px var(--fsp-fire);
-        }
+        .fire-text { color: var(--fsp-fire); text-shadow: 0 0 50px var(--fsp-fire); }
 
-        .cta-btn {
-            margin-top: 40px;
-            padding: 25px 70px;
+        .cta-box { margin-top: 50px; }
+
+        .big-dog-btn {
+            padding: 25px 80px;
             background: var(--fsp-fire);
             color: white;
             text-decoration: none;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 1.2rem;
+            letter-spacing: 6px;
+            font-size: 1.3rem;
             transition: 0.5s;
-            border: 2px solid transparent;
+            display: inline-block;
         }
 
-        .cta-btn:hover {
-            background: transparent;
-            border: 2px solid var(--fsp-fire);
-            box-shadow: 0 0 50px var(--fsp-fire);
+        .big-dog-btn:hover {
+            background: white;
+            color: black;
+            box-shadow: 0 0 60px white;
             transform: translateY(-10px);
         }
 
-        @keyframes pulse-glow {
-            0% { opacity: 0.4; }
-            50% { opacity: 1; }
-            100% { opacity: 0.4; }
-        }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-        /* MOBILE FIXES */
-        @media (max-width: 768px) {
-            header.fsp-nav-command { height: 130px; padding: 0 20px; }
-            .fsp-logo-main { height: 100px; }
-            .main-canvas { margin-top: 130px; height: calc(100vh - 130px); }
-            .bebas { font-size: 3.5rem; letter-spacing: 5px; }
+        /* MOBILE FIX */
+        @media (max-width: 1024px) {
+            header.fsp-nav-command { height: 140px; padding: 0 20px; }
+            .fsp-logo-main { height: 110px; }
+            .main-canvas { margin-top: 140px; height: calc(100vh - 140px); }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
@@ -178,24 +156,27 @@
             <img src="VEXILLIALSDP_FSP.png" alt="FSP Master Logo" class="fsp-logo-main">
         </div>
         
-        <div class="nav-status-area">
-            <div class="status-badge">
-                <span class="pulse-light"></span>
-                <span style="font-size: 0.7rem; font-weight: 900; letter-spacing: 2px;">DIRECTORATE ONLINE</span>
+        <div class="nav-actions">
+            <div class="status-light">
+                <div class="pulse"></div>
+                SYSTEM ONLINE
             </div>
-            <a href="portal.html" class="portal-link">OPEN PORTAL</a>
+            <a href="portal.html" class="portal-btn">VIEW PORTAL</a>
         </div>
     </header>
 
     <main class="main-canvas">
-        <h1 class="bebas">OBSIDIAN <span class="fire-glow">LEDGER</span></h1>
-        <p style="text-transform: uppercase; color: #444; letter-spacing: 4px; font-weight: 700; font-size: 1rem;">
-            Certified Adult Identity. $100/hr Production Rate. Permanent History.
+        <h1 class="bebas">OBSIDIAN <span class="fire-text">LEDGER</span></h1>
+        <p style="text-transform: uppercase; color: #555; letter-spacing: 5px; font-weight: 700; font-size: 1rem;">
+            Certified History. $100/hr Baseline. Elite Only.
         </p>
-        <a href="join.html" class="cta-btn">INITIALIZE STATUS</a>
+        
+        <div class="cta-box">
+            <a href="join.html" class="big-dog-btn">INITIALIZE STATUS</a>
+        </div>
     </main>
 
-    <footer style="text-align: center; padding: 40px; background: #000; font-size: 0.7rem; color: #222; letter-spacing: 5px; border-top: 1px solid #0a0a0a;">
+    <footer style="padding: 40px; background: #000; text-align: center; font-size: 0.7rem; color: #222; letter-spacing: 5px; border-top: 1px solid #0a0a0a;">
         FILTHY SEDUCTION PRODUCTIONS &copy; 2026 | BUILT FOR THE BIG DOGS
     </footer>
 
