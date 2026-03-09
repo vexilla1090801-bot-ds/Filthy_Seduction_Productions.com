@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deployment Summary | FSP Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #000; color: #00ff66; font-family: 'Source Code Pro', monospace; padding: 50px; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; border: 1px solid #111; padding: 40px; background: #050505; }
+        h1 { color: #fff; border-bottom: 1px solid #222; padding-bottom: 20px; font-size: 1.2rem; }
+        .file-list { margin: 30px 0; }
+        .file-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #0d0d0d; }
+        .status { color: #fff; font-weight: bold; }
+        .warning { color: #ff3300; margin-top: 30px; font-size: 0.8rem; }
+        code { background: #111; color: #00ff66; padding: 2px 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>FSP_DIRECTORATE // DEPLOYMENT_MANIFEST_V1.0</h1>
+    
+    <div class="file-list">
+        <div class="file-item"><span>index.html</span><span class="status">GATEWAY</span></div>
+        <div class="file-item"><span>portal.html</span><span class="status">MATRIX_HUB</span></div>
+        <div class="file-item"><span>ledger.html</span><span class="status">TALENT_INTEL</span></div>
+        <div class="file-item"><span>production-briefs.html</span><span class="status">MISSIONS</span></div>
+        <div class="file-item"><span>revenue-ledger.html</span><span class="status">THE_VAULT</span></div>
+        <div class="file-item"><span>showroom.html</span><span class="status">PUBLIC_GALLERY</span></div>
+    </div>
+
+    <div class="warning">
+        [CRITICAL] WEBMASTER_CHECKLIST: <br><br>
+        1. <b>Case Sensitivity:</b> Ensure all filenames are lowercase in GitHub. <br>
+        2. <b>Pathing:</b> All internal links MUST be relative (e.g., <code>href="portal.html"</code>), not absolute (<code>href="/portal.html"</code>). <br>
+        3. <b>Directory:</b> All 6 files must sit in the root of <code>Filthy_Seduction_Productions.com/</code>.
+    </div>
+
+    <p style="margin-top:40px; font-size: 0.7rem; color: #444;">
+        SYSTEM_ARMED: 2026.03.09 // 10:45:00
+    </p>
+</div>
+
+</body>
+</html>
