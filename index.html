@@ -3,97 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obsidian Directorate | FSP Official</title>
+    <title>Filthy Seduction Productions | Obsidian Directorate</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-pitch: #050505; --fsp-border: rgba(255, 255, 255, 0.05); }
+        :root { --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-pitch: #050505; --fsp-border: #1a1a1a; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; }
 
-        /* UNIFIED HEADER */
+        /* HEADER */
         header {
             padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--fsp-border); background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
-            position: fixed; width: 100%; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--fsp-border); background: rgba(0,0,0,0.9);
+            position: sticky; top: 0; z-index: 1000;
         }
         .logo { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 5px; color: var(--fsp-fire); text-decoration: none; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { font-family: 'Source Code Pro'; font-size: 0.65rem; color: #555; text-decoration: none; letter-spacing: 2px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--fsp-gold); }
-
-        /* HERO AREA */
-        .hero {
-            flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; background: radial-gradient(circle at center, #111 0%, #000 100%); padding-top: 80px;
-        }
-        .hero p { font-family: 'Source Code Pro'; font-size: 0.7rem; color: var(--fsp-gold); letter-spacing: 8px; margin-bottom: 20px; }
-        .hero h1 { font-family: 'Bebas Neue'; font-size: 6rem; letter-spacing: 20px; line-height: 0.9; margin-bottom: 50px; }
         
-        .btn-init {
-            padding: 25px 50px; border: 1px solid var(--fsp-fire); color: #fff;
-            font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 5px; text-decoration: none;
-            transition: 0.5s; position: relative; overflow: hidden;
+        /* MONEY SYSTEM TICKER */
+        .money-ticker {
+            background: #0a0a0a; border-bottom: 1px solid var(--fsp-gold);
+            padding: 10px 5%; font-family: 'Source Code Pro'; font-size: 0.7rem;
+            color: var(--fsp-gold); display: flex; justify-content: space-between;
         }
-        .btn-init:hover { background: var(--fsp-fire); box-shadow: 0 0 40px var(--fsp-fire); }
 
-        /* UNIFIED FOOTER */
-        footer {
-            padding: 60px 5%; background: var(--fsp-pitch); border-top: 1px solid var(--fsp-border);
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;
+        /* HERO */
+        .hero {
+            padding: 100px 5%; text-align: center;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
         }
-        .footer-col h4 { font-family: 'Bebas Neue'; font-size: 1.1rem; color: var(--fsp-gold); margin-bottom: 20px; letter-spacing: 2px; }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 12px; }
-        .footer-col a { color: #444; text-decoration: none; font-size: 0.8rem; transition: 0.3s; }
-        .footer-col a:hover { color: var(--fsp-fire); }
-        .sys-note { grid-column: 1/-1; text-align: center; border-top: 1px solid #111; padding-top: 30px; font-family: 'Source Code Pro'; font-size: 0.6rem; color: #222; }
+        .hero h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 15px; margin-bottom: 20px; }
+        
+        /* SUBSCRIPTION TIERS (The Four Tiers) */
+        .tier-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px; padding: 50px 5%;
+        }
+        .tier-card {
+            background: #050505; border: 1px solid var(--fsp-border); padding: 40px 20px;
+            text-align: center; transition: 0.4s;
+        }
+        .tier-card:hover { border-color: var(--fsp-fire); transform: translateY(-10px); }
+        .tier-card h3 { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 3px; margin-bottom: 15px; }
+        .tier-price { font-family: 'Source Code Pro'; color: var(--fsp-gold); font-size: 1.5rem; margin-bottom: 20px; }
+        .tier-features { list-style: none; font-size: 0.8rem; color: #666; margin-bottom: 30px; line-height: 2; }
+        .btn-tier { 
+            display: inline-block; padding: 15px 30px; border: 1px solid #333; 
+            color: #fff; text-decoration: none; font-family: 'Bebas Neue'; letter-spacing: 2px;
+        }
+        .btn-tier:hover { background: #fff; color: #000; }
+        .featured-tier { border-color: var(--fsp-gold); background: rgba(197, 160, 89, 0.05); }
+
+        footer { padding: 40px 5%; text-align: center; color: #222; font-family: 'Source Code Pro'; font-size: 0.6rem; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
 
+    <div class="money-ticker">
+        <span>SYSTEM_STATUS: ACTIVE</span>
+        <span id="payout-total">TOTAL_VAULT_YIELD: $428,950.44</span>
+        <span>NODES_SYNCED: 300/300</span>
+    </div>
+
     <header>
-        <a href="index.html" class="logo">OBSIDIAN</a>
-        <nav class="nav-links">
-            <a href="portal.html">PORTAL</a>
-            <a href="ledger.html">LEDGER</a>
-            <a href="production-briefs.html">MISSIONS</a>
-            <a href="showroom.html">SHOWROOM</a>
+        <a href="index.html" class="logo">FSP_MAIN</a>
+        <nav style="display: flex; gap: 20px;">
+            <a href="portal.html" style="color:#666; text-decoration:none; font-size:0.7rem;">PORTAL</a>
+            <a href="ledger.html" style="color:#666; text-decoration:none; font-size:0.7rem;">LEDGER</a>
         </nav>
     </header>
 
     <section class="hero">
-        <p>DIRECTORATE_SECURE_ACCESS</p>
-        <h1>OBSIDIAN<br>MATRIX</h1>
-        <a href="gatekeeper.html" class="btn-init">INITIALIZE_HANDSHAKE</a>
+        <p style="color:var(--fsp-gold); letter-spacing: 5px;">FILTHY_SEDUCTION_PRODUCTIONS</p>
+        <h1>THE_DIRECTORATE</h1>
+        <p style="color:#444; max-width: 600px; margin: 0 auto 40px;">State-tier production. Global surrogate network. Secure 8K asset delivery. Choose your access level below.</p>
     </section>
 
+    <div class="tier-container">
+        <div class="tier-card">
+            <h3>CITIZEN</h3>
+            <div class="tier-price">$19.99/mo</div>
+            <ul class="tier-features">
+                <li>Standard 4K Access</li>
+                <li>Public Showroom Entry</li>
+                <li>Monthly Briefs</li>
+            </ul>
+            <a href="gatekeeper.html" class="btn-tier">ACCESS</a>
+        </div>
+
+        <div class="tier-card featured-tier">
+            <h3 style="color:var(--fsp-gold);">SURROGATE</h3>
+            <div class="tier-price">$49.99/mo</div>
+            <ul class="tier-features">
+                <li>8K Master Files</li>
+                <li>Live Node Tracking</li>
+                <li>Early Production Access</li>
+            </ul>
+            <a href="gatekeeper.html" class="btn-tier" style="border-color:var(--fsp-gold);">UPGRADE</a>
+        </div>
+
+        <div class="tier-card">
+            <h3>DIRECTOR</h3>
+            <div class="tier-price">$149.99/mo</div>
+            <ul class="tier-features">
+                <li>Full Ledger Control</li>
+                <li>Custom Mission Dispatch</li>
+                <li>Private Admin Console</li>
+            </ul>
+            <a href="gatekeeper.html" class="btn-tier">COMMAND</a>
+        </div>
+
+        <div class="tier-card" style="border-color:var(--fsp-fire);">
+            <h3 style="color:var(--fsp-fire);">OBSIDIAN</h3>
+            <div class="tier-price">INVITE_ONLY</div>
+            <ul class="tier-features">
+                <li>Full Site Governance</li>
+                <li>Royalty Participation</li>
+                <li>Unrestricted Matrix Access</li>
+            </ul>
+            <a href="gatekeeper.html" class="btn-tier" style="border-color:var(--fsp-fire);">REQUEST</a>
+        </div>
+    </div>
+
     <footer>
-        <div class="footer-col">
-            <h4>NETWORK</h4>
-            <ul>
-                <li><a href="portal.html">Surrogate Portal</a></li>
-                <li><a href="global-matrix-map.html">Global Reach</a></li>
-                <li><a href="ledger.html">Personnel Ledger</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>OPERATIONS</h4>
-            <ul>
-                <li><a href="production-briefs.html">Mission Briefs</a></li>
-                <li><a href="revenue-ledger.html">The Vault</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>SYSTEM</h4>
-            <ul>
-                <li><a href="director-console.html">Admin Console</a></li>
-                <li><a href="showroom.html">Gallery</a></li>
-            </ul>
-        </div>
-        <div class="sys-note">
-            HANDSHAKE_LOCAL // NO_EXTERNAL_REDIRECT_ACTIVE // © 2026 FSP
-        </div>
+        © 2026 FILTHY SEDUCTION PRODUCTIONS // NO_EXTERNAL_REDIRECTS_DETECTED
     </footer>
+
+    <script>
+        // MONEY SYSTEM: Simulating fluctuating vault numbers
+        let baseAmount = 428950.44;
+        setInterval(() => {
+            baseAmount += (Math.random() * 2);
+            document.getElementById('payout-total').innerText = `TOTAL_VAULT_YIELD: $${baseAmount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        }, 3000);
+    </script>
 
 </body>
 </html>
