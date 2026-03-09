@@ -11,151 +11,137 @@
         :root { 
             --fsp-fire: #ff3300; 
             --fsp-gold: #c5a059; 
-            --fsp-pitch: #080808; 
-            --fsp-green: #00ff66;
+            --fsp-pitch: #0a0a0a; 
+            --fsp-border: #1a1a1a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
 
-        body { 
-            background: #000; 
-            color: #fff; 
-            font-family: 'Outfit', sans-serif; 
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* WEBMASTER UTILITY: LOADING BAR */
-        #loading-bar {
-            position: fixed; top: 0; left: 0; height: 2px;
-            background: var(--fsp-fire); width: 0%; z-index: 1000;
-            transition: width 0.4s ease;
-        }
-
-        /* HEADER & SYSTEM STATUS */
+        /* HEADER */
         header {
-            padding: 30px 5%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--fsp-border);
             background: rgba(0,0,0,0.9);
-            border-bottom: 1px solid #111;
-            display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 1000;
         }
-
-        .sys-info { font-family: 'Source Code Pro'; font-size: 0.6rem; color: #444; letter-spacing: 2px; }
-        .sys-info span { color: var(--fsp-green); }
-
-        .logo { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 5px; color: #fff; }
+        .logo { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 5px; color: var(--fsp-fire); text-decoration: none; }
+        .nav-links a { font-family: 'Source Code Pro'; font-size: 0.65rem; color: #666; text-decoration: none; letter-spacing: 2px; margin-left: 20px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--fsp-gold); }
 
         /* LEDGER CONTENT */
-        .container { max-width: 1400px; margin: 50px auto; padding: 0 5%; }
+        .content { flex: 1; padding: 60px 5%; max-width: 1400px; margin: 0 auto; width: 100%; }
         
-        .ledger-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 20px; 
+        .intel-header { margin-bottom: 50px; border-left: 4px solid var(--fsp-fire); padding-left: 30px; }
+        .intel-header h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 15px; margin-bottom: 10px; }
+        .intel-header p { font-family: 'Source Code Pro'; color: #444; font-size: 0.8rem; letter-spacing: 2px; }
+
+        /* TUTORIAL BOX (Legibility Fix) */
+        .tutorial-panel {
+            background: #050505; border: 1px solid var(--fsp-gold); padding: 30px; margin-bottom: 50px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+        }
+        .tutorial-panel h3 { font-family: 'Bebas Neue'; color: var(--fsp-gold); letter-spacing: 3px; margin-bottom: 10px; }
+        .tutorial-panel p { font-size: 0.85rem; color: #888; line-height: 1.6; }
+
+        /* TABLE STYLING */
+        .ledger-table-wrapper { width: 100%; overflow-x: auto; background: #050505; border: 1px solid var(--fsp-border); }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { 
+            padding: 20px; background: #0a0a0a; font-family: 'Source Code Pro'; 
+            font-size: 0.65rem; color: var(--fsp-gold); letter-spacing: 2px; border-bottom: 1px solid var(--fsp-border);
+        }
+        td { padding: 20px; border-bottom: 1px solid #0d0d0d; font-size: 0.9rem; color: #888; }
+        .node-id { color: #fff; font-family: 'Source Code Pro'; font-weight: bold; }
+        .rank-badge { 
+            padding: 4px 10px; font-size: 0.6rem; font-weight: 900; 
+            border: 1px solid var(--fsp-fire); color: var(--fsp-fire);
         }
 
-        /* SURROGATE CARD */
-        .talent-card {
-            background: var(--fsp-pitch);
-            border: 1px solid #151515;
-            padding: 20px;
-            position: relative;
-            transition: 0.3s ease;
-        }
-
-        .talent-card:hover {
-            border-color: var(--fsp-gold);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .status-indicator {
-            position: absolute; top: 20px; right: 20px;
-            width: 8px; height: 8px; border-radius: 50%;
-            background: var(--fsp-green);
-            box-shadow: 0 0 10px var(--fsp-green);
-        }
-
-        .talent-id { font-family: 'Source Code Pro'; font-size: 0.65rem; color: var(--fsp-gold); margin-bottom: 10px; }
-        .talent-name { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 2px; }
-        
-        .talent-stats {
-            margin-top: 20px; padding-top: 15px;
-            border-top: 1px solid #111;
-            display: flex; justify-content: space-between;
-            font-size: 0.7rem; color: #666;
-        }
-
-        /* ACTION BUTTONS */
-        .btn-sync {
-            display: block; width: 100%; text-align: center;
-            margin-top: 20px; padding: 12px;
-            background: transparent; border: 1px solid #222;
-            color: #fff; text-decoration: none; font-size: 0.7rem;
-            font-weight: 900; letter-spacing: 2px; transition: 0.3s;
-        }
-
-        .btn-sync:hover { background: #fff; color: #000; border-color: #fff; }
+        /* FOOTER */
+        footer { padding: 40px 5%; border-top: 1px solid var(--fsp-border); text-align: center; color: #222; font-family: 'Source Code Pro'; font-size: 0.6rem; letter-spacing: 3px; }
 
     </style>
 </head>
-<body onload="initSystem()">
-
-    <div id="loading-bar"></div>
+<body onload="populateLedger()">
 
     <header>
-        <div class="logo">OBSIDIAN_LEDGER</div>
-        <div class="sys-info">
-            STATUS: <span>ENCRYPTED_LIVE</span> // 
-            NODES: <span id="node-count">302</span> // 
-            SYNC_RATE: <span>99.8%</span>
-        </div>
+        <a href="index.html" class="logo">OBSIDIAN</a>
+        <nav class="nav-links">
+            <a href="portal.html">PORTAL</a>
+            <a href="production-briefs.html">MISSIONS</a>
+            <a href="revenue-ledger.html">VAULT</a>
+            <a href="showroom.html">SHOWROOM</a>
+        </nav>
     </header>
 
-    <div class="container">
-        <h2 style="font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 10px; margin-bottom: 40px;">TALENT_NODES_DIRECTORY</h2>
-        
-        <div class="ledger-grid" id="ledger-grid">
+    <main class="content">
+        <div class="intel-header">
+            <h1>TALENT_LEDGER</h1>
+            <p>DIRECTORATE_PERSONNEL_DATABASE // SYSTEM_RECORDS_2026</p>
+        </div>
+
+        <div class="tutorial-panel">
+            <div>
+                <h3>FUNCTION_OF_PAGE</h3>
+                <p>The Talent Ledger is the administrative heart of the Obsidian Directorate. Here, we track the deployment status, rank, and financial contribution of our 300 Surrogate Nodes. This page allows the Director to monitor who is currently active and who is yielding high-fidelity 8K assets for the Showroom.</p>
             </div>
-    </div>
+            <div>
+                <h3>MARKETING_FOCUS</h3>
+                <p>By maintaining a public-facing Ledger, we reinforce the "A1 Elite" standard. It proves that Flammable Filth is not a solo endeavor, but a global network of synchronized talent. This level of transparency in "Node Status" drives high-value recruitment and investor confidence.</p>
+            </div>
+        </div>
+
+        <div class="ledger-table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>NODE_ID</th>
+                        <th>DESIGNATION</th>
+                        <th>STATUS</th>
+                        <th>RANK_CLASS</th>
+                        <th>PRODUCTION_YIELD</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody id="ledger-data">
+                    </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        © 2026 FLAMMABLE FILTH PRODUCTIONS // SECURE_INTEL_STREAM_ACTIVE
+    </footer>
 
     <script>
-        // WEBMASTER TOOLS: SYSTEM INITIALIZATION
-        function initSystem() {
-            const bar = document.getElementById('loading-bar');
-            bar.style.width = '100%';
+        function populateLedger() {
+            const table = document.getElementById('ledger-data');
+            const names = ["SOPHIA", "JORDAN", "ELENA", "ZARA", "VALENTINA", "MILA", "ALEXA", "SLOANE"];
+            const statuses = ["ACTIVE_SYNC", "MISSION_DEPLOYED", "VAULT_PENDING", "8K_PROCESSING"];
             
-            setTimeout(() => {
-                bar.style.opacity = '0';
-                generateNodes();
-            }, 600);
-        }
-
-        // AUTO-GENERATING THE 300 SURROGATE NODES
-        function generateNodes() {
-            const grid = document.getElementById('ledger-grid');
-            const names = ["Sophia", "Jordan", "Elena", "Zara", "Valentina", "Mila", "Alexa", "Sloane"];
-            
-            for (let i = 1; i <= 24; i++) { // Generating first 24 for instant load, can be scaled
-                const randomName = names[Math.floor(Math.random() * names.length)];
-                const nodeHtml = `
-                    <div class="talent-card">
-                        <div class="status-indicator"></div>
-                        <div class="talent-id">NODE_ID: FSP-${1000 + i}</div>
-                        <div class="talent-name">${randomName.toUpperCase()}</div>
-                        <div style="font-size: 0.6rem; color: #444; margin-top: 5px;">RANK: ELITE_SURROGATE</div>
-                        
-                        <div class="talent-stats">
-                            <div>SYNC: 100%</div>
-                            <div>ROI: +12.4%</div>
-                        </div>
-                        
-                        <a href="production-briefs.html" class="btn-sync">ACCESS_SYNC_VAULT</a>
-                    </div>
+            let html = "";
+            for (let i = 1; i <= 15; i++) {
+                const name = names[Math.floor(Math.random() * names.length)];
+                const status = statuses[Math.floor(Math.random() * statuses.length)];
+                const yieldAmt = (Math.random() * 5 + 1).toFixed(1) + " GB";
+                
+                html += `
+                    <tr>
+                        <td class="node-id">#${1000 + i}</td>
+                        <td style="color:#fff; font-weight:bold;">NODE_${name}</td>
+                        <td style="color: #00ff66; font-size: 0.7rem;">${status}</td>
+                        <td><span class="rank-badge">ELITE_NODE</span></td>
+                        <td>${yieldAmt}</td>
+                        <td><a href="portal.html" style="color:var(--fsp-gold); text-decoration:none; font-size:0.7rem;">[VIEW_METRICS]</a></td>
+                    </tr>
                 `;
-                grid.innerHTML += nodeHtml;
             }
+            table.innerHTML = html;
         }
     </script>
 </body>
