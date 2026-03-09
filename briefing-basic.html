@@ -3,89 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Enrollment | FSP Obsidian Directorate</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Basic Identity Enrollment | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --fsp-black: #050505; --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
+        :root {
+            --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; line-height: 1.6; }
-        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 50px; border-bottom: 1px solid #111; background: #000; position: fixed; width: 100%; top: 0; z-index: 1000; }
-        .logo { height: 150px; }
-        .container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; padding: 220px 5% 80px; max-width: 1600px; margin: 0 auto; }
-        h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 10px; color: var(--fsp-white); margin-bottom: 20px; }
-        .benefit-block { margin-bottom: 30px; border-left: 2px solid var(--fsp-gold); padding-left: 20px; color: #888; }
-        .benefit-block h3 { color: var(--fsp-gold); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
-        
-        .enrollment-form { background: #080808; border: 1px solid #1a1a1a; padding: 40px; }
-        .social-fast { display: flex; gap: 10px; margin-bottom: 30px; }
-        .btn-social { flex: 1; padding: 15px; background: #111; border: 1px solid #222; color: #fff; font-size: 0.6rem; letter-spacing: 2px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
-        .btn-social:hover { background: #fff; color: #000; }
 
-        .input-group { margin-bottom: 20px; }
-        label { display: block; font-size: 0.6rem; color: #444; letter-spacing: 2px; margin-bottom: 8px; font-weight: 900; }
-        input, select, textarea { width: 100%; background: #000; border: 1px solid #222; padding: 15px; color: white; outline: none; }
-        input:focus { border-color: var(--fsp-fire); }
-        .submit-btn { width: 100%; padding: 25px; background: var(--fsp-fire); color: white; border: none; font-weight: 900; letter-spacing: 5px; cursor: pointer; text-transform: uppercase; }
+        /* UNIVERSAL BIG DOG HEADER */
+        header { 
+            height: 180px; display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
+            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
+        }
+        .logo { height: 150px; transition: 0.4s; }
+        .logo:hover { filter: drop-shadow(0 0 15px var(--fsp-fire)); }
+
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; }
+        .main-nav a:hover { color: var(--fsp-fire); }
+        .main-nav a.active { color: var(--fsp-white); border-bottom: 1px solid var(--fsp-fire); padding-bottom: 5px; }
+
+        .system-status { display: flex; align-items: center; gap: 12px; border-right: 3px solid var(--fsp-fire); padding-right: 20px; }
+        .pulse { width: 10px; height: 10px; background: var(--fsp-fire); border-radius: 50%; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+        /* ENROLLMENT LAYOUT */
+        .form-container { 
+            max-width: 1000px; margin: 240px auto 100px; padding: 60px; 
+            background: #080808; border: 1px solid #1a1a1a; position: relative;
+        }
+        .form-container::before { 
+            content: 'IDENTITY LEDGER // INTAKE PORTAL'; position: absolute; top: -15px; left: 20px; 
+            background: var(--fsp-fire); color: #fff; padding: 5px 15px; font-size: 0.6rem; 
+            font-weight: 900; letter-spacing: 2px; 
+        }
+
+        h1 { font-family: 'Bebas Neue'; font-size: clamp(3rem, 6vw, 5rem); letter-spacing: 12px; color: var(--fsp-gold); margin-bottom: 10px; }
+        .instruction { color: #555; font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 50px; text-transform: uppercase; border-bottom: 1px solid #111; padding-bottom: 20px; }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .input-group { margin-bottom: 30px; }
+        label { display: block; font-size: 0.65rem; color: #444; letter-spacing: 2px; margin-bottom: 10px; font-weight: 900; text-transform: uppercase; }
+        
+        input, select, textarea { 
+            width: 100%; background: #000; border: 1px solid #222; padding: 20px; 
+            color: #fff; font-family: 'Outfit'; font-size: 1rem; transition: 0.4s; 
+        }
+        input:focus, select:focus, textarea:focus { border-color: var(--fsp-gold); outline: none; background: #050505; }
+
+        /* COMPLIANCE & VERIFICATION BOX */
+        .compliance-vault { 
+            background: #000; padding: 40px; border: 1px solid #1a1a1a; 
+            margin: 50px 0; border-left: 4px solid var(--fsp-fire);
+        }
+        .check-row { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px; }
+        .check-row input { width: 30px; height: 30px; cursor: pointer; flex-shrink: 0; }
+        .check-text { font-size: 0.75rem; color: #777; line-height: 1.6; letter-spacing: 0.5px; }
+        .check-text b { color: var(--fsp-fire); }
+
+        .btn-submit { 
+            width: 100%; padding: 30px; background: #111; color: #fff; 
+            border: 1px solid #222; font-weight: 900; letter-spacing: 10px; cursor: pointer; 
+            text-transform: uppercase; transition: 0.5s; font-size: 1rem; 
+        }
+        .btn-submit:hover:not(:disabled) { background: var(--fsp-fire); color: #fff; letter-spacing: 15px; box-shadow: 0 0 30px rgba(255,51,0,0.3); }
+        .btn-submit:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        footer { text-align: center; padding-bottom: 100px; color: #222; font-size: 0.6rem; letter-spacing: 5px; }
+
+        @media (max-width: 900px) { .form-grid { grid-template-columns: 1fr; } .main-nav { display: none; } }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header>
-    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo"></a>
-    <span style="color:var(--fsp-gold); font-weight:900; letter-spacing:3px; padding-right:20px;">BASIC STRATEGY</span>
-</header>
+    <header>
+        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+        <nav class="main-nav">
+            <a href="index.html">COMMAND</a>
+            <a href="briefing-basic.html" class="active">ENROLL</a>
+            <a href="briefing-pro.html">PRO</a>
+            <a href="briefing-elite.html">ELITE</a>
+            <a href="briefing-icon.html">ICON</a>
+        </nav>
+        <div class="system-status">
+            <span class="pulse"></span>
+            <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:4px; font-size: 0.7rem;">AUTH MODE</span>
+        </div>
+    </header>
 
-<main class="container">
-    <section>
-        <h1>BASIC ACCESS</h1>
-        <div class="benefit-block">
-            <h3>Standard Initialization</h3>
-            <p>Enter the Obsidian Ledger with zero upfront cost. Secure your metadata identity and establish your presence in our talent database.</p>
-        </div>
-        <div class="benefit-block">
-            <h3>Media Limits</h3>
-            <p>Basic accounts are authorized for 5 photo slots and 1 video submittal. All information is encrypted and secured by FSP standards.</p>
-        </div>
-        <div class="benefit-block">
-            <h3>Official Status</h3>
-            <p>Once registered, your adult screen name is reserved. You may upgrade to Pro or Elite at any time to increase your revenue potential.</p>
-        </div>
-    </section>
+<main class="form-container">
+    <h1>IDENTITY SYNC</h1>
+    <p class="instruction">Basic Level Authorization // 18 USC § 2257 Record-Keeping Intake</p>
 
-    <section class="enrollment-form">
-        <label>FAST INITIALIZATION</label>
-        <div class="social-fast">
-            <button class="btn-social">Google Access</button>
-            <button class="btn-social">X / Twitter</button>
-        </div>
-
-        <form onsubmit="finishBasic(event)">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <div class="input-group"><label>FIRST NAME</label><input type="text" required></div>
-                <div class="input-group"><label>LAST NAME</label><input type="text" required></div>
+    <form onsubmit="initiateEnrollment(event)">
+        <div class="form-grid">
+            <div class="input-group">
+                <label>LEGAL FIRST NAME (PRIVATE)</label>
+                <input type="text" required placeholder="AS PER GOVT IDENTIFICATION">
             </div>
-            <div class="input-group"><label>LEGAL ADDRESS (FOR VERIFICATION)</label><input type="text" required></div>
-            <div class="input-group"><label>EMAIL ADDRESS</label><input type="email" required></div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <div class="input-group"><label>GENDER</label><select><option>FEMALE</option><option>MALE</option><option>NON-BINARY</option></select></div>
-                <div class="input-group"><label>AGE</label><input type="number" min="18" required></div>
+            <div class="input-group">
+                <label>LEGAL LAST NAME (PRIVATE)</label>
+                <input type="text" required placeholder="AS PER GOVT IDENTIFICATION">
             </div>
-            <div class="input-group"><label>ADULT SCREEN NAME (LEAVE BLANK FOR FSP TO SELECT)</label><input type="text" placeholder="Optional"></div>
-            <div class="input-group"><label>PRODUCTION INTERESTS</label><input type="text" placeholder="e.g. Solo, Dialogue, Professional Modeling"></div>
-            <div class="input-group"><label>EXISTING VIDEOS ONLINE?</label><input type="text" placeholder="Link or Number of Videos"></div>
-            
-            <button type="submit" class="submit-btn">OPEN ACCOUNT & SECURE NAME</button>
-        </form>
-    </section>
+        </div>
+
+        <div class="input-group">
+            <label>ENCRYPTED EMAIL ADDRESS</label>
+            <input type="email" required placeholder="FOR DIRECTORATE CORRESPONDENCE">
+        </div>
+
+        <div class="form-grid">
+            <div class="input-group">
+                <label>ADULT SCREEN NAME (PUBLIC LEDGER)</label>
+                <input type="text" required placeholder="E.G. 'OBSIDIAN_01'">
+            </div>
+            <div class="input-group">
+                <label>IDENTIFIED GENDER</label>
+                <select required>
+                    <option value="" disabled selected>SELECT GENDER</option>
+                    <option value="female">FEMALE</option>
+                    <option value="male">MALE</option>
+                    <option value="non-binary">NON-BINARY / OTHER</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>CORE INTERESTS & SPECIALTIES</label>
+            <textarea rows="3" placeholder="E.G. DIALOGUE-DRIVEN SCRIPTING, SOLO PERFORMANCE, PHOTOGRAPHY, REMOTE NODE CONTENT"></textarea>
+        </div>
+
+        <div class="compliance-vault">
+            <div class="check-row">
+                <input type="checkbox" required id="age-verify">
+                <label for="age-verify" class="check-text">
+                    <b>MANDATORY:</b> I certify that I am at least 18 years of age and hold valid government identification. I understand that the Obsidian Directorate maintains records in full compliance with <b>18 U.S.C. § 2257</b>.
+                </label>
+            </div>
+            <div class="check-row">
+                <input type="checkbox" required id="law-verify">
+                <label for="law-verify" class="check-text">
+                    I agree to operate within all local adult entertainment laws and understand that my identity is being credentialed for professional production purposes.
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">INITIALIZE BASIC IDENTITY</button>
+    </form>
 </main>
 
+<footer>
+    &copy; 2026 FILTHY SEDUCTION PRODUCTIONS | THE OBSIDIAN DIRECTORATE | SYSTEM ENCRYPTION ACTIVE
+</footer>
+
 <script>
-    function finishBasic(e) {
+    function initiateEnrollment(e) {
         e.preventDefault();
-        alert("ACCOUNT REGISTERED. SCREEN NAME SECURED. PROCEEDING TO DATABASE PORTAL.");
         sessionStorage.setItem('selectedTier', 'basic');
+        alert("IDENTITY VERIFIED. INITIATING METADATA SYNC...");
         window.location.href = "join.html";
     }
 </script>
+
 </body>
 </html>
