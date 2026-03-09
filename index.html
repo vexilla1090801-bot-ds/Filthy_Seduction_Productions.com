@@ -15,7 +15,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
 
-        /* 180px BIG DOG HEADER & NAVIGATION */
+        /* UNIVERSAL CENTERED HEADER & NAVIGATION */
         header { 
             height: 180px; display: flex; align-items: center; justify-content: space-between; 
             padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
@@ -30,7 +30,7 @@
         .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
         .main-nav a { 
             color: #666; text-decoration: none; font-weight: 900; font-size: 0.75rem; 
-            letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; 
+            letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; padding-bottom: 5px;
         }
         .main-nav a:hover, .main-nav a.active { color: var(--fsp-fire); text-shadow: 0 0 10px rgba(255,51,0,0.5); }
 
@@ -63,7 +63,7 @@
             transition: 0.5s; text-align: center; position: relative; overflow: hidden;
         }
         .card:hover { border-color: var(--fsp-white); transform: translateY(-10px); background: #0c0c0c; }
-        .card.hot { border-top: 4px solid var(--fsp-fire); }
+        .card.hot { border-top: 4px solid var(--fsp-fire); box-shadow: 0 0 30px rgba(255,51,0,0.1); }
         .card.top { border-top: 4px solid var(--fsp-gold); }
 
         .card h3 { font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 5px; margin-bottom: 10px; }
@@ -102,10 +102,9 @@
         
         <nav class="main-nav">
             <a href="index.html" class="active">COMMAND</a>
-            <a href="briefing-basic.html">ENROLL</a>
             <a href="briefing-pro.html">PRO</a>
-            <a href="briefing-elite.html">ELITE</a>
-            <a href="briefing-icon.html">ICON</a>
+            <a href="portal.html">PORTAL</a>
+            <a href="about.html">ABOUT</a>
         </nav>
 
         <div class="system-status">
@@ -117,7 +116,7 @@
     <main class="hero">
         <p class="tagline">Official Adult Entertainer Identity Portal</p>
         <h1>OBSIDIAN<br><span style="color:var(--fsp-gold)">DIRECTORATE</span></h1>
-        <p style="letter-spacing:5px; color:#333; font-weight:900;">REMOTE NODES // STUDIO PLACEMENT // REVENUE EQUITY</p>
+        <p style="letter-spacing:5px; color:#333; font-weight:900; margin-top:20px;">REMOTE NODES // STUDIO PLACEMENT // REVENUE EQUITY</p>
     </main>
 
     <section class="ticker">
@@ -134,12 +133,12 @@
                 <div class="price">FREE</div>
                 <span class="commitment" style="color:#444;">ID VERIFICATION ONLY</span>
                 <ul class="feats">
-                    <li>Identity Ledger Entry</li>
+                    <li>Basic Identity Ledger Entry</li>
                     <li>Secure Adult Screen Name</li>
                     <li>Remote Work Eligibility</li>
                     <li>5 Photo / 1 Video Slots</li>
                 </ul>
-                <a href="briefing-basic.html" class="btn">INITIALIZE ENROLLMENT</a>
+                <a href="briefing-basic.html" class="btn">VIEW BRIEFING</a>
             </div>
 
             <div class="card hot">
@@ -150,9 +149,9 @@
                     <li><b>$100/HR</b> Production Scale</li>
                     <li>15 Photo / 3 Video Slots</li>
                     <li>Studio Casting Eligibility</li>
-                    <li>Professional Industry Profile</li>
+                    <li>Reputable Identity Branding</li>
                 </ul>
-                <a href="briefing-pro.html" class="btn">INITIALIZE PRO</a>
+                <a href="briefing-pro.html" class="btn" style="background:var(--fsp-fire);">VIEW BRIEFING</a>
             </div>
 
             <div class="card">
@@ -165,7 +164,7 @@
                     <li>Priority Script Alerts</li>
                     <li>Advanced Metadata Ranking</li>
                 </ul>
-                <a href="briefing-elite.html" class="btn">INITIALIZE ELITE</a>
+                <a href="briefing-elite.html" class="btn">VIEW BRIEFING</a>
             </div>
 
             <div class="card top">
@@ -178,7 +177,7 @@
                     <li>Global Lust-Loop Feature</li>
                     <li>Direct Staff Consultation</li>
                 </ul>
-                <a href="briefing-icon.html" class="btn">INITIALIZE ICON</a>
+                <a href="briefing-icon.html" class="btn">VIEW BRIEFING</a>
             </div>
         </div>
     </section>
