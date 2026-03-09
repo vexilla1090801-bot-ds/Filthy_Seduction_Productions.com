@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directorate Liaisons | FSP Obsidian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-card: #080808; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        /* UNIVERSAL HEADER */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
+
+        .manager-layout { max-width: 1200px; margin: 240px auto 100px; padding: 0 5%; }
+        
+        .directory-header { text-align: center; margin-bottom: 80px; }
+        .directory-header h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 12px; }
+        .directory-header p { color: var(--fsp-gold); font-size: 0.75rem; letter-spacing: 4px; font-weight: 900; text-transform: uppercase; }
+
+        .manager-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        
+        .manager-card { background: var(--fsp-card); border: 1px solid #111; padding: 40px; transition: 0.4s; position: relative; overflow: hidden; }
+        .manager-card:hover { border-color: var(--fsp-fire); transform: translateY(-10px); }
+        
+        .manager-type { font-size: 0.6rem; color: var(--fsp-fire); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .manager-card h2 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 4px; margin-bottom: 5px; }
+        .manager-card h4 { font-size: 0.75rem; color: #555; margin-bottom: 25px; font-weight: 300; }
+
+        .specialty-list { list-style: none; margin-bottom: 30px; border-top: 1px solid #151515; padding-top: 20px; }
+        .specialty-list li { font-size: 0.65rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .specialty-list li::before { content: '◈'; color: var(--fsp-gold); }
+
+        .btn-connect { display: block; width: 100%; padding: 18px; background: transparent; border: 1px solid #222; color: #fff; text-decoration: none; text-align: center; font-weight: 900; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; transition: 0.3s; }
+        .btn-connect:hover { background: #fff; color: #000; border-color: #fff; }
+
+        /* STATUS INDICATOR */
+        .online-status { position: absolute; top: 40px; right: 40px; display: flex; align-items: center; gap: 8px; font-size: 0.55rem; font-weight: 900; color: #0f0; }
+        .pulse-dot { width: 6px; height: 6px; background: #0f0; border-radius: 50%; box-shadow: 0 0 10px #0f0; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+    <nav class="main-nav">
+        <a href="index.html">COMMAND</a>
+        <a href="community.html">COMMUNITY</a>
+        <a href="managers.html" style="color:var(--fsp-gold)">LIAISONS</a>
+        <a href="portal.html">PORTAL</a>
+    </nav>
+</header>
+
+<main class="manager-layout">
+    <div class="directory-header">
+        <h1>DIRECTORATE LIAISONS</h1>
+        <p>Your Assigned Brand Management Team</p>
+    </div>
+
+    <div class="manager-grid">
+        
+        <div class="manager-card">
+            <div class="online-status"><span class="pulse-dot"></span> ACTIVE</div>
+            <span class="manager-type">Legal & Identity</span>
+            <h2>DIRECTOR VANCE</h2>
+            <h4>Chief Compliance Officer</h4>
+            <ul class="specialty-list">
+                <li>18 U.S.C. § 2257 Verification</li>
+                <li>Secure Identity Syncing</li>
+                <li>Tax Documentation Review</li>
+            </ul>
+            <a href="vexillaaits.com_account_support.html" class="btn-connect">OPEN COMPLIANCE TICKET</a>
+        </div>
+
+        <div class="manager-card">
+            <div class="online-status"><span class="pulse-dot"></span> ACTIVE</div>
+            <span class="manager-type">Casting & Lifestyle</span>
+            <h2>SLOANE BLACK</h2>
+            <h4>Senior Production Liaison</h4>
+            <ul class="specialty-list">
+                <li>Casting Call Alignment</li>
+                <li>Studio Travel Logistics</li>
+                <li>On-Set Safety Protocol</li>
+            </ul>
+            <a href="vexillaaits.com_account_support.html" class="btn-connect">OPEN CASTING TICKET</a>
+        </div>
+
+        <div class="manager-card">
+            <div class="online-status" style="color:#555;"><span class="pulse-dot" style="background:#555; box-shadow:none;"></span> OFFLINE</div>
+            <span class="manager-type">Growth & Strategy</span>
+            <h2>MARCUS REED</h2>
+            <h4>Revenue Node Specialist</h4>
+            <ul class="specialty-list">
+                <li>Tier Upgrade Strategy</li>
+                <li>Metadata Payout Optimization</li>
+                <li>Icon Status Roadmapping</li>
+            </ul>
+            <a href="vexillaaits.com_account_support.html" class="btn-connect">REQUEST GROWTH AUDIT</a>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 80px; padding: 40px; background: #050505; border: 1px solid #111; text-align: center;">
+        <h3 style="font-family: 'Bebas Neue'; letter-spacing: 5px; margin-bottom: 10px;">LIFESTYLE ASSISTANCE DISPATCH</h3>
+        <p style="font-size: 0.8rem; color: #444; max-width: 700px; margin: 0 auto 20px;">
+            Your assigned manager is determined by your current Tier and Node activity. To speak with a specific Liaison, please reference their name in your AITS Support Ticket.
+        </p>
+        <a href="about.html" style="color:var(--fsp-fire); font-size: 0.65rem; font-weight: 900; letter-spacing: 2px; text-decoration: none;">LEARN MORE ABOUT THE DIRECTORATE DOCTRINE →</a>
+    </div>
+</main>
+
+<footer style="background: #050505; border-top: 1px solid #111; padding: 60px 5%; margin-top: 100px; text-align: center;">
+    <p style="font-size: 0.6rem; color: #222; letter-spacing: 2px;">© 2026 FSP DIRECTORATE | LIAISON_DIRECTORY_v1.0</p>
+</footer>
+
+</body>
+</html>
