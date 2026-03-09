@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Node Profile | Directorate Elite</title>
+    <style>
+        :root { --fsp-fire: #ff3300; --fsp-gold: #c5a059; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; }
+
+        /* REVENUE TRACKER - THE ULTIMATE MOTIVATOR */
+        .revenue-badge { 
+            background: linear-gradient(45deg, #111, #000); 
+            border: 1px solid var(--fsp-gold); padding: 20px; 
+            text-align: center; margin-bottom: 20px; 
+        }
+        .revenue-amount { 
+            font-family: 'Source Code Pro'; font-size: 2rem; 
+            color: var(--fsp-gold); text-shadow: 0 0 10px rgba(197, 160, 89, 0.5); 
+        }
+
+        /* THE "SEXUAL PROFESSIONAL" CHAT */
+        .flirt-ledger { background: #080808; padding: 20px; border-left: 2px solid var(--fsp-fire); }
+        .chat-line { margin-bottom: 15px; font-size: 0.8rem; line-height: 1.4; }
+        .user-tag { font-weight: 900; color: var(--fsp-fire); text-transform: uppercase; margin-right: 10px; }
+        
+        .cta-bridge { 
+            background: #ff3300; color: #fff; padding: 20px; 
+            text-align: center; font-weight: 900; letter-spacing: 5px; 
+            cursor: pointer; text-decoration: none; display: block;
+            margin-top: 30px; transition: 0.3s;
+        }
+        .cta-bridge:hover { transform: scale(1.05); background: #fff; color: #ff3300; }
+    </style>
+</head>
+<body>
+
+<div class="profile-wrap" style="max-width: 1200px; margin: 240px auto; display: grid; grid-template-columns: 1fr 400px; gap: 40px;">
+    
+    <section>
+        <div class="revenue-badge">
+            <span style="font-size: 0.6rem; letter-spacing: 3px; color: #444;">TOTAL_NODE_PROCEEDS</span>
+            <div class="revenue-amount" id="auto-money">$42,800.00</div>
+            <p style="font-size: 0.5rem; color: #0f0; margin-top: 5px;">+5.2% INCREASE THIS SESSION</p>
+        </div>
+
+        <div class="main-visual" style="height: 600px; background: #111; border: 1px solid #222; position: relative;">
+            <div style="position: absolute; bottom: 20px; left: 20px;">
+                <h1 style="font-family: 'Bebas Neue'; font-size: 4rem;">NODE_SOPHIA</h1>
+                <p style="letter-spacing: 5px; color: var(--fsp-gold);">ELITE_PERFORMER // MIAMI</p>
+            </div>
+        </div>
+    </section>
+
+    <aside>
+        <div class="flirt-ledger">
+            <h3 style="font-family: 'Bebas Neue'; margin-bottom: 20px;">INTERACTION_FEED</h3>
+            <div class="chat-line">
+                <span class="user-tag">NODE_JORDAN:</span>
+                "That beach set you just dropped... I can see why your earnings spiked. Pure heat."
+            </div>
+            <div class="chat-line">
+                <span class="user-tag">NODE_SOPHIA:</span>
+                "Thanks babe. The FSP production crew knows exactly how to catch my best angles. Can't wait for the FlammableFilth release."
+            </div>
+            <div class="chat-line">
+                <span class="user-tag">ADMIN_SLOANE:</span>
+                "SOPHIA, your 'Flammable Filth' lead video has been approved. Status: ROYALTY_LOCKED."
+            </div>
+        </div>
+
+        <a href="https://flammablefilth.com/secure-auth" class="cta-bridge">
+            ENTER_X_RATED_PORTAL
+        </a>
+        <p style="font-size: 0.55rem; color: #333; margin-top: 10px; text-align: center;">
+            *REDIRECTING TO EXTERNAL PRODUCTION SERVERS. 2257 AUTH REQUIRED.
+        </p>
+    </aside>
+</div>
+
+<script>
+    // AUTOMATIC MONEY COUNTER (Simulates earning growth)
+    setInterval(() => {
+        let el = document.getElementById('auto-money');
+        let current = parseFloat(el.innerText.replace('$', '').replace(',', ''));
+        let gain = Math.random() * 10;
+        el.innerText = '$' + (current + gain).toLocaleString(undefined, {minimumFractionDigits: 2});
+    }, 5000);
+</script>
+
+</body>
+</html>
