@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crisis Protocol | Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;900&family=Source+Code+Pro:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-alert: #ff1a1a; --fsp-deep: #050505; --fsp-warning: #ffcc00; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; padding: 60px; }
+
+        .protocol-container { max-width: 900px; margin: 0 auto; border: 1px solid var(--fsp-alert); background: var(--fsp-deep); padding: 50px; position: relative; }
+        .protocol-container::after { content: "RESTRICTED_ACCESS"; position: absolute; top: -10px; right: 20px; background: var(--fsp-alert); font-size: 0.6rem; padding: 5px 15px; font-weight: 900; }
+
+        .protocol-header h1 { font-family: 'Bebas Neue'; font-size: 3.5rem; letter-spacing: 5px; color: var(--fsp-alert); margin-bottom: 10px; }
+        .protocol-header p { font-family: 'Source Code Pro'; color: #444; font-size: 0.7rem; letter-spacing: 3px; border-bottom: 1px solid #111; padding-bottom: 20px; }
+
+        .clause-box { margin-top: 40px; background: rgba(255, 26, 26, 0.03); border: 1px solid #1a0000; padding: 30px; }
+        .clause-box h3 { font-family: 'Bebas Neue'; color: var(--fsp-warning); letter-spacing: 2px; }
+        .clause-box p { font-size: 0.9rem; color: #888; line-height: 1.6; }
+
+        /* THE "ENFORCEMENT" ACTIONS */
+        .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+        .action-card { border: 1px solid #111; padding: 25px; transition: 0.3s; cursor: not-allowed; }
+        .action-card:hover { border-color: var(--fsp-alert); background: #0a0000; }
+        .action-card b { display: block; font-family: 'Bebas Neue'; font-size: 1.2rem; color: var(--fsp-alert); margin-bottom: 10px; }
+        .action-card span { font-size: 0.7rem; color: #444; text-transform: uppercase; }
+
+        .footer-warning { margin-top: 50px; font-size: 0.6rem; color: #222; text-align: center; font-family: 'Source Code Pro'; }
+    </style>
+</head>
+<body>
+
+<div class="protocol-container">
+    <div class="protocol-header">
+        <h1>CRISIS_PROTOCOL</h1>
+        <p>IDENT_VIOLATION // ASSET_WITHDRAWAL_ATTEMPT // BREACH_OF_DOCTRINE</p>
+    </div>
+
+    <div class="clause-box">
+        <h3>THE PERSISTENT_IDENTITY_CLAUSE</h3>
+        <p>
+            By accepting <b>Royal Status</b> and syncing with the <b>300-Node Matrix</b>, the performer acknowledges that their digital "Sexual Identity" is a permanent asset of the <b>Obsidian Directorate</b>. Withdrawal of assets from the <b>FlammableFilth.com</b> server is prohibited to protect the 5% weekly growth integrity of the Surrogate Network.
+        </p>
+    </div>
+
+    <div class="action-grid">
+        <div class="action-card">
+            <b>FREEZE_LEDGER</b>
+            <span>Instant suspension of all royalty trickles and pending bounties.</span>
+        </div>
+        <div class="action-card">
+            <b>SHADOW_LOCK</b>
+            <span>The profile remains live but is disconnected from the Comm-Link feed.</span>
+        </div>
+        <div class="action-card">
+            <b>SURROGATE_ABSORPTION</b>
+            <span>Node remains active but is fully managed by the Directorate AI.</span>
+        </div>
+        <div class="action-card">
+            <b>DE-SYNC_AUTHORIZATION</b>
+            <span>[REQUIRES ADMIN KEY] Permanent removal from the Elite tier.</span>
+        </div>
+    </div>
+
+    <div class="footer-warning">
+        WARNING: ONCE A PROTOCOL IS ENGAGED, THE "MOVIE LEVEL" STATUS IS TERMINATED. <br>
+        THE DIRECTORATE RETAINS ALL CUSTODIAL RIGHTS TO RAW 8K FOOTAGE.
+    </div>
+</div>
+
+</body>
+</html>

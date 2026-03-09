@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Season 01 Launch | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;900&family=Source+Code+Pro:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-pitch: #050505; }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; padding: 40px; }
+
+        .season-wrap { max-width: 1100px; margin: 0 auto; background: var(--fsp-pitch); border: 1px solid #111; padding: 60px; }
+        .season-header { text-align: center; border-bottom: 1px solid #222; padding-bottom: 40px; margin-bottom: 50px; }
+        .season-header h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 15px; margin: 0; color: #fff; }
+        .season-header p { font-family: 'Source Code Pro'; color: var(--fsp-gold); letter-spacing: 5px; font-size: 0.8rem; }
+
+        /* THE PHASES */
+        .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .phase-card { background: #000; border: 1px solid #151515; padding: 30px; position: relative; overflow: hidden; }
+        .phase-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--fsp-fire); }
+        
+        .phase-num { font-family: 'Bebas Neue'; font-size: 0.8rem; color: #444; letter-spacing: 3px; }
+        .phase-title { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 2px; margin: 15px 0; color: var(--fsp-gold); }
+        .phase-desc { font-size: 0.8rem; color: #888; line-height: 1.6; margin-bottom: 20px; }
+
+        /* SURROGATE CLAIM FEED */
+        .claim-feed { margin-top: 60px; background: #080808; padding: 30px; border: 1px solid #111; }
+        .claim-row { display: flex; justify-content: space-between; font-family: 'Source Code Pro'; font-size: 0.65rem; padding: 10px 0; border-bottom: 1px solid #111; }
+        .claim-row b { color: var(--fsp-fire); }
+
+        .btn-claim-master { 
+            display: block; width: 100%; padding: 25px; background: var(--fsp-fire); 
+            color: #fff; text-align: center; text-decoration: none; font-weight: 900; 
+            letter-spacing: 5px; margin-top: 40px; transition: 0.4s;
+        }
+        .btn-claim-master:hover { background: #fff; color: #000; box-shadow: 0 0 40px rgba(255, 51, 0, 0.4); }
+    </style>
+</head>
+<body>
+
+<div class="season-wrap">
+    <div class="season-header">
+        <p>LAUNCHING_MARCH_2026</p>
+        <h1>OBSIDIAN_GENESIS</h1>
+        <p>SEASON 01: THE ARCHITECTURE OF DESIRE</p>
+    </div>
+
+    <div class="phase-grid">
+        <div class="phase-card">
+            <span class="phase-num">PHASE_01 // THE DOMESTIC</span>
+            <h2 class="phase-title">SILK_LIFESTYLE</h2>
+            <p class="phase-desc">Focus on the "Around the Home" aesthetic. 8K raw footage of morning routines, luxury lounging, and domestic intimacy. 100% Non-Nude Tease only.</p>
+            <div style="font-size: 0.6rem; color: var(--fsp-fire);">STATUS: 88/100 SLOTS CLAIMED</div>
+        </div>
+
+        <div class="phase-card">
+            <span class="phase-num">PHASE_02 // THE CORPORATE</span>
+            <h2 class="phase-title">EXECUTIVE_HEAT</h2>
+            <p class="phase-desc">The Neo-Noir office aesthetic. Power dynamics, blazers, sheer underlays, and high-contrast lighting. Defining the "Professional" Sexual Identity.</p>
+            <div style="font-size: 0.6rem; color: var(--fsp-fire);">STATUS: 42/100 SLOTS CLAIMED</div>
+        </div>
+
+        <div class="phase-card">
+            <span class="phase-num">PHASE_03 // THE ROYAL</span>
+            <h2 class="phase-title">DIRECTORATE_RAW</h2>
+            <p class="phase-desc">Reserved for Elite/Royal status. Unfiltered, movie-level productions for the Flammable Filth mainstage. The peak of the 300-Node Matrix.</p>
+            <div style="font-size: 0.6rem; color: var(--fsp-fire);">STATUS: 12/20 SLOTS CLAIMED</div>
+        </div>
+    </div>
+
+    <div class="claim-feed">
+        <h4 style="font-family: 'Bebas Neue'; letter-spacing: 3px; margin-bottom: 20px;">LIVE_PRODUCTION_QUEUE</h4>
+        <div class="claim-row">NODE_SOPHIA <span>CLAIMED: <b>SILK_LIFESTYLE</b></span> <span>EST_COMPLETION: 2H</span></div>
+        <div class="claim-row">NODE_JORDAN <span>CLAIMED: <b>EXECUTIVE_HEAT</b></span> <span>EST_COMPLETION: 5H</span></div>
+        <div class="claim-row">NODE_ALEXA <span>CLAIMED: <b>SILK_LIFESTYLE</b></span> <span>EST_COMPLETION: 1H</span></div>
+        <div class="claim-row">NODE_ZARA <span>CLAIMED: <b>DIRECTORATE_RAW</b></span> <span>EST_COMPLETION: 12H</span></div>
+    </div>
+
+    <a href="production-dispatch.html" class="btn-claim-master">ACCEPT_SEASON_01_MISSION</a>
+</div>
+
+</body>
+</html>
