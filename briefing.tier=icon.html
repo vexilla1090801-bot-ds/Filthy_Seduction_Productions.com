@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Enrollment | FSP Obsidian Directorate</title>
+    <style>
+        :root {
+            --fsp-black: #050505; --fsp-pitch: #000000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; line-height: 1.6; }
+
+        /* COMMAND HEADER - FIXED 180px */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 50px; border-bottom: 2px solid #111; background: #000; position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .logo { height: 150px; }
+
+        .briefing-container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; padding: 250px 5% 80px; max-width: 1600px; margin: 0 auto; }
+
+        /* STRATEGY CONTENT (LEFT) */
+        .strategy-content h1 { font-family: 'Bebas Neue'; font-size: 5.5rem; letter-spacing: 12px; color: var(--fsp-gold); text-shadow: 0 0 30px rgba(197, 160, 89, 0.4); margin-bottom: 10px; }
+        .commitment-tag { display: inline-block; padding: 12px 25px; background: rgba(197,160,89,0.1); border: 1px solid var(--fsp-gold); color: var(--fsp-gold); font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; margin-bottom: 40px; }
+        
+        .benefit-block { margin-bottom: 40px; border-left: 3px solid var(--fsp-gold); padding-left: 30px; }
+        .benefit-block h3 { color: var(--fsp-gold); letter-spacing: 3px; font-size: 1rem; margin-bottom: 10px; text-transform: uppercase; }
+        .benefit-block p { color: #888; font-size: 1.2rem; }
+
+        /* ENROLLMENT BOX (RIGHT) */
+        .enrollment-box { background: #080808; border: 1px solid #1a1a1a; padding: 60px; position: sticky; top: 220px; height: fit-content; }
+        .enrollment-box h2 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 5px; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 15px; color: var(--fsp-white); }
+
+        .input-group { margin-bottom: 25px; }
+        .input-group label { display: block; font-size: 0.65rem; color: #555; letter-spacing: 2px; margin-bottom: 10px; font-weight: 900; }
+        input { width: 100%; background: #000; border: 1px solid #222; padding: 18px; color: white; outline: none; transition: 0.4s; font-family: 'Outfit'; }
+        input:focus { border-color: var(--fsp-gold); box-shadow: 0 0 10px rgba(197, 160, 89, 0.2); }
+
+        .total-display { background: #000; padding: 35px; margin: 30px 0; border: 1px solid #222; text-align: center; border-left: 4px solid var(--fsp-gold); }
+        .total-display span { font-size: 0.7rem; color: #666; letter-spacing: 4px; display: block; margin-bottom: 10px; }
+        .total-display b { font-size: 3rem; color: var(--fsp-gold); letter-spacing: 2px; }
+
+        .submit-btn { width: 100%; padding: 25px; background: var(--fsp-fire); color: white; border: none; font-weight: 900; letter-spacing: 6px; cursor: pointer; text-transform: uppercase; transition: 0.4s; }
+        .submit-btn:hover { background: var(--fsp-gold); color: black; box-shadow: 0 0 50px rgba(197, 160, 89, 0.5); transform: scale(1.02); }
+
+        @media (max-width: 1000px) { .briefing-container { grid-template-columns: 1fr; padding-top: 200px; } .strategy-content h1 { font-size: 4rem; } }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo"></a>
+    <div style="text-align: right; border-right: 4px solid var(--fsp-gold); padding-right: 20px;">
+        <span style="color:var(--fsp-gold); font-weight:900; letter-spacing:4px;">ICON STRATEGY BRIEFING</span>
+    </div>
+</header>
+
+<main class="briefing-container">
+    <section class="strategy-content">
+        <h1>ICON STATUS</h1>
+        <div class="commitment-tag">12 MONTH MANDATORY COMMITMENT</div>
+        
+        <div class="benefit-block">
+            <h3>Absolute Metadata Authority</h3>
+            <p>The Icon tier is reserved for those defining the industry standard. Your metadata identity is hard-coded into the Obsidian Ledger with "Permanent Authority" status, ensuring global syndication across all FSP nodes.</p>
+        </div>
+
+        <div class="benefit-block">
+            <h3>Unlimited Media Ledger</h3>
+            <p>Unlock infinite slots for photography and high-fidelity video. This tier removes all repository limits, allowing for the total saturation of your personal celebrity brand within the Directorate.</p>
+        </div>
+
+        <div class="benefit-block">
+            <h3>The $250/HR Production Scale</h3>
+            <p>Icons bypass standard scripted queues. You are authorized for premium 60-minute production requirements with a baseline payout of $250.00 per hour of approved submittal.</p>
+        </div>
+
+        <div class="benefit-block">
+            <h3>Lust-Loop Priority</h3>
+            <p>Your identity remains featured in the front-page rotation (Lust-Loop) for the duration of your 12-month commitment, guaranteeing 10x visibility compared to Pro or Elite members.</p>
+        </div>
+    </section>
+
+    <section class="enrollment-box">
+        <h2>SECURE ICON STATUS</h2>
+        <form onsubmit="finalizeIcon(event)">
+            <div class="input-group">
+                <label>LEGAL IDENTITY (CARDHOLDER)</label>
+                <input type="text" required placeholder="FULL NAME AS IT APPEARS">
+            </div>
+            <div class="input-group">
+                <label>CREDIT CARD NUMBER</label>
+                <input type="text" required placeholder="XXXX XXXX XXXX XXXX">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="input-group">
+                    <label>EXPIRY</label>
+                    <input type="text" required placeholder="MM / YY">
+                </div>
+                <div class="input-group">
+                    <label>CVC</label>
+                    <input type="password" required placeholder="***">
+                </div>
+            </div>
+
+            <div class="total-display">
+                <span>12-MONTH ADVANCE TOTAL:</span>
+                <b>$2,988.00</b>
+            </div>
+
+            <button type="submit" class="submit-btn">AUTHORIZE ICON ENROLLMENT</button>
+        </form>
+    </section>
+</main>
+
+<script>
+    function finalizeIcon(e) {
+        e.preventDefault();
+        sessionStorage.setItem('selectedTier', 'icon');
+        alert("ICON STATUS INITIALIZED. PREPARING METADATA SYNC...");
+        window.location.href = "join.html";
+    }
+</script>
+
+</body>
+</html>
