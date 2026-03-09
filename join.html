@@ -12,6 +12,7 @@
             --fsp-gold: #c5a059;
             --fsp-white: #ffffff;
             --fsp-grey: #121212;
+            --fsp-glow: rgba(255, 51, 0, 0.4);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,9 +22,10 @@
             color: var(--fsp-white);
             font-family: 'Outfit', sans-serif;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* COMMAND HEADER - 180px */
+        /* COMMAND HEADER - LOCKED 180px */
         header.fsp-nav-command {
             position: fixed; top: 0; left: 0; width: 100%; height: 180px; 
             background: rgba(0, 0, 0, 0.98); display: flex; align-items: center;
@@ -31,163 +33,214 @@
             z-index: 10000; backdrop-filter: blur(30px);
         }
 
-        .fsp-logo-main { height: 150px; width: auto; }
+        .fsp-logo-main { height: 150px; width: auto; transition: 0.5s; }
+        .fsp-logo-main:hover { filter: drop-shadow(0 0 20px var(--fsp-fire)); }
 
         /* MAIN LAYOUT */
         .join-container {
             margin-top: 180px; padding: 60px 5%;
-            display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px;
+            display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px;
+            background: radial-gradient(circle at top right, #0f0f0f 0%, #000 100%);
         }
 
-        /* LEFT: THE LIVE PREVIEW CARD (THE "GLOW" ON THE PORTAL) */
+        /* LEFT: THE LIVE PREVIEW (ADVANCED UI) */
         .preview-pane {
             position: sticky; top: 220px; height: fit-content;
-            background: #080808; border: 1px solid #222; padding: 30px;
-            text-align: center; box-shadow: 0 0 40px rgba(0,0,0,1);
+            background: #080808; border: 1px solid #1a1a1a; padding: 40px;
+            text-align: center; box-shadow: 0 0 50px rgba(0,0,0,1);
         }
 
-        .id-card-preview {
+        .id-card-frame {
             width: 100%; aspect-ratio: 3/4; background: #000;
-            border: 1px solid var(--fsp-fire); margin-top: 20px;
+            border: 1px solid #222; margin-top: 25px;
             position: relative; overflow: hidden;
-            box-shadow: 0 0 20px var(--fsp-glow);
+            display: flex; align-items: center; justify-content: center;
         }
 
-        #preview-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        /* ERROR FIX: GHOST SILHOUETTE (No Broken Images) */
+        #ghost-silhouette {
+            position: absolute; width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: radial-gradient(#151515, #000); z-index: 2;
+        }
+        .silhouette-head { width: 80px; height: 80px; border: 2px solid #333; border-radius: 50%; margin-bottom: 10px; }
+        .silhouette-body { width: 140px; height: 120px; border: 2px solid #333; border-radius: 50% 50% 0 0; }
+
+        #preview-img { width: 100%; height: 100%; object-fit: cover; display: none; z-index: 5; position: relative; }
 
         .preview-overlay {
-            position: absolute; bottom: 0; width: 100%; padding: 20px;
-            background: linear-gradient(transparent, #000); text-align: left;
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px 20px;
+            background: linear-gradient(transparent, #000 90%); text-align: left; z-index: 10;
         }
 
-        /* RIGHT: THE SMART FORM */
-        .form-box { background: #0a0a0a; padding: 50px; border: 1px solid #151515; }
+        /* RIGHT: THE SMART INTAKE FORM */
+        .form-box { background: #0a0a0a; padding: 60px; border: 1px solid #111; }
 
-        h2 { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; letter-spacing: 4px; color: var(--fsp-fire); margin-bottom: 20px; }
+        h2 { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; letter-spacing: 5px; color: var(--fsp-fire); margin-bottom: 25px; }
 
         .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
 
         input, select, textarea {
-            width: 100%; background: #000; border: 1px solid #333; padding: 15px;
-            color: white; outline: none; transition: 0.3s;
+            width: 100%; background: #000; border: 1px solid #222; padding: 20px;
+            color: white; outline: none; transition: 0.3s; font-family: 'Outfit', sans-serif;
         }
 
-        input:focus { border-color: var(--fsp-fire); }
+        input:focus, select:focus { border-color: var(--fsp-fire); box-shadow: 0 0 15px rgba(255, 51, 0, 0.2); }
 
-        /* ATTRIBUTES SELECTOR */
-        .attribute-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 10px; }
+        .attribute-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
 
-        .upload-section { margin: 30px 0; border-top: 1px solid #222; padding-top: 20px; }
-
+        /* UPLOAD BUTTONS */
+        .upload-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
         .file-label {
-            display: block; padding: 20px; border: 2px dashed #333; text-align: center;
-            cursor: pointer; transition: 0.3s; color: #666; font-weight: 900;
+            background: #050505; border: 1px dashed #333; padding: 20px 10px;
+            text-align: center; cursor: pointer; transition: 0.3s; color: #555;
+            font-size: 0.65rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
         }
-
         .file-label:hover { border-color: var(--fsp-gold); color: white; }
+
+        /* ENCRYPTION PROGRESS BAR */
+        #init-container { margin-top: 40px; position: relative; }
+        .progress-bg { width: 100%; height: 4px; background: #111; margin-bottom: 20px; display: none; }
+        #progress-fill { width: 0%; height: 100%; background: var(--fsp-fire); transition: 0.1s; }
 
         .initialize-btn {
             width: 100%; padding: 30px; background: var(--fsp-fire); border: none;
-            color: white; font-weight: 900; font-size: 1.5rem; letter-spacing: 5px;
-            cursor: pointer; margin-top: 30px; transition: 0.5s;
+            color: white; font-weight: 900; font-size: 1.4rem; letter-spacing: 6px;
+            cursor: pointer; transition: 0.5s; text-transform: uppercase;
         }
 
-        .initialize-btn:hover { background: var(--fsp-white); color: #000; box-shadow: 0 0 50px white; }
+        .initialize-btn:hover { background: white; color: black; box-shadow: 0 0 50px white; transform: translateY(-5px); }
 
-        @media (max-width: 1000px) { .join-container { grid-template-columns: 1fr; } }
+        @media (max-width: 1100px) { .join-container { grid-template-columns: 1fr; } .preview-pane { position: relative; top: 0; } }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="fsp-nav-command">
-        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="fsp-logo-main"></a>
-        <div style="text-align: right; color: var(--fsp-gold); font-size: 0.7rem; font-weight: 900; letter-spacing: 2px;">
-            INTAKE SYSTEM: ACTIVE<br>STATUS: ENCRYPTED
+        <div class="logo-box">
+            <a href="index.html"><img src="VEXILLIALSDP_FSP.png" alt="FSP Master Logo" class="fsp-logo-main"></a>
+        </div>
+        <div style="text-align: right; border-right: 4px solid var(--fsp-fire); padding-right: 20px;">
+            <span style="color: var(--fsp-fire); font-weight: 900; font-size: 0.8rem; letter-spacing: 3px;">SECURE INTAKE</span><br>
+            <span style="color: var(--fsp-gold); font-size: 0.6rem; letter-spacing: 2px;">$100.00/HR RATE PENDING</span>
         </div>
     </header>
 
     <main class="join-container">
         
         <section class="preview-pane">
-            <h3 style="letter-spacing: 3px; font-size: 0.8rem; color: #444;">PORTAL PREVIEW</h3>
-            <div class="id-card-preview">
-                <img id="preview-img" src="" alt="Awaiting Capture...">
+            <h3 style="letter-spacing: 4px; font-size: 0.8rem; color: #444; text-transform: uppercase;">Portal Identity Preview</h3>
+            <div class="id-card-frame" id="fsp-card">
+                
+                <div id="ghost-silhouette">
+                    <div class="silhouette-head"></div>
+                    <div class="silhouette-body"></div>
+                    <p style="font-size: 0.6rem; color: #444; letter-spacing: 3px; margin-top: 20px;">AWAITING VISUAL CAPTURE</p>
+                </div>
+
+                <img id="preview-img" src="" alt="">
+
                 <div class="preview-overlay">
-                    <span id="preview-name" style="font-weight: 900; font-size: 1.5rem; text-transform: uppercase;">STAGE NAME</span><br>
-                    <span id="preview-status" style="color: var(--fsp-gold); font-size: 0.7rem; letter-spacing: 2px;">CERTIFIED ELITE</span>
+                    <span id="p-name" style="font-weight: 900; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 2px;">STAGE NAME</span><br>
+                    <span id="p-status" style="color: var(--fsp-gold); font-size: 0.7rem; letter-spacing: 3px; font-weight: 700;">STATUS: INITIALIZING...</span>
                 </div>
             </div>
-            <p style="margin-top: 20px; color: #555; font-size: 0.7rem;">Every photo and video you upload is recorded to your Certified History.</p>
+            <p style="margin-top: 25px; color: #444; font-size: 0.7rem; letter-spacing: 1px; line-height: 1.6;">
+                The Obsidian Ledger creates a permanent, certified record of your production history. High-quality visuals increase certification speed.
+            </p>
         </section>
 
         <section class="form-box">
             <form id="intakeForm">
-                <h2>IDENTIFICATION</h2>
+                <h2>01. IDENTITY</h2>
                 <div class="input-row">
-                    <input type="text" id="firstName" placeholder="LEGAL FIRST NAME" required>
-                    <input type="text" id="lastName" placeholder="LEGAL LAST NAME" required>
+                    <input type="text" placeholder="LEGAL FIRST NAME" required>
+                    <input type="text" placeholder="LEGAL LAST NAME" required>
                 </div>
                 <div class="input-row">
-                    <input type="text" id="stageName" placeholder="DESIRED STAGE NAME" onkeyup="updatePreview()" required>
-                    <input type="email" placeholder="SECURE EMAIL" required>
+                    <input type="text" id="sName" placeholder="DESIRED STAGE NAME" onkeyup="syncName()" required>
+                    <input type="email" placeholder="SECURE CONTACT EMAIL" required>
                 </div>
 
-                <h2>DIMENSIONS & ATTRIBUTES</h2>
+                <h2>02. ATTRIBUTES</h2>
                 <div class="attribute-grid">
-                    <select id="height"><option>HEIGHT</option><option>5'0-5'4</option><option>5'5-5'8</option><option>5'9+</option></select>
-                    <select id="eyes"><option>EYE COLOR</option><option>BLUE</option><option>BROWN</option><option>GREEN</option><option>HAZEL</option></select>
-                    <select id="hair"><option>HAIR</option><option>BLONDE</option><option>BRUNETTE</option><option>BLACK</option><option>RED</option></select>
+                    <select id="h"><option value="">HEIGHT</option><option>5'0 - 5'4</option><option>5'5 - 5'8</option><option>5'9+</option></select>
+                    <select id="e"><option value="">EYES</option><option>BLUE</option><option>BROWN</option><option>GREEN</option><option>HAZEL</option></select>
+                    <select id="hr"><option value="">HAIR</option><option>BLONDE</option><option>BRUNETTE</option><option>BLACK</option><option>RED</option></select>
                 </div>
-                <div class="input-row" style="margin-top:20px;">
-                    <input type="text" placeholder="TOP DIMENSIONS (e.g. 34D)">
-                    <input type="text" placeholder="WAIST/HIPS">
+                <div class="input-row">
+                    <input type="text" placeholder="TOP (e.g. 34D)">
+                    <input type="text" placeholder="WAIST / HIPS">
                 </div>
-                <textarea placeholder="TELL THE DIRECTORATE ABOUT YOUR BODY AND YOUR INTERESTS..." rows="4" style="margin-top:10px;"></textarea>
+                <textarea placeholder="DESCRIBE YOUR BODY, INTERESTS, AND PERFORMANCE STYLE..." rows="4"></textarea>
 
-                <div class="upload-section">
-                    <h2>THE EVIDENCE (MANDATORY)</h2>
-                    <p style="font-size: 0.6rem; color: #ff3300; margin-bottom: 15px;">NO FILTERS. NO BLUR. FIVE ANGLES REQUIRED.</p>
-                    <div class="attribute-grid">
-                        <label class="file-label">FACE<input type="file" id="faceImg" accept="image/*" hidden onchange="showImg(this)"></label>
-                        <label class="file-label">UPPER FR<input type="file" accept="image/*" hidden></label>
-                        <label class="file-label">UPPER BK<input type="file" accept="image/*" hidden></label>
-                        <label class="file-label">LOWER FR<input type="file" accept="image/*" hidden></label>
-                        <label class="file-label">LOWER BK<input type="file" accept="image/*" hidden></label>
-                        <label class="file-label" style="border-color:var(--fsp-fire); color:white;">VIDEO INTRO<input type="file" accept="video/*" hidden></label>
-                    </div>
+                <h2>03. EVIDENCE (MANDATORY 5)</h2>
+                <p style="font-size: 0.65rem; color: #555; margin-bottom: 10px; letter-spacing: 1px;">UPLOAD 5 CLEAR ANGLES (FACE, FRONT, BACK, SIDES) + INTRO VIDEO.</p>
+                <div class="upload-grid">
+                    <label class="file-label">FACE<input type="file" id="fIn" accept="image/*" hidden onchange="loadFace(this)"></label>
+                    <label class="file-label">UPPER FR<input type="file" accept="image/*" hidden></label>
+                    <label class="file-label">UPPER BK<input type="file" accept="image/*" hidden></label>
+                    <label class="file-label">LOWER FR<input type="file" accept="image/*" hidden></label>
+                    <label class="file-label">LOWER BK<input type="file" accept="image/*" hidden></label>
+                    <label class="file-label" style="border-color:var(--fsp-fire); color:white;">VIDEO INTRO<input type="file" accept="video/*" hidden></label>
                 </div>
 
-                <button type="submit" class="initialize-btn">INITIALIZE STAR STATUS</button>
+                <div id="init-container">
+                    <div class="progress-bg" id="p-bar"><div id="progress-fill"></div></div>
+                    <button type="submit" class="initialize-btn" id="btn-text">INITIALIZE STAR STATUS</button>
+                </div>
             </form>
         </section>
     </main>
 
     <script>
-        // FUNCTION TO UPDATE THE PREVIEW NAME LIVE
-        function updatePreview() {
-            const name = document.getElementById('stageName').value;
-            document.getElementById('preview-name').innerText = name || "STAGE NAME";
+        // SYNC STAGE NAME TO CARD
+        function syncName() {
+            const val = document.getElementById('sName').value;
+            document.getElementById('p-name').innerText = val || "STAGE NAME";
         }
 
-        // FUNCTION TO SHOW THE IMAGE IN THE PREVIEW CARD IMMEDIATELY
-        function showImg(input) {
+        // LOAD FACE IMAGE & KILL BROKEN IMAGE GHOST
+        function loadFace(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     const img = document.getElementById('preview-img');
+                    const ghost = document.getElementById('ghost-silhouette');
                     img.src = e.target.result;
-                    img.style.opacity = "1";
+                    img.style.display = "block";
+                    ghost.style.display = "none";
+                    document.getElementById('p-status').innerText = "STATUS: CERTIFIED ELITE";
+                    document.getElementById('p-status').style.color = "#ff3300";
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
-        // FUNCTION TO HANDLE THE "INITIALIZE" BUTTON CLICK
+        // FORM SUBMISSION WITH PROGRESS ANIMATION
         document.getElementById('intakeForm').onsubmit = function(e) {
             e.preventDefault();
-            alert("SYSTEM ALERT: Your Identity is being Certified. Your profile is now being loaded into the Obsidian Portal.");
-            window.location.href = "portal.html"; // Redirects to the portal
+            const btn = document.getElementById('btn-text');
+            const bar = document.getElementById('p-bar');
+            const fill = document.getElementById('progress-fill');
+            
+            btn.innerText = "ENCRYPTING IDENTITY...";
+            btn.style.opacity = "0.5";
+            btn.disabled = true;
+            bar.style.display = "block";
+
+            let width = 0;
+            let interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    alert("IDENTITY CERTIFIED. Your profile is now live in the Obsidian Portal.");
+                    window.location.href = "portal.html";
+                } else {
+                    width++;
+                    fill.style.width = width + "%";
+                }
+            }, 30); // Speed of the "Encryption"
         };
     </script>
 
