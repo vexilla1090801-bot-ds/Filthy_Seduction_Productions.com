@@ -3,185 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Obsidian Portal | FSP Certified Database</title>
+    <title>The Obsidian Ledger | FSP Talent Portal</title>
     <style>
         :root {
-            --fsp-black: #050505;
-            --fsp-pitch: #000000;
-            --fsp-fire: #ff3300;
-            --fsp-gold: #c5a059;
-            --fsp-white: #ffffff;
-            --fsp-grey: #111111;
+            --fsp-black: #050505; --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #ffffff;
         }
-
-        /* RESET & STABILITY */
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
 
-        body {
-            background-color: var(--fsp-pitch);
-            color: var(--fsp-white);
-            font-family: 'Outfit', sans-serif;
-            overflow-x: hidden;
-            min-height: 100vh;
+        /* COMMAND HEADER SYNC - 180px */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 50px; border-bottom: 2px solid #111; background: #000; position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .logo { height: 150px; }
+
+        .portal-header { margin-top: 180px; padding: 60px 5% 20px; text-align: center; }
+        .portal-header h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 15px; }
+        .portal-header p { color: #444; letter-spacing: 5px; font-size: 0.7rem; font-weight: 900; }
+
+        /* THE LEDGER GRID */
+        .ledger-container { padding: 40px 5%; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+
+        /* TALENT CARD ARCHITECTURE */
+        .talent-card { 
+            background: #080808; border: 1px solid #1a1a1a; position: relative; 
+            transition: 0.5s; overflow: hidden; cursor: pointer;
         }
-
-        /* MASTER COMMAND HEADER - 180px */
-        header.fsp-nav-command {
-            position: fixed; top: 0; left: 0; width: 100%; height: 180px; 
-            background: rgba(0, 0, 0, 0.98); display: flex; align-items: center;
-            justify-content: space-between; padding: 0 50px; border-bottom: 2px solid #1a1a1a;
-            z-index: 10000; backdrop-filter: blur(30px);
-        }
-
-        .fsp-logo-main { height: 150px; width: auto; display: block; }
-
-        /* TICKER SYSTEM */
-        .ticker-wrap {
-            margin-top: 180px; background: #080808; border-bottom: 1px solid #111;
-            padding: 15px 0; overflow: hidden; white-space: nowrap;
-        }
-
-        .ticker-content {
-            display: inline-block; animation: ticker-slide 60s linear infinite;
-            font-weight: 900; font-size: 0.7rem; letter-spacing: 4px; color: #333;
-        }
-        .ticker-content span { color: var(--fsp-fire); margin: 0 40px; }
-
-        /* MAIN CONTENT AREA */
-        .portal-main { padding: 60px 5%; position: relative; z-index: 10; }
+        .talent-card:hover { border-color: var(--fsp-fire); transform: translateY(-5px); }
         
-        .bebas {
-            font-family: 'Bebas Neue', cursive;
-            font-size: clamp(3rem, 10vw, 5.5rem);
-            letter-spacing: 12px; text-align: center; margin-bottom: 20px;
-        }
+        .card-image { width: 100%; aspect-ratio: 3/4; background: #111; position: relative; overflow: hidden; }
+        .card-image img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(50%); transition: 0.5s; }
+        .talent-card:hover img { filter: grayscale(0%); scale: 1.05; }
 
-        .sub-header {
-            text-align: center; color: var(--fsp-gold); letter-spacing: 5px;
-            font-weight: 900; font-size: 0.7rem; margin-bottom: 60px; text-transform: uppercase;
+        /* STATUS BADGES */
+        .badge { 
+            position: absolute; top: 15px; right: 15px; padding: 5px 12px; 
+            font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; z-index: 10;
         }
+        .badge-icon { background: var(--fsp-gold); color: #000; box-shadow: 0 0 15px var(--fsp-gold); }
+        .badge-elite { background: var(--fsp-fire); color: #fff; }
+        .badge-pro { background: #333; color: #fff; }
 
-        /* TALENT GRID ARCHITECTURE */
-        .talent-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+        .availability {
+            position: absolute; bottom: 15px; left: 15px; font-size: 0.55rem;
+            letter-spacing: 2px; font-weight: 900; color: #fff; background: rgba(0,0,0,0.8);
+            padding: 4px 10px; border-left: 3px solid #00ff00;
         }
+        .availability.paused { border-left-color: #ff3300; opacity: 0.6; }
 
-        .talent-card {
-            background: #0a0a0a; border: 1px solid #151515; aspect-ratio: 3/4;
-            position: relative; overflow: hidden; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
+        .card-info { padding: 25px; border-top: 1px solid #111; }
+        .card-info h3 { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 3px; margin-bottom: 5px; }
+        .card-info p { font-size: 0.65rem; color: #555; letter-spacing: 2px; text-transform: uppercase; }
+
+        .action-bar { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #111; }
+        .action-btn { 
+            padding: 15px; text-align: center; font-size: 0.6rem; font-weight: 900; 
+            letter-spacing: 2px; color: #444; text-decoration: none; transition: 0.3s;
         }
+        .action-btn:hover { background: #111; color: var(--fsp-white); }
+        .btn-hire { background: #111; color: var(--fsp-gold); }
+        .btn-hire:hover { background: var(--fsp-gold); color: #000; }
 
-        .talent-card:hover {
-            border-color: var(--fsp-fire); box-shadow: 0 0 40px rgba(255, 51, 0, 0.3);
-            transform: translateY(-10px);
-        }
+        /* LIVE FEED OVERLAY */
+        .live-feed { position: fixed; bottom: 30px; left: 30px; background: rgba(0,0,0,0.9); border: 1px solid #222; padding: 15px 25px; display: flex; align-items: center; gap: 15px; z-index: 1000; }
+        .pulse { width: 8px; height: 8px; background: var(--fsp-fire); border-radius: 50%; box-shadow: 0 0 10px var(--fsp-fire); animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .feed-text { font-size: 0.6rem; letter-spacing: 2px; color: #888; }
 
-        .talent-img {
-            width: 100%; height: 100%; background-color: #111;
-            background-size: cover; background-position: center; transition: 0.6s;
-        }
-
-        .card-overlay {
-            position: absolute; bottom: 0; width: 100%; padding: 40px 20px 20px;
-            background: linear-gradient(transparent, #000 90%); z-index: 2;
-        }
-
-        .s-name {
-            display: block; font-size: 1.8rem; font-weight: 900;
-            text-transform: uppercase; letter-spacing: 2px;
-        }
-
-        .c-badge {
-            color: var(--fsp-gold); font-size: 0.65rem; font-weight: 900;
-            letter-spacing: 2px; text-transform: uppercase;
-        }
-
-        @keyframes ticker-slide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        @media (max-width: 768px) {
-            header.fsp-nav-command { height: 130px; padding: 0 20px; }
-            .fsp-logo-main { height: 100px; }
-            .ticker-wrap { margin-top: 130px; }
-            .talent-grid { grid-template-columns: 1fr; }
-        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="fsp-nav-command">
-        <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="fsp-logo-main"></a>
-        <div style="text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
-            <span style="color:var(--fsp-fire); font-weight:900; font-size:0.8rem; letter-spacing:3px;">IDENTITY LEDGER</span><br>
-            <span style="color:#444; font-size:0.6rem; letter-spacing:1px;">STATUS: LIVE INTAKE</span>
-        </div>
-    </header>
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo"></a>
+    <nav style="display: flex; gap: 30px;">
+        <a href="index.html" style="color:#555; text-decoration:none; font-size:0.7rem; letter-spacing:3px; font-weight:900;">EXIT PORTAL</a>
+    </nav>
+</header>
 
-    <div class="ticker-wrap">
-        <div class="ticker-content" id="lust-ticker">
-            <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-101] VIXEN V. <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-102] DANTE F. <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-103] SABLE N.
-            <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-101] VIXEN V. <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-102] DANTE F. <span>CERTIFIED HISTORY LOGGED</span> [ID: FSP-103] SABLE N.
+<div class="portal-header">
+    <p>GLOBAL METADATA DATABASE</p>
+    <h1>THE <span style="color:var(--fsp-fire)">OBSIDIAN</span> LEDGER</h1>
+</div>
+
+<div class="ledger-container">
+    
+    <div class="talent-card">
+        <div class="badge badge-icon">ICON STATUS</div>
+        <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop" alt="Talent">
+            <div class="availability">ACTIVE FOR PRODUCTION</div>
+        </div>
+        <div class="card-info">
+            <h3>VALERIA VOSS</h3>
+            <p>Metadata Equity: 9.8 / 10</p>
+        </div>
+        <div class="action-bar">
+            <a href="#" class="action-btn">VIEW ASSETS</a>
+            <a href="#" class="action-btn btn-hire">REQUEST CASTING</a>
         </div>
     </div>
 
-    <main class="portal-main">
-        <h1 class="bebas">THE <span style="color:var(--fsp-fire);">OBSIDIAN</span> PORTAL</h1>
-        <p class="sub-header">Certified Performers // $100+ Per Hour Baseline</p>
+    <div class="talent-card">
+        <div class="badge badge-elite">ELITE STATUS</div>
+        <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Talent">
+            <div class="availability paused">PRODUCTION PAUSED</div>
+        </div>
+        <div class="card-info">
+            <h3>JULIAN BLACK</h3>
+            <p>Metadata Equity: 7.4 / 10</p>
+        </div>
+        <div class="action-bar">
+            <a href="#" class="action-btn">VIEW ASSETS</a>
+            <a href="#" class="action-btn btn-hire">REQUEST CASTING</a>
+        </div>
+    </div>
 
-        <section class="talent-grid" id="main-grid">
-            <div class="talent-card">
-                <div class="talent-img" style="background-image: url('vixen.jpg');"></div>
-                <div class="card-overlay">
-                    <span class="s-name">VIXEN V.</span>
-                    <span class="c-badge">ICON STATUS // CERTIFIED</span>
-                </div>
-            </div>
+    <div class="talent-card">
+        <div class="badge badge-pro">PRO STATUS</div>
+        <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1000&auto=format&fit=crop" alt="Talent">
+            <div class="availability">ACTIVE FOR PRODUCTION</div>
+        </div>
+        <div class="card-info">
+            <h3>SIERRA STEELE</h3>
+            <p>Metadata Equity: 5.2 / 10</p>
+        </div>
+        <div class="action-bar">
+            <a href="#" class="action-btn">VIEW ASSETS</a>
+            <a href="#" class="action-btn btn-hire">REQUEST CASTING</a>
+        </div>
+    </div>
 
-            <div class="talent-card">
-                <div class="talent-img" style="background-image: url('dante.jpg');"></div>
-                <div class="card-overlay">
-                    <span class="s-name">DANTE F.</span>
-                    <span class="c-badge">ELITE STATUS // CERTIFIED</span>
-                </div>
-            </div>
-        </section>
-    </main>
+</div>
 
-    <script>
-        // THE "LIVE" INJECTION LOGIC
-        window.onload = function() {
-            // Retrieve data from the Join Page
-            const uName = sessionStorage.getItem('userName');
-            const uPhoto = sessionStorage.getItem('userPhoto');
+<div class="live-feed">
+    <div class="pulse"></div>
+    <div class="feed-text">LEDGER LIVE: <span id="feed-update">SYCHRONIZING NEW METADATA NODES...</span></div>
+</div>
 
-            if (uName && uPhoto) {
-                const grid = document.getElementById('main-grid');
-                const ticker = document.getElementById('lust-ticker');
-                
-                // 1. CREATE THE CARD
-                const newCard = document.createElement('div');
-                newCard.className = 'talent-card';
-                newCard.style.borderColor = 'var(--fsp-fire)'; // Highlights the new member
-                
-                newCard.innerHTML = `
-                    <div class="talent-img" style="background-image:url('${uPhoto}');"></div>
-                    <div class="card-overlay">
-                        <span class="s-name">${uName}</span>
-                        <span class="c-badge">NEW MEMBER // CERTIFIED</span>
-                    </div>
-                `;
-                
-                // 2. INJECT AT THE TOP
-                grid.prepend(newCard);
+<script>
+    const updates = [
+        "ICON STATUS INITIALIZED: USER_882",
+        "NEW 60-MIN SCRIPT UPLOADED: SECTOR 7",
+        "METADATA EQUITY INCREASED FOR ELITE MEMBERS",
+        "DIRECTORATE BROADCAST: NEW CASTING CALL LIVE",
+        "ASSET VERIFICATION COMPLETE: USER_104"
+    ];
 
-                // 3. UPDATE THE TICKER
-                ticker.innerHTML = `<span>IDENTITY INITIALIZED</span> [NEW] ${uName} ` + ticker.innerHTML;
-            }
-        };
-    </script>
+    let i = 0;
+    setInterval(() => {
+        document.getElementById('feed-update').innerText = updates[i];
+        i = (i + 1) % updates.length;
+    }, 4000);
+</script>
 
 </body>
 </html>
