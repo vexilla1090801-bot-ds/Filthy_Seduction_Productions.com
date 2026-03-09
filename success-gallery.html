@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Archives | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;900&family=Source+Code+Pro:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-gold: #c5a059; --fsp-pitch: #050505; --fsp-glass: rgba(255,255,255,0.03); }
+        body { background: #000; color: #fff; font-family: 'Outfit', sans-serif; margin: 0; padding: 0; }
+
+        .archive-header { height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(to bottom, #111, #000); border-bottom: 1px solid #111; }
+        .archive-header h1 { font-family: 'Bebas Neue'; font-size: 8rem; letter-spacing: 30px; margin: 0; opacity: 0.1; position: absolute; }
+        .archive-header h2 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 10px; position: relative; z-index: 2; color: var(--fsp-gold); }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 5px; padding: 5px; }
+        
+        .gallery-item { position: relative; height: 500px; background: #080808; overflow: hidden; cursor: crosshair; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.8s; filter: grayscale(100%); }
+        .gallery-item:hover img { opacity: 1; transform: scale(1.05); filter: grayscale(0%); }
+
+        .item-overlay { 
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px; 
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            transform: translateY(20px); opacity: 0; transition: 0.5s;
+        }
+        .gallery-item:hover .item-overlay { transform: translateY(0); opacity: 1; }
+
+        .node-tag { font-family: 'Source Code Pro'; font-size: 0.6rem; color: var(--fsp-gold); letter-spacing: 3px; margin-bottom: 10px; display: block; }
+        .prod-title { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 2px; }
+        .payout-badge { display: inline-block; margin-top: 15px; font-size: 0.65rem; padding: 5px 15px; background: #fff; color: #000; font-weight: 900; }
+
+        .stats-footer { padding: 100px 5%; background: var(--fsp-pitch); text-align: center; border-top: 1px solid #111; }
+        .stat-box { display: inline-block; margin: 0 50px; }
+        .stat-box h3 { font-family: 'Bebas Neue'; font-size: 4rem; margin: 0; color: var(--fsp-gold); }
+        .stat-box p { font-size: 0.7rem; color: #444; letter-spacing: 3px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+<header class="archive-header">
+    <h1>PRODUCTIONS</h1>
+    <h2>THE_ARCHIVES</h2>
+    <p style="font-size: 0.6rem; letter-spacing: 5px; color: #333; margin-top: 20px;">SEASON_01 // OBSIDIAN_GENESIS // WRAP_REPORT</p>
+</header>
+
+<div class="gallery-grid">
+    <div class="gallery-item">
+        <img src="https://via.placeholder.com/800x1000/080808/555555?text=SURROGATE_SOPHIA_BTS" alt="Silk & Shadows">
+        <div class="item-overlay">
+            <span class="node-tag">NODE_SOPHIA // ELITE</span>
+            <h3 class="prod-title">SILK_LIFESTYLE_01</h3>
+            <div class="payout-badge">ROYALTY_TOTAL: $4,820.50</div>
+        </div>
+    </div>
+
+    <div class="gallery-item" style="border: 1px solid var(--fsp-gold);">
+        <img src="https://via.placeholder.com/800x1000/080808/555555?text=MEMBER_JASMINE_X" alt="Neo-Noir">
+        <div class="item-overlay">
+            <span class="node-tag" style="color: #fff;">REAL_MEMBER // ASCENDED</span>
+            <h3 class="prod-title">EXECUTIVE_HEAT_MAX</h3>
+            <div class="payout-badge" style="background: var(--fsp-gold);">ROYALTY_TOTAL: $12,400.00</div>
+        </div>
+    </div>
+
+    <div class="gallery-item">
+        <img src="https://via.placeholder.com/800x1000/080808/555555?text=SURROGATE_ZARA_BTS" alt="Raw Production">
+        <div class="item-overlay">
+            <span class="node-tag">NODE_ZARA // ROYAL</span>
+            <h3 class="prod-title">DIRECTORATE_RAW_VOL1</h3>
+            <div class="payout-badge">ROYALTY_TOTAL: $9,100.00</div>
+        </div>
+    </div>
+</div>
+
+<footer class="stats-footer">
+    <div class="stat-box">
+        <h3>840GB</h3>
+        <p>RAW_8K_MASTERED</p>
+    </div>
+    <div class="stat-box">
+        <h3>$142K</h3>
+        <p>TOTAL_SEASON_PAYOUTS</p>
+    </div>
+    <div class="stat-box">
+        <h3>302</h3>
+        <p>ACTIVE_SURROGATE_NODES</p>
+    </div>
+    
+    <div style="margin-top: 80px;">
+        <a href="production-briefs.html" style="color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 5px; border: 1px solid #222; padding: 20px 50px;">ENTER_SEASON_02_INTAKE</a>
+    </div>
+</footer>
+
+</body>
+</html>
