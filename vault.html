@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metadata Vault | FSP Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-card: #080808; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        /* UNIVERSAL HEADER */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
+
+        .vault-layout { max-width: 1400px; margin: 240px auto 100px; padding: 0 5%; display: grid; grid-template-columns: 1fr 400px; gap: 40px; }
+
+        /* ASSET REPOSITORY */
+        .vault-header h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 12px; margin-bottom: 10px; }
+        .vault-header p { color: var(--fsp-gold); font-size: 0.7rem; letter-spacing: 3px; font-weight: 900; text-transform: uppercase; margin-bottom: 50px; }
+
+        .asset-table { width: 100%; border-collapse: collapse; background: var(--fsp-card); border: 1px solid #111; }
+        .asset-table th { text-align: left; padding: 20px; font-size: 0.6rem; color: #444; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid #111; }
+        .asset-table td { padding: 25px 20px; font-size: 0.85rem; border-bottom: 1px solid #0f0f0f; vertical-align: middle; }
+        
+        .status-tag { padding: 4px 10px; font-size: 0.6rem; font-weight: 900; border: 1px solid #222; letter-spacing: 1px; }
+        .status-tag.verified { border-color: #0f0; color: #0f0; }
+        .status-tag.scrubbing { border-color: var(--fsp-gold); color: var(--fsp-gold); }
+
+        /* UPLOAD INTERFACE */
+        .upload-sidebar { background: #0c0c0c; border: 1px solid #1a1a1a; padding: 40px; height: fit-content; position: sticky; top: 240px; }
+        .upload-sidebar h3 { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 4px; margin-bottom: 20px; }
+        
+        .drop-zone { border: 2px dashed #333; padding: 60px 20px; text-align: center; cursor: pointer; transition: 0.3s; margin-bottom: 30px; }
+        .drop-zone:hover { border-color: var(--fsp-fire); background: #110000; }
+        .drop-zone span { font-size: 0.6rem; font-weight: 900; color: #555; letter-spacing: 2px; text-transform: uppercase; }
+
+        .revenue-potential { background: #050505; padding: 20px; border: 1px solid #111; margin-top: 20px; }
+        .rev-label { font-size: 0.55rem; color: #444; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+        .rev-value { font-family: 'Bebas Neue'; font-size: 2.5rem; color: var(--fsp-gold); display: block; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+    <nav class="main-nav">
+        <a href="index.html">COMMAND</a>
+        <a href="vault.html" style="color:var(--fsp-gold)">VAULT</a>
+        <a href="ledger.html">LEDGER</a>
+        <a href="portal.html">PORTAL</a>
+    </nav>
+</header>
+
+<main class="vault-layout">
+    <section class="asset-repository">
+        <div class="vault-header">
+            <h1>METADATA VAULT</h1>
+            <p>High-Fidelity Asset Inventory & Scrubbing Status</p>
+        </div>
+
+        <table class="asset-table">
+            <thead>
+                <tr>
+                    <th>Asset Name / UID</th>
+                    <th>Resolution</th>
+                    <th>Status</th>
+                    <th>Revenue Settlement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>SCENE_001_MIAMI_NOIR</b><br><small style="color:#444">UPLOADED: 03.05.26</small></td>
+                    <td>8K RAW</td>
+                    <td><span class="status-tag verified">VERIFIED</span></td>
+                    <td style="color:var(--fsp-gold)">$250.00</td>
+                </tr>
+                <tr>
+                    <td><b>STILL_SHOT_LOBBY_04</b><br><small style="color:#444">UPLOADED: 03.08.26</small></td>
+                    <td>4K PROXY</td>
+                    <td><span class="status-tag scrubbing">SCRUBBING...</span></td>
+                    <td style="color:#444">PENDING</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 40px; padding: 30px; border: 1px solid #111; font-size: 0.7rem; color: #444; line-height: 1.6;">
+            <b>DIRECTORATE NOTE:</b> All assets undergo a 24-hour "Scrubbing" process where our AI-AITS system verifies frame rates, resolution, and 2257 watermark alignment. Revenue is settled immediately upon Verification.
+        </div>
+    </section>
+
+    <aside class="upload-sidebar">
+        <h3>INJECT ASSETS</h3>
+        <div class="drop-zone" onclick="document.getElementById('file-input').click()">
+            <span>DRAG & DROP RAW METADATA</span>
+            <input type="file" id="file-input" style="display:none" multiple>
+        </div>
+
+        <div class="revenue-potential">
+            <span class="rev-label">Total Vault Value</span>
+            <span class="rev-value">$250.00</span>
+        </div>
+
+        <div style="margin-top: 30px; border-top: 1px solid #222; padding-top: 20px;">
+            <p style="font-size: 0.65rem; color: #666; margin-bottom: 15px;">Need assistance with high-speed asset transfer?</p>
+            <a href="vexillaaits.com_account_support.html" style="color:var(--fsp-fire); text-decoration:none; font-size: 0.65rem; font-weight: 900; letter-spacing: 2px;">CONTACT BRAND MANAGER →</a>
+        </div>
+    </aside>
+</main>
+
+<footer style="background: #050505; border-top: 1px solid #111; padding: 60px 5%; margin-top: 100px; text-align: center;">
+    <p style="font-size: 0.6rem; color: #222; letter-spacing: 2px;">© 2026 FSP DIRECTORATE | VAULT_NODE_v4.0 | ENCRYPTED CONTENT ONLY</p>
+</footer>
+
+</body>
+</html>
