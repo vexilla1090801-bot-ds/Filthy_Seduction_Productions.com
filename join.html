@@ -3,186 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Production Intake | FSP Obsidian Directorate</title>
-    <style>
-        :root {
-            --fsp-black: #050505; --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #ffffff;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
-
-        /* COMMAND HEADER SYNC - 180px */
-        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 50px; border-bottom: 2px solid #111; background: #000; position: fixed; width: 100%; top: 0; z-index: 1000; }
-        .logo { height: 150px; }
-
-        .dashboard-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; padding: 220px 5% 50px; max-width: 1600px; margin: 0 auto; }
-
-        /* THE OBSIDIAN MIRROR (PREVIEW PANE) */
-        .mirror-pane { position: sticky; top: 220px; background: #080808; border: 1px solid #1a1a1a; padding: 20px; height: fit-content; text-align: center; }
-        .mirror-display { 
-            width: 100%; aspect-ratio: 3/4; background: #000; border: 1px solid #222; 
-            display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; 
-        }
-        #preview-img { width: 100%; height: 100%; object-fit: cover; display: none; }
-        #preview-vid { width: 100%; height: 100%; display: none; }
-        .mirror-tag { position: absolute; top: 15px; left: 15px; font-size: 0.6rem; color: var(--fsp-gold); letter-spacing: 3px; font-weight: 900; background: rgba(0,0,0,0.7); padding: 5px 10px; }
-        .status-msg { margin-top: 20px; font-size: 0.7rem; color: #444; letter-spacing: 2px; text-transform: uppercase; }
-
-        /* ASSET UPLOAD GRID */
-        .form-content h2 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 5px; margin-bottom: 30px; border-left: 4px solid var(--fsp-fire); padding-left: 20px; }
-        .upload-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 40px; }
-
-        .upload-slot {
-            height: 140px; background: #080808; border: 1px dashed #333; cursor: pointer;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: 0.3s; position: relative;
-        }
-        .upload-slot:hover { border-color: var(--fsp-fire); background: #0d0d0d; }
-        .upload-slot.verified { border: 1px solid var(--fsp-gold); background: rgba(197, 160, 89, 0.05); }
-
-        .slot-label { font-size: 0.6rem; letter-spacing: 2px; color: #555; margin-top: 10px; font-weight: 900; }
-        .upload-slot.verified .slot-label { color: var(--fsp-gold); }
-        .check-icon { font-size: 1.5rem; color: var(--fsp-gold); display: none; }
-        .upload-slot.verified .check-icon { display: block; }
-        .upload-slot.verified .plus-icon { display: none; }
-        
-        /* VIDEO SLOT */
-        .video-slot { grid-column: span 3; height: 100px; border: 1px dashed #333; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
-        .video-slot.verified { border: 1px solid var(--fsp-fire); }
-
-        /* TOGGLES */
-        .status-container { display: flex; gap: 20px; margin: 40px 0; }
-        .toggle-btn { flex: 1; padding: 20px; background: #080808; border: 1px solid #222; color: #444; font-weight: 900; letter-spacing: 2px; cursor: pointer; text-align: center; font-size: 0.7rem; }
-        .toggle-btn.active { border-color: var(--fsp-gold); color: #fff; background: #111; }
-
-        .final-btn { width: 100%; padding: 30px; background: var(--fsp-fire); color: #fff; border: none; font-weight: 900; letter-spacing: 8px; cursor: pointer; text-transform: uppercase; margin-top: 20px; }
-        .final-btn:hover { background: #fff; color: #000; box-shadow: 0 0 40px rgba(255,255,255,0.2); }
-
-        @media (max-width: 1000px) { .dashboard-container { grid-template-columns: 1fr; } .mirror-pane { position: static; } }
-    </style>
+    <title>The Obsidian Ledger | FSP Talent Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        /* UNIVERSAL HEADER */
+        header { 
+            height: 180px; display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
+            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
+        }
+        .logo { height: 150px; }
+        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
+        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; }
+
+        .portal-layout { 
+            display: grid; grid-template-columns: 400px 1fr; gap: 40px; 
+            padding: 240px 5% 100px; max-width: 1600px; margin: 0 auto; 
+        }
+
+        /* LEFT: REAL-TIME IDENTITY CARD */
+        .id-card-sticky { position: sticky; top: 220px; }
+        .performer-card { 
+            background: #0a0a0a; border: 1px solid #1a1a1a; padding: 30px; 
+            text-align: center; border-top: 4px solid var(--fsp-gold); 
+        }
+        .profile-hex { 
+            width: 180px; height: 180px; background: #111; margin: 0 auto 20px; 
+            border: 2px solid #222; overflow: hidden; display: flex; align-items: center; justify-content: center;
+        }
+        .profile-hex img { width: 100%; height: 100%; object-fit: cover; }
+        .id-name { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 5px; color: var(--fsp-gold); margin-bottom: 5px; }
+        .id-tier { font-size: 0.6rem; letter-spacing: 4px; color: var(--fsp-fire); font-weight: 900; text-transform: uppercase; margin-bottom: 20px; }
+        .id-stats { text-align: left; font-size: 0.7rem; color: #555; border-top: 1px solid #1a1a1a; padding-top: 20px; }
+        .id-stats div { display: flex; justify-content: space-between; margin-bottom: 8px; }
+
+        /* RIGHT: INDUSTRY INTAKE */
+        .intake-vault { background: #080808; border: 1px solid #111; padding: 60px; }
+        h2 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 8px; margin-bottom: 40px; }
+        .section-label { color: var(--fsp-fire); font-size: 0.7rem; letter-spacing: 5px; font-weight: 900; margin: 40px 0 20px; border-bottom: 1px solid #1a1a1a; padding-bottom: 10px; }
+
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        .input-box { margin-bottom: 25px; }
+        label { display: block; font-size: 0.6rem; color: #444; letter-spacing: 2px; margin-bottom: 10px; font-weight: 900; }
+        input, select, textarea { 
+            width: 100%; background: #000; border: 1px solid #222; padding: 18px; 
+            color: #fff; font-family: 'Outfit'; font-size: 0.9rem; outline: none; 
+        }
+        input:focus { border-color: var(--fsp-gold); }
+
+        .upload-zone { 
+            border: 2px dashed #1a1a1a; padding: 40px; text-align: center; cursor: pointer; 
+            transition: 0.3s; margin-top: 10px; 
+        }
+        .upload-zone:hover { border-color: var(--fsp-fire); background: #0c0c0c; }
+
+        .btn-finalize { 
+            width: 100%; padding: 30px; background: var(--fsp-gold); color: #000; 
+            font-weight: 900; letter-spacing: 10px; border: none; cursor: pointer; 
+            margin-top: 50px; text-transform: uppercase; transition: 0.5s; 
+        }
+        .btn-finalize:hover { background: #fff; transform: translateY(-5px); }
+
+        @media (max-width: 1000px) { .portal-layout { grid-template-columns: 1fr; } .id-card-sticky { position: relative; top: 0; } }
+    </style>
 </head>
 <body>
 
 <header>
-    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo"></a>
-    <div style="text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
-        <span id="tier-display" style="color:var(--fsp-gold); font-weight:900; letter-spacing:3px;">INITIALIZING...</span>
-    </div>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+    <nav class="main-nav">
+        <a href="index.html">COMMAND</a>
+        <a href="briefing-basic.html">ENROLL</a>
+        <a href="briefing-pro.html">PRO</a>
+        <a href="briefing-elite.html">ELITE</a>
+        <a href="briefing-icon.html">ICON</a>
+    </nav>
 </header>
 
-<main class="dashboard-container">
-    <section class="mirror-pane">
-        <div class="mirror-display">
-            <div class="mirror-tag" id="mirror-label">SYSTEM STANDBY</div>
-            <img id="preview-img">
-            <video id="preview-vid" controls></video>
-            <div id="null-text" style="color:#222; letter-spacing:10px; font-weight:900; font-size:0.8rem;">NO SIGNAL</div>
+<main class="portal-layout">
+    <aside class="id-card-sticky">
+        <div class="performer-card">
+            <div class="profile-hex">
+                <img id="preview-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='%23111'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Avatar">
+            </div>
+            <div id="display-name" class="id-name">NEW_MEMBER</div>
+            <div id="display-tier" class="id-tier">BASIC LEDGER ENTRY</div>
+            
+            <div class="id-stats">
+                <div><span>STATUS</span> <span style="color:#0f0">VERIFIED</span></div>
+                <div><span>GENDER</span> <span id="stat-gender">---</span></div>
+                <div><span>HEIGHT</span> <span id="stat-height">---</span></div>
+                <div><span>REVENUE</span> <span id="stat-rev">$0.00/HR</span></div>
+            </div>
         </div>
-        <div class="status-msg" id="status-msg">AWAITING ASSET UPLOAD</div>
-    </section>
+        <p style="font-size: 0.6rem; color: #333; margin-top: 20px; text-align: center;">LEDGER ID: #FSP-000-X9</p>
+    </aside>
 
-    <section class="form-content">
-        <h2>01. IDENTITY ASSETS</h2>
-        <div class="upload-grid">
-            <label class="upload-slot" id="slot-face" onclick="showPreview('face')">
-                <span class="plus-icon">+</span>
-                <span class="check-icon">✓</span>
-                <span class="slot-label">FACE</span>
-                <input type="file" hidden accept="image/*" onchange="processFile(this, 'face')">
-            </label>
-            <label class="upload-slot" id="slot-front" onclick="showPreview('front')">
-                <span class="plus-icon">+</span>
-                <span class="check-icon">✓</span>
-                <span class="slot-label">FRONT</span>
-                <input type="file" hidden accept="image/*" onchange="processFile(this, 'front')">
-            </label>
-            <label class="upload-slot" id="slot-back" onclick="showPreview('back')">
-                <span class="plus-icon">+</span>
-                <span class="check-icon">✓</span>
-                <span class="slot-label">BACK</span>
-                <input type="file" hidden accept="image/*" onchange="processFile(this, 'back')">
-            </label>
-        </div>
+    <section class="intake-vault">
+        <h2>TALENT PROFILE SYNC</h2>
+        
+        <form onsubmit="saveLedger(event)">
+            <div class="section-label">01 // IDENTITY BRANDING</div>
+            <div class="grid-3">
+                <div class="input-box">
+                    <label>SCREEN NAME</label>
+                    <input type="text" id="input-name" onkeyup="updateCard()" placeholder="PUBLIC ALIAS">
+                </div>
+                <div class="input-box">
+                    <label>GENDER</label>
+                    <select id="input-gender" onchange="updateCard()">
+                        <option value="---">SELECT</option>
+                        <option value="FEMALE">FEMALE</option>
+                        <option value="MALE">MALE</option>
+                        <option value="NON-BI">NON-BI</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label>HEIGHT</label>
+                    <input type="text" id="input-height" onkeyup="updateCard()" placeholder="E.G. 5'7">
+                </div>
+            </div>
 
-        <h2>02. PRODUCTION VIDEO</h2>
-        <div class="upload-grid">
-            <label class="upload-slot video-slot" id="slot-video" onclick="showPreview('video')">
-                <span class="plus-icon">+ UPLOAD 60-MINUTE SCRIPTED VIDEO</span>
-                <span class="check-icon">✓ VIDEO VERIFIED - CLICK TO RE-WATCH</span>
-                <input type="file" hidden accept="video/*" onchange="processFile(this, 'video')">
-            </label>
-        </div>
+            <div class="section-label">02 // INDUSTRY ATTRIBUTES</div>
+            <div class="grid-3">
+                <div class="input-box">
+                    <label>BODY TYPE</label>
+                    <input type="text" placeholder="E.G. SLIM, ATHLETIC">
+                </div>
+                <div class="input-box">
+                    <label>HAIR COLOR</label>
+                    <input type="text" placeholder="COLOR">
+                </div>
+                <div class="input-box">
+                    <label>EYE COLOR</label>
+                    <input type="text" placeholder="COLOR">
+                </div>
+            </div>
 
-        <h2>03. CASTING PREFERENCE</h2>
-        <p style="font-size:0.7rem; color:#555; margin-bottom:15px; letter-spacing:1px;">Toggle your visibility. Your profile and metadata stay permanent even if paused.</p>
-        <div class="status-container">
-            <div class="toggle-btn active" id="btn-active" onclick="setAvailability('active')">ACTIVE FOR JOBS</div>
-            <div class="toggle-btn" id="btn-pause" onclick="setAvailability('pause')">PAUSE FOR BREAK</div>
-        </div>
+            <div class="section-label">03 // PERFORMANCE BOUNDARIES (SECRET INTAKE)</div>
+            <div class="input-box">
+                <label>CORE BOUNDARIES & COMFORT LEVELS</label>
+                <textarea rows="4" placeholder="PLEASE LIST WHAT YOU ARE COMFORTABLE WITH IN TERMS OF SCRIPTING, PHYSICALITY, AND PRODUCTION ROLES..."></textarea>
+            </div>
 
-        <button class="final-btn" onclick="submitToLedger()">APPROVE & SYNC TO PORTAL</button>
+            <div class="section-label">04 // METADATA UPLOAD (NODE SYNC)</div>
+            <div class="upload-zone" onclick="document.getElementById('file-up').click()">
+                <p style="color:#555; font-size:0.7rem; font-weight:900; letter-spacing:2px;">CLICK TO UPLOAD PRIMARY IDENTIFICATION PHOTO</p>
+                <input type="file" id="file-up" hidden onchange="previewFile()">
+            </div>
+
+            <button type="submit" class="btn-finalize">INITIALIZE LEDGER RECORD</button>
+        </form>
     </section>
 </main>
 
 <script>
-    // Memory Store for Previews
-    const assetStore = { face: null, front: null, back: null, video: null };
-
+    // LOAD TIER FROM SESSION
     window.onload = function() {
-        const tier = sessionStorage.getItem('selectedTier') || 'BASIC';
-        document.getElementById('tier-display').innerText = tier.toUpperCase() + " INTAKE";
-    };
-
-    function processFile(input, type) {
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                assetStore[type] = e.target.result;
-                document.getElementById('slot-' + type).classList.add('verified');
-                showPreview(type); // Auto-show the mirror when uploaded
-                document.getElementById('status-msg').innerText = "ASSET '" + type.toUpperCase() + "' SECURED";
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
+        const tier = sessionStorage.getItem('selectedTier') || 'basic';
+        const tierDisplay = document.getElementById('display-tier');
+        const revDisplay = document.getElementById('stat-rev');
+        
+        if(tier === 'pro') { tierDisplay.innerText = 'PRO AUTHORIZED'; revDisplay.innerText = '$100.00/HR'; }
+        else if(tier === 'elite') { tierDisplay.innerText = 'ELITE AUTHORIZED'; revDisplay.innerText = '$150.00/HR'; }
+        else if(tier === 'icon') { tierDisplay.innerText = 'ICON PARTNER'; revDisplay.innerText = '$250.00/HR'; }
     }
 
-    function showPreview(type) {
-        const data = assetStore[type];
-        const img = document.getElementById('preview-img');
-        const vid = document.getElementById('preview-vid');
-        const label = document.getElementById('mirror-label');
-        const nullText = document.getElementById('null-text');
-
-        if (!data) return; // Only preview if file exists
-
-        nullText.style.display = "none";
-        label.innerText = "PREVIEWING: " + type.toUpperCase();
-
-        if (type === 'video') {
-            img.style.display = "none";
-            vid.style.display = "block";
-            vid.src = data;
-        } else {
-            vid.style.display = "none";
-            img.style.display = "block";
-            img.src = data;
-        }
+    function updateCard() {
+        document.getElementById('display-name').innerText = document.getElementById('input-name').value || 'NEW_MEMBER';
+        document.getElementById('stat-gender').innerText = document.getElementById('input-gender').value;
+        document.getElementById('stat-height').innerText = document.getElementById('input-height').value || '---';
     }
 
-    function setAvailability(mode) {
-        document.getElementById('btn-active').classList.remove('active');
-        document.getElementById('btn-pause').classList.remove('active');
-        document.getElementById('btn-' + mode).classList.add('active');
+    function previewFile() {
+        const preview = document.getElementById('preview-img');
+        const file = document.getElementById('file-up').files[0];
+        const reader = new FileReader();
+        reader.onloadend = function() { preview.src = reader.result; }
+        if (file) { reader.readAsDataURL(file); }
     }
 
-    function submitToLedger() {
-        if (!assetStore.face || !assetStore.video) {
-            alert("ERROR: Face photo and Production Video are mandatory for synchronization.");
-            return;
-        }
-        alert("METADATA SYNC COMPLETE. PROFILE IS NOW LIVE.");
-        window.location.href = "portal.html";
+    function saveLedger(e) {
+        e.preventDefault();
+        alert("LEDGER RECORD INITIALIZED. REDIRECTING TO FINAL ORDER COMPLETION...");
+        window.location.href = "order-complete.html";
     }
 </script>
 
