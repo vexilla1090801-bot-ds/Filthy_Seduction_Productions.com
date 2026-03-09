@@ -3,126 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talent Ledger | FSP Obsidian Directorate</title>
+    <title>Portal | FSP Obsidian Directorate</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-card: #0c0c0c; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+        :root { 
+            --fsp-fire: #ff3300; 
+            --fsp-gold: #c5a059; 
+            --fsp-pitch: #0a0a0a; 
+            --fsp-green: #00ff66;
+            --fsp-border: #1a1a1a;
+        }
 
-        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
-        .logo { height: 150px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
-        .ledger-layout { max-width: 1400px; margin: 240px auto 100px; padding: 0 5%; }
+        body { 
+            background: #000; 
+            color: #fff; 
+            font-family: 'Outfit', sans-serif; 
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-        /* ACTIVITY TICKER */
-        .live-feed { background: #111; border: 1px solid #222; padding: 15px; margin-bottom: 50px; display: flex; align-items: center; gap: 20px; }
-        .feed-label { color: var(--fsp-fire); font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; }
-        .feed-scroll { font-family: 'Source Code Pro'; font-size: 0.65rem; color: #666; }
+        /* LEFT NAVIGATION: SYSTEM ARCHITECTURE */
+        .sidebar-left {
+            background: var(--fsp-pitch);
+            border-right: 1px solid var(--fsp-border);
+            padding: 40px 25px;
+            display: flex;
+            flex-direction: column;
+        }
 
-        /* SURROGATE GRID */
-        .surrogate-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .nav-brand { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 5px; margin-bottom: 50px; color: var(--fsp-fire); }
         
-        .node-card { background: var(--fsp-card); border: 1px solid #151515; position: relative; transition: 0.5s; overflow: hidden; }
-        .node-card:hover { transform: translateY(-10px); border-color: var(--fsp-gold); }
+        .nav-group { margin-bottom: 30px; }
+        .nav-label { font-family: 'Source Code Pro'; font-size: 0.6rem; color: #444; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; display: block; }
+        
+        .nav-link { 
+            display: block; color: #888; text-decoration: none; font-family: 'Bebas Neue'; 
+            font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 12px; transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.active { color: #fff; transform: translateX(5px); }
+        .nav-link.active { color: var(--fsp-gold); }
 
-        .node-visual { height: 450px; background: #050505; position: relative; }
-        .node-visual::after { 
-            content: ""; position: absolute; bottom: 0; width: 100%; height: 50%; 
-            background: linear-gradient(transparent, #0c0c0c); 
+        /* CENTER: THE NODE MATRIX */
+        .main-portal { 
+            overflow-y: scroll; 
+            padding: 40px; 
+            background: radial-gradient(circle at top right, #0d0d0d, #000);
+        }
+        .main-portal::-webkit-scrollbar { width: 4px; }
+        .main-portal::-webkit-scrollbar-thumb { background: var(--fsp-border); }
+
+        .portal-header { margin-bottom: 40px; border-bottom: 1px solid var(--fsp-border); padding-bottom: 20px; }
+        .portal-header h2 { font-family: 'Bebas Neue'; font-size: 3rem; letter-spacing: 10px; }
+
+        .node-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+            gap: 20px; 
         }
 
-        .tier-badge { position: absolute; top: 20px; right: 20px; background: var(--fsp-gold); color: #000; font-size: 0.55rem; font-weight: 900; padding: 4px 10px; letter-spacing: 1px; z-index: 5; }
-
-        .node-info { padding: 30px; position: relative; z-index: 10; margin-top: -60px; }
-        .node-name { font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 3px; }
-        .node-attributes { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
-        .attr { font-size: 0.55rem; border: 1px solid #222; padding: 4px 8px; color: #555; text-transform: uppercase; font-weight: 700; }
-
-        /* THE FLAMMABLE FILTH BUTTON */
-        .btn-flammable { 
-            display: block; width: 100%; padding: 15px; background: #110000; 
-            border: 1px solid var(--fsp-fire); color: var(--fsp-fire); text-align: center; 
-            text-decoration: none; font-size: 0.65rem; font-weight: 900; letter-spacing: 2px; 
-            text-transform: uppercase; transition: 0.3s; margin-top: 15px;
+        .node-card {
+            background: #050505;
+            border: 1px solid var(--fsp-border);
+            padding: 20px;
+            position: relative;
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        .btn-flammable:hover { background: var(--fsp-fire); color: #fff; box-shadow: 0 0 15px rgba(255, 51, 0, 0.4); }
+        .node-card:hover { border-color: var(--fsp-gold); background: #080808; transform: translateY(-5px); }
 
-        .x-rated-status { font-size: 0.5rem; color: #333; text-align: center; margin-top: 8px; font-family: 'Source Code Pro'; }
+        .node-status { position: absolute; top: 15px; right: 15px; width: 6px; height: 6px; background: var(--fsp-green); border-radius: 50%; box-shadow: 0 0 8px var(--fsp-green); }
+        .node-name { font-family: 'Bebas Neue'; font-size: 1.4rem; letter-spacing: 2px; margin-bottom: 5px; }
+        .node-meta { font-family: 'Source Code Pro'; font-size: 0.6rem; color: #444; }
+
+        /* RIGHT: LIVE INTEL FEED */
+        .sidebar-right {
+            background: var(--fsp-pitch);
+            border-left: 1px solid var(--fsp-border);
+            padding: 40px 20px;
+        }
+
+        .intel-box { 
+            background: #000; 
+            border: 1px solid var(--fsp-border); 
+            padding: 20px; 
+            margin-bottom: 20px; 
+        }
+        .intel-title { font-family: 'Bebas Neue'; color: var(--fsp-gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 15px; }
+        
+        .news-ticker { font-size: 0.75rem; color: #666; line-height: 1.6; }
+        .news-item { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #111; }
+        .news-item b { color: var(--fsp-fire); }
+
     </style>
 </head>
-<body>
+<body onload="initializePortal()">
 
-<header>
-    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
-</header>
+    <nav class="sidebar-left">
+        <div class="nav-brand">OBSIDIAN</div>
+        
+        <div class="nav-group">
+            <span class="nav-label">COMMAND_CENTRE</span>
+            <a href="portal.html" class="nav-link active">SURROGATE_MATRIX</a>
+            <a href="ledger.html" class="nav-link">TALENT_LEDGER</a>
+            <a href="production-briefs.html" class="nav-link">MISSIONS_DISPATCH</a>
+        </div>
 
-<main class="ledger-layout">
-    <div class="live-feed">
-        <span class="feed-label">LIVE_INTEL:</span>
-        <div class="feed-scroll">NODE_ELITE_SOPHIA JUST UPLOADED 4 NEW ASSETS TO THE VAULT... SYSTEM_SYNC_COMPLETE...</div>
-    </div>
+        <div class="nav-group">
+            <span class="nav-label">FINANCIAL_ENGINE</span>
+            <a href="revenue-ledger.html" class="nav-link">ROYALTY_VAULT</a>
+        </div>
+    </nav>
 
-    <div class="surrogate-grid">
-        <div class="node-card">
-            <span class="tier-badge">ICON_MEMBER</span>
-            <div class="node-visual">
-                <div style="display:flex; align-items:center; justify-content:center; height:100%; color:#1a1a1a; font-size:3rem;">◈</div>
+    <main class="main-portal">
+        <header class="portal-header">
+            <h2>SURROGATE_MATRIX</h2>
+            <p style="font-family: 'Source Code Pro'; font-size: 0.6rem; color: #444; letter-spacing: 4px;">SYSTEM_STATUS: 302_NODES_ACTIVE</p>
+        </header>
+
+        <div class="node-grid" id="node-matrix">
             </div>
-            <div class="node-info">
-                <h3 class="node-name">SOPHIA</h3>
-                <p style="font-size:0.6rem; color:var(--fsp-gold); letter-spacing:2px;">EST. 2025 // MIAMI HUB</p>
-                <div class="node-attributes">
-                    <span class="attr">Athletic</span><span class="attr">Tattooed</span><span class="attr">5'9"</span><span class="attr">Fair</span>
-                </div>
-                <p style="font-size: 0.7rem; color: #666; line-height: 1.4;">Specializes in high-fashion cinematic adult productions. Primary lead for "Midnight Velvet" series.</p>
-                
-                <a href="flammablefilth_gateway.html" class="btn-flammable">VIEW PRODUCTION CONTENT</a>
-                <div class="x-rated-status">14 VIDEOS ON FLAMMABLEFILTH.COM</div>
+    </main>
+
+    <aside class="sidebar-right">
+        <div class="intel-box">
+            <div class="intel-title">LIVE_INTEL_FEED</div>
+            <div class="news-ticker" id="news-ticker">
+                <div class="news-item"><b>NODE_SOPHIA</b> just uploaded 4.2GB of 8K assets.</div>
+                <div class="news-item"><b>NODE_JORDAN</b> payout confirmed: $1,420.00.</div>
+                <div class="news-item"><b>SYSTEM</b>: 5% weekly growth daemon active.</div>
             </div>
         </div>
 
-        <div class="node-card">
-            <span class="tier-badge" style="background:var(--fsp-white)">ELITE_MEMBER</span>
-            <div class="node-visual">
-                <div style="display:flex; align-items:center; justify-content:center; height:100%; color:#1a1a1a; font-size:3rem;">◈</div>
-            </div>
-            <div class="node-info">
-                <h3 class="node-name">ISABELLA</h3>
-                <p style="font-size:0.6rem; color:var(--fsp-gold); letter-spacing:2px;">EST. 2026 // LONDON HUB</p>
-                <div class="node-attributes">
-                    <span class="attr">Petite</span><span class="attr">Classic</span><span class="attr">5'4"</span><span class="attr">Ebony</span>
-                </div>
-                <p style="font-size: 0.7rem; color: #666; line-height: 1.4;">Focuses on high-fidelity lifestyle and 'Around the Home' luxury aesthetic sets.</p>
-                
-                <a href="flammablefilth_gateway.html" class="btn-flammable">VIEW PRODUCTION CONTENT</a>
-                <div class="x-rated-status">8 VIDEOS ON FLAMMABLEFILTH.COM</div>
-            </div>
+        <div class="intel-box" style="border-color: var(--fsp-fire);">
+            <div class="intel-title" style="color: var(--fsp-fire);">PRIORITY_MISSION</div>
+            <p style="font-size: 0.7rem; color: #888;">NEO-NOIR OFFICE EXEC is currently 88% filled. Claim your slot now.</p>
         </div>
+    </aside>
 
-        <div class="node-card">
-            <span class="tier-badge">ICON_MEMBER</span>
-            <div class="node-visual">
-                <div style="display:flex; align-items:center; justify-content:center; height:100%; color:#1a1a1a; font-size:3rem;">◈</div>
-            </div>
-            <div class="node-info">
-                <h3 class="node-name">VALENTINA</h3>
-                <p style="font-size:0.6rem; color:var(--fsp-gold); letter-spacing:2px;">EST. 2024 // GLOBAL TRAVEL</p>
-                <div class="node-attributes">
-                    <span class="attr">Curvy</span><span class="attr">Elegant</span><span class="attr">5'7"</span><span class="attr">Latina</span>
-                </div>
-                <p style="font-size: 0.7rem; color: #666; line-height: 1.4;">A1 Directorate Ambassador. Featured in over 30 global studio productions.</p>
-                
-                <a href="flammablefilth_gateway.html" class="btn-flammable">VIEW PRODUCTION CONTENT</a>
-                <div class="x-rated-status">32 VIDEOS ON FLAMMABLEFILTH.COM</div>
-            </div>
-        </div>
-    </div>
-</main>
+    <script>
+        function initializePortal() {
+            const matrix = document.getElementById('node-matrix');
+            const names = ["Sophia", "Jordan", "Elena", "Zara", "Valentina", "Mila", "Alexa", "Sloane", "Jade", "Bella"];
+            
+            // Generate 32 nodes for the visual grid
+            for (let i = 1; i <= 32; i++) {
+                const name = names[Math.floor(Math.random() * names.length)];
+                matrix.innerHTML += `
+                    <div class="node-card">
+                        <div class="node-status"></div>
+                        <div class="node-meta">NODE_SYNC: ${90 + Math.floor(Math.random() * 10)}%</div>
+                        <div class="node-name">${name.toUpperCase()}_${100 + i}</div>
+                        <div class="node-meta" style="color:var(--fsp-gold)">RANK: ELITE_SURROGATE</div>
+                        <a href="showroom.html" style="display:block; margin-top:15px; font-size:0.6rem; color:#fff; text-decoration:none; border:1px solid #222; padding:8px; text-align:center;">VIEW_ASSETS</a>
+                    </div>
+                `;
+            }
 
-<footer style="background: #050505; border-top: 1px solid #111; padding: 60px 5%; margin-top: 100px; text-align: center;">
-    <p style="font-size: 0.6rem; color: #222; letter-spacing: 2px;">© 2026 FILTHY SEDUCTION PRODUCTIONS | TALENT_LEDGER_v6.0</p>
-</footer>
-
+            // Simple Ticker Simulation
+            const ticker = document.getElementById('news-ticker');
+            setInterval(() => {
+                const name = names[Math.floor(Math.random() * names.length)];
+                const item = document.createElement('div');
+                item.className = 'news-item';
+                item.innerHTML = `<b>NODE_${name.toUpperCase()}</b> just synced with the mainstage.`;
+                ticker.prepend(item);
+                if(ticker.children.length > 5) ticker.removeChild(ticker.lastChild);
+            }, 5000);
+        }
+    </script>
 </body>
 </html>
