@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Strategy Briefing | FSP Obsidian Directorate</title>
+    <style>
+        :root {
+            --fsp-black: #050505; --fsp-pitch: #000000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; line-height: 1.6; }
+
+        /* COMMAND HEADER SYNC - 180px */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 50px; border-bottom: 1px solid #111; background: #000; position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .logo { height: 150px; }
+
+        .briefing-container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; padding: 250px 5% 80px; max-width: 1600px; margin: 0 auto; }
+
+        /* LEFT: PRO STRATEGY CONTENT */
+        .strategy-content h1 { font-family: 'Bebas Neue'; font-size: 5rem; letter-spacing: 10px; margin-bottom: 20px; color: var(--fsp-fire); }
+        .commitment-tag { display: inline-block; padding: 10px 20px; background: #111; border: 1px solid #333; color: #888; font-weight: 900; font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 40px; }
+        
+        .benefit-block { margin-bottom: 40px; border-left: 2px solid var(--fsp-fire); padding-left: 30px; }
+        .benefit-block h3 { color: var(--fsp-gold); letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px; text-transform: uppercase; }
+        .benefit-block p { color: #888; font-size: 1.1rem; }
+
+        /* RIGHT: ENROLLMENT FORM */
+        .enrollment-box { background: #080808; border: 1px solid #1a1a1a; padding: 60px; position: sticky; top: 220px; height: fit-content; }
+        .enrollment-box h2 { font-family: 'Bebas Neue'; font-size: 2rem; letter-spacing: 4px; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+
+        .input-group { margin-bottom: 25px; }
+        .input-group label { display: block; font-size: 0.65rem; color: #555; letter-spacing: 2px; margin-bottom: 8px; font-weight: 900; }
+        input { width: 100%; background: #000; border: 1px solid #222; padding: 18px; color: white; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--fsp-fire); }
+
+        .total-display { background: #000; padding: 30px; margin: 30px 0; border: 1px solid #222; text-align: center; }
+        .total-display span { font-size: 0.7rem; color: #444; letter-spacing: 3px; display: block; }
+        .total-display b { font-size: 2.5rem; color: var(--fsp-white); letter-spacing: 2px; }
+
+        .submit-btn { width: 100%; padding: 25px; background: var(--fsp-fire); color: white; border: none; font-weight: 900; letter-spacing: 5px; cursor: pointer; text-transform: uppercase; }
+        .submit-btn:hover { background: white; color: black; box-shadow: 0 0 30px white; }
+
+        @media (max-width: 1000px) { .briefing-container { grid-template-columns: 1fr; padding-top: 200px; } }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo"></a>
+    <div style="text-align: right; border-right: 3px solid var(--fsp-fire); padding-right: 20px;">
+        <span style="color:var(--fsp-fire); font-weight:900; letter-spacing:3px;">PRO STRATEGY BRIEFING</span>
+    </div>
+</header>
+
+<main class="briefing-container">
+    <section class="strategy-content">
+        <h1>PRO STATUS</h1>
+        <div class="commitment-tag">MONTHLY SUBSCRIPTION // FLEXIBLE BILLING</div>
+        
+        <div class="benefit-block">
+            <h3>Standard Real Estate</h3>
+            <p>Unlock 15 high-resolution photo slots and 3 dedicated video repositories. This allows you to build a foundational portfolio within the Obsidian Ledger that directors can access 24/7.</p>
+        </div>
+
+        <div class="benefit-block">
+            <h3>The $100 Production Baseline</h3>
+            <p>As a Pro member, you are authorized to accept 60-minute scripted video requirements. Upon perfect submittal and Directorate approval, you receive a baseline of $100 per hour of production.</p>
+        </div>
+
+        <div class="benefit-block">
+            <h3>Start/Stop Flexibility</h3>
+            <p>Unlike Elite or Icon tiers, Pro allows you to pause your subscription at any time. Your profile and metadata remain on our servers, allowing you to resume your celebrity growth whenever you are ready.</p>
+        </div>
+
+        <div class="benefit-block">
+            <h3>Production Blog Access</h3>
+            <p>Gain full transparency into the upcoming job boards. See which requirements are trending and prepare your 60-minute submittals in advance to close jobs quickly.</p>
+        </div>
+    </section>
+
+    <section class="enrollment-box">
+        <h2>INITIALIZE PRO</h2>
+        <form onsubmit="processPro(event)">
+            <div class="input-group">
+                <label>LEGAL IDENTITY (CARDHOLDER)</label>
+                <input type="text" required placeholder="FULL NAME">
+            </div>
+            <div class="input-group">
+                <label>CREDIT CARD NUMBER</label>
+                <input type="text" required placeholder="XXXX XXXX XXXX XXXX">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="input-group">
+                    <label>EXPIRY</label>
+                    <input type="text" required placeholder="MM/YY">
+                </div>
+                <div class="input-group">
+                    <label>CVC</label>
+                    <input type="password" required placeholder="***">
+                </div>
+            </div>
+
+            <div class="total-display">
+                <span>INITIAL DEPOSIT:</span>
+                <b>$29.00</b>
+            </div>
+
+            <button type="submit" class="submit-btn">AUTHORIZE PRO STATUS</button>
+        </form>
+    </section>
+</main>
+
+<script>
+    function processPro(e) {
+        e.preventDefault();
+        // Set local storage to verify they chose Pro
+        sessionStorage.setItem('selectedTier', 'pro');
+        alert("PRO STATUS AUTHORIZED. REDIRECTING TO ASSET INTAKE...");
+        window.location.href = "join.html";
+    }
+</script>
+
+</body>
+</html>
