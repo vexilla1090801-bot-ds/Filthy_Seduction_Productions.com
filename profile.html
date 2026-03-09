@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Identity | Obsidian Directorate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; --fsp-glass: rgba(255,255,255,0.05); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
+
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
+        .logo { height: 150px; }
+        
+        .profile-layout { max-width: 1400px; margin: 240px auto 100px; padding: 0 5%; display: grid; grid-template-columns: 400px 1fr; gap: 50px; }
+
+        /* SIDEBAR: CORE IDENTITY */
+        .id-sidebar { position: sticky; top: 240px; }
+        .main-photo { width: 100%; aspect-ratio: 1/1; border: 1px solid #222; background: #080808; overflow: hidden; position: relative; }
+        .main-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .tier-ribbon { position: absolute; top: 20px; right: -30px; background: var(--fsp-gold); color: #000; padding: 5px 40px; transform: rotate(45deg); font-weight: 900; font-size: 0.6rem; letter-spacing: 2px; }
+
+        .id-badge-area { background: #080808; padding: 30px; border: 1px solid #111; border-top: none; }
+        .member-name { font-family: 'Bebas Neue'; font-size: 3.5rem; letter-spacing: 5px; line-height: 1; margin-bottom: 10px; }
+        .member-status { color: #555; font-size: 0.6rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
+        
+        .action-stack { margin-top: 30px; display: flex; flex-direction: column; gap: 10px; }
+        .btn-profile { width: 100%; padding: 18px; border: 1px solid #222; background: transparent; color: #fff; font-weight: 900; font-size: 0.65rem; letter-spacing: 3px; cursor: pointer; text-transform: uppercase; transition: 0.3s; text-align: center; text-decoration: none; }
+        .btn-profile:hover { border-color: var(--fsp-fire); color: var(--fsp-fire); }
+        .owner-only { display: none; background: #111; border-color: var(--fsp-gold); color: var(--fsp-gold); }
+
+        /* CONTENT AREA */
+        .content-area h2 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 8px; margin-bottom: 30px; border-bottom: 1px solid #111; padding-bottom: 15px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .content-area h2 span { font-size: 0.7rem; color: var(--fsp-gold); font-family: 'Outfit'; }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 60px; }
+        .gallery-item { aspect-ratio: 3/4; background: #080808; border: 1px solid #111; display: flex; align-items: center; justify-content: center; color: #222; font-weight: 900; }
+
+        /* THE RUNNER / COMMENT SYSTEM */
+        .communication-runner { background: #080808; border: 1px solid #111; padding: 40px; }
+        .comment-entry { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #111; }
+        .comment-header { display: flex; justify-content: space-between; font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; color: var(--fsp-fire); margin-bottom: 10px; }
+        .comment-body { font-size: 0.9rem; color: #aaa; line-height: 1.6; }
+
+        .post-box { margin-top: 40px; }
+        textarea { width: 100%; background: #000; border: 1px solid #222; padding: 20px; color: #fff; font-family: 'Outfit'; resize: none; margin-bottom: 15px; }
+        .btn-send { background: var(--fsp-fire); color: #fff; border: none; padding: 15px 40px; font-weight: 900; letter-spacing: 4px; cursor: pointer; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
+    <nav style="position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px;">
+        <a href="index.html" style="color:#555; text-decoration:none; font-weight:900; font-size:0.75rem; letter-spacing:4px;">COMMAND</a>
+        <a href="ledger.html" style="color:#555; text-decoration:none; font-weight:900; font-size:0.75rem; letter-spacing:4px;">LEDGER</a>
+        <a href="portal.html" style="color:#555; text-decoration:none; font-weight:900; font-size:0.75rem; letter-spacing:4px;">PORTAL</a>
+    </nav>
+</header>
+
+<main class="profile-layout">
+    <aside class="id-sidebar">
+        <div class="main-photo">
+            <span class="tier-ribbon" id="tier-badge">TIER</span>
+            <img id="profile-img" src="" alt="PERFORMER">
+        </div>
+        <div class="id-badge-area">
+            <h1 class="member-name" id="profile-name">---</h1>
+            <p class="member-status">DIRECTORATE ID: <span id="profile-id" style="color:#fff">--</span></p>
+            
+            <div class="action-stack">
+                <button class="btn-profile" onclick="openMessaging()">SEND INTERNAL MESSAGE</button>
+                <a href="portal.html" class="btn-profile owner-only" id="edit-trigger">EDIT MY PROFILE</a>
+                <a href="support.html" class="btn-profile owner-only" id="support-trigger">SUBMIT SUPPORT TICKET</a>
+            </div>
+        </div>
+    </aside>
+
+    <section class="content-area">
+        <h2>PRODUCTION ASSETS <span>METADATA SECURE</span></h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">IMAGE_01</div>
+            <div class="gallery-item">IMAGE_02</div>
+            <div class="gallery-item">IMAGE_03</div>
+            <div class="gallery-item">VIDEO_01</div>
+            <div class="gallery-item">VIDEO_02</div>
+            <div class="gallery-item">VIDEO_03</div>
+        </div>
+
+        <h2>COMMUNICATION RUNNER</h2>
+        <div class="communication-runner">
+            <div id="comment-list">
+                <div class="comment-entry">
+                    <div class="comment-header"><span>DIRECTORATE_BOT</span> <span>SYSTEM MESSAGE</span></div>
+                    <div class="comment-body">Welcome to the Obsidian Directorate. Maintain your profile to the highest standard to ensure casting eligibility.</div>
+                </div>
+            </div>
+
+            <div class="post-box">
+                <textarea id="comment-input" rows="3" placeholder="LEAVE A COMMENT ON THIS PROFILE..."></textarea>
+                <button class="btn-send" onclick="postComment()">POST COMMENT</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    window.onload = function() {
+        const data = JSON.parse(localStorage.getItem('fsp_active_profile'));
+        const isOwner = localStorage.getItem('is_owner') === 'true';
+
+        if(data) {
+            document.getElementById('profile-name').innerText = data.name;
+            document.getElementById('profile-id').innerText = data.id;
+            document.getElementById('profile-img').src = data.image;
+            document.getElementById('tier-badge').innerText = data.tier;
+
+            // SHOW OWNER CONTROLS
+            if(isOwner) {
+                document.getElementById('edit-trigger').style.display = 'block';
+                document.getElementById('support-trigger').style.display = 'block';
+            }
+        }
+    }
+
+    function postComment() {
+        const input = document.getElementById('comment-input');
+        if(!input.value) return;
+
+        const list = document.getElementById('comment-list');
+        const newComment = document.createElement('div');
+        newComment.className = 'comment-entry';
+        newComment.innerHTML = `
+            <div class="comment-header"><span>VISITOR_NODE</span> <span>JUST NOW</span></div>
+            <div class="comment-body">${input.value}</div>
+        `;
+        list.appendChild(newComment);
+        input.value = '';
+    }
+
+    function openMessaging() {
+        alert("INITIALIZING INTERNAL TICKETING SYSTEM...\nREMOVING PHONE NUMBERS & EMAILS FOR SECURITY.");
+    }
+</script>
+
+</body>
+</html>
