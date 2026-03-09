@@ -1,194 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <title>FSP | The Obsidian Directorate Command</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --fsp-pitch: #000000; --fsp-card: #080808; --fsp-fire: #ff3300; 
-            --fsp-gold: #c5a059; --fsp-white: #ffffff; --fsp-gray: #444;
-        }
+<div class="live-ticker">
+    <div class="ticker-wrap">
+        <div class="ticker-item">SYSTEM_STATUS: ALL_NODES_ACTIVE</div>
+        <div class="ticker-item">NEW_DISPATCH: #NOIR-991 AUTHORIZED (MIAMI)</div>
+        <div class="ticker-item">PAYOUT_SENT: $2,400.00 TO NODE_ELITE_082</div>
+        <div class="ticker-item">NEW_MEMBER: NODE_ICON_114 JUST JOINED THE DIRECTORATE</div>
+        <div class="ticker-item">FLAMMABLE_FILTH: NEW_PRODUCTION_DROP IN 02:14:55</div>
+    </div>
+</div>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+<style>
+    .live-ticker { background: var(--fsp-fire); color: #fff; padding: 10px 0; overflow: hidden; font-family: 'Source Code Pro'; font-size: 0.6rem; font-weight: 900; letter-spacing: 2px; }
+    .ticker-wrap { display: flex; white-space: nowrap; animation: ticker 30s linear infinite; }
+    .ticker-item { margin-right: 50px; }
+    @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* UNIVERSAL CENTERED HEADER & NAVIGATION */
-        header { 
-            height: 180px; display: flex; align-items: center; justify-content: space-between; 
-            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
-            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
-        }
-        
-        .logo-link { display: flex; align-items: center; text-decoration: none; }
-        .logo { height: 150px; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-        .logo:hover { filter: drop-shadow(0 0 25px var(--fsp-fire)); transform: scale(1.02); }
+    /* SURROGATE CAROUSEL */
+    .featured-section { padding: 80px 5%; background: #050505; border-top: 1px solid #111; }
+    .section-title { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 5px; margin-bottom: 40px; }
+    
+    .surrogate-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .surrogate-card { background: #000; border: 1px solid #111; padding: 15px; transition: 0.4s; }
+    .surrogate-card:hover { border-color: var(--fsp-gold); }
+    .surrogate-img { height: 400px; background: #0a0a0a; margin-bottom: 15px; position: relative; overflow: hidden; }
+    .surrogate-img::after { content: "ELITE_NODE"; position: absolute; bottom: 10px; right: 10px; font-size: 0.5rem; background: var(--fsp-gold); color: #000; padding: 4px 8px; font-weight: 900; }
+    
+    .surrogate-info h4 { font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 2px; }
+    .surrogate-info p { font-size: 0.6rem; color: #555; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* CENTERED NAVIGATION SYSTEM */
-        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
-        .main-nav a { 
-            color: #666; text-decoration: none; font-weight: 900; font-size: 0.75rem; 
-            letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; padding-bottom: 5px;
-        }
-        .main-nav a:hover, .main-nav a.active { color: var(--fsp-fire); text-shadow: 0 0 10px rgba(255,51,0,0.5); }
+    /* THE FLAMMABLE FILTH TOGGLE */
+    .ff-gateway { margin-top: 50px; padding: 40px; border: 2px solid var(--fsp-fire); text-align: center; background: rgba(255, 51, 0, 0.05); }
+    .btn-flammable { padding: 20px 40px; background: var(--fsp-fire); color: #fff; font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 4px; text-decoration: none; display: inline-block; transition: 0.4s; }
+    .btn-flammable:hover { background: #fff; color: var(--fsp-fire); box-shadow: 0 0 30px var(--fsp-fire); }
+</style>
 
-        .system-status { display: flex; align-items: center; gap: 12px; border-right: 3px solid var(--fsp-fire); padding-right: 20px; }
-        .pulse { width: 10px; height: 10px; background: var(--fsp-fire); border-radius: 50%; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
-        .status-text { color: var(--fsp-fire); font-size: 0.65rem; font-weight: 900; letter-spacing: 4px; }
-
-        /* HERO & MARKETING */
-        .hero { 
-            height: 90vh; display: flex; flex-direction: column; justify-content: center; 
-            align-items: center; text-align: center; padding-top: 180px;
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
-        }
-        .hero h1 { font-family: 'Bebas Neue'; font-size: clamp(4rem, 12vw, 9rem); letter-spacing: 25px; line-height: 0.85; margin-bottom: 20px; }
-        .tagline { color: var(--fsp-gold); letter-spacing: 12px; font-weight: 900; text-transform: uppercase; font-size: 0.85rem; }
-
-        /* REVENUE & CAPABILITY TICKER */
-        .ticker { background: #050505; border-top: 1px solid #111; border-bottom: 1px solid #111; padding: 50px 0; display: flex; justify-content: center; gap: 100px; }
-        .stat { text-align: center; }
-        .stat h4 { font-size: 0.6rem; color: #444; letter-spacing: 4px; margin-bottom: 10px; text-transform: uppercase; }
-        .stat p { font-size: 2.2rem; font-weight: 900; color: var(--fsp-gold); font-family: 'Bebas Neue'; }
-
-        /* TIER GRID */
-        .tier-section { padding: 120px 5%; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        
-        .card { 
-            background: var(--fsp-card); border: 1px solid #1a1a1a; padding: 60px 35px; 
-            transition: 0.5s; text-align: center; position: relative; overflow: hidden;
-        }
-        .card:hover { border-color: var(--fsp-white); transform: translateY(-10px); background: #0c0c0c; }
-        .card.hot { border-top: 4px solid var(--fsp-fire); box-shadow: 0 0 30px rgba(255,51,0,0.1); }
-        .card.top { border-top: 4px solid var(--fsp-gold); }
-
-        .card h3 { font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 5px; margin-bottom: 10px; }
-        .price { font-size: 3.5rem; font-weight: 900; line-height: 1; }
-        .commitment { font-size: 0.6rem; color: var(--fsp-fire); letter-spacing: 3px; font-weight: 900; display: block; margin: 15px 0 35px; }
-        
-        .feats { list-style: none; text-align: left; margin-bottom: 40px; border-top: 1px solid #151515; padding-top: 30px; }
-        .feats li { font-size: 0.8rem; color: #777; margin-bottom: 12px; letter-spacing: 1px; display: flex; align-items: center; }
-        .feats li::before { content: '◈'; color: var(--fsp-fire); margin-right: 12px; }
-
-        .btn { 
-            display: block; width: 100%; padding: 22px; background: #111; color: #fff; 
-            text-decoration: none; font-weight: 900; letter-spacing: 5px; font-size: 0.7rem; 
-            text-transform: uppercase; transition: 0.3s; border: 1px solid transparent;
-        }
-        .card:hover .btn { background: var(--fsp-white); color: #000; }
-
-        /* LEGAL COMPLIANCE FOOTER */
-        footer { padding: 100px 15%; background: #000; border-top: 1px solid #111; color: #333; font-size: 0.65rem; line-height: 2.2; text-align: center; letter-spacing: 1px; }
-        .legal-warning { color: #555; margin-bottom: 30px; border: 1px solid #111; padding: 20px; }
-
-        @media (max-width: 1000px) {
-            header { height: 140px; }
-            .main-nav { display: none; } /* Mobile Menu would go here */
-            .logo { height: 100px; }
-            .ticker { gap: 30px; flex-wrap: wrap; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <a href="index.html" class="logo-link">
-            <img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP OBSIDIAN">
-        </a>
-        
-        <nav class="main-nav">
-            <a href="index.html" class="active">COMMAND</a>
-            <a href="briefing-pro.html">PRO</a>
-            <a href="portal.html">PORTAL</a>
-            <a href="about.html">ABOUT</a>
-        </nav>
-
-        <div class="system-status">
-            <span class="pulse"></span>
-            <span class="status-text">NODE: ACTIVE</span>
-        </div>
-    </header>
-
-    <main class="hero">
-        <p class="tagline">Official Adult Entertainer Identity Portal</p>
-        <h1>OBSIDIAN<br><span style="color:var(--fsp-gold)">DIRECTORATE</span></h1>
-        <p style="letter-spacing:5px; color:#333; font-weight:900; margin-top:20px;">REMOTE NODES // STUDIO PLACEMENT // REVENUE EQUITY</p>
-    </main>
-
-    <section class="ticker">
-        <div class="stat"><h4>REMOTE CAPABLE</h4><p>AUTHORIZED</p></div>
-        <div class="stat"><h4>STUDIO ACCESS</h4><p>AVAILABLE</p></div>
-        <div class="stat"><h4>PRO REVENUE</h4><p>$100/HR</p></div>
-        <div class="stat"><h4>ICON REVENUE</h4><p>$250/HR</p></div>
-    </section>
-
-    <section class="tier-section">
-        <div class="grid">
-            <div class="card">
-                <h3>BASIC</h3>
-                <div class="price">FREE</div>
-                <span class="commitment" style="color:#444;">ID VERIFICATION ONLY</span>
-                <ul class="feats">
-                    <li>Basic Identity Ledger Entry</li>
-                    <li>Secure Adult Screen Name</li>
-                    <li>Remote Work Eligibility</li>
-                    <li>5 Photo / 1 Video Slots</li>
-                </ul>
-                <a href="briefing-basic.html" class="btn">VIEW BRIEFING</a>
-            </div>
-
-            <div class="card hot">
-                <h3>PRO</h3>
-                <div class="price">$29</div>
-                <span class="commitment">03-MONTH COMMITMENT</span>
-                <ul class="feats">
-                    <li><b>$100/HR</b> Production Scale</li>
-                    <li>15 Photo / 3 Video Slots</li>
-                    <li>Studio Casting Eligibility</li>
-                    <li>Reputable Identity Branding</li>
-                </ul>
-                <a href="briefing-pro.html" class="btn" style="background:var(--fsp-fire);">VIEW BRIEFING</a>
-            </div>
-
-            <div class="card">
-                <h3>ELITE</h3>
-                <div class="price">$99</div>
-                <span class="commitment">06-MONTH COMMITMENT</span>
-                <ul class="feats">
-                    <li><b>$150/HR</b> Production Scale</li>
-                    <li>40 Photo / 10 Video Slots</li>
-                    <li>Priority Script Alerts</li>
-                    <li>Advanced Metadata Ranking</li>
-                </ul>
-                <a href="briefing-elite.html" class="btn">VIEW BRIEFING</a>
-            </div>
-
-            <div class="card top">
-                <h3>ICON</h3>
-                <div class="price">$249</div>
-                <span class="commitment" style="color:var(--fsp-gold)">12-MONTH COMMITMENT</span>
-                <ul class="feats">
-                    <li><b>$250/HR</b> Production Scale</li>
-                    <li><b>UNLIMITED</b> Media Assets</li>
-                    <li>Global Lust-Loop Feature</li>
-                    <li>Direct Staff Consultation</li>
-                </ul>
-                <a href="briefing-icon.html" class="btn">VIEW BRIEFING</a>
+<section class="featured-section">
+    <h2 class="section-title">ACTIVE_DIRECTORATE_NODES</h2>
+    <div class="surrogate-grid">
+        <div class="surrogate-card">
+            <div class="surrogate-img"><div style="display:flex; align-items:center; justify-content:center; height:100%; color:#111;">[ALEXA_IMAGE]</div></div>
+            <div class="surrogate-info">
+                <h4>ALEXA</h4>
+                <p>Location: Miami // Status: Active</p>
+                <p style="color:var(--fsp-gold); margin-top:5px;">"The Directorate changed the way I view my brand."</p>
             </div>
         </div>
-    </section>
-
-    <footer>
-        <div class="legal-warning">
-            <b>18 U.S.C. § 2257 RECORD-KEEPING COMPLIANCE:</b> ALL MODELS, PERFORMERS, AND CONTENT CREATORS REGISTERING WITH THE OBSIDIAN DIRECTORATE MUST BE AT LEAST 18 YEARS OF AGE. ALL CONTENT PRODUCED OR INDEXED BY FILTHY SEDUCTION PRODUCTIONS COMPLIES WITH FEDERAL RECORD-KEEPING REQUIREMENTS. BY ENTERING THIS SITE, YOU CERTIFY LEGAL AGE AND ADHERENCE TO ALL ADULT ENTERTAINMENT LAWS WITHIN YOUR JURISDICTION.
+        <div class="surrogate-card">
+            <div class="surrogate-img"><div style="display:flex; align-items:center; justify-content:center; height:100%; color:#111;">[JORDAN_IMAGE]</div></div>
+            <div class="surrogate-info">
+                <h4>JORDAN</h4>
+                <p>Location: London // Status: On-Set</p>
+                <p style="color:var(--fsp-gold); margin-top:5px;">"Unmatched security for high-end creators."</p>
+            </div>
         </div>
-        <p>THE OBSIDIAN DIRECTORATE IS A SPECIALIZED DIVISION OF FILTHY SEDUCTION PRODUCTIONS. OUR MISSION IS TO DEVELOP, CREDENTIAL, AND MANAGE THE PROFESSIONAL IDENTITIES OF ADULT ENTERTAINERS FOR BOTH REMOTE AND STUDIO-BASED PRODUCTIONS. ALL PAY RATES ARE BASED ON PROFESSIONAL PRODUCTION STANDARDS AND DIRECTOR-TIER APPROVAL.</p>
-        <p style="margin-top:20px; color:#111;">&copy; 2026 FSP DIRECTORATE | SYSTEM ENCRYPTION: ACTIVE | NODE 1.0</p>
-    </footer>
+        </div>
 
-</body>
-</html>
+    <div class="ff-gateway">
+        <h3 style="font-family:'Bebas Neue'; font-size: 2rem; letter-spacing: 5px; margin-bottom: 10px;">TRANSITION TO FLAMMABLE FILTH</h3>
+        <p style="font-size: 0.7rem; color: #888; margin-bottom: 25px; letter-spacing: 2px;">AUTHORIZE DEEP-NODE ACCESS TO THE ADULT PRODUCTION PORTAL</p>
+        <a href="flammablefilth_gateway.html" class="btn-flammable">ENTER_THE_HEAT</a>
+    </div>
+</section>
