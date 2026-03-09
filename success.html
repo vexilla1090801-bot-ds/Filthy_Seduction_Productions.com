@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Active Status Confirmed | FSP Obsidian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
+        body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; text-align: center; padding-top: 150px; }
+        
+        .success-box { max-width: 800px; margin: 0 auto; border: 1px solid #1a1a1a; padding: 60px; background: #080808; border-top: 5px solid #0f0; }
+        h1 { font-family: 'Bebas Neue'; font-size: 4rem; letter-spacing: 10px; color: #0f0; margin-bottom: 20px; }
+        
+        .status-card { background: #000; border: 1px solid #222; padding: 30px; margin: 40px 0; text-align: left; }
+        .instruction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+        .step { background: #111; padding: 20px; border-left: 3px solid var(--fsp-fire); text-align: left; }
+        .step h3 { font-size: 0.7rem; letter-spacing: 2px; color: var(--fsp-fire); margin-bottom: 10px; text-transform: uppercase; }
+        .step p { font-size: 0.85rem; color: #777; line-height: 1.4; }
+
+        .btn-portal { display: inline-block; margin-top: 50px; padding: 20px 40px; background: #fff; color: #000; text-decoration: none; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; }
+        .btn-portal:hover { background: var(--fsp-fire); color: #fff; }
+    </style>
+</head>
+<body>
+
+    <div class="success-box">
+        <h1>ACCESS GRANTED</h1>
+        <p style="letter-spacing: 5px; color: #555;">IDENTITY LOCKED // PRODUCTION CYCLE INITIALIZED</p>
+
+        <div class="status-card">
+            <p style="font-size: 0.6rem; color: #444; font-weight: 900; letter-spacing: 2px;">LEDGER STATUS</p>
+            <p style="font-size: 1.2rem; font-weight: 700; color: var(--fsp-gold);">ACTIVE PERMITTED PERFORMER</p>
+            <hr style="border: 0; border-top: 1px solid #111; margin: 15px 0;">
+            <p style="font-size: 0.8rem; color: #888;">Your credentials have been synced with the Directorate. You are now authorized for casting submittals at your designated revenue scale.</p>
+        </div>
+
+        <div class="instruction-grid">
+            <div class="step">
+                <h3>Step 01: Verification</h3>
+                <p>Submit your 2257 ID records to our compliance officer via the secure portal link sent to your email.</p>
+            </div>
+            <div class="step">
+                <h3>Step 02: Metadata</h3>
+                <p>Upload your 4K production assets to your assigned folder to begin the indexing process.</p>
+            </div>
+        </div>
+
+        <a href="join.html" class="btn-portal">RETURN TO TALENT PORTAL</a>
+    </div>
+
+</body>
+</html>
