@@ -3,159 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AITS | Vexilla Advanced Internal Ticketing System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&display=swap" rel="stylesheet">
+    <title>Agency Liaison Terminal | Vexilla AITS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;700;900&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --fsp-pitch: #000; --fsp-fire: #ff3300; --fsp-gold: #c5a059; --fsp-white: #fff; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--fsp-pitch); color: var(--fsp-white); font-family: 'Outfit', sans-serif; }
 
-        header { 
-            height: 180px; display: flex; align-items: center; justify-content: space-between; 
-            padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); 
-            position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; 
-        }
+        /* UNIVERSAL HEADER */
+        header { height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 10000; border-bottom: 1px solid #111; }
         .logo { height: 150px; }
-        .main-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 40px; }
-        .main-nav a { color: #555; text-decoration: none; font-weight: 900; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; transition: 0.3s; }
-        .main-nav a:hover { color: var(--fsp-fire); }
-
-        .support-wrapper { max-width: 1000px; margin: 240px auto 100px; padding: 0 5%; }
-
-        /* AITS FORM BOX */
-        .aits-terminal { 
-            background: #080808; border: 1px solid #1a1a1a; padding: 60px; 
-            border-top: 5px solid var(--fsp-fire); position: relative;
-        }
-        .aits-terminal::before { content: "ENCRYPTED_SESSION"; position: absolute; top: 15px; right: 20px; font-size: 0.55rem; color: #333; letter-spacing: 2px; font-weight: 900; }
         
-        h1 { font-family: 'Bebas Neue'; font-size: 3.5rem; letter-spacing: 12px; margin-bottom: 5px; color: var(--fsp-white); }
-        .sub-header { color: var(--fsp-fire); font-size: 0.65rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; display: block; }
-
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
-        label { display: block; font-size: 0.6rem; color: #444; font-weight: 900; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
-        input, select, textarea { width: 100%; background: #000; border: 1px solid #222; padding: 18px; color: #fff; font-family: 'Outfit'; font-size: 0.9rem; border-radius: 0; }
-        input:focus, select:focus, textarea:focus { border-color: var(--fsp-fire); outline: none; }
-
-        .btn-aits { 
-            width: 100%; padding: 25px; background: var(--fsp-fire); color: #fff; 
-            border: none; font-weight: 900; letter-spacing: 10px; text-transform: uppercase; 
-            cursor: pointer; margin-top: 20px; transition: 0.3s; font-size: 0.8rem;
-        }
-        .btn-aits:hover { background: var(--fsp-white); color: #000; }
-
-        /* TICKET RUNNER */
-        .ticket-history { margin-top: 60px; border-top: 1px solid #111; padding-top: 40px; }
-        .ticket-history h2 { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 4px; margin-bottom: 25px; color: #333; }
+        .terminal-wrap { max-width: 1100px; margin: 240px auto 100px; padding: 0 5%; }
         
-        .ticket-card { 
-            background: #0c0c0c; border: 1px solid #151515; padding: 25px; 
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;
-        }
-        .case-info h4 { font-size: 0.8rem; letter-spacing: 1px; color: #fff; }
-        .case-info p { font-size: 0.7rem; color: #555; margin-top: 4px; }
-        .status-tag { 
-            padding: 6px 15px; font-size: 0.55rem; font-weight: 900; letter-spacing: 2px; 
-            border: 1px solid var(--fsp-gold); color: var(--fsp-gold); text-transform: uppercase;
-        }
+        .agency-header { text-align: center; margin-bottom: 60px; }
+        .agency-header h1 { font-family: 'Bebas Neue'; font-size: 3.5rem; letter-spacing: 12px; color: var(--fsp-gold); }
+        .agency-header p { font-size: 0.7rem; letter-spacing: 4px; color: #444; font-weight: 900; text-transform: uppercase; }
 
-        .security-footer { margin-top: 50px; text-align: center; font-size: 0.6rem; color: #222; line-height: 1.8; letter-spacing: 1px; }
+        /* THE LIAISON FORM */
+        .liaison-terminal { background: #080808; border: 1px solid #151515; padding: 60px; position: relative; }
+        .liaison-terminal::after { content: "DIRECT_LINK_ESTABLISHED"; position: absolute; bottom: 20px; right: 30px; font-family: 'Source Code Pro'; font-size: 0.5rem; color: #222; letter-spacing: 2px; }
+
+        .form-section { margin-bottom: 40px; }
+        .form-section h3 { font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 20px; color: #fff; border-bottom: 1px solid #111; padding-bottom: 10px; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        
+        label { display: block; font-size: 0.6rem; color: #555; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+        select, input, textarea { width: 100%; background: #000; border: 1px solid #222; padding: 18px; color: #fff; font-family: 'Outfit'; font-size: 0.9rem; transition: 0.3s; }
+        select:focus, input:focus, textarea:focus { border-color: var(--fsp-fire); outline: none; }
+
+        .routing-notice { background: #0c0c0c; padding: 20px; border-left: 3px solid var(--fsp-fire); margin-bottom: 30px; }
+        .routing-notice p { font-size: 0.75rem; color: #888; line-height: 1.5; }
+
+        .btn-transmit { width: 100%; padding: 25px; background: var(--fsp-white); color: #000; border: none; font-weight: 900; font-size: 0.8rem; letter-spacing: 6px; cursor: pointer; text-transform: uppercase; transition: 0.4s; }
+        .btn-transmit:hover { background: var(--fsp-fire); color: #fff; }
+
+        /* TICKET HISTORY PREVIEW */
+        .history-preview { margin-top: 50px; }
+        .history-card { background: #050505; border: 1px solid #111; padding: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .history-tag { font-family: 'Bebas Neue'; font-size: 0.9rem; letter-spacing: 2px; }
+        .status-badge { font-size: 0.55rem; font-weight: 900; color: var(--fsp-gold); border: 1px solid var(--fsp-gold); padding: 4px 10px; }
     </style>
 </head>
 <body>
 
 <header>
     <a href="index.html"><img src="VEXILLIALSDP_FSP.png" class="logo" alt="FSP"></a>
-    <nav class="main-nav">
-        <a href="index.html">COMMAND</a>
-        <a href="ledger.html">LEDGER</a>
-        <a href="portal.html">PORTAL</a>
-        <a href="about.html">DOCTRINE</a>
-    </nav>
 </header>
 
-<main class="support-wrapper">
-    <div class="aits-terminal">
-        <h1>AITS TERMINAL</h1>
-        <span class="sub-header">Internal Communications & Ticket Logic</span>
+<main class="terminal-wrap">
+    <div class="agency-header">
+        <h1>AGENCY UPLINK</h1>
+        <p>Direct Correspondence with FSP Production & Executive Directorate</p>
+    </div>
 
-        <form id="ticket-form" onsubmit="handleTicket(event)">
-            <div class="form-row">
-                <div>
-                    <label>Target Department</label>
-                    <select id="dept" required>
-                        <option value="CASTING">CASTING AGENT</option>
-                        <option value="TECH">DIRECTORATE SUPPORT</option>
-                        <option value="BILLING">REVENUE SETTLEMENT</option>
-                        <option value="ID">2257 VERIFICATION</option>
-                    </select>
+    <div class="liaison-terminal">
+        <div class="routing-notice">
+            <p><b>DIRECTORATE PROTOCOL:</b> This terminal is your primary tool for career development. Use the routing options below to reach specific production departments. All transmissions are reviewed by senior staff within 12-24 hours.</p>
+        </div>
+
+        <form>
+            <div class="form-section">
+                <h3>1. CORRESPONDENCE ROUTING</h3>
+                <div class="grid-2">
+                    <div>
+                        <label>Target Department</label>
+                        <select>
+                            <option>--- SELECT RECIPIENT ---</option>
+                            <option>CASTING AGENTS (Submission Inquiries)</option>
+                            <option>PRODUCTION OFFICE (Set Logistics)</option>
+                            <option>EXECUTIVE DIRECTOR (Tier & Career Path)</option>
+                            <option>LEGAL DIRECTORATE (2257 & Compliance)</option>
+                            <option>TECHNICAL SUPPORT (Account & Node Issues)</option>
+                            <option>BILLING & REVENUE (Payouts & Subscriptions)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Priority Level</label>
+                        <select>
+                            <option>GENERAL INQUIRY</option>
+                            <option>URGENT (Shoot in progress)</option>
+                            <option>TIER UPGRADE APPLICATION</option>
+                            <option>2257 EMERGENCY SYNC</option>
+                        </select>
+                    </div>
                 </div>
-                <div>
-                    <label>Inquiry Priority</label>
-                    <select id="priority">
-                        <option value="ROUTINE">ROUTINE</option>
-                        <option value="URGENT">PRODUCTION URGENT</option>
-                    </select>
-                </div>
             </div>
 
-            <div style="margin-bottom: 25px;">
-                <label>Submission Subject</label>
-                <input type="text" id="subject" placeholder="Summary of Inquiry" required>
+            <div class="form-section">
+                <h3>2. MESSAGE DATA</h3>
+                <label>Subject of Correspondence</label>
+                <input type="text" placeholder="Brief summary of your request" style="margin-bottom: 20px;">
+                
+                <label>Detailed Transmission</label>
+                <textarea rows="8" placeholder="Provide full context for the production team..."></textarea>
             </div>
 
-            <div style="margin-bottom: 25px;">
-                <label>Encrypted Message Body</label>
-                <textarea id="message" rows="6" placeholder="Provide full details. Remainder: Do not share phone numbers or personal emails here." required></textarea>
-            </div>
-
-            <button type="submit" class="btn-aits">TRANSMIT TO AGENT</button>
+            <button type="submit" class="btn-transmit">TRANSMIT TO DIRECTORATE</button>
         </form>
     </div>
 
-    <section class="ticket-history">
-        <h2>ACTIVE TRANSMISSIONS</h2>
-        <div id="ticket-display">
-            <div class="ticket-card">
-                <div class="case-info">
-                    <h4>CASE #772-INIT</h4>
-                    <p>System Onboarding & Subscription Confirmation</p>
-                </div>
-                <div class="status-tag">RESOLVED</div>
-            </div>
+    <section class="history-preview">
+        <h3 style="font-family: 'Bebas Neue'; letter-spacing: 3px; margin-bottom: 20px; font-size: 1.2rem;">RECENT CORRESPONDENCE</h3>
+        <div class="history-card">
+            <div class="history-tag">REF_ID: #C-9012 // TIER_UPGRADE_REVIEW</div>
+            <div class="status-badge">PENDING DIRECTOR REVIEW</div>
+        </div>
+        <div class="history-card">
+            <div class="history-tag">REF_ID: #P-8841 // MIAMI_STUDIO_ACCESS</div>
+            <div class="status-badge" style="color:#0f0; border-color:#0f0">ACCESS GRANTED</div>
         </div>
     </section>
-
-    <div class="security-footer">
-        VEXILLA INTERNAL TICKETING SYSTEM (AITS) // ENCRYPTION KEY ACTIVE<br>
-        SHARING EXTERNAL CONTACT DATA IS GROUNDS FOR IMMEDIATE NODE TERMINATION.
-    </div>
 </main>
 
-<script>
-    function handleTicket(e) {
-        e.preventDefault();
-        
-        const caseNum = Math.floor(1000 + Math.random() * 9000);
-        const subject = document.getElementById('subject').value;
-        const dept = document.getElementById('dept').value;
-
-        const display = document.getElementById('ticket-display');
-        const newTicket = document.createElement('div');
-        newTicket.className = 'ticket-card';
-        newTicket.innerHTML = `
-            <div class="case-info">
-                <h4>CASE #${caseNum}-${dept.substring(0,3)}</h4>
-                <p>${subject}</p>
-            </div>
-            <div class="status-tag" style="border-color:#444; color:#444">QUEUED</div>
-        `;
-        
-        display.prepend(newTicket);
-        alert(`TRANSMISSION SUCCESSFUL.\n\nCase ID: #${caseNum}\nDepartment: ${dept}\n\nOur agents will respond via the Executive Portal.`);
-        document.getElementById('ticket-form').reset();
-    }
-</script>
+<footer style="background: #050505; border-top: 1px solid #111; padding: 60px 5%; margin-top: 100px; text-align: center;">
+    <p style="font-size: 0.6rem; color: #222; letter-spacing: 2px;">© 2026 FILTHY SEDUCTION PRODUCTIONS | VEXILLA AITS | SECURE PERFORMANCE CHANNEL</p>
+</footer>
 
 </body>
 </html>
